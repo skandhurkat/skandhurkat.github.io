@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="theme" content="cornellcsl">
+  <meta name="generator" content="Hugo 0.27" />
+  <meta name="author" content="Skand Hurkat">
+  <meta name="description" content="PhD Candidate">
+
+  
+  
+  
+    
+  
+  
+    
+    
+    <link rel="stylesheet" href="/css/highlight.min.css">
+    
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/academicons.min.css">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:400,700%7cMerriweather%7cRoboto&#43;Mono">
+  <link rel="stylesheet" href="/css/cornellcsl.min.css">
+  
+
+  <link rel="alternate" href="http://skandhurkat.github.io/index.xml" type="application/rss+xml" title="Skand Hurkat – Computer Systems Lab, Cornell University">
+
+  <link rel="icon" type="image/png" href="/img/CULogo-red120px.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/CULogo-red120px.png">
+
+  <link rel="canonical" href="http://skandhurkat.github.io/post/intro-to-ctest/">
+
+  
+
+  <title>An Introduction to CTest | Skand Hurkat – Computer Systems Lab, Cornell University</title>
+
+  <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+  <script async src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+  <script defer>
+  window.addEventListener("load", function(){
+  window.cookieconsent.initialise({
+    "palette": {
+      "popup": {
+        "background": "#ffffff",
+        "text": "#000000"
+      },
+      "button": {
+        "background": "#b31b1b",
+        "text": "#ffffff"
+      }
+    },
+    "showLink": false,
+    "content": {
+      "message": "This website uses cookies for analytics and to enable comments.",
+      "dismiss": "Cool! I get it."
+    }
+  })});
+  </script>
+</head>
+<body data-spy="scroll" data-target="#navbar-main" data-offset="71">
+
+    
+    <a class="sr-only" href="#content">Skip to main content</a>
+    <header id="top" class="cu-banner">
+    
+    <div class="container">
+        <form action="//www.google.com/search" id="cu-search"
+        method="get" role="search" class="collapse">
+        
+        
+        
+         
+        <input type="hidden" name="q"
+        value="site:people.ece.cornell.edu/skand">
+        <div class="input-group col-xs-12">
+            
+            <input autocomplete="off" id="search-query" name="q"
+            placeholder="Search this website using Google"
+            required type="search" class="col-xs-12 cu-search-box">
+            <label for="search-query" class="sr-only">
+                 Search this website using Google
+            </label>
+        </div>
+        </form>
+    </div>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-10 cu-csl-logo-div">
+	    
+                <a href="//www.csl.cornell.edu" target="_blank">
+            
+		    <img src="/img/org-logo.svg"
+		        class="img-responsive"
+                        alt="Computer Systems Lab, Cornell University"
+		        style="margin: 0;" />
+            
+                </a>
+            
+            </div>
+	    
+            <div class="col-xs-2 col-middle cu-search-toggle-div">
+                <span class="pull-right">
+                    <button class="btn btn-cu-banner" type="button"
+                    data-toggle="collapse" data-target="#cu-search"
+                    id="cu-search-toggle" style="position:relative;">
+                        <span class="sr-only">Toggle search</span>
+                        <span class="cu-search-toggle glyphicon glyphicon-search">
+                        </span>
+                    </button>
+                </span>
+            </div>
+	    
+        </div>
+    </div>
+    </header>
+
+
+<div class="nav-wrapper">
+<nav class="navbar navbar-default" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+              data-target=".navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Skand Hurkat</a>
+    </div>
+
+    
+    <div class="collapse navbar-collapse">
+
+      
+      <ul class="nav navbar-nav navbar-right">
+        
+
+        
+
+        <li class="nav-item">
+          <a href="/#about">
+            
+            <span>Home</span>
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        <li class="nav-item">
+          <a href="/#publications">
+            
+            <span>Publications</span>
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        <li class="nav-item">
+          <a href="/#posts">
+            
+            <span>Posts</span>
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        <li class="nav-item">
+          <a href="/#projects">
+            
+            <span>Projects</span>
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        <li class="nav-item">
+          <a href="/#teaching">
+            
+            <span>Teaching</span>
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        <li class="nav-item">
+          <a href="/#contact">
+            
+            <span>Contact</span>
+          </a>
+        </li>
+
+        
+        
+      </ul>
+
+    </div>
+  </div>
+</nav>
+</div>
+
+
+<article class="article" itemscope itemtype="http://schema.org/BlogPosting">
+
+  
+
+  <div class="article-container">
+    <h1 itemprop="name headline">An Introduction to CTest</h1>
+    
+
+<div class="article-metadata">
+
+  
+  by <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name" class="article-authors">Skand Hurkat</span></span>.
+  
+  <span class="article-date">
+    <time datetime="2017-06-22T11:05:43-04:00" itemprop="datePublished">
+      Thu, Jun 22, 2017
+    </time>
+  </span>
+
+  
+
+  
+  
+  
+  <span class="article-tags">
+    <i class="fa fa-tags"></i>
+    
+    <a href="/tags/c&#43;&#43;">c&#43;&#43;</a
+    >, 
+    
+    <a href="/tags/cmake">cmake</a
+    >, 
+    
+    <a href="/tags/programming">programming</a
+    >
+    
+  </span>
+  
+  
+
+  
+  
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    <li>
+      <a class="facebook"
+         href="https://www.facebook.com/sharer.php?u=http%3a%2f%2fskandhurkat.github.io%2fpost%2fintro-to-ctest%2f"
+         target="_blank">
+        <i class="fa fa-facebook"></i>
+      </a>
+    </li>
+    <li>
+      <a class="twitter"
+         href="https://twitter.com/intent/tweet?text=An%20Introduction%20to%20CTest&amp;url=http%3a%2f%2fskandhurkat.github.io%2fpost%2fintro-to-ctest%2f"
+         target="_blank">
+        <i class="fa fa-twitter"></i>
+      </a>
+    </li>
+    <li>
+      <a class="linkedin"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2fskandhurkat.github.io%2fpost%2fintro-to-ctest%2f&amp;title=An%20Introduction%20to%20CTest"
+         target="_blank">
+        <i class="fa fa-linkedin"></i>
+      </a>
+    </li>
+    <li>
+      <a class="weibo"
+         href="http://service.weibo.com/share/share.php?url=http%3a%2f%2fskandhurkat.github.io%2fpost%2fintro-to-ctest%2f&amp;title=An%20Introduction%20to%20CTest"
+         target="_blank">
+        <i class="fa fa-weibo"></i>
+      </a>
+    </li>
+    <li>
+      <a class="email"
+         href="mailto:?subject=An%20Introduction%20to%20CTest&amp;body=http%3a%2f%2fskandhurkat.github.io%2fpost%2fintro-to-ctest%2f">
+        <i class="fa fa-envelope"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+    <div class="article-style" itemprop="articleBody">
+      <p>I&rsquo;ve seen a lot of people (I&rsquo;m looking at you <a href="//lemire.me" target="_blank">Daniel
+Lemire</a>) praise newer languages like <em>Go</em>, which makes me
+sad as a C++ programmer. Well, that&rsquo;s until I realise that most of the
+features touted could be easily incorporated in C++ with just a bit of
+elbow grease. In this post, I&rsquo;ll show how to add an automated testing
+system using CTest.</p>
+
+<p></p>
+
+<p>I love <a href="//cmake.org/" target="_blank">CMake</a>, it allows me to <a href="http://skandhurkat.github.io/post/autohell-v-cmake/" target="_blank">write cross-platform</a> code and be <a href="http://skandhurkat.github.io/post/why-i-like-cpp11/" target="_blank">confident that the
+build system would work across a choice of compilers, IDEs, and
+operating systems</a>. When
+writing large projects, however, it is imperative to have a series of
+tests that could indicate regression bugs whenever new features are
+added. While I love the testing support built into languages such as
+Java, writing tests is not all that hard in C++ either. For example, I
+could simply write a function that mimics a unit test and prints out
+either &ldquo;Test passed&rdquo; or &ldquo;Test failed&rdquo; depending on the result of the
+test. All I now need is a way to automatically run these tests.</p>
+
+<p>This is where CTest comes into the picture. I&rsquo;m assuming here that you
+are using CMake as your build system. If you are not, then you are
+clearly wrong, a terrible person, and the type who would probably not
+write tests anyway. So stop reading this post. 😄</p>
+
+<p>Okay, back from that little digression.</p>
+
+<p>My setup for testing is thus: I am building a library that defines all
+the required functions. Each class/function/API must be tested, so I
+write tests for each of these. The tests are written so that they would
+indicate success using the keyword &ldquo;Test passed&rdquo; or failure using the
+keyword &ldquo;Test failed&rdquo;. I put all the tests in a separate <code>tests</code> folder.
+Within the tests folder, I write my <code>CMakeLists.txt</code> thus.</p>
+<div class="highlight" style="background: #000000"><pre style="line-height: 125%"><span style="color: #cd00cd">set</span><span style="color: #cccccc">(</span><span style="color: #cd0000">EXECUTABLE_OUTPUT_PATH</span> <span style="color: #3399cc">${</span><span style="color: #00cdcd">PROJECT_BINARY_DIR</span><span style="color: #3399cc">}</span><span style="color: #cd0000">/tests</span><span style="color: #cccccc">)</span>
+<span style="color: #cd00cd">set</span><span style="color: #cccccc">(</span><span style="color: #cd0000">CTEST_BINARY_DIRECTORY</span> <span style="color: #3399cc">${</span><span style="color: #00cdcd">PROJECT_BINARY_DIR</span><span style="color: #3399cc">}</span><span style="color: #cd0000">/tests</span><span style="color: #cccccc">)</span>
+
+<span style="color: #cd00cd">file</span><span style="color: #cccccc">(</span><span style="color: #cd0000">GLOB</span> <span style="color: #cd0000">files</span> <span style="color: #cd0000">&quot;test_*.cc&quot;</span><span style="color: #cccccc">)</span>
+
+<span style="color: #cd00cd">foreach</span><span style="color: #cccccc">(</span><span style="color: #cd0000">file</span> <span style="color: #3399cc">${</span><span style="color: #00cdcd">files</span><span style="color: #3399cc">}</span><span style="color: #cccccc">)</span>
+	<span style="color: #cd00cd">string</span><span style="color: #cccccc">(</span><span style="color: #cd0000">REGEX</span> <span style="color: #cd0000">REPLACE</span> <span style="color: #cd0000">&quot;(^.*/|\\.[^.]*$)&quot;</span> <span style="color: #cd0000">&quot;&quot;</span> <span style="color: #cd0000">file_without_ext</span> <span style="color: #3399cc">${</span><span style="color: #00cdcd">file</span><span style="color: #3399cc">}</span><span style="color: #cccccc">)</span>
+	<span style="color: #cd00cd">add_executable</span><span style="color: #cccccc">(</span><span style="color: #3399cc">${</span><span style="color: #00cdcd">file_without_ext</span><span style="color: #3399cc">}</span> <span style="color: #3399cc">${</span><span style="color: #00cdcd">file</span><span style="color: #3399cc">}</span><span style="color: #cccccc">)</span>
+	<span style="color: #cd00cd">target_link_libraries</span><span style="color: #cccccc">(</span><span style="color: #3399cc">${</span><span style="color: #00cdcd">file_without_ext</span><span style="color: #3399cc">}</span> <span style="color: #3399cc">${</span><span style="color: #00cdcd">PROJECT_LIBS</span><span style="color: #3399cc">}</span><span style="color: #cccccc">)</span>
+	<span style="color: #cd00cd">add_test</span><span style="color: #cccccc">(</span><span style="color: #3399cc">${</span><span style="color: #00cdcd">file_without_ext</span><span style="color: #3399cc">}</span> <span style="color: #3399cc">${</span><span style="color: #00cdcd">file_without_ext</span><span style="color: #3399cc">}</span><span style="color: #cccccc">)</span>
+	<span style="color: #cd00cd">set_tests_properties</span><span style="color: #cccccc">(</span><span style="color: #3399cc">${</span><span style="color: #00cdcd">file_without_ext</span><span style="color: #3399cc">}</span>
+		<span style="color: #cd0000">PROPERTIES</span>
+		<span style="color: #cd0000">PASS_REGULAR_EXPRESSION</span> <span style="color: #cd0000">&quot;Test passed&quot;</span><span style="color: #cccccc">)</span>
+	<span style="color: #cd00cd">set_tests_properties</span><span style="color: #cccccc">(</span><span style="color: #3399cc">${</span><span style="color: #00cdcd">file_without_ext</span><span style="color: #3399cc">}</span>
+		<span style="color: #cd0000">PROPERTIES</span>
+		<span style="color: #cd0000">FAIL_REGULAR_EXPRESSION</span> <span style="color: #cd0000">&quot;(Exception|Test failed)&quot;</span><span style="color: #cccccc">)</span>
+	<span style="color: #cd00cd">set_tests_properties</span><span style="color: #cccccc">(</span><span style="color: #3399cc">${</span><span style="color: #00cdcd">file_without_ext</span><span style="color: #3399cc">}</span>
+		<span style="color: #cd0000">PROPERTIES</span>
+		<span style="color: #cd0000">TIMEOUT</span> <span style="color: #cd0000">120</span><span style="color: #cccccc">)</span>
+<span style="color: #cd00cd">endforeach</span><span style="color: #cccccc">()</span>
+</pre></div>
+
+<p>This is a really simple script. It loops over all files in the tests
+folder that match the pattern <code>test_*.cc</code>, i.e.\ C++ files that start
+with the <code>test_</code> prefix. It generates the executable name by stripping
+out all the leading directories until the path, while also stripping out
+the extension for the file. It compiles the file and links it against
+the project libraries. Finally, it tells CMake/CTest that the compiled
+binary is a test which on passing would have in its output the text
+&ldquo;Test passed&rdquo;, and on failure could have the text &ldquo;Test failed&rdquo; or
+&ldquo;Exception&rdquo;. Finally, I add a timeout of 120 seconds, or two minutes. If
+the test runs longer than this time, it will be automatically terminated
+and marked as a failure. This is not ideal &ndash; some of my tests run for
+just seconds, while the longest test could run for just under a minute.
+However, the purpose of the timeout here is not to detect performance
+bugs, rather to prevent the machine running the tests from fritzing out
+because of a bug that results in the tests doing something really crazy.</p>
+
+<p>Oh, and in order to enable testing, I simply change the <code>CMakeLists.txt</code>
+on the very top level of the project (the one that defines project name,
+version, etc.) to include this one extra line.</p>
+<div class="highlight" style="background: #000000"><pre style="line-height: 125%"><span style="color: #cd00cd">include</span><span style="color: #cccccc">(</span><span style="color: #cd0000">CTest</span><span style="color: #cccccc">)</span>
+</pre></div>
+
+<p>Simple, isn&rsquo;t it? Now why would you go running to <em>Go</em> (see what I did
+there? 😄), when C++ with CMake offers cross platform builds,
+testing infrastructure, and parallel execution with memory consistency
+models?</p>
+
+<p>In the next posts on the series, I might just describe how to test for
+memory leaks using Valgrind/MemCheck or how to test test-coverage
+(alliteration FTW) using gcov. Stay tuned.</p>
+    </div>
+  </div>
+
+</article>
+
+<div class="container">
+  <nav>
+  <ul class="pager">
+    
+    <li class="previous"><a href="http://skandhurkat.github.io/post/intro-to-vim-macros/"><span
+      aria-hidden="true">&larr;</span> An Introduction to Vim Macros</a></li>
+    
+
+    
+    <li class="next"><a href="http://skandhurkat.github.io/post/thoughts-isca-2017/">My thoughts on ISCA 2017 <span
+      aria-hidden="true">&rarr;</span></a></li>
+    
+  </ul>
+</nav>
+
+</div>
+
+<div class="article-container">
+  
+<section id="comments">
+  <div id="disqus_thread">
+    <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "skandhurkat-csl" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+</section>
+
+
+</div>
+
+
+
+    <script defer src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.4/TweenMax.min.js"></script>
+    <script defer src="//cdnjs.cloudflare.com/ajax/libs/gsap/latest/plugins/ScrollToPlugin.min.js"></script>
+    <script defer src="/js/jquery-1.12.3.min.js"></script>
+    <script defer src="/js/jquery.easing.min.js"></script>
+    <script defer src="/js/bootstrap.min.js"></script>
+    <script defer src="/js/isotope.pkgd.min.js"></script>
+    <script defer src="//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.1/imagesloaded.pkgd.min.js"></script>
+    <script defer src="/js/cornellcsl.min.js"></script>
+    
+
+    
+    <script defer>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-25068733-5', 'auto');
+        ga('send', 'pageview');
+
+         
+        var links = document.querySelectorAll('a');
+        Array.prototype.map.call(links, function(item) {
+            if (item.host != document.location.host) {
+                item.addEventListener('click', function() {
+                    var action = item.getAttribute('data-action') || 'follow';
+                    ga('send', 'event', 'outbound', action, item.href);
+                });
+            }
+        });
+    </script>
+    
+
+    
+    
+      
+      <script defer src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+
+      
+
+      
+
+      <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+
+  </body>
+</html>
+

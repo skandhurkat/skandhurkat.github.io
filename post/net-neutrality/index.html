@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="theme" content="cornellcsl">
+  <meta name="generator" content="Hugo 0.27" />
+  <meta name="author" content="Skand Hurkat">
+  <meta name="description" content="PhD Candidate">
+
+  
+  
+  
+    
+  
+  
+    
+    
+    <link rel="stylesheet" href="/css/highlight.min.css">
+    
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/academicons.min.css">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:400,700%7cMerriweather%7cRoboto&#43;Mono">
+  <link rel="stylesheet" href="/css/cornellcsl.min.css">
+  
+
+  <link rel="alternate" href="http://skandhurkat.github.io/index.xml" type="application/rss+xml" title="Skand Hurkat – Computer Systems Lab, Cornell University">
+
+  <link rel="icon" type="image/png" href="/img/CULogo-red120px.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/CULogo-red120px.png">
+
+  <link rel="canonical" href="http://skandhurkat.github.io/post/net-neutrality/">
+
+  
+
+  <title>Net Neutrality | Skand Hurkat – Computer Systems Lab, Cornell University</title>
+
+  <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+  <script async src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+  <script defer>
+  window.addEventListener("load", function(){
+  window.cookieconsent.initialise({
+    "palette": {
+      "popup": {
+        "background": "#ffffff",
+        "text": "#000000"
+      },
+      "button": {
+        "background": "#b31b1b",
+        "text": "#ffffff"
+      }
+    },
+    "showLink": false,
+    "content": {
+      "message": "This website uses cookies for analytics and to enable comments.",
+      "dismiss": "Cool! I get it."
+    }
+  })});
+  </script>
+</head>
+<body data-spy="scroll" data-target="#navbar-main" data-offset="71">
+
+    
+    <a class="sr-only" href="#content">Skip to main content</a>
+    <header id="top" class="cu-banner">
+    
+    <div class="container">
+        <form action="//www.google.com/search" id="cu-search"
+        method="get" role="search" class="collapse">
+        
+        
+        
+         
+        <input type="hidden" name="q"
+        value="site:people.ece.cornell.edu/skand">
+        <div class="input-group col-xs-12">
+            
+            <input autocomplete="off" id="search-query" name="q"
+            placeholder="Search this website using Google"
+            required type="search" class="col-xs-12 cu-search-box">
+            <label for="search-query" class="sr-only">
+                 Search this website using Google
+            </label>
+        </div>
+        </form>
+    </div>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-10 cu-csl-logo-div">
+	    
+                <a href="//www.csl.cornell.edu" target="_blank">
+            
+		    <img src="/img/org-logo.svg"
+		        class="img-responsive"
+                        alt="Computer Systems Lab, Cornell University"
+		        style="margin: 0;" />
+            
+                </a>
+            
+            </div>
+	    
+            <div class="col-xs-2 col-middle cu-search-toggle-div">
+                <span class="pull-right">
+                    <button class="btn btn-cu-banner" type="button"
+                    data-toggle="collapse" data-target="#cu-search"
+                    id="cu-search-toggle" style="position:relative;">
+                        <span class="sr-only">Toggle search</span>
+                        <span class="cu-search-toggle glyphicon glyphicon-search">
+                        </span>
+                    </button>
+                </span>
+            </div>
+	    
+        </div>
+    </div>
+    </header>
+
+
+<div class="nav-wrapper">
+<nav class="navbar navbar-default" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+              data-target=".navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Skand Hurkat</a>
+    </div>
+
+    
+    <div class="collapse navbar-collapse">
+
+      
+      <ul class="nav navbar-nav navbar-right">
+        
+
+        
+
+        <li class="nav-item">
+          <a href="/#about">
+            
+            <span>Home</span>
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        <li class="nav-item">
+          <a href="/#publications">
+            
+            <span>Publications</span>
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        <li class="nav-item">
+          <a href="/#posts">
+            
+            <span>Posts</span>
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        <li class="nav-item">
+          <a href="/#projects">
+            
+            <span>Projects</span>
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        <li class="nav-item">
+          <a href="/#teaching">
+            
+            <span>Teaching</span>
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        <li class="nav-item">
+          <a href="/#contact">
+            
+            <span>Contact</span>
+          </a>
+        </li>
+
+        
+        
+      </ul>
+
+    </div>
+  </div>
+</nav>
+</div>
+
+
+<article class="article" itemscope itemtype="http://schema.org/BlogPosting">
+
+  
+
+  <div class="article-container">
+    <h1 itemprop="name headline">Net Neutrality</h1>
+    
+
+<div class="article-metadata">
+
+  
+  by <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name" class="article-authors">Skand Hurkat</span></span>.
+  
+  <span class="article-date">
+    <time datetime="2017-07-12T09:04:44-04:00" itemprop="datePublished">
+      Wed, Jul 12, 2017
+    </time>
+  </span>
+
+  
+
+  
+  
+  
+  <span class="article-tags">
+    <i class="fa fa-tags"></i>
+    
+    <a href="/tags/personal-opinions">personal-opinions</a
+    >
+    
+  </span>
+  
+  
+
+  
+  
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    <li>
+      <a class="facebook"
+         href="https://www.facebook.com/sharer.php?u=http%3a%2f%2fskandhurkat.github.io%2fpost%2fnet-neutrality%2f"
+         target="_blank">
+        <i class="fa fa-facebook"></i>
+      </a>
+    </li>
+    <li>
+      <a class="twitter"
+         href="https://twitter.com/intent/tweet?text=Net%20Neutrality&amp;url=http%3a%2f%2fskandhurkat.github.io%2fpost%2fnet-neutrality%2f"
+         target="_blank">
+        <i class="fa fa-twitter"></i>
+      </a>
+    </li>
+    <li>
+      <a class="linkedin"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2fskandhurkat.github.io%2fpost%2fnet-neutrality%2f&amp;title=Net%20Neutrality"
+         target="_blank">
+        <i class="fa fa-linkedin"></i>
+      </a>
+    </li>
+    <li>
+      <a class="weibo"
+         href="http://service.weibo.com/share/share.php?url=http%3a%2f%2fskandhurkat.github.io%2fpost%2fnet-neutrality%2f&amp;title=Net%20Neutrality"
+         target="_blank">
+        <i class="fa fa-weibo"></i>
+      </a>
+    </li>
+    <li>
+      <a class="email"
+         href="mailto:?subject=Net%20Neutrality&amp;body=http%3a%2f%2fskandhurkat.github.io%2fpost%2fnet-neutrality%2f">
+        <i class="fa fa-envelope"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+    <div class="article-style" itemprop="articleBody">
+      <p>Today, my website displays a banner to join the fight for an open
+internet. My message to the FCC follows.</p>
+
+<p></p>
+
+<p>The FCC&rsquo;s Open Internet Rules (net neutrality rules) are extremely
+important to me. I urge you to protect them.</p>
+
+<p>As a person who is not an American citizen, I was led to believe
+(perhaps wrongly) that America as a capitalist society would value the
+very principles that allow a free market to function, namely a free flow
+of information and healthy competition. It seems that I was mistaken.</p>
+
+<p>The proposed changes to the FCC rules negatively impact both these
+principles. The internet is the epitome of a free flow of information,
+however misunderstood it may be amongst those who make laws. A free and
+open internet is one where all data is treated equal, and ISPs and cable
+companies cannot distinguish between any kind of traffic. They should
+not be allowed to create fast lanes or zero-rate some form of traffic.</p>
+
+<p>The creation of fast lanes or zero-rating some traffic while charging
+for other forms of traffic goes against the spirit of free competition
+in the market. It means that no one could create the next Google or
+NetFlix unless they can get ISPs on board with their plan and provide
+their traffic with the same high speed or low cost. It means that ISPs
+will have ultimate control, not just of their own market (which, as I
+shall discuss next is a monopoly), but also of other markets far removed
+from the internet.</p>
+
+<p>Today, almost everything runs on networked computers. Any system that
+must work across the width of a continent, or across multiple cities
+uses the internet in some way or the other to communicate information
+across. Even our phone lines are now increasingly routed over the
+internet, using VoIP technology. Our light bulbs and toaster ovens will
+soon use the internet as IoT becomes ubiquitous. So, support for net
+neutrality is not just a fight for the internet; absence of net
+neutrality and putting ISPs in position as gatekeeper would harm not
+just internet services, but could extend to the physical world as well,
+as the gap between physical and virtual worlds gets shorter and shorter.
+We must ask: what gives ISPs the right to decide what works and what
+doesn&rsquo;t?</p>
+
+<p>The sooner lawmakers realise this fundamental truth, the better. <strong>ISPs
+do not own the internet. They have not created the infrastructure for
+the internet. They have done nothing other than create a monopoly that
+taxes people to access a technology that was the product of taxpayer
+dollars and DARPA research.</strong></p>
+
+<p>Indeed, ISPs are a monopoly in the USA. Right now, if I want internet
+access, I have only one option, Time Warner, now called Spectrum. If I
+lived in Pittsburgh, I would have only one option, Comcast. Monopolies
+are antithetical to the free market. But I don&rsquo;t need to tell you that.
+A capitalist society should balk at the very idea of a monopoly. Yet,
+lawmakers seem to accept and deny the very existence of these monopolies
+in almost all facets of American life, rather than fulfil their role as
+regulators and regulate the industries with monopolies to serve the very
+people who elect them into office and not the industry lobbyists who pay
+them money.</p>
+
+<p><strong>If my country &ndash; India &ndash; could enact strong net neutrality
+protections at a point in its history when ubiquitous internet access
+was (and is) still not widespread throughout the country, I&rsquo;m surprised
+that the country that gave the world the free internet is now so eager
+to destroy it to serve the interests of a small group of cable companies
+that had nothing to do with the creation of the internet, and through
+sheer coincidence ended up controlling everyone&rsquo;s access to taxpayer
+funded technology.</strong></p>
+    </div>
+  </div>
+
+</article>
+
+<div class="container">
+  <nav>
+  <ul class="pager">
+    
+    <li class="previous"><a href="http://skandhurkat.github.io/post/happy-fourth-july-2017/"><span
+      aria-hidden="true">&larr;</span> Happy Fourth of July</a></li>
+    
+
+    
+    <li class="next"><a href="http://skandhurkat.github.io/post/makefile-dependencies/">Handling dependencies in Makefiles <span
+      aria-hidden="true">&rarr;</span></a></li>
+    
+  </ul>
+</nav>
+
+</div>
+
+<div class="article-container">
+  
+<section id="comments">
+  <div id="disqus_thread">
+    <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "skandhurkat-csl" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+</section>
+
+
+</div>
+
+
+
+    <script defer src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.4/TweenMax.min.js"></script>
+    <script defer src="//cdnjs.cloudflare.com/ajax/libs/gsap/latest/plugins/ScrollToPlugin.min.js"></script>
+    <script defer src="/js/jquery-1.12.3.min.js"></script>
+    <script defer src="/js/jquery.easing.min.js"></script>
+    <script defer src="/js/bootstrap.min.js"></script>
+    <script defer src="/js/isotope.pkgd.min.js"></script>
+    <script defer src="//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.1/imagesloaded.pkgd.min.js"></script>
+    <script defer src="/js/cornellcsl.min.js"></script>
+    
+
+    
+    <script defer>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-25068733-5', 'auto');
+        ga('send', 'pageview');
+
+         
+        var links = document.querySelectorAll('a');
+        Array.prototype.map.call(links, function(item) {
+            if (item.host != document.location.host) {
+                item.addEventListener('click', function() {
+                    var action = item.getAttribute('data-action') || 'follow';
+                    ga('send', 'event', 'outbound', action, item.href);
+                });
+            }
+        });
+    </script>
+    
+
+    
+    
+      
+      <script defer src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+
+      
+
+      
+
+      <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+
+  </body>
+</html>
+

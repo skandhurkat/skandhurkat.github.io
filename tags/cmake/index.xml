@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cmake on Skand Hurkat – Computer Systems Lab, Cornell University</title>
+    <link>http://skandhurkat.github.io/tags/cmake/</link>
+    <description>Recent content in Cmake on Skand Hurkat – Computer Systems Lab, Cornell University</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 23 Nov 2017 16:28:40 -0500</lastBuildDate>
+    <atom:link href="/tags/cmake/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Introduction to CMake</title>
+      <link>http://skandhurkat.github.io/post/intro-to-cmake/</link>
+      <pubDate>Thu, 23 Nov 2017 16:28:40 -0500</pubDate>
+      
+      <guid>http://skandhurkat.github.io/post/intro-to-cmake/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;//cmake.org&#34; target=&#34;_blank&#34;&gt;CMake&lt;/a&gt; is cross-platform build and configuration system
+for C and C++ code, which also happens to be my favourite build system.
+In this post, I&amp;rsquo;ll present a quick tutorial on getting started with
+CMake.&lt;/p&gt;
+
+&lt;p&gt;But before we do, let&amp;rsquo;s start with an example of why other build systems
+such as Makefiles don&amp;rsquo;t necessarily cut it. Actually, Makefiles work
+fairly well, but writing Makefiles by hand is generally a pain in the
+neck. In &lt;a href=&#34;http://skandhurkat.github.io/post/makefile-dependencies/&#34; target=&#34;_blank&#34;&gt;a previous post&lt;/a&gt;,
+I described how to write Makefiles that take include file dependencies
+into account. If that post did not convince you that writing Makefiles
+is hard, let me show you another example of a terrible Makefile and hope
+that it scares you into never looking at a Makefile again. (This
+Makefile was actually part of a project that was handed over to me, I
+had to go over tonnes of other people&amp;rsquo;s code with comments written in
+non-ascii characters in a language that wasn&amp;rsquo;t English, so I clearly
+don&amp;rsquo;t have fond memories of this particular project.)&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #000000&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000080&#34;&gt;## Compiler + Linker&lt;/span&gt;
+&lt;span style=&#34;color: #00cdcd&#34;&gt;CC&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;=&lt;/span&gt; g++
+&lt;span style=&#34;color: #00cdcd&#34;&gt;LD&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;=&lt;/span&gt; g++
+
+&lt;span style=&#34;color: #000080&#34;&gt;## external .h files to bring in&lt;/span&gt;
+&lt;span style=&#34;color: #00cdcd&#34;&gt;EXTRA_INCLUDES&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;=&lt;/span&gt; 
+&lt;span style=&#34;color: #00cdcd&#34;&gt;CCFLAGS&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;=&lt;/span&gt; -g -Wno-deprecated -I/opt/local/include/ -I/opt/local/include/opencv/ -I./GMM/ -I./MaxFlow/ -I./MeanShift/ 
+&lt;span style=&#34;color: #00cdcd&#34;&gt;LDFLAGS&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;=&lt;/span&gt; -L/opt/local/lib
+&lt;span style=&#34;color: #000080&#34;&gt;#LIBS = -lcv -lcxcore -lhighgui -lcvaux #-lml &lt;/span&gt;
+&lt;span style=&#34;color: #000080&#34;&gt;# for macs&lt;/span&gt;
+&lt;span style=&#34;color: #00cdcd&#34;&gt;LIBS&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;=&lt;/span&gt; -lopencv_core -lopencv_highgui &lt;span style=&#34;color: #000080&#34;&gt;#-lcvaux -lml &lt;/span&gt;
+
+&lt;span style=&#34;color: #000080&#34;&gt;## sources&lt;/span&gt;
+&lt;span style=&#34;color: #00cdcd&#34;&gt;CCFILES_GMM&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #000080&#34;&gt;#### Some files&lt;/span&gt;
+&lt;span style=&#34;color: #00cdcd&#34;&gt;CCFILES_MAXFLOW&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #000080&#34;&gt;#### Some more files&lt;/span&gt;
+&lt;span style=&#34;color: #00cdcd&#34;&gt;CCFILES_MEANSHIFT&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #000080&#34;&gt;#### Holy shit, even more files&lt;/span&gt;
+&lt;span style=&#34;color: #00cdcd&#34;&gt;CCFILES&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #cdcd00&#34;&gt;$(&lt;/span&gt;CCFILES_GMM&lt;span style=&#34;color: #cdcd00&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #cdcd00&#34;&gt;$(&lt;/span&gt;CCFILES_MAXFLOW&lt;span style=&#34;color: #cdcd00&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #cdcd00&#34;&gt;$(&lt;/span&gt;CCFILES_MEANSHIFT&lt;span style=&#34;color: #cdcd00&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #000080&#34;&gt;#### And even more files&lt;/span&gt;
+&lt;span style=&#34;color: #00cdcd&#34;&gt;PROGFILE&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;=&lt;/span&gt; main.cpp &lt;span style=&#34;color: #000080&#34;&gt;#### Seriously, how many files?&lt;/span&gt;
+
+&lt;span style=&#34;color: #000080&#34;&gt;## object compilation&lt;/span&gt;
+&lt;span style=&#34;color: #00cdcd&#34;&gt;PROGOBJS&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #cdcd00&#34;&gt;$(&lt;/span&gt;CCFILES:.cpp&lt;span style=&#34;color: #3399cc&#34;&gt;=&lt;/span&gt;.o&lt;span style=&#34;color: #cdcd00&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #cdcd00&#34;&gt;$(&lt;/span&gt;PROGFILE:.cpp&lt;span style=&#34;color: #3399cc&#34;&gt;=&lt;/span&gt;.o&lt;span style=&#34;color: #cdcd00&#34;&gt;)&lt;/span&gt;
+
+&lt;span style=&#34;color: #000080&#34;&gt;## binary compilation&lt;/span&gt;
+&lt;span style=&#34;color: #00cdcd&#34;&gt;PROG&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;=&lt;/span&gt; BOO
+
+&lt;span style=&#34;color: #cccccc&#34;&gt;all&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;:&lt;/span&gt;
+	@echo &lt;span style=&#34;color: #cd0000&#34;&gt;&amp;quot;-&amp;gt; Building &lt;/span&gt;&lt;span style=&#34;color: #cdcd00&#34;&gt;$(&lt;/span&gt;PROG&lt;span style=&#34;color: #cdcd00&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color: #cd0000&#34;&gt; executable...&amp;quot;&lt;/span&gt;
+&lt;span style=&#34;color: #000080&#34;&gt;#	@make .cpp.o&lt;/span&gt;
+	@make &lt;span style=&#34;color: #cdcd00&#34;&gt;$(&lt;/span&gt;PROG&lt;span style=&#34;color: #cdcd00&#34;&gt;)&lt;/span&gt; 
+
+&lt;span style=&#34;color: #cccccc&#34;&gt;.cpp.o&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;:&lt;/span&gt;
+	&lt;span style=&#34;color: #cdcd00&#34;&gt;$(&lt;/span&gt;CC&lt;span style=&#34;color: #cdcd00&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #cdcd00&#34;&gt;$(&lt;/span&gt;CCFLAGS&lt;span style=&#34;color: #cdcd00&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #cdcd00&#34;&gt;$(&lt;/span&gt;EXTRA_INCLUDES&lt;span style=&#34;color: #cdcd00&#34;&gt;)&lt;/span&gt; -c -o &lt;span style=&#34;color: #00cdcd&#34;&gt;$@&lt;/span&gt; $^
+
+&lt;span style=&#34;color: #000080&#34;&gt;#$(PROGOBJS):&lt;/span&gt;
+&lt;span style=&#34;color: #000080&#34;&gt;#	$(CC) $(CCFLAGS) $(EXTRA_INCLUDES) -c -o $@ $^&lt;/span&gt;
+
+&lt;span style=&#34;color: #cccccc&#34;&gt;$(PROG)&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #cdcd00&#34;&gt;$(&lt;/span&gt;&lt;span style=&#34;color: #00cdcd&#34;&gt;PROGOBJS&lt;/span&gt;&lt;span style=&#34;color: #cdcd00&#34;&gt;)&lt;/span&gt;
+	&lt;span style=&#34;color: #cdcd00&#34;&gt;$(&lt;/span&gt;LD&lt;span style=&#34;color: #cdcd00&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #cdcd00&#34;&gt;$(&lt;/span&gt;LDFLAGS&lt;span style=&#34;color: #cdcd00&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #cdcd00&#34;&gt;$(&lt;/span&gt;LIBS&lt;span style=&#34;color: #cdcd00&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #cdcd00&#34;&gt;$(&lt;/span&gt;PROGOBJS&lt;span style=&#34;color: #cdcd00&#34;&gt;)&lt;/span&gt; -o &lt;span style=&#34;color: #cdcd00&#34;&gt;$(&lt;/span&gt;PROG&lt;span style=&#34;color: #cdcd00&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #000080&#34;&gt;#$(PROGOBJS) $(LDFLAGS) $(LIBS)&lt;/span&gt;
+
+&lt;span style=&#34;color: #000080&#34;&gt;#$(PROG): $(CCFILES)&lt;/span&gt;
+&lt;span style=&#34;color: #000080&#34;&gt;#	$(CC) $(CCFLAGS) $(EXTRA_INCLUDES) $(LDFLAGS) $(LIBS) -o $@ $^&lt;/span&gt;
+
+&lt;span style=&#34;color: #cccccc&#34;&gt;clean&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;:&lt;/span&gt;
+	@echo &lt;span style=&#34;color: #cd0000&#34;&gt;&amp;quot;-&amp;gt; Cleaning...&amp;quot;&lt;/span&gt;
+	rm -f &lt;span style=&#34;color: #cdcd00&#34;&gt;$(&lt;/span&gt;PROG&lt;span style=&#34;color: #cdcd00&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #cdcd00&#34;&gt;$(&lt;/span&gt;PROGOBJS&lt;span style=&#34;color: #cdcd00&#34;&gt;)&lt;/span&gt; 
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;There&amp;rsquo;s just so much to hate about this Makefile. First, it is almost
+unreadable. Second, it does not account for any header file
+dependencies. In fact, if any of the header files change, there&amp;rsquo;s no way
+for the system to detect this at all, forcing the user to type in &lt;code&gt;make
+clean&lt;/code&gt;, then &lt;code&gt;make&lt;/code&gt; to make everything all over again. Third, given the
+sheer number of files, make will take minutes to run, which kills
+productivity. Fourth, if you look closely at the path, you will observe
+that the person writing this Makefile used a Mac with MacPorts and
+therefore is the kind of person who is just wrong. Fifth, this Makefile
+obviously won&amp;rsquo;t work for someone on Linux or Windows, even worse, it
+won&amp;rsquo;t work for another Mac user who used HomeBrew or compiled OpenCV
+from source. Sixth, some rules are just commented out, which indicates
+sloppy behaviour. Writing Makefiles like this just sucks. It sucks
+productivity and makes me think of slow and painful death.&lt;/p&gt;
+
+&lt;p&gt;The first thing I did when I was handed this project was to fix the
+build system, and CMake came to the rescue here. I&amp;rsquo;ll now show how I
+replaced this terrible Makefile with a clean, modular CMake build system
+that replicated the effects of the Makefile (without the bugs, of course
+😄). Hopefully, the ease of setting up this CMake system will
+convince you to never write a Makefile again.&lt;/p&gt;
+
+&lt;p&gt;As a dive into CMake, let&amp;rsquo;s start with a simple &amp;lsquo;Hello World&amp;rsquo; program.
+The &lt;code&gt;helloworld.cc&lt;/code&gt; file contains the following code:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #000000&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000080&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color: #000080&#34;&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;
+
+&lt;span style=&#34;color: #00cd00&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;main(&lt;/span&gt;&lt;span style=&#34;color: #00cd00&#34;&gt;void&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;)&lt;/span&gt;
+&lt;span style=&#34;color: #cccccc&#34;&gt;{&lt;/span&gt;
+	&lt;span style=&#34;color: #cccccc&#34;&gt;std&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;cout&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color: #cd0000&#34;&gt;&amp;quot;Hello World&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;std&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;endl;&lt;/span&gt;
+	&lt;span style=&#34;color: #cdcd00&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #cd00cd&#34;&gt;0&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;;&lt;/span&gt;
+&lt;span style=&#34;color: #cccccc&#34;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;To compile this code, create a file called &lt;code&gt;CMakeLists.txt&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #000000&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #cd00cd&#34;&gt;add_executable&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #cd0000&#34;&gt;hello&lt;/span&gt; &lt;span style=&#34;color: #cd0000&#34;&gt;helloworld.cc&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Now, assuming that you are running on Linux or Mac OS terminal
+(something with bash), you can execute the following commands:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #000000&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;mkdir build&lt;span style=&#34;color: #cccccc&#34;&gt;;&lt;/span&gt;
+&lt;span style=&#34;color: #cd00cd&#34;&gt;cd&lt;/span&gt; build&lt;span style=&#34;color: #cccccc&#34;&gt;;&lt;/span&gt;
+cmake ..&lt;span style=&#34;color: #cccccc&#34;&gt;;&lt;/span&gt;
+make&lt;span style=&#34;color: #cccccc&#34;&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This code creates a directory called build inside the project directory.
+(An important point to note is that CMake always builds &amp;lsquo;out of source&amp;rsquo;,
+i.e. the build directory must be a distinct directory from the source
+directory.) It then switches to the build directory, executes CMake,
+which creates Makefiles (turns out that there is no escaping Makefiles
+after all&amp;hellip; 😁) that have all the necessary information. As these
+files are generated by a tool and not written by a person, you never
+have to read them, so Makefile readability is not a concern.  Second,
+the Makefiles encode all the dependencies correctly, so there&amp;rsquo;s no
+reason to go through the hoops creating complex dependency files.&lt;/p&gt;
+
+&lt;p&gt;&amp;lsquo;But what if I&amp;rsquo;m on Windows, or if I just am the kind of person who is
+always wrong and uses CodeBlocks, Xcode, or another IDE?&amp;rsquo; you ask. Well,
+hold on till the end, I&amp;rsquo;ll show you how CMake has you covered.&lt;/p&gt;
+
+&lt;p&gt;Anyway, back to our hypothetical, but totally real project. The project
+has multiple source files in different directories.&lt;/p&gt;
+
+&lt;dl&gt;
+&lt;dt&gt;GMM&lt;/dt&gt;
+&lt;dd&gt;contains files that implement a Gaussian mixture models code.&lt;/dd&gt;
+&lt;dt&gt;MAXFLOW&lt;/dt&gt;
+&lt;dd&gt;contains files for max-flow graph cuts.&lt;/dd&gt;
+&lt;dt&gt;MEANSHIFT&lt;/dt&gt;
+&lt;dd&gt;contains files for mean shift (cluster analysis).&lt;/dd&gt;
+&lt;/dl&gt;
+
+&lt;p&gt;All these codes are independent, so could be made into libraries. Of
+course, actually packaging this code as independent libraries is a
+terrible idea because the code isn&amp;rsquo;t well written in the first place.
+However, I don&amp;rsquo;t see too much harm in creating a static library that
+will probably never be distributed for code in each of these
+directories.&lt;/p&gt;
+
+&lt;p&gt;We can create a &lt;code&gt;CMakeLists.txt&lt;/code&gt; file for each of these folders. The
+CMakeLists will contain code that looks like this:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #000000&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #cd00cd&#34;&gt;add_library&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #000080&#34;&gt;# Library name&lt;/span&gt;
+&lt;span style=&#34;color: #cd0000&#34;&gt;STATIC&lt;/span&gt; &lt;span style=&#34;color: #000080&#34;&gt;# Need to create a static library, not a shared one.&lt;/span&gt;
+&lt;span style=&#34;color: #000080&#34;&gt;### List of files&lt;/span&gt;
+&lt;span style=&#34;color: #cccccc&#34;&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Then the top-level CMakeLists.txt can include these directories through
+the simple command:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #000000&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000080&#34;&gt;# Tell CMake to look into subdirectories for CMakeLists.txt files.&lt;/span&gt;
+&lt;span style=&#34;color: #cd00cd&#34;&gt;subdirs&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #cd0000&#34;&gt;GMM&lt;/span&gt; &lt;span style=&#34;color: #cd0000&#34;&gt;MAXFLOW&lt;/span&gt; &lt;span style=&#34;color: #cd0000&#34;&gt;MEANSHIFT&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;)&lt;/span&gt;
+&lt;span style=&#34;color: #000080&#34;&gt;# Add these directories to the compiler search path for include files.&lt;/span&gt;
+&lt;span style=&#34;color: #000080&#34;&gt;# ${PROJECT_SOURCE_DIR} is the path to the source code in the project.&lt;/span&gt;
+&lt;span style=&#34;color: #cd00cd&#34;&gt;include_directories&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;(&lt;/span&gt;
+	&lt;span style=&#34;color: #3399cc&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color: #00cdcd&#34;&gt;PROJECT_SOURCE_DIR&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color: #cd0000&#34;&gt;/GMM&lt;/span&gt;
+	&lt;span style=&#34;color: #3399cc&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color: #00cdcd&#34;&gt;PROJECT_SOURCE_DIR&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color: #cd0000&#34;&gt;/MAXFLOW&lt;/span&gt;
+	&lt;span style=&#34;color: #3399cc&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color: #00cdcd&#34;&gt;PROJECT_SOURCE_DIR&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color: #cd0000&#34;&gt;/MEANSHIFT&lt;/span&gt;
+	&lt;span style=&#34;color: #cccccc&#34;&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Okay, but we also notice that the top-level program &lt;code&gt;PROG&lt;/code&gt; needs OpenCV
+in order to compile. CMake provides a very easy method to search for
+dependencies. In the top-level &lt;code&gt;CMakeLists.txt&lt;/code&gt;, we add&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #000000&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #cd00cd&#34;&gt;find_package&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #cd0000&#34;&gt;OpenCV&lt;/span&gt; &lt;span style=&#34;color: #cd0000&#34;&gt;REQUIRED&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;When we compile the program &lt;code&gt;PROG&lt;/code&gt;, we need to link it against the
+OpenCV libraries, as well as the static libraries in the GMM, MAXFLOW,
+MEANSHIFT folders.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #000000&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #cd00cd&#34;&gt;include_directories&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color: #00cdcd&#34;&gt;OpenCV_INCLUDE_DIRS&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;)&lt;/span&gt;
+&lt;span style=&#34;color: #cd00cd&#34;&gt;add_executable&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #cd0000&#34;&gt;PROG&lt;/span&gt; &lt;span style=&#34;color: #cd0000&#34;&gt;PROG.cc&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;)&lt;/span&gt;
+&lt;span style=&#34;color: #cd00cd&#34;&gt;target_link_libraries&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #cd0000&#34;&gt;PROG&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color: #00cdcd&#34;&gt;OpenCV_LIBS&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;}&lt;/span&gt; &lt;span style=&#34;color: #cd0000&#34;&gt;GMM&lt;/span&gt; &lt;span style=&#34;color: #cd0000&#34;&gt;MAXFLOW&lt;/span&gt; &lt;span style=&#34;color: #cd0000&#34;&gt;MEANSHIFT&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Putting it all together, the top-level &lt;code&gt;CMakeLists.txt&lt;/code&gt; contains the
+following code:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #000000&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000080&#34;&gt;# Set a minimum version of CMake to be used, depending on the syntax of&lt;/span&gt;
+&lt;span style=&#34;color: #000080&#34;&gt;# the CMakeLists files.&lt;/span&gt;
+&lt;span style=&#34;color: #cd00cd&#34;&gt;cmake_minimum_required&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #cd0000&#34;&gt;VERSION&lt;/span&gt; &lt;span style=&#34;color: #cd0000&#34;&gt;2&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;)&lt;/span&gt;
+&lt;span style=&#34;color: #000080&#34;&gt;# Give this project a cutsie name.&lt;/span&gt;
+&lt;span style=&#34;color: #cd00cd&#34;&gt;project&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #cd0000&#34;&gt;PROG&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;)&lt;/span&gt;
+&lt;span style=&#34;color: #000080&#34;&gt;# CMake subdirectories to include for these libraries.&lt;/span&gt;
+&lt;span style=&#34;color: #cd00cd&#34;&gt;subdirs&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #cd0000&#34;&gt;GMM&lt;/span&gt; &lt;span style=&#34;color: #cd0000&#34;&gt;MAXFLOW&lt;/span&gt; &lt;span style=&#34;color: #cd0000&#34;&gt;MEANSHIFT&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;)&lt;/span&gt;
+&lt;span style=&#34;color: #000080&#34;&gt;# Search for OpenCV. If OpenCV is found, the command sets the&lt;/span&gt;
+&lt;span style=&#34;color: #000080&#34;&gt;# ${OpenCV_INCLUDE_DIR} and ${OpenCV_LIBS} variables to appropriate&lt;/span&gt;
+&lt;span style=&#34;color: #000080&#34;&gt;# values. If OpenCV is not found, CMake will fail.&lt;/span&gt;
+&lt;span style=&#34;color: #cd00cd&#34;&gt;find_package&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #cd0000&#34;&gt;OpenCV&lt;/span&gt; &lt;span style=&#34;color: #cd0000&#34;&gt;REQUIRED&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;)&lt;/span&gt;
+&lt;span style=&#34;color: #000080&#34;&gt;# Tell the compiler to search these directories for include files.&lt;/span&gt;
+&lt;span style=&#34;color: #cd00cd&#34;&gt;include_directories&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;(&lt;/span&gt;
+	&lt;span style=&#34;color: #3399cc&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color: #00cdcd&#34;&gt;PROJECT_SOURCE_DIR&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color: #cd0000&#34;&gt;/GMM&lt;/span&gt;
+	&lt;span style=&#34;color: #3399cc&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color: #00cdcd&#34;&gt;PROJECT_SOURCE_DIR&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color: #cd0000&#34;&gt;/MAXFLOW&lt;/span&gt;
+	&lt;span style=&#34;color: #3399cc&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color: #00cdcd&#34;&gt;PROJECT_SOURCE_DIR&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color: #cd0000&#34;&gt;/MEANSHIFT&lt;/span&gt;
+	&lt;span style=&#34;color: #3399cc&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color: #00cdcd&#34;&gt;OpenCV_INCLUDE_DIR&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;}&lt;/span&gt;
+	&lt;span style=&#34;color: #cccccc&#34;&gt;)&lt;/span&gt;
+&lt;span style=&#34;color: #000080&#34;&gt;# Finally, create the executable that we want.&lt;/span&gt;
+&lt;span style=&#34;color: #cd00cd&#34;&gt;add_executable&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #cd0000&#34;&gt;PROG&lt;/span&gt; &lt;span style=&#34;color: #cd0000&#34;&gt;PROG.cc&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;)&lt;/span&gt;
+&lt;span style=&#34;color: #000080&#34;&gt;# And link it against the required libraries.&lt;/span&gt;
+&lt;span style=&#34;color: #cd00cd&#34;&gt;target_link_libraries&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #cd0000&#34;&gt;prog&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color: #00cdcd&#34;&gt;OpenCV_LIBS&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;}&lt;/span&gt; &lt;span style=&#34;color: #cd0000&#34;&gt;GMM&lt;/span&gt; &lt;span style=&#34;color: #cd0000&#34;&gt;MAXFLOW&lt;/span&gt; &lt;span style=&#34;color: #cd0000&#34;&gt;MEANSHIFT&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;And we&amp;rsquo;re done! Isn&amp;rsquo;t this CMakeLists.txt file so much more readable
+than the Makefile shown earlier? Not just that, this system will work
+with any OS, any compiler, any platform. Isn&amp;rsquo;t this great?&lt;/p&gt;
+
+&lt;p&gt;Okay, okay, you&amp;rsquo;re the kind that likes to do things in an IDE. CMake has
+a concept of
+&amp;lsquo;&lt;a href=&#34;//cmake.org/cmake/help/v3.0/manual/cmake-generators.7.html&#34; target=&#34;_blank&#34;&gt;generators&lt;/a&gt;&amp;rsquo;,
+which is just a fancy name for a backend. Still assuming that we are on
+MacOS or Linux, we simply execute the following commands.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #000000&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;mkdir build&lt;span style=&#34;color: #cccccc&#34;&gt;;&lt;/span&gt;
+&lt;span style=&#34;color: #cd00cd&#34;&gt;cd&lt;/span&gt; build&lt;span style=&#34;color: #cccccc&#34;&gt;;&lt;/span&gt;
+cmake -G &lt;span style=&#34;color: #cd0000&#34;&gt;&amp;quot;Xcode&amp;quot;&lt;/span&gt; .. &lt;span style=&#34;color: #000080&#34;&gt;# Or CodeBlocks, or whatever.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;On Windows, execute the following commands on the command prompt
+(assuming that CMake is on your path) to create a Visual Studio 2015
+project.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #000000&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;md&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;build&lt;/span&gt;
+&lt;span style=&#34;color: #cccccc&#34;&gt;cd&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;build&lt;/span&gt;
+&lt;span style=&#34;color: #cccccc&#34;&gt;cmake&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;-G&lt;/span&gt; &lt;span style=&#34;color: #cd0000&#34;&gt;&amp;quot;Visual Studio 14&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;..&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Oh, did I mention that CMake also has a nice GUI that makes this entire
+process super easy? I won&amp;rsquo;t describe it here, I&amp;rsquo;ll just let you try it
+out for yourself.&lt;/p&gt;
+
+&lt;p&gt;The utility of CMake, however, doesn&amp;rsquo;t just end here. CMake has a very
+neat testing system called CTest, which is something that I have
+mentioned in &lt;a href=&#34;http://skandhurkat.github.io/post/intro-to-ctest/&#34; target=&#34;_blank&#34;&gt;an earlier post&lt;/a&gt;.
+This testing system interacts perfectly with a dashboard system called
+CDash, that can quickly allow people to view test results. CTest/CDash
+also has support for testing memory leaks and code coverage, so there.
+Finally, the last piece of the puzzle is CPack, which is a way of
+packaging software into installers.&lt;/p&gt;
+
+&lt;p&gt;The next post in the series will probably deal with advanced CMake
+configuration, including testing compiler versions, creating release and
+debug configurations. Until next time&amp;hellip;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>An Introduction to CTest</title>
+      <link>http://skandhurkat.github.io/post/intro-to-ctest/</link>
+      <pubDate>Thu, 22 Jun 2017 11:05:43 -0400</pubDate>
+      
+      <guid>http://skandhurkat.github.io/post/intro-to-ctest/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;ve seen a lot of people (I&amp;rsquo;m looking at you &lt;a href=&#34;//lemire.me&#34; target=&#34;_blank&#34;&gt;Daniel
+Lemire&lt;/a&gt;) praise newer languages like &lt;em&gt;Go&lt;/em&gt;, which makes me
+sad as a C++ programmer. Well, that&amp;rsquo;s until I realise that most of the
+features touted could be easily incorporated in C++ with just a bit of
+elbow grease. In this post, I&amp;rsquo;ll show how to add an automated testing
+system using CTest.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;I love &lt;a href=&#34;//cmake.org/&#34; target=&#34;_blank&#34;&gt;CMake&lt;/a&gt;, it allows me to &lt;a href=&#34;http://skandhurkat.github.io/post/autohell-v-cmake/&#34; target=&#34;_blank&#34;&gt;write cross-platform&lt;/a&gt; code and be &lt;a href=&#34;http://skandhurkat.github.io/post/why-i-like-cpp11/&#34; target=&#34;_blank&#34;&gt;confident that the
+build system would work across a choice of compilers, IDEs, and
+operating systems&lt;/a&gt;. When
+writing large projects, however, it is imperative to have a series of
+tests that could indicate regression bugs whenever new features are
+added. While I love the testing support built into languages such as
+Java, writing tests is not all that hard in C++ either. For example, I
+could simply write a function that mimics a unit test and prints out
+either &amp;ldquo;Test passed&amp;rdquo; or &amp;ldquo;Test failed&amp;rdquo; depending on the result of the
+test. All I now need is a way to automatically run these tests.&lt;/p&gt;
+
+&lt;p&gt;This is where CTest comes into the picture. I&amp;rsquo;m assuming here that you
+are using CMake as your build system. If you are not, then you are
+clearly wrong, a terrible person, and the type who would probably not
+write tests anyway. So stop reading this post. 😄&lt;/p&gt;
+
+&lt;p&gt;Okay, back from that little digression.&lt;/p&gt;
+
+&lt;p&gt;My setup for testing is thus: I am building a library that defines all
+the required functions. Each class/function/API must be tested, so I
+write tests for each of these. The tests are written so that they would
+indicate success using the keyword &amp;ldquo;Test passed&amp;rdquo; or failure using the
+keyword &amp;ldquo;Test failed&amp;rdquo;. I put all the tests in a separate &lt;code&gt;tests&lt;/code&gt; folder.
+Within the tests folder, I write my &lt;code&gt;CMakeLists.txt&lt;/code&gt; thus.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #000000&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #cd00cd&#34;&gt;set&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #cd0000&#34;&gt;EXECUTABLE_OUTPUT_PATH&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color: #00cdcd&#34;&gt;PROJECT_BINARY_DIR&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color: #cd0000&#34;&gt;/tests&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;)&lt;/span&gt;
+&lt;span style=&#34;color: #cd00cd&#34;&gt;set&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #cd0000&#34;&gt;CTEST_BINARY_DIRECTORY&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color: #00cdcd&#34;&gt;PROJECT_BINARY_DIR&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color: #cd0000&#34;&gt;/tests&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;)&lt;/span&gt;
+
+&lt;span style=&#34;color: #cd00cd&#34;&gt;file&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #cd0000&#34;&gt;GLOB&lt;/span&gt; &lt;span style=&#34;color: #cd0000&#34;&gt;files&lt;/span&gt; &lt;span style=&#34;color: #cd0000&#34;&gt;&amp;quot;test_*.cc&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;)&lt;/span&gt;
+
+&lt;span style=&#34;color: #cd00cd&#34;&gt;foreach&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #cd0000&#34;&gt;file&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color: #00cdcd&#34;&gt;files&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;)&lt;/span&gt;
+	&lt;span style=&#34;color: #cd00cd&#34;&gt;string&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #cd0000&#34;&gt;REGEX&lt;/span&gt; &lt;span style=&#34;color: #cd0000&#34;&gt;REPLACE&lt;/span&gt; &lt;span style=&#34;color: #cd0000&#34;&gt;&amp;quot;(^.*/|\\.[^.]*$)&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #cd0000&#34;&gt;&amp;quot;&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #cd0000&#34;&gt;file_without_ext&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color: #00cdcd&#34;&gt;file&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;)&lt;/span&gt;
+	&lt;span style=&#34;color: #cd00cd&#34;&gt;add_executable&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color: #00cdcd&#34;&gt;file_without_ext&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;}&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color: #00cdcd&#34;&gt;file&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;)&lt;/span&gt;
+	&lt;span style=&#34;color: #cd00cd&#34;&gt;target_link_libraries&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color: #00cdcd&#34;&gt;file_without_ext&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;}&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color: #00cdcd&#34;&gt;PROJECT_LIBS&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;)&lt;/span&gt;
+	&lt;span style=&#34;color: #cd00cd&#34;&gt;add_test&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color: #00cdcd&#34;&gt;file_without_ext&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;}&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color: #00cdcd&#34;&gt;file_without_ext&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;)&lt;/span&gt;
+	&lt;span style=&#34;color: #cd00cd&#34;&gt;set_tests_properties&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color: #00cdcd&#34;&gt;file_without_ext&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;}&lt;/span&gt;
+		&lt;span style=&#34;color: #cd0000&#34;&gt;PROPERTIES&lt;/span&gt;
+		&lt;span style=&#34;color: #cd0000&#34;&gt;PASS_REGULAR_EXPRESSION&lt;/span&gt; &lt;span style=&#34;color: #cd0000&#34;&gt;&amp;quot;Test passed&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;)&lt;/span&gt;
+	&lt;span style=&#34;color: #cd00cd&#34;&gt;set_tests_properties&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color: #00cdcd&#34;&gt;file_without_ext&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;}&lt;/span&gt;
+		&lt;span style=&#34;color: #cd0000&#34;&gt;PROPERTIES&lt;/span&gt;
+		&lt;span style=&#34;color: #cd0000&#34;&gt;FAIL_REGULAR_EXPRESSION&lt;/span&gt; &lt;span style=&#34;color: #cd0000&#34;&gt;&amp;quot;(Exception|Test failed)&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;)&lt;/span&gt;
+	&lt;span style=&#34;color: #cd00cd&#34;&gt;set_tests_properties&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color: #00cdcd&#34;&gt;file_without_ext&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;}&lt;/span&gt;
+		&lt;span style=&#34;color: #cd0000&#34;&gt;PROPERTIES&lt;/span&gt;
+		&lt;span style=&#34;color: #cd0000&#34;&gt;TIMEOUT&lt;/span&gt; &lt;span style=&#34;color: #cd0000&#34;&gt;120&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;)&lt;/span&gt;
+&lt;span style=&#34;color: #cd00cd&#34;&gt;endforeach&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This is a really simple script. It loops over all files in the tests
+folder that match the pattern &lt;code&gt;test_*.cc&lt;/code&gt;, i.e.\ C++ files that start
+with the &lt;code&gt;test_&lt;/code&gt; prefix. It generates the executable name by stripping
+out all the leading directories until the path, while also stripping out
+the extension for the file. It compiles the file and links it against
+the project libraries. Finally, it tells CMake/CTest that the compiled
+binary is a test which on passing would have in its output the text
+&amp;ldquo;Test passed&amp;rdquo;, and on failure could have the text &amp;ldquo;Test failed&amp;rdquo; or
+&amp;ldquo;Exception&amp;rdquo;. Finally, I add a timeout of 120 seconds, or two minutes. If
+the test runs longer than this time, it will be automatically terminated
+and marked as a failure. This is not ideal &amp;ndash; some of my tests run for
+just seconds, while the longest test could run for just under a minute.
+However, the purpose of the timeout here is not to detect performance
+bugs, rather to prevent the machine running the tests from fritzing out
+because of a bug that results in the tests doing something really crazy.&lt;/p&gt;
+
+&lt;p&gt;Oh, and in order to enable testing, I simply change the &lt;code&gt;CMakeLists.txt&lt;/code&gt;
+on the very top level of the project (the one that defines project name,
+version, etc.) to include this one extra line.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #000000&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #cd00cd&#34;&gt;include&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #cd0000&#34;&gt;CTest&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Simple, isn&amp;rsquo;t it? Now why would you go running to &lt;em&gt;Go&lt;/em&gt; (see what I did
+there? 😄), when C++ with CMake offers cross platform builds,
+testing infrastructure, and parallel execution with memory consistency
+models?&lt;/p&gt;
+
+&lt;p&gt;In the next posts on the series, I might just describe how to test for
+memory leaks using Valgrind/MemCheck or how to test test-coverage
+(alliteration FTW) using gcov. Stay tuned.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>On writing platform-independent code (or why I like the new C&#43;&#43;)</title>
+      <link>http://skandhurkat.github.io/post/why-i-like-cpp11/</link>
+      <pubDate>Sat, 16 Mar 2013 17:26:35 -0400</pubDate>
+      
+      <guid>http://skandhurkat.github.io/post/why-i-like-cpp11/</guid>
+      <description>&lt;p&gt;I use Linux when I work from home, I&amp;rsquo;m forced to use a Mac at work
+(well, I boot up a virtual Linux OS), and I use Windows when I just want
+to goof around with my computer. So, while most of my work is done on
+Linux, it&amp;rsquo;s imperative that my code work on all platforms; just because
+I could use any of the three.&lt;/p&gt;
+
+&lt;p&gt;Traditionally, C required multiple versions of code, protected by
+&lt;code&gt;#ifdef&lt;/code&gt;s. This often required multiple versions of code to be written,
+depending on the target system, target OS, and compiler being used.
+Clumsy and messy system.&lt;/p&gt;
+
+&lt;p&gt;C++ too had similar shortcomings. When it came to writing multi-threaded
+code, I had to choose either Win32 or Posix, and once I made that
+choice, I was bound by it. Since those were the days when Ubuntu was
+driving me crazy, I chose Win32. Bad decision.&lt;/p&gt;
+
+&lt;p&gt;Every single action that I attempted was compounded by the fact that
+Win32 is the worst API ever. How do I lock a mutex? Well, first I
+declare a handle, then declare a mutex, then define the handle to point
+to the mutex, then attempt to lock the mutex, specifying a timeout
+interval, then check to see if the error on the acquisition is
+&lt;code&gt;ERROR_SUCCESS&lt;/code&gt;. A crazy system which leads to crazy code.&lt;/p&gt;
+
+&lt;p&gt;And that&amp;rsquo;s not compatible with Posix, which is a much cleaner API.&lt;/p&gt;
+
+&lt;p&gt;So, when C++11 was announced, I jumped with joy at the fact that
+multi-threading support was built into the language, and that the
+proposed interface was so much similar to the cleaner Posix API. C++11
+allows me to get rid of the system dependent multi-threading APIs, and
+focus on the code at hand that actually solves the problem. Not only
+that, C++11 specifies memory models for atomic operations; which allows
+me to atomically load, store and swap values. The only way this would be
+possible prior to C++11 was to declare a mutex for every atomic
+operation. Not a good idea, as it would lead to a tonne of mutexes, with
+large, irrelevant scope.&lt;/p&gt;
+
+&lt;p&gt;The other, messier option would be to dive down into the assembly level
+of the target platform, and write in some assembly to atomically load or
+store some values.&lt;/p&gt;
+
+&lt;p&gt;Combine the improved multi-threading and memory models in C++11 with
+CMake, and I get a nice cross platform code, which works on multiple
+platforms; well, almost. To be really sure, I need to test the code on
+each platform; but it&amp;rsquo;s relatively harder to mess up, the most chances
+occur in CMake, where I need to define compiler options for different
+build environments using a number of conditional statements. It&amp;rsquo;s worse,
+because CMake is scripted, and that means that there may be conditions
+which are written syntactically incorrect, but I would not be aware of
+this until I actually tried to build on a system that leads to those
+conditions. Still, CMake does not, or should not make a bulk of the
+code.&lt;/p&gt;
+
+&lt;p&gt;The usefulness of writing platform independent code was apparent when I
+worked on &lt;a href=&#34;http://skandhurkat.github.io/project/emodetect/&#34; target=&#34;_blank&#34;&gt;EmoDetect&lt;/a&gt;. I used Linux
+(Ubuntu 12.04), Abhinandan used Mac and Ubuntu (12.10), and both Rishabh
+and Aayush used Windows (different versions here). Yet, we could
+collaborate perfectly (again, almost; the three of them had an
+inexplicable aversion to git, so we ended up passing files (not just
+patches (OMG!))).&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;d say that it&amp;rsquo;s so important to write platform independent code. I&amp;rsquo;ve
+been trying (unsuccessfully) to port Darktable to Windows; and while I&amp;rsquo;m
+sure that it would not be too much effort to port the actual DT code,
+I&amp;rsquo;m stuck with compiling libraries, all of which were written for GNU,
+and Windows support was added later as a hack. Some of them don&amp;rsquo;t
+compile, many need to be fixed, and that&amp;rsquo;s holding up the process
+indefinitely.&lt;/p&gt;
+
+&lt;p&gt;That and the fact that I now almost always use Ubuntu, which means that
+I don&amp;rsquo;t really bother about Windows software any longer.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>AutoHell v CMake</title>
+      <link>http://skandhurkat.github.io/post/autohell-v-cmake/</link>
+      <pubDate>Thu, 16 Aug 2012 17:24:18 -0400</pubDate>
+      
+      <guid>http://skandhurkat.github.io/post/autohell-v-cmake/</guid>
+      <description>&lt;p&gt;People familiar with the GNU/Unix system would know that the standard
+way to install about any GNU software from code is to run the following
+commands&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #000000&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;configure
+make
+sudo make install
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;These commands are from the GNU autotools environment. Knowing the GNU
+environment, these tools are what I used to compile most of the
+(relatively small) pieces of code I wrote.&lt;/p&gt;
+
+&lt;p&gt;Until I discovered CMake.&lt;/p&gt;
+
+&lt;p&gt;CMake, or Cross-platform Make is a tool that serves the same
+functionality as the GNU autotools (hereafter referred to as autohell).
+As the name suggests, CMake can be used to compile software across
+multiple platforms.&lt;/p&gt;
+
+&lt;p&gt;Why am I encouraging CMake over autohell? Well, firstly, it’s not
+autohell! The GNU autotools are extremely useful when compiling on
+Linux. That’s what they are designed for. Cross compilation is extremely
+easy with the &lt;code&gt;--host=&lt;/code&gt; flag. Unfortunately, when it comes to using them
+on Windows, the system just becomes a pain in the neck.&lt;/p&gt;
+
+&lt;p&gt;People who have tried to compile a GNU package on Windows would know
+what I’m speaking about. You type in configure, wait for about half an
+hour while the script does its job in the MSYS terminal, then enter
+&lt;code&gt;make -j4&lt;/code&gt; (to speed up the process), wait for an hour while libtool
+compiles the bloody code, then &lt;code&gt;make install&lt;/code&gt; (finally!).&lt;/p&gt;
+
+&lt;p&gt;The reason why the process is so painfully slow is that autotools, at
+their heart are just shell scripts. This means that while compiling for
+Windows, in an MSYS terminal, the shell script is parsed by sh.exe,
+which is a slow emulator of the Unix shell. Further, when the configure
+script has done its job, the Makefile takes over, which relegates all
+compile operations to libtool, which is another bloody shell script.
+More sh.exe calls! The result? A painfully slow compile and installation
+process. Contrast that with CMake. Now, CMake exists on all platforms.
+It’s simple and elegant, and allows a choice of compilers, right from
+MSYS Makefiles, to CodeBlocks MinGW projects, to Visual Studio project
+files.&lt;/p&gt;
+
+&lt;p&gt;To prove my point, I’d just recommend that you checkout &lt;a href=&#34;http://github.com/skandhurkat/Just-For-Fun/tree/master/Library&#34; target=&#34;_blank&#34;&gt;a simple
+project&lt;/a&gt;
+(Library management system, my 12th grade project) in my GitHub
+repository, which can be compiled using autohell as well as CMake. The
+CMake step takes a second, while autohell takes over a minute (on
+Windows). Moreover, the CMakeLists.txt file is short and sweet, and was
+written in under a minute. By contrast, I took ages to write autohell
+files, what with configure.ac, Makefile.am and stuff. I switched from
+autohell to CMake immediately.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

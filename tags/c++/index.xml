@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>C&#43;&#43; on Skand Hurkat – Computer Systems Lab, Cornell University</title>
+    <link>http://skandhurkat.github.io/tags/c&#43;&#43;/</link>
+    <description>Recent content in C&#43;&#43; on Skand Hurkat – Computer Systems Lab, Cornell University</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 22 Jun 2017 11:05:43 -0400</lastBuildDate>
+    <atom:link href="/tags/c&#43;&#43;/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>An Introduction to CTest</title>
+      <link>http://skandhurkat.github.io/post/intro-to-ctest/</link>
+      <pubDate>Thu, 22 Jun 2017 11:05:43 -0400</pubDate>
+      
+      <guid>http://skandhurkat.github.io/post/intro-to-ctest/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;ve seen a lot of people (I&amp;rsquo;m looking at you &lt;a href=&#34;//lemire.me&#34; target=&#34;_blank&#34;&gt;Daniel
+Lemire&lt;/a&gt;) praise newer languages like &lt;em&gt;Go&lt;/em&gt;, which makes me
+sad as a C++ programmer. Well, that&amp;rsquo;s until I realise that most of the
+features touted could be easily incorporated in C++ with just a bit of
+elbow grease. In this post, I&amp;rsquo;ll show how to add an automated testing
+system using CTest.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;I love &lt;a href=&#34;//cmake.org/&#34; target=&#34;_blank&#34;&gt;CMake&lt;/a&gt;, it allows me to &lt;a href=&#34;http://skandhurkat.github.io/post/autohell-v-cmake/&#34; target=&#34;_blank&#34;&gt;write cross-platform&lt;/a&gt; code and be &lt;a href=&#34;http://skandhurkat.github.io/post/why-i-like-cpp11/&#34; target=&#34;_blank&#34;&gt;confident that the
+build system would work across a choice of compilers, IDEs, and
+operating systems&lt;/a&gt;. When
+writing large projects, however, it is imperative to have a series of
+tests that could indicate regression bugs whenever new features are
+added. While I love the testing support built into languages such as
+Java, writing tests is not all that hard in C++ either. For example, I
+could simply write a function that mimics a unit test and prints out
+either &amp;ldquo;Test passed&amp;rdquo; or &amp;ldquo;Test failed&amp;rdquo; depending on the result of the
+test. All I now need is a way to automatically run these tests.&lt;/p&gt;
+
+&lt;p&gt;This is where CTest comes into the picture. I&amp;rsquo;m assuming here that you
+are using CMake as your build system. If you are not, then you are
+clearly wrong, a terrible person, and the type who would probably not
+write tests anyway. So stop reading this post. 😄&lt;/p&gt;
+
+&lt;p&gt;Okay, back from that little digression.&lt;/p&gt;
+
+&lt;p&gt;My setup for testing is thus: I am building a library that defines all
+the required functions. Each class/function/API must be tested, so I
+write tests for each of these. The tests are written so that they would
+indicate success using the keyword &amp;ldquo;Test passed&amp;rdquo; or failure using the
+keyword &amp;ldquo;Test failed&amp;rdquo;. I put all the tests in a separate &lt;code&gt;tests&lt;/code&gt; folder.
+Within the tests folder, I write my &lt;code&gt;CMakeLists.txt&lt;/code&gt; thus.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #000000&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #cd00cd&#34;&gt;set&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #cd0000&#34;&gt;EXECUTABLE_OUTPUT_PATH&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color: #00cdcd&#34;&gt;PROJECT_BINARY_DIR&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color: #cd0000&#34;&gt;/tests&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;)&lt;/span&gt;
+&lt;span style=&#34;color: #cd00cd&#34;&gt;set&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #cd0000&#34;&gt;CTEST_BINARY_DIRECTORY&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color: #00cdcd&#34;&gt;PROJECT_BINARY_DIR&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color: #cd0000&#34;&gt;/tests&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;)&lt;/span&gt;
+
+&lt;span style=&#34;color: #cd00cd&#34;&gt;file&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #cd0000&#34;&gt;GLOB&lt;/span&gt; &lt;span style=&#34;color: #cd0000&#34;&gt;files&lt;/span&gt; &lt;span style=&#34;color: #cd0000&#34;&gt;&amp;quot;test_*.cc&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;)&lt;/span&gt;
+
+&lt;span style=&#34;color: #cd00cd&#34;&gt;foreach&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #cd0000&#34;&gt;file&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color: #00cdcd&#34;&gt;files&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;)&lt;/span&gt;
+	&lt;span style=&#34;color: #cd00cd&#34;&gt;string&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #cd0000&#34;&gt;REGEX&lt;/span&gt; &lt;span style=&#34;color: #cd0000&#34;&gt;REPLACE&lt;/span&gt; &lt;span style=&#34;color: #cd0000&#34;&gt;&amp;quot;(^.*/|\\.[^.]*$)&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #cd0000&#34;&gt;&amp;quot;&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #cd0000&#34;&gt;file_without_ext&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color: #00cdcd&#34;&gt;file&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;)&lt;/span&gt;
+	&lt;span style=&#34;color: #cd00cd&#34;&gt;add_executable&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color: #00cdcd&#34;&gt;file_without_ext&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;}&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color: #00cdcd&#34;&gt;file&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;)&lt;/span&gt;
+	&lt;span style=&#34;color: #cd00cd&#34;&gt;target_link_libraries&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color: #00cdcd&#34;&gt;file_without_ext&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;}&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color: #00cdcd&#34;&gt;PROJECT_LIBS&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;)&lt;/span&gt;
+	&lt;span style=&#34;color: #cd00cd&#34;&gt;add_test&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color: #00cdcd&#34;&gt;file_without_ext&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;}&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color: #00cdcd&#34;&gt;file_without_ext&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;)&lt;/span&gt;
+	&lt;span style=&#34;color: #cd00cd&#34;&gt;set_tests_properties&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color: #00cdcd&#34;&gt;file_without_ext&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;}&lt;/span&gt;
+		&lt;span style=&#34;color: #cd0000&#34;&gt;PROPERTIES&lt;/span&gt;
+		&lt;span style=&#34;color: #cd0000&#34;&gt;PASS_REGULAR_EXPRESSION&lt;/span&gt; &lt;span style=&#34;color: #cd0000&#34;&gt;&amp;quot;Test passed&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;)&lt;/span&gt;
+	&lt;span style=&#34;color: #cd00cd&#34;&gt;set_tests_properties&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color: #00cdcd&#34;&gt;file_without_ext&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;}&lt;/span&gt;
+		&lt;span style=&#34;color: #cd0000&#34;&gt;PROPERTIES&lt;/span&gt;
+		&lt;span style=&#34;color: #cd0000&#34;&gt;FAIL_REGULAR_EXPRESSION&lt;/span&gt; &lt;span style=&#34;color: #cd0000&#34;&gt;&amp;quot;(Exception|Test failed)&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;)&lt;/span&gt;
+	&lt;span style=&#34;color: #cd00cd&#34;&gt;set_tests_properties&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color: #00cdcd&#34;&gt;file_without_ext&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;}&lt;/span&gt;
+		&lt;span style=&#34;color: #cd0000&#34;&gt;PROPERTIES&lt;/span&gt;
+		&lt;span style=&#34;color: #cd0000&#34;&gt;TIMEOUT&lt;/span&gt; &lt;span style=&#34;color: #cd0000&#34;&gt;120&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;)&lt;/span&gt;
+&lt;span style=&#34;color: #cd00cd&#34;&gt;endforeach&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This is a really simple script. It loops over all files in the tests
+folder that match the pattern &lt;code&gt;test_*.cc&lt;/code&gt;, i.e.\ C++ files that start
+with the &lt;code&gt;test_&lt;/code&gt; prefix. It generates the executable name by stripping
+out all the leading directories until the path, while also stripping out
+the extension for the file. It compiles the file and links it against
+the project libraries. Finally, it tells CMake/CTest that the compiled
+binary is a test which on passing would have in its output the text
+&amp;ldquo;Test passed&amp;rdquo;, and on failure could have the text &amp;ldquo;Test failed&amp;rdquo; or
+&amp;ldquo;Exception&amp;rdquo;. Finally, I add a timeout of 120 seconds, or two minutes. If
+the test runs longer than this time, it will be automatically terminated
+and marked as a failure. This is not ideal &amp;ndash; some of my tests run for
+just seconds, while the longest test could run for just under a minute.
+However, the purpose of the timeout here is not to detect performance
+bugs, rather to prevent the machine running the tests from fritzing out
+because of a bug that results in the tests doing something really crazy.&lt;/p&gt;
+
+&lt;p&gt;Oh, and in order to enable testing, I simply change the &lt;code&gt;CMakeLists.txt&lt;/code&gt;
+on the very top level of the project (the one that defines project name,
+version, etc.) to include this one extra line.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #000000&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #cd00cd&#34;&gt;include&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #cd0000&#34;&gt;CTest&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Simple, isn&amp;rsquo;t it? Now why would you go running to &lt;em&gt;Go&lt;/em&gt; (see what I did
+there? 😄), when C++ with CMake offers cross platform builds,
+testing infrastructure, and parallel execution with memory consistency
+models?&lt;/p&gt;
+
+&lt;p&gt;In the next posts on the series, I might just describe how to test for
+memory leaks using Valgrind/MemCheck or how to test test-coverage
+(alliteration FTW) using gcov. Stay tuned.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>A bug in how GCC handles constructors</title>
+      <link>http://skandhurkat.github.io/post/gcc-constructor-bug/</link>
+      <pubDate>Tue, 23 May 2017 10:51:42 -0400</pubDate>
+      
+      <guid>http://skandhurkat.github.io/post/gcc-constructor-bug/</guid>
+      <description>&lt;p&gt;Some days ago, I became aware of &lt;a href=&#34;https://akrzemi1.wordpress.com/2017/04/27/a-serious-bug-in-gcc/&#34; target=&#34;_blank&#34;&gt;a bug in
+GCC&lt;/a&gt;
+that has apparently existed since 2015. As this is a bug that deals with
+memory leaks, it is fairly serious.&lt;/p&gt;
+
+&lt;p&gt;In this case, I really don&amp;rsquo;t want to re-post the entire content of the
+source, so I will only list my experiments with reproducing the bug once
+I became aware of it.&lt;/p&gt;
+
+&lt;p&gt;C++ assumes that if a constructor fails, then no memory is allocated for
+the object at all. This means that if a nested object was constructed,
+C++ will implicitly call the destructor for that object so that the
+programmer does not have to worry about partially constructed states.
+This bug in GCC exists because under certain circumstances, GCC fails
+this assumption.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s start off with a simple example trying to reproduce this bug.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #000000&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000080&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color: #000080&#34;&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;
+&lt;span style=&#34;color: #000080&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color: #000080&#34;&gt;&amp;lt;exception&amp;gt;&lt;/span&gt;
+
+&lt;span style=&#34;color: #cdcd00&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color: #00cdcd&#34;&gt;inner&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;{&lt;/span&gt;
+&lt;span style=&#34;color: #cdcd00&#34;&gt;private&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;:&lt;/span&gt;
+	&lt;span style=&#34;color: #00cd00&#34;&gt;char&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;array;&lt;/span&gt;
+&lt;span style=&#34;color: #cdcd00&#34;&gt;public&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;:&lt;/span&gt;
+	&lt;span style=&#34;color: #cccccc&#34;&gt;inner()&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;array(&lt;/span&gt;&lt;span style=&#34;color: #cdcd00&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color: #00cd00&#34;&gt;char&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color: #cd00cd&#34;&gt;128&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;])&lt;/span&gt;
+	&lt;span style=&#34;color: #cccccc&#34;&gt;{&lt;/span&gt;
+		&lt;span style=&#34;color: #cccccc&#34;&gt;std&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;cout&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color: #cd0000&#34;&gt;&amp;quot;inner constructed&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;std&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;endl;&lt;/span&gt;
+	&lt;span style=&#34;color: #cccccc&#34;&gt;}&lt;/span&gt;
+	&lt;span style=&#34;color: #cccccc&#34;&gt;inner(&lt;/span&gt;&lt;span style=&#34;color: #cdcd00&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;inner&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;other)&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;array(other.array)&lt;/span&gt;
+	&lt;span style=&#34;color: #cccccc&#34;&gt;{&lt;/span&gt;
+		&lt;span style=&#34;color: #cccccc&#34;&gt;std&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;cout&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color: #cd0000&#34;&gt;&amp;quot;inner copy constructed&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;std&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;endl;&lt;/span&gt;
+	&lt;span style=&#34;color: #cccccc&#34;&gt;}&lt;/span&gt;
+	&lt;span style=&#34;color: #3399cc&#34;&gt;~&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;inner()&lt;/span&gt;
+	&lt;span style=&#34;color: #cccccc&#34;&gt;{&lt;/span&gt;
+		&lt;span style=&#34;color: #cdcd00&#34;&gt;delete&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;[]&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;array;&lt;/span&gt;
+		&lt;span style=&#34;color: #cccccc&#34;&gt;std&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;cout&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color: #cd0000&#34;&gt;&amp;quot;inner destructed&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;std&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;endl;&lt;/span&gt;
+	&lt;span style=&#34;color: #cccccc&#34;&gt;}&lt;/span&gt;
+&lt;span style=&#34;color: #cccccc&#34;&gt;};&lt;/span&gt;
+
+&lt;span style=&#34;color: #cccccc&#34;&gt;inner&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;make_inner_1()&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;{&lt;/span&gt;&lt;span style=&#34;color: #cdcd00&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;inner();}&lt;/span&gt;
+&lt;span style=&#34;color: #cccccc&#34;&gt;inner&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;make_inner_2()&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;{&lt;/span&gt;&lt;span style=&#34;color: #cdcd00&#34;&gt;throw&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;std&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;runtime_error(&lt;/span&gt;&lt;span style=&#34;color: #cd0000&#34;&gt;&amp;quot;exception&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;);}&lt;/span&gt;
+
+&lt;span style=&#34;color: #cdcd00&#34;&gt;struct&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;outer&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;{&lt;/span&gt;
+	&lt;span style=&#34;color: #cccccc&#34;&gt;inner&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;i1;&lt;/span&gt;
+	&lt;span style=&#34;color: #cccccc&#34;&gt;inner&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;i2;&lt;/span&gt;
+&lt;span style=&#34;color: #cccccc&#34;&gt;};&lt;/span&gt;
+
+&lt;span style=&#34;color: #00cd00&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;main(&lt;/span&gt;&lt;span style=&#34;color: #00cd00&#34;&gt;void&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;)&lt;/span&gt;
+&lt;span style=&#34;color: #cccccc&#34;&gt;{&lt;/span&gt;
+	&lt;span style=&#34;color: #cdcd00&#34;&gt;try&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;{&lt;/span&gt;
+		&lt;span style=&#34;color: #cccccc&#34;&gt;outer&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;o{make_inner_1(),&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;make_inner_2()};&lt;/span&gt;
+	&lt;span style=&#34;color: #cccccc&#34;&gt;}&lt;/span&gt;
+	&lt;span style=&#34;color: #cdcd00&#34;&gt;catch&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #cdcd00&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;std&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;exception&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;e)&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;{&lt;/span&gt;
+		&lt;span style=&#34;color: #cccccc&#34;&gt;std&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;cout&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color: #cd0000&#34;&gt;&amp;quot;Abort after exception &amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;e.what()&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;std&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;endl;&lt;/span&gt;
+	&lt;span style=&#34;color: #cccccc&#34;&gt;}&lt;/span&gt;
+	&lt;span style=&#34;color: #cdcd00&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #cd00cd&#34;&gt;0&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;;&lt;/span&gt;
+&lt;span style=&#34;color: #cccccc&#34;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Upon compiling and running this code, the output is&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;inner constructed
+inner destructed
+Abort after exception exception
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This behaviour is as is expected given C++ standards. The constructor
+for object &lt;code&gt;outer&lt;/code&gt; tries to construct &lt;code&gt;i1&lt;/code&gt;, succeeds, then tries to
+construct &lt;code&gt;i2&lt;/code&gt;, fails, and destructs &lt;code&gt;i1&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Well, what if we try to create a nameless temporary object?&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #000000&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000080&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color: #000080&#34;&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;
+&lt;span style=&#34;color: #000080&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color: #000080&#34;&gt;&amp;lt;exception&amp;gt;&lt;/span&gt;
+
+&lt;span style=&#34;color: #cdcd00&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color: #00cdcd&#34;&gt;inner&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;{&lt;/span&gt;
+&lt;span style=&#34;color: #cdcd00&#34;&gt;private&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;:&lt;/span&gt;
+	&lt;span style=&#34;color: #00cd00&#34;&gt;char&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;array;&lt;/span&gt;
+&lt;span style=&#34;color: #cdcd00&#34;&gt;public&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;:&lt;/span&gt;
+	&lt;span style=&#34;color: #cccccc&#34;&gt;inner()&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;array(&lt;/span&gt;&lt;span style=&#34;color: #cdcd00&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color: #00cd00&#34;&gt;char&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color: #cd00cd&#34;&gt;128&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;])&lt;/span&gt;
+	&lt;span style=&#34;color: #cccccc&#34;&gt;{&lt;/span&gt;
+		&lt;span style=&#34;color: #cccccc&#34;&gt;std&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;cout&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color: #cd0000&#34;&gt;&amp;quot;inner constructed&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;std&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;endl;&lt;/span&gt;
+	&lt;span style=&#34;color: #cccccc&#34;&gt;}&lt;/span&gt;
+	&lt;span style=&#34;color: #cccccc&#34;&gt;inner(&lt;/span&gt;&lt;span style=&#34;color: #cdcd00&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;inner&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;other)&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;array(other.array)&lt;/span&gt;
+	&lt;span style=&#34;color: #cccccc&#34;&gt;{&lt;/span&gt;
+		&lt;span style=&#34;color: #cccccc&#34;&gt;std&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;cout&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color: #cd0000&#34;&gt;&amp;quot;inner copy constructed&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;std&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;endl;&lt;/span&gt;
+	&lt;span style=&#34;color: #cccccc&#34;&gt;}&lt;/span&gt;
+	&lt;span style=&#34;color: #3399cc&#34;&gt;~&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;inner()&lt;/span&gt;
+	&lt;span style=&#34;color: #cccccc&#34;&gt;{&lt;/span&gt;
+		&lt;span style=&#34;color: #cdcd00&#34;&gt;delete&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;[]&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;array;&lt;/span&gt;
+		&lt;span style=&#34;color: #cccccc&#34;&gt;std&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;cout&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color: #cd0000&#34;&gt;&amp;quot;inner destructed&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;std&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;endl;&lt;/span&gt;
+	&lt;span style=&#34;color: #cccccc&#34;&gt;}&lt;/span&gt;
+&lt;span style=&#34;color: #cccccc&#34;&gt;};&lt;/span&gt;
+
+&lt;span style=&#34;color: #cccccc&#34;&gt;inner&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;make_inner_1()&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;{&lt;/span&gt;&lt;span style=&#34;color: #cdcd00&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;inner();}&lt;/span&gt;
+&lt;span style=&#34;color: #cccccc&#34;&gt;inner&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;make_inner_2()&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;{&lt;/span&gt;&lt;span style=&#34;color: #cdcd00&#34;&gt;throw&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;std&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;runtime_error(&lt;/span&gt;&lt;span style=&#34;color: #cd0000&#34;&gt;&amp;quot;exception&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;);}&lt;/span&gt;
+
+&lt;span style=&#34;color: #cdcd00&#34;&gt;struct&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;outer&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;{&lt;/span&gt;
+	&lt;span style=&#34;color: #cccccc&#34;&gt;inner&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;i1;&lt;/span&gt;
+	&lt;span style=&#34;color: #cccccc&#34;&gt;inner&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;i2;&lt;/span&gt;
+&lt;span style=&#34;color: #cccccc&#34;&gt;};&lt;/span&gt;
+
+&lt;span style=&#34;color: #cdcd00&#34;&gt;struct&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;foo&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;{&lt;/span&gt;
+	&lt;span style=&#34;color: #cccccc&#34;&gt;outer&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;o;&lt;/span&gt;
+&lt;span style=&#34;color: #cccccc&#34;&gt;};&lt;/span&gt;
+
+&lt;span style=&#34;color: #00cd00&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;main(&lt;/span&gt;&lt;span style=&#34;color: #00cd00&#34;&gt;void&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;)&lt;/span&gt;
+&lt;span style=&#34;color: #cccccc&#34;&gt;{&lt;/span&gt;
+	&lt;span style=&#34;color: #cdcd00&#34;&gt;try&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;{&lt;/span&gt;
+		&lt;span style=&#34;color: #cccccc&#34;&gt;foo{outer({make_inner_1(),&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;make_inner_2()})};&lt;/span&gt;
+	&lt;span style=&#34;color: #cccccc&#34;&gt;}&lt;/span&gt;
+	&lt;span style=&#34;color: #cdcd00&#34;&gt;catch&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #cdcd00&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;std&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;exception&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;e)&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;{&lt;/span&gt;
+		&lt;span style=&#34;color: #cccccc&#34;&gt;std&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;cout&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color: #cd0000&#34;&gt;&amp;quot;Abort after exception &amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;e.what()&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;std&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;endl;&lt;/span&gt;
+	&lt;span style=&#34;color: #cccccc&#34;&gt;}&lt;/span&gt;
+	&lt;span style=&#34;color: #cdcd00&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #cd00cd&#34;&gt;0&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;;&lt;/span&gt;
+&lt;span style=&#34;color: #cccccc&#34;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;In this case, the output is&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;inner constructed
+Abort after exception exception
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This introduces a memory leak, because while &lt;code&gt;i1&lt;/code&gt; is constructed, it is
+never destroyed. If I compile using clang (version 3.8.0-2ubuntu4), the
+expected output is still correct.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;inner constructed
+inner destructed
+Abort after exception exception
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The fact that this bug has remained unresolved for over two years is
+surprising. At this point, I&amp;rsquo;m tempted to point out a paper by Ken
+Thompson, &lt;em&gt;&lt;a href=&#34;https://doi.org/10.1145/358198.358210&#34; target=&#34;_blank&#34;&gt;Reflections on trusting
+trust&lt;/a&gt;&lt;/em&gt;, which points out that an
+untrustworthy compiler could introduce a bug in all or a few select
+programs that it compiles. Moreover, the compiler could be engineered to
+introduce a bug in its own binary, so compiling the compiler from source
+wouldn&amp;rsquo;t help either.&lt;/p&gt;
+
+&lt;p&gt;This is a subtle bug that took me some time to reproduce. However, I can
+easily imagine how frustrating it could be if this bug were to manifest
+in a larger program that would show up through the use of &lt;code&gt;memcheck&lt;/code&gt; or
+a similar tool. In the meanwhile, we cannot do much except wait for a
+patch. This bug hasn&amp;rsquo;t shown up yet in code I&amp;rsquo;ve written, but I can
+always switch my build system to clang/Makefiles (the joys of &lt;a href=&#34;http://skandhurkat.github.io/post/why-i-like-cpp11/&#34; target=&#34;_blank&#34;&gt;writing
+platform-independent code&lt;/a&gt;
+with &lt;a href=&#34;http://skandhurkat.github.io/post/autohell-v-cmake/&#34; target=&#34;_blank&#34;&gt;CMake as a build system&lt;/a&gt;).&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>PSA: Don&#39;t use std::rand()</title>
+      <link>http://skandhurkat.github.io/post/psa-dont-use-rand/</link>
+      <pubDate>Sun, 16 Apr 2017 19:50:51 -0400</pubDate>
+      
+      <guid>http://skandhurkat.github.io/post/psa-dont-use-rand/</guid>
+      <description>&lt;p&gt;With the &lt;code&gt;&amp;lt;random&amp;gt;&lt;/code&gt; header in C++11 onwards, there really is no reason
+to use &lt;code&gt;std::rand()&lt;/code&gt; to generate random numbers. In fact, using
+&lt;code&gt;std::rand()&lt;/code&gt; could be really harmful.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;std::rand()&lt;/code&gt; generates random numbers using a linear congruential
+engine. This is a simple formula &amp;ndash; $x_{n+1} = (a x_n + b) \mod c$. The
+trouble with such a simple engine is that the numbers generated have
+very low entropy.&lt;/p&gt;
+
+&lt;p&gt;But I really don&amp;rsquo;t care about entropy, it&amp;rsquo;s not like I&amp;rsquo;m writing a
+cryptography application, you say? Well, let me tell you a cautionary
+tale about how using &lt;code&gt;std::rand()&lt;/code&gt; sent me on a wild goose chase for
+over a week trying to hunt down a bug miles from where it really was.&lt;/p&gt;
+
+&lt;p&gt;Here&amp;rsquo;s the story. I was writing a piece of code that was supposed to
+return events at a random time, somewhere between &lt;code&gt;x&lt;/code&gt; and &lt;code&gt;y&lt;/code&gt; cycles in
+the future. I did not really care that the random numbers generated were
+&lt;em&gt;good&lt;/em&gt;, I just wanted something quick and dirty. So, I ended up using
+code that looked like this:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #000000&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;time_type&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;new_event_time&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;get_current_time()&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;(std&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;rand()&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;%&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;(y&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;x))&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;x;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Looks good, and behaved reasonably well for almost all the test cases I
+threw at the problem. However, one specific test case was really
+sensitive to the order in which events returned, but only if the number
+of pending events was larger than a certain number &lt;code&gt;z&lt;/code&gt;. This test
+started to fail, as is to be expected. However, the failures happened a
+great deal into the future, which suggested some weird errors in
+bookkeeping that would manifest after a certain number of insertions and
+deletions. This forced me to go on a bug-hunting spree that revealed
+absolutely nothing. Then, I discovered a &lt;a href=&#34;//channel9.msdn.com/Events/GoingNative/2013/rand-Considered-Harmful&#34; target=&#34;_blank&#34;&gt;talk by
+STL&lt;/a&gt;,
+which is the inspiration for this post as well. In this talk, STL shows
+how bad the linear congruential engine in the &lt;code&gt;std::rand()&lt;/code&gt; function
+really is.&lt;/p&gt;
+
+&lt;p&gt;So, I simply replaced the random number generation code. The
+&lt;code&gt;std::srand()&lt;/code&gt; equivalent code is&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #000000&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;std&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;random_device&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;rd;&lt;/span&gt;
+&lt;span style=&#34;color: #cccccc&#34;&gt;std&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;mt19937&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;mt(rd());&lt;/span&gt;
+
+&lt;span style=&#34;color: #cccccc&#34;&gt;std&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;uniform_int_distribution&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;dist(x,&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;y);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;and the equivalent code for&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #000000&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;time_type&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;new_event_time&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;get_current_time()&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;(std&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;rand()&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;%&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;(y&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;x))&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;x;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;simplifies to&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #000000&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;time_type&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;new_event_time&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;get_current_time()&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color: #cccccc&#34;&gt;dist(mt);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Simple, isn&amp;rsquo;t it? With this new piece of code, my test began to fail
+much earlier, which prompted me to discover the real source of the bug.&lt;/p&gt;
+
+&lt;p&gt;I was intimidated by the new C++11 random number generation library
+because it requires the creation of a random device, a pseudo-random
+engine and a distribution, which is three more than a call to
+&lt;code&gt;std::rand()&lt;/code&gt;. However, the low quality of &lt;code&gt;std::rand()&lt;/code&gt; makes it
+unsuitable for even the simplest tasks requiring random numbers. My
+advice is, don&amp;rsquo;t ever use &lt;code&gt;std::rand()&lt;/code&gt; and think you can get away with
+it.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>On writing platform-independent code (or why I like the new C&#43;&#43;)</title>
+      <link>http://skandhurkat.github.io/post/why-i-like-cpp11/</link>
+      <pubDate>Sat, 16 Mar 2013 17:26:35 -0400</pubDate>
+      
+      <guid>http://skandhurkat.github.io/post/why-i-like-cpp11/</guid>
+      <description>&lt;p&gt;I use Linux when I work from home, I&amp;rsquo;m forced to use a Mac at work
+(well, I boot up a virtual Linux OS), and I use Windows when I just want
+to goof around with my computer. So, while most of my work is done on
+Linux, it&amp;rsquo;s imperative that my code work on all platforms; just because
+I could use any of the three.&lt;/p&gt;
+
+&lt;p&gt;Traditionally, C required multiple versions of code, protected by
+&lt;code&gt;#ifdef&lt;/code&gt;s. This often required multiple versions of code to be written,
+depending on the target system, target OS, and compiler being used.
+Clumsy and messy system.&lt;/p&gt;
+
+&lt;p&gt;C++ too had similar shortcomings. When it came to writing multi-threaded
+code, I had to choose either Win32 or Posix, and once I made that
+choice, I was bound by it. Since those were the days when Ubuntu was
+driving me crazy, I chose Win32. Bad decision.&lt;/p&gt;
+
+&lt;p&gt;Every single action that I attempted was compounded by the fact that
+Win32 is the worst API ever. How do I lock a mutex? Well, first I
+declare a handle, then declare a mutex, then define the handle to point
+to the mutex, then attempt to lock the mutex, specifying a timeout
+interval, then check to see if the error on the acquisition is
+&lt;code&gt;ERROR_SUCCESS&lt;/code&gt;. A crazy system which leads to crazy code.&lt;/p&gt;
+
+&lt;p&gt;And that&amp;rsquo;s not compatible with Posix, which is a much cleaner API.&lt;/p&gt;
+
+&lt;p&gt;So, when C++11 was announced, I jumped with joy at the fact that
+multi-threading support was built into the language, and that the
+proposed interface was so much similar to the cleaner Posix API. C++11
+allows me to get rid of the system dependent multi-threading APIs, and
+focus on the code at hand that actually solves the problem. Not only
+that, C++11 specifies memory models for atomic operations; which allows
+me to atomically load, store and swap values. The only way this would be
+possible prior to C++11 was to declare a mutex for every atomic
+operation. Not a good idea, as it would lead to a tonne of mutexes, with
+large, irrelevant scope.&lt;/p&gt;
+
+&lt;p&gt;The other, messier option would be to dive down into the assembly level
+of the target platform, and write in some assembly to atomically load or
+store some values.&lt;/p&gt;
+
+&lt;p&gt;Combine the improved multi-threading and memory models in C++11 with
+CMake, and I get a nice cross platform code, which works on multiple
+platforms; well, almost. To be really sure, I need to test the code on
+each platform; but it&amp;rsquo;s relatively harder to mess up, the most chances
+occur in CMake, where I need to define compiler options for different
+build environments using a number of conditional statements. It&amp;rsquo;s worse,
+because CMake is scripted, and that means that there may be conditions
+which are written syntactically incorrect, but I would not be aware of
+this until I actually tried to build on a system that leads to those
+conditions. Still, CMake does not, or should not make a bulk of the
+code.&lt;/p&gt;
+
+&lt;p&gt;The usefulness of writing platform independent code was apparent when I
+worked on &lt;a href=&#34;http://skandhurkat.github.io/project/emodetect/&#34; target=&#34;_blank&#34;&gt;EmoDetect&lt;/a&gt;. I used Linux
+(Ubuntu 12.04), Abhinandan used Mac and Ubuntu (12.10), and both Rishabh
+and Aayush used Windows (different versions here). Yet, we could
+collaborate perfectly (again, almost; the three of them had an
+inexplicable aversion to git, so we ended up passing files (not just
+patches (OMG!))).&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;d say that it&amp;rsquo;s so important to write platform independent code. I&amp;rsquo;ve
+been trying (unsuccessfully) to port Darktable to Windows; and while I&amp;rsquo;m
+sure that it would not be too much effort to port the actual DT code,
+I&amp;rsquo;m stuck with compiling libraries, all of which were written for GNU,
+and Windows support was added later as a hack. Some of them don&amp;rsquo;t
+compile, many need to be fixed, and that&amp;rsquo;s holding up the process
+indefinitely.&lt;/p&gt;
+
+&lt;p&gt;That and the fact that I now almost always use Ubuntu, which means that
+I don&amp;rsquo;t really bother about Windows software any longer.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

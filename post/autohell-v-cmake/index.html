@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="theme" content="cornellcsl">
+  <meta name="generator" content="Hugo 0.27" />
+  <meta name="author" content="Skand Hurkat">
+  <meta name="description" content="PhD Candidate">
+
+  
+  
+  
+    
+  
+  
+    
+    
+    <link rel="stylesheet" href="/css/highlight.min.css">
+    
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/academicons.min.css">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:400,700%7cMerriweather%7cRoboto&#43;Mono">
+  <link rel="stylesheet" href="/css/cornellcsl.min.css">
+  
+
+  <link rel="alternate" href="http://skandhurkat.github.io/index.xml" type="application/rss+xml" title="Skand Hurkat – Computer Systems Lab, Cornell University">
+
+  <link rel="icon" type="image/png" href="/img/CULogo-red120px.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/CULogo-red120px.png">
+
+  <link rel="canonical" href="http://skandhurkat.github.io/post/autohell-v-cmake/">
+
+  
+
+  <title>AutoHell v CMake | Skand Hurkat – Computer Systems Lab, Cornell University</title>
+
+  <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+  <script async src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+  <script defer>
+  window.addEventListener("load", function(){
+  window.cookieconsent.initialise({
+    "palette": {
+      "popup": {
+        "background": "#ffffff",
+        "text": "#000000"
+      },
+      "button": {
+        "background": "#b31b1b",
+        "text": "#ffffff"
+      }
+    },
+    "showLink": false,
+    "content": {
+      "message": "This website uses cookies for analytics and to enable comments.",
+      "dismiss": "Cool! I get it."
+    }
+  })});
+  </script>
+</head>
+<body data-spy="scroll" data-target="#navbar-main" data-offset="71">
+
+    
+    <a class="sr-only" href="#content">Skip to main content</a>
+    <header id="top" class="cu-banner">
+    
+    <div class="container">
+        <form action="//www.google.com/search" id="cu-search"
+        method="get" role="search" class="collapse">
+        
+        
+        
+         
+        <input type="hidden" name="q"
+        value="site:people.ece.cornell.edu/skand">
+        <div class="input-group col-xs-12">
+            
+            <input autocomplete="off" id="search-query" name="q"
+            placeholder="Search this website using Google"
+            required type="search" class="col-xs-12 cu-search-box">
+            <label for="search-query" class="sr-only">
+                 Search this website using Google
+            </label>
+        </div>
+        </form>
+    </div>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-10 cu-csl-logo-div">
+	    
+                <a href="//www.csl.cornell.edu" target="_blank">
+            
+		    <img src="/img/org-logo.svg"
+		        class="img-responsive"
+                        alt="Computer Systems Lab, Cornell University"
+		        style="margin: 0;" />
+            
+                </a>
+            
+            </div>
+	    
+            <div class="col-xs-2 col-middle cu-search-toggle-div">
+                <span class="pull-right">
+                    <button class="btn btn-cu-banner" type="button"
+                    data-toggle="collapse" data-target="#cu-search"
+                    id="cu-search-toggle" style="position:relative;">
+                        <span class="sr-only">Toggle search</span>
+                        <span class="cu-search-toggle glyphicon glyphicon-search">
+                        </span>
+                    </button>
+                </span>
+            </div>
+	    
+        </div>
+    </div>
+    </header>
+
+
+<div class="nav-wrapper">
+<nav class="navbar navbar-default" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+              data-target=".navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Skand Hurkat</a>
+    </div>
+
+    
+    <div class="collapse navbar-collapse">
+
+      
+      <ul class="nav navbar-nav navbar-right">
+        
+
+        
+
+        <li class="nav-item">
+          <a href="/#about">
+            
+            <span>Home</span>
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        <li class="nav-item">
+          <a href="/#publications">
+            
+            <span>Publications</span>
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        <li class="nav-item">
+          <a href="/#posts">
+            
+            <span>Posts</span>
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        <li class="nav-item">
+          <a href="/#projects">
+            
+            <span>Projects</span>
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        <li class="nav-item">
+          <a href="/#teaching">
+            
+            <span>Teaching</span>
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        <li class="nav-item">
+          <a href="/#contact">
+            
+            <span>Contact</span>
+          </a>
+        </li>
+
+        
+        
+      </ul>
+
+    </div>
+  </div>
+</nav>
+</div>
+
+
+<article class="article" itemscope itemtype="http://schema.org/BlogPosting">
+
+  
+
+  <div class="article-container">
+    <h1 itemprop="name headline">AutoHell v CMake</h1>
+    
+
+<div class="article-metadata">
+
+  
+  by <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name" class="article-authors">Skand Hurkat</span></span>.
+  
+  <span class="article-date">
+    <time datetime="2012-08-16T17:24:18-04:00" itemprop="datePublished">
+      Thu, Aug 16, 2012
+    </time>
+  </span>
+
+  
+
+  
+  
+  
+  <span class="article-tags">
+    <i class="fa fa-tags"></i>
+    
+    <a href="/tags/cmake">cmake</a
+    >, 
+    
+    <a href="/tags/programming">programming</a
+    >
+    
+  </span>
+  
+  
+
+  
+  
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    <li>
+      <a class="facebook"
+         href="https://www.facebook.com/sharer.php?u=http%3a%2f%2fskandhurkat.github.io%2fpost%2fautohell-v-cmake%2f"
+         target="_blank">
+        <i class="fa fa-facebook"></i>
+      </a>
+    </li>
+    <li>
+      <a class="twitter"
+         href="https://twitter.com/intent/tweet?text=AutoHell%20v%20CMake&amp;url=http%3a%2f%2fskandhurkat.github.io%2fpost%2fautohell-v-cmake%2f"
+         target="_blank">
+        <i class="fa fa-twitter"></i>
+      </a>
+    </li>
+    <li>
+      <a class="linkedin"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2fskandhurkat.github.io%2fpost%2fautohell-v-cmake%2f&amp;title=AutoHell%20v%20CMake"
+         target="_blank">
+        <i class="fa fa-linkedin"></i>
+      </a>
+    </li>
+    <li>
+      <a class="weibo"
+         href="http://service.weibo.com/share/share.php?url=http%3a%2f%2fskandhurkat.github.io%2fpost%2fautohell-v-cmake%2f&amp;title=AutoHell%20v%20CMake"
+         target="_blank">
+        <i class="fa fa-weibo"></i>
+      </a>
+    </li>
+    <li>
+      <a class="email"
+         href="mailto:?subject=AutoHell%20v%20CMake&amp;body=http%3a%2f%2fskandhurkat.github.io%2fpost%2fautohell-v-cmake%2f">
+        <i class="fa fa-envelope"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+    <div class="article-style" itemprop="articleBody">
+      <p>People familiar with the GNU/Unix system would know that the standard
+way to install about any GNU software from code is to run the following
+commands</p>
+<div class="highlight" style="background: #000000"><pre style="line-height: 125%">configure
+make
+sudo make install
+</pre></div>
+
+<p>These commands are from the GNU autotools environment. Knowing the GNU
+environment, these tools are what I used to compile most of the
+(relatively small) pieces of code I wrote.</p>
+
+<p>Until I discovered CMake.</p>
+
+<p>CMake, or Cross-platform Make is a tool that serves the same
+functionality as the GNU autotools (hereafter referred to as autohell).
+As the name suggests, CMake can be used to compile software across
+multiple platforms.</p>
+
+<p>Why am I encouraging CMake over autohell? Well, firstly, it’s not
+autohell! The GNU autotools are extremely useful when compiling on
+Linux. That’s what they are designed for. Cross compilation is extremely
+easy with the <code>--host=</code> flag. Unfortunately, when it comes to using them
+on Windows, the system just becomes a pain in the neck.</p>
+
+<p>People who have tried to compile a GNU package on Windows would know
+what I’m speaking about. You type in configure, wait for about half an
+hour while the script does its job in the MSYS terminal, then enter
+<code>make -j4</code> (to speed up the process), wait for an hour while libtool
+compiles the bloody code, then <code>make install</code> (finally!).</p>
+
+<p>The reason why the process is so painfully slow is that autotools, at
+their heart are just shell scripts. This means that while compiling for
+Windows, in an MSYS terminal, the shell script is parsed by sh.exe,
+which is a slow emulator of the Unix shell. Further, when the configure
+script has done its job, the Makefile takes over, which relegates all
+compile operations to libtool, which is another bloody shell script.
+More sh.exe calls! The result? A painfully slow compile and installation
+process. Contrast that with CMake. Now, CMake exists on all platforms.
+It’s simple and elegant, and allows a choice of compilers, right from
+MSYS Makefiles, to CodeBlocks MinGW projects, to Visual Studio project
+files.</p>
+
+<p>To prove my point, I’d just recommend that you checkout <a href="http://github.com/skandhurkat/Just-For-Fun/tree/master/Library" target="_blank">a simple
+project</a>
+(Library management system, my 12th grade project) in my GitHub
+repository, which can be compiled using autohell as well as CMake. The
+CMake step takes a second, while autohell takes over a minute (on
+Windows). Moreover, the CMakeLists.txt file is short and sweet, and was
+written in under a minute. By contrast, I took ages to write autohell
+files, what with configure.ac, Makefile.am and stuff. I switched from
+autohell to CMake immediately.</p>
+
+    </div>
+  </div>
+
+</article>
+
+<div class="container">
+  <nav>
+  <ul class="pager">
+    
+
+    
+    <li class="next"><a href="http://skandhurkat.github.io/post/why-i-like-cpp11/">On writing platform-independent code (or why I like the new C&#43;&#43;) <span
+      aria-hidden="true">&rarr;</span></a></li>
+    
+  </ul>
+</nav>
+
+</div>
+
+<div class="article-container">
+  
+<section id="comments">
+  <div id="disqus_thread">
+    <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "skandhurkat-csl" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+</section>
+
+
+</div>
+
+
+
+    <script defer src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.4/TweenMax.min.js"></script>
+    <script defer src="//cdnjs.cloudflare.com/ajax/libs/gsap/latest/plugins/ScrollToPlugin.min.js"></script>
+    <script defer src="/js/jquery-1.12.3.min.js"></script>
+    <script defer src="/js/jquery.easing.min.js"></script>
+    <script defer src="/js/bootstrap.min.js"></script>
+    <script defer src="/js/isotope.pkgd.min.js"></script>
+    <script defer src="//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.1/imagesloaded.pkgd.min.js"></script>
+    <script defer src="/js/cornellcsl.min.js"></script>
+    
+
+    
+    <script defer>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-25068733-5', 'auto');
+        ga('send', 'pageview');
+
+         
+        var links = document.querySelectorAll('a');
+        Array.prototype.map.call(links, function(item) {
+            if (item.host != document.location.host) {
+                item.addEventListener('click', function() {
+                    var action = item.getAttribute('data-action') || 'follow';
+                    ga('send', 'event', 'outbound', action, item.href);
+                });
+            }
+        });
+    </script>
+    
+
+    
+    
+      
+      <script defer src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+
+      
+
+      
+
+      <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+
+  </body>
+</html>
+

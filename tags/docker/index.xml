@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Docker on Skand Hurkat – Computer Systems Lab, Cornell University</title>
+    <link>http://skandhurkat.github.io/tags/docker/</link>
+    <description>Recent content in Docker on Skand Hurkat – Computer Systems Lab, Cornell University</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 25 Apr 2017 16:21:47 -0400</lastBuildDate>
+    <atom:link href="/tags/docker/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>X forwarding on Docker</title>
+      <link>http://skandhurkat.github.io/post/x-forwarding-on-docker/</link>
+      <pubDate>Tue, 25 Apr 2017 16:21:47 -0400</pubDate>
+      
+      <guid>http://skandhurkat.github.io/post/x-forwarding-on-docker/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;//markbuckler.com&#34; target=&#34;_blank&#34;&gt;Mark Buckler&lt;/a&gt; and I use Docker a lot.
+Sometimes, we need X11 forwarding to work over SSH. Here&amp;rsquo;s a summary of
+the steps involved in case you&amp;rsquo;re curious.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;edit-the-docker-file&#34;&gt;Edit the Docker file&lt;/h3&gt;
+
+&lt;p&gt;Add these lines:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #000000&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;RUN apt-get update
+RUN apt-get install -qqy x11-apps
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This installs the necessary X packages on the Docker image.&lt;/p&gt;
+
+&lt;h3 id=&#34;run-this-once-per-ssh-session&#34;&gt;Run this once per SSH session&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #000000&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #00cdcd&#34;&gt;XAUTH&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;=&lt;/span&gt;$HOME/.Xauthority
+touch $XAUTH
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This code sets the path to the &lt;code&gt;.Xauthority&lt;/code&gt; file. When using SSH with
+X11 forwarding, the &lt;code&gt;.Xauthority&lt;/code&gt; file is automatically created in the
+user&amp;rsquo;s &lt;code&gt;$HOME&lt;/code&gt; folder. If not using X11 forwarding (for instance, when
+operating locally on the machine), &lt;code&gt;touch&lt;/code&gt; will create the &lt;code&gt;.Xauthority&lt;/code&gt;
+file.&lt;/p&gt;
+
+&lt;h3 id=&#34;start-the-docker-image&#34;&gt;Start the Docker image&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #000000&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;docker run --tty --interactive --network&lt;span style=&#34;color: #3399cc&#34;&gt;=&lt;/span&gt;host --env &lt;span style=&#34;color: #00cdcd&#34;&gt;DISPLAY&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #00cdcd&#34;&gt;$D&lt;/span&gt;ISPLAY --volume $XAUTH:/root/.Xauthority &amp;lt;dockerimagename&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This starts a Docker image with a TTY, in interactive mode, using the
+host&amp;rsquo;s networking stack (i.e. the container and the host are identical
+in their network usage, so port XX in the container is port XX on the
+host. It also exports the &lt;code&gt;$DISPLAY&lt;/code&gt; environment variable to Docker, and
+binds the &lt;code&gt;.Xauthority&lt;/code&gt; file (on the host) to the root user within the
+container.&lt;/p&gt;
+
+&lt;p&gt;That&amp;rsquo;s all folks! I suspect that these instructions will also be
+cross-posted on Mark&amp;rsquo;s website. You should absolutely follow his
+&lt;a href=&#34;//markbuckler.com/post&#34; target=&#34;_blank&#34;&gt;blog&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

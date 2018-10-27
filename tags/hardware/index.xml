@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hardware on Skand Hurkat – Computer Systems Lab, Cornell University</title>
+    <link>http://skandhurkat.github.io/tags/hardware/</link>
+    <description>Recent content in Hardware on Skand Hurkat – Computer Systems Lab, Cornell University</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 17 May 2013 22:42:13 -0400</lastBuildDate>
+    <atom:link href="/tags/hardware/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>High-level synthesis of a belief propagation accelerator</title>
+      <link>http://skandhurkat.github.io/project/hls-bp/</link>
+      <pubDate>Fri, 17 May 2013 22:42:13 -0400</pubDate>
+      
+      <guid>http://skandhurkat.github.io/project/hls-bp/</guid>
+      <description>&lt;p&gt;Belief propagation on probabilistic graphical models such as Markov
+random fields is the basis for a variety of applications, especially
+applications in computer vision. In this project, we used Vivado-HLS, a
+C-to-gates framework to rapidly prototype and test a number of
+accelerators for belief propagation on an FPGA. We used a Xilinx Zynq
+platform and our experiments show that using a dedicated FPGA
+accelerator provides a 2x speedup compared to a processor-only approach.
+Further, we note that the speedup is limited by communication bandwidth,
+and that higher speedups could be achieved using a higher-bandwidth bus.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Active noise-cancelling headphones</title>
+      <link>http://skandhurkat.github.io/project/edl/</link>
+      <pubDate>Tue, 03 May 2011 16:47:24 -0400</pubDate>
+      
+      <guid>http://skandhurkat.github.io/project/edl/</guid>
+      <description>&lt;p&gt;This was a semester long team course project as part of the Electronics
+Design Lab (the dreaded &amp;ldquo;EDL&amp;rdquo;) course at IITB. The aim of this project
+was to build an affordable pair of noise cancelling headphones.&lt;/p&gt;
+
+&lt;p&gt;We developed an analogue feedback based controller as a disturbance
+rejection control system; which had the added benefit of improving the
+sound quality of our relatively cheap $10 headphones. The main
+challenges in this project were to characterise the headphone-ear system
+(the &amp;ldquo;plant&amp;rdquo;) to get the frequency magnitude and phase response; as the
+system changes characteristics based on a number of factors, including
+the shape of the ear cavity, the way the headphones are worn, and the
+placement of the microphones inside the headphone cavity.&lt;/p&gt;
+
+&lt;p&gt;Our control system resulted in a successful attenuation of noise, with a
+peak cancellation of 17 db at 100 Hz. We aimed for maximum cancellation
+at 100 Hz, as that&amp;rsquo;s the frequency of noise from appliances in an office
+setting, like fans and airconditioning; when the AC mains supplies power
+at 50 Hz.&lt;/p&gt;
+
+&lt;p&gt;Our system was designed to work at 3 V, that is two dry cells. However,
+we did not optimise the power consumption to maximise battery life,
+given the limited time on the project; and because that would mean
+micro-optimisation before macro-optimisation.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

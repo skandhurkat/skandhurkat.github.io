@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>1 on Skand Hurkat – Computer Systems Lab, Cornell University</title>
+    <link>http://skandhurkat.github.io/publication_types/1/</link>
+    <description>Recent content in 1 on Skand Hurkat – Computer Systems Lab, Cornell University</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 02 Sep 2015 13:45:39 -0400</lastBuildDate>
+    <atom:link href="/publication_types/1/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Fast hierarchical implementation of sequential tree-reweighted belief propagation for probabilistic inference</title>
+      <link>http://skandhurkat.github.io/publication/fpl2015/</link>
+      <pubDate>Wed, 02 Sep 2015 13:45:39 -0400</pubDate>
+      
+      <guid>http://skandhurkat.github.io/publication/fpl2015/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>GraphGen: An FPGA framework for vertex-centric graph computation</title>
+      <link>http://skandhurkat.github.io/publication/fccm2014/</link>
+      <pubDate>Sun, 11 May 2014 13:56:42 -0400</pubDate>
+      
+      <guid>http://skandhurkat.github.io/publication/fccm2014/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
