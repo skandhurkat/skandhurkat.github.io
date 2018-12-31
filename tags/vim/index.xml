@@ -1,105 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Vim on Skand Hurkat – Computer Systems Lab, Cornell University</title>
-    <link>http://skandhurkat.github.io/tags/vim/</link>
-    <description>Recent content in Vim on Skand Hurkat – Computer Systems Lab, Cornell University</description>
+    <title>vim on Skand Hurkat</title>
+    <link>https://skandhurkat.com/tags/vim/</link>
+    <description>Recent content in vim on Skand Hurkat</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 04 Jun 2017 15:33:09 -0400</lastBuildDate>
-    <atom:link href="/tags/vim/" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://skandhurkat.com/tags/vim/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>An Introduction to Vim Macros</title>
-      <link>http://skandhurkat.github.io/post/intro-to-vim-macros/</link>
+      <link>https://skandhurkat.com/post/intro-to-vim-macros/</link>
       <pubDate>Sun, 04 Jun 2017 15:33:09 -0400</pubDate>
       
-      <guid>http://skandhurkat.github.io/post/intro-to-vim-macros/</guid>
-      <description>&lt;p&gt;Vim is my favourite text editor, because it is minimalist while also
-being insanely configurable. While I may describe my ideal Vim setup
-sometime in the future, I do want to share some tips and tricks that
-make Vim so damn efficient for certain tasks. Today, I shall focus on
-macros.&lt;/p&gt;
-
-&lt;p&gt;Here&amp;rsquo;s the key idea to keep in mind when discussing about Vim. Vim is
-not just an editor, it is a text manipulation program. Inserting text is
-just one of the many tasks that Vim can accomplish. A macro is a small
-Vim program that the user can record in order to make text editing more
-efficient.&lt;/p&gt;
-
-&lt;p&gt;Consider a simple use case. Let&amp;rsquo;s say that I have a CSV file that looks
-like this&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;New York,NY,USA
-Seattle,WA,USA
-Mumbai,MH,India
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Let&amp;rsquo;s say that I want to add another column at the beginning of each
-line that is sequentially numbered, like so&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;1,New York,NY,USA
-2,Seattle,WA,USA
-3,Mumbai,MH,India
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;I could go down each line and manually add each column, but there&amp;rsquo;s a
-better way. The solution is to program a Vim macro that does the
-following tasks in order.&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;Assuming that the first column of a certain line is the required
-number for this line (row), we copy the first column to the next
-line.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Increment the line number by one so that it is one more than the
-previous line (row).&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;So, I edit the first line, in order to manually add the new column to
-the first line.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;1,New York,NY,USA
-Seattle,WA,USA
-Mumbai,MH,India
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Next, I ensure that I&amp;rsquo;m not executing any Vim command. I can verify this
-by pressing &lt;kbd&gt;ESC&lt;/kbd&gt; a couple of times. Then I press &lt;kbd&gt;q&lt;/kbd&gt;
-followed by a letter to identify this macro, e.g.: &lt;kbd&gt;a&lt;/kbd&gt;. The
-macro then consists of the following keystrokes&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;kbd&gt;0&lt;/kbd&gt;: Move to the beginning of the line.&lt;/li&gt;
-&lt;li&gt;&lt;kbd&gt;v&lt;/kbd&gt;: Visual mode.&lt;/li&gt;
-&lt;li&gt;&lt;kbd&gt;/&lt;/kbd&gt;&lt;kbd&gt;,&lt;/kbd&gt;: Find the first &lt;code&gt;,&lt;/code&gt; to match.&lt;/li&gt;
-&lt;li&gt;&lt;kbd&gt;y&lt;/kbd&gt;: Yank (copy) the highlighted text.&lt;/li&gt;
-&lt;li&gt;&lt;kbd&gt;j&lt;/kbd&gt;&lt;kbd&gt;0&lt;/kbd&gt;: Go to the beginning of the next line.&lt;/li&gt;
-&lt;li&gt;&lt;kbd&gt;P&lt;/kbd&gt;: Paste the copied text. At this point, the cursor should
-be on the &lt;code&gt;,&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;kbd&gt;h&lt;/kbd&gt;: Move the cursor one position to the left so that it is
-on the last digit of the number.&lt;/li&gt;
-&lt;li&gt;&lt;kbd&gt;Ctrl&lt;/kbd&gt;&lt;kbd&gt;a&lt;/kbd&gt;: Increment the number.&lt;/li&gt;
-&lt;li&gt;&lt;kbd&gt;q&lt;/kbd&gt;: Stop recording the macro.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Now, pressing &lt;kbd&gt;@&lt;/kbd&gt;&lt;kbd&gt;a&lt;/kbd&gt; would perform the nine steps
-outlined with just two key-presses. Let&amp;rsquo;s say the file had 50 more lines
-to be edited. In this case, I could use another powerful trick that Vim
-offers &amp;ndash; the ability to repeat a command multiple times. So, ensure
-that I&amp;rsquo;m out of executing any command, I could type in a number followed
-by a command that would execute the specified command a certain number
-of times. So, pressing &lt;kbd&gt;5&lt;/kbd&gt;&lt;kbd&gt;0&lt;/kbd&gt;&lt;kbd&gt;@&lt;/kbd&gt;&lt;kbd&gt;a&lt;/kbd&gt;
-would execute the macro &lt;code&gt;a&lt;/code&gt; fifty times, which is an insanely powerful
-technique for modifying multiple lines with a single command.&lt;/p&gt;
-
-&lt;p&gt;That&amp;rsquo;s all for Vim macros for today. I hope you found this post useful.
-Macros were one of the things I learnt relatively late as a Vim user,
-but now that I do know about this trick, I use it all the time, and it
-has saved me countless hours and a lot of headache when modifying code
-or text. Until the next time, when I take some time to write some more
-about cool Vim tricks and tips.&lt;/p&gt;
-</description>
+      <guid>https://skandhurkat.com/post/intro-to-vim-macros/</guid>
+      <description>Vim is my favourite text editor, because it is minimalist while also being insanely configurable. While I may describe my ideal Vim setup sometime in the future, I do want to share some tips and tricks that make Vim so damn efficient for certain tasks. Today, I shall focus on macros.
+Here&amp;rsquo;s the key idea to keep in mind when discussing about Vim. Vim is not just an editor, it is a text manipulation program.</description>
     </item>
     
   </channel>

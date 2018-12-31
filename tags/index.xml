@@ -1,147 +1,166 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on Skand Hurkat – Computer Systems Lab, Cornell University</title>
-    <link>http://skandhurkat.github.io/tags/</link>
-    <description>Recent content in Tags on Skand Hurkat – Computer Systems Lab, Cornell University</description>
+    <title>Tags on Skand Hurkat</title>
+    <link>https://skandhurkat.com/tags/</link>
+    <description>Recent content in Tags on Skand Hurkat</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 01 Jan 2017 00:00:00 +0000</lastBuildDate>
-    <atom:link href="/tags/" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://skandhurkat.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Content tagged as &#39;Academic&#39;</title>
-      <link>http://skandhurkat.github.io/tags/academic/</link>
+      <link>https://skandhurkat.com/tags/academic/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://skandhurkat.github.io/tags/academic/</guid>
-      <description>&lt;p&gt;Here is a list of all the content that has been tagged as &lt;em&gt;academic&lt;/em&gt;.&lt;/p&gt;
-</description>
+      <guid>https://skandhurkat.com/tags/academic/</guid>
+      <description>Here is a list of all the content that has been tagged as academic.</description>
     </item>
     
     <item>
-      <title>C&#43;&#43;</title>
-      <link>http://skandhurkat.github.io/tags/c&#43;&#43;/</link>
+      <title>c&#43;&#43;</title>
+      <link>https://skandhurkat.com/tags/c&#43;&#43;/</link>
       <pubDate>Thu, 22 Jun 2017 11:05:43 -0400</pubDate>
       
-      <guid>http://skandhurkat.github.io/tags/c&#43;&#43;/</guid>
+      <guid>https://skandhurkat.com/tags/c&#43;&#43;/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Cmake</title>
-      <link>http://skandhurkat.github.io/tags/cmake/</link>
+      <title>cmake</title>
+      <link>https://skandhurkat.com/tags/cmake/</link>
       <pubDate>Thu, 23 Nov 2017 16:28:40 -0500</pubDate>
       
-      <guid>http://skandhurkat.github.io/tags/cmake/</guid>
+      <guid>https://skandhurkat.com/tags/cmake/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Computer Vision</title>
-      <link>http://skandhurkat.github.io/tags/computer-vision/</link>
+      <title>computer-vision</title>
+      <link>https://skandhurkat.com/tags/computer-vision/</link>
       <pubDate>Fri, 17 May 2013 22:42:13 -0400</pubDate>
       
-      <guid>http://skandhurkat.github.io/tags/computer-vision/</guid>
+      <guid>https://skandhurkat.com/tags/computer-vision/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Docker</title>
-      <link>http://skandhurkat.github.io/tags/docker/</link>
+      <title>docker</title>
+      <link>https://skandhurkat.com/tags/docker/</link>
       <pubDate>Tue, 25 Apr 2017 16:21:47 -0400</pubDate>
       
-      <guid>http://skandhurkat.github.io/tags/docker/</guid>
+      <guid>https://skandhurkat.com/tags/docker/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Fun</title>
-      <link>http://skandhurkat.github.io/tags/fun/</link>
+      <title>fun</title>
+      <link>https://skandhurkat.com/tags/fun/</link>
       <pubDate>Sat, 31 Aug 2013 17:46:37 -0400</pubDate>
       
-      <guid>http://skandhurkat.github.io/tags/fun/</guid>
+      <guid>https://skandhurkat.com/tags/fun/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Hardware</title>
-      <link>http://skandhurkat.github.io/tags/hardware/</link>
+      <title>hardware</title>
+      <link>https://skandhurkat.com/tags/hardware/</link>
       <pubDate>Fri, 17 May 2013 22:42:13 -0400</pubDate>
       
-      <guid>http://skandhurkat.github.io/tags/hardware/</guid>
+      <guid>https://skandhurkat.com/tags/hardware/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Human Computer Interaction</title>
-      <link>http://skandhurkat.github.io/tags/human-computer-interaction/</link>
+      <title>human-computer-interaction</title>
+      <link>https://skandhurkat.com/tags/human-computer-interaction/</link>
       <pubDate>Sat, 16 Jul 2011 16:45:14 -0400</pubDate>
       
-      <guid>http://skandhurkat.github.io/tags/human-computer-interaction/</guid>
+      <guid>https://skandhurkat.com/tags/human-computer-interaction/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Isca</title>
-      <link>http://skandhurkat.github.io/tags/isca/</link>
+      <title>isca</title>
+      <link>https://skandhurkat.com/tags/isca/</link>
       <pubDate>Thu, 29 Jun 2017 17:28:43 -0400</pubDate>
       
-      <guid>http://skandhurkat.github.io/tags/isca/</guid>
+      <guid>https://skandhurkat.com/tags/isca/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Linux</title>
-      <link>http://skandhurkat.github.io/tags/linux/</link>
+      <title>linux</title>
+      <link>https://skandhurkat.com/tags/linux/</link>
       <pubDate>Tue, 25 Apr 2017 16:21:47 -0400</pubDate>
       
-      <guid>http://skandhurkat.github.io/tags/linux/</guid>
+      <guid>https://skandhurkat.com/tags/linux/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Machine Learning</title>
-      <link>http://skandhurkat.github.io/tags/machine-learning/</link>
+      <title>machine-learning</title>
+      <link>https://skandhurkat.com/tags/machine-learning/</link>
       <pubDate>Fri, 16 Nov 2012 15:52:23 -0400</pubDate>
       
-      <guid>http://skandhurkat.github.io/tags/machine-learning/</guid>
+      <guid>https://skandhurkat.com/tags/machine-learning/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Makefiles</title>
-      <link>http://skandhurkat.github.io/tags/makefiles/</link>
+      <title>makefiles</title>
+      <link>https://skandhurkat.com/tags/makefiles/</link>
       <pubDate>Wed, 02 Aug 2017 17:45:00 -0400</pubDate>
       
-      <guid>http://skandhurkat.github.io/tags/makefiles/</guid>
+      <guid>https://skandhurkat.com/tags/makefiles/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Personal Opinions</title>
-      <link>http://skandhurkat.github.io/tags/personal-opinions/</link>
+      <title>personal-opinions</title>
+      <link>https://skandhurkat.com/tags/personal-opinions/</link>
       <pubDate>Wed, 12 Jul 2017 09:04:44 -0400</pubDate>
       
-      <guid>http://skandhurkat.github.io/tags/personal-opinions/</guid>
+      <guid>https://skandhurkat.com/tags/personal-opinions/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Photographs</title>
-      <link>http://skandhurkat.github.io/tags/photographs/</link>
+      <title>photographs</title>
+      <link>https://skandhurkat.com/tags/photographs/</link>
       <pubDate>Tue, 14 Mar 2017 18:01:49 -0400</pubDate>
       
-      <guid>http://skandhurkat.github.io/tags/photographs/</guid>
+      <guid>https://skandhurkat.com/tags/photographs/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Programming</title>
-      <link>http://skandhurkat.github.io/tags/programming/</link>
+      <title>programming</title>
+      <link>https://skandhurkat.com/tags/programming/</link>
       <pubDate>Thu, 23 Nov 2017 16:28:40 -0500</pubDate>
       
-      <guid>http://skandhurkat.github.io/tags/programming/</guid>
+      <guid>https://skandhurkat.com/tags/programming/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>signal-processing</title>
+      <link>https://skandhurkat.com/tags/signal-processing/</link>
+      <pubDate>Fri, 13 Dec 2013 22:53:25 -0400</pubDate>
+      
+      <guid>https://skandhurkat.com/tags/signal-processing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>vim</title>
+      <link>https://skandhurkat.com/tags/vim/</link>
+      <pubDate>Sun, 04 Jun 2017 15:33:09 -0400</pubDate>
+      
+      <guid>https://skandhurkat.com/tags/vim/</guid>
       <description></description>
     </item>
     

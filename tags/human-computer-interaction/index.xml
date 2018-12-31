@@ -1,29 +1,23 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Human Computer Interaction on Skand Hurkat – Computer Systems Lab, Cornell University</title>
-    <link>http://skandhurkat.github.io/tags/human-computer-interaction/</link>
-    <description>Recent content in Human Computer Interaction on Skand Hurkat – Computer Systems Lab, Cornell University</description>
+    <title>human-computer-interaction on Skand Hurkat</title>
+    <link>https://skandhurkat.com/tags/human-computer-interaction/</link>
+    <description>Recent content in human-computer-interaction on Skand Hurkat</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 16 Jul 2011 16:45:14 -0400</lastBuildDate>
-    <atom:link href="/tags/human-computer-interaction/" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://skandhurkat.com/tags/human-computer-interaction/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Multi-touch interface for visualising network information</title>
-      <link>http://skandhurkat.github.io/project/hci/</link>
+      <link>https://skandhurkat.com/project/hci/</link>
       <pubDate>Sat, 16 Jul 2011 16:45:14 -0400</pubDate>
       
-      <guid>http://skandhurkat.github.io/project/hci/</guid>
-      <description>&lt;p&gt;I worked on this project as a summer intern at École de technologie
-supérieure, Montréal, Canada, under the guidance of &lt;a href=&#34;//profs.etsmtl.ca/mmcguffin&#34; target=&#34;_blank&#34;&gt;Dr. Michael
-McGuffin&lt;/a&gt;. My work involved developing new
-and innovative gestures for network layout manipulation. Over the course
-of almost 10 weeks, I converted an existing interface from a
-mouse-keyboard interaction technique to a touch based technique, with
-special gestures like radial menus, toolglass widgets and popup menus to
-enable easy and intuitive interaction with networks.&lt;/p&gt;
-</description>
+      <guid>https://skandhurkat.com/project/hci/</guid>
+      <description>I worked on this project as a summer intern at École de technologie supérieure, Montréal, Canada, under the guidance of Dr. Michael McGuffin. My work involved developing new and innovative gestures for network layout manipulation. Over the course of almost 10 weeks, I converted an existing interface from a mouse-keyboard interaction technique to a touch based technique, with special gestures like radial menus, toolglass widgets and popup menus to enable easy and intuitive interaction with networks.</description>
     </item>
     
   </channel>

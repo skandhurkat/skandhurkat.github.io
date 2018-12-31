@@ -1,72 +1,43 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Computer Vision on Skand Hurkat – Computer Systems Lab, Cornell University</title>
-    <link>http://skandhurkat.github.io/tags/computer-vision/</link>
-    <description>Recent content in Computer Vision on Skand Hurkat – Computer Systems Lab, Cornell University</description>
+    <title>computer-vision on Skand Hurkat</title>
+    <link>https://skandhurkat.com/tags/computer-vision/</link>
+    <description>Recent content in computer-vision on Skand Hurkat</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 17 May 2013 22:42:13 -0400</lastBuildDate>
-    <atom:link href="/tags/computer-vision/" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://skandhurkat.com/tags/computer-vision/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>High-level synthesis of a belief propagation accelerator</title>
-      <link>http://skandhurkat.github.io/project/hls-bp/</link>
+      <link>https://skandhurkat.com/project/hls-bp/</link>
       <pubDate>Fri, 17 May 2013 22:42:13 -0400</pubDate>
       
-      <guid>http://skandhurkat.github.io/project/hls-bp/</guid>
-      <description>&lt;p&gt;Belief propagation on probabilistic graphical models such as Markov
-random fields is the basis for a variety of applications, especially
-applications in computer vision. In this project, we used Vivado-HLS, a
-C-to-gates framework to rapidly prototype and test a number of
-accelerators for belief propagation on an FPGA. We used a Xilinx Zynq
-platform and our experiments show that using a dedicated FPGA
-accelerator provides a 2x speedup compared to a processor-only approach.
-Further, we note that the speedup is limited by communication bandwidth,
-and that higher speedups could be achieved using a higher-bandwidth bus.&lt;/p&gt;
-</description>
+      <guid>https://skandhurkat.com/project/hls-bp/</guid>
+      <description>Belief propagation on probabilistic graphical models such as Markov random fields is the basis for a variety of applications, especially applications in computer vision. In this project, we used Vivado-HLS, a C-to-gates framework to rapidly prototype and test a number of accelerators for belief propagation on an FPGA. We used a Xilinx Zynq platform and our experiments show that using a dedicated FPGA accelerator provides a 2x speedup compared to a processor-only approach.</description>
     </item>
     
     <item>
       <title>EmoDetect</title>
-      <link>http://skandhurkat.github.io/project/emodetect/</link>
+      <link>https://skandhurkat.com/project/emodetect/</link>
       <pubDate>Fri, 16 Nov 2012 15:52:23 -0400</pubDate>
       
-      <guid>http://skandhurkat.github.io/project/emodetect/</guid>
-      <description>&lt;p&gt;We developed EmoDetect, an open source system for identifying human
-emotion from images. This system has an accuracy of around 63% in
-identifying the correct emotion from amongst seven candidates. Our
-experiments showed that humans did slightly better, with an accuracy of
-74%.&lt;/p&gt;
-
-&lt;p&gt;The project was aimed as a comparative study of different feature
-extractors and learning algorithm combinations for the task of
-identifying emotion from static images. Our study revealed that Gabor
-features with a linear, soft margin SVM performed best.&lt;/p&gt;
-</description>
+      <guid>https://skandhurkat.com/project/emodetect/</guid>
+      <description>We developed EmoDetect, an open source system for identifying human emotion from images. This system has an accuracy of around 63% in identifying the correct emotion from amongst seven candidates. Our experiments showed that humans did slightly better, with an accuracy of 74%.
+The project was aimed as a comparative study of different feature extractors and learning algorithm combinations for the task of identifying emotion from static images. Our study revealed that Gabor features with a linear, soft margin SVM performed best.</description>
     </item>
     
     <item>
       <title>CarDetect</title>
-      <link>http://skandhurkat.github.io/project/cardetect/</link>
+      <link>https://skandhurkat.com/project/cardetect/</link>
       <pubDate>Sat, 16 Apr 2011 16:37:36 -0400</pubDate>
       
-      <guid>http://skandhurkat.github.io/project/cardetect/</guid>
-      <description>&lt;p&gt;CarDetect is a system to identify car numberplates (registration plates)
-and car make and model. This system was supposed to help law enforcement
-officials identify fake numberplates and stolen cars. I worked on this
-project for over a year and achieved over 98% accuracy in recognizing
-numberplate regions, and over 90% accuracy in recognizing car models.&lt;/p&gt;
-
-&lt;p&gt;The project was implemented in OpenCV using C/C++. The code for the
-project can be found on my GitHub repository.&lt;/p&gt;
-
-&lt;p&gt;Please note that I&amp;rsquo;m no longer working on CarDetect. The code on my
-GitHub repository has not been changed since 2011, with the exception of
-adding a build system using CMake. I&amp;rsquo;ve also modified the code to use
-C++11 features; including the multithreaded model, but performance is
-not as good as the original Windows code, found in the Woe32 branch.&lt;/p&gt;
-</description>
+      <guid>https://skandhurkat.com/project/cardetect/</guid>
+      <description>CarDetect is a system to identify car numberplates (registration plates) and car make and model. This system was supposed to help law enforcement officials identify fake numberplates and stolen cars. I worked on this project for over a year and achieved over 98% accuracy in recognizing numberplate regions, and over 90% accuracy in recognizing car models.
+The project was implemented in OpenCV using C/C++. The code for the project can be found on my GitHub repository.</description>
     </item>
     
   </channel>

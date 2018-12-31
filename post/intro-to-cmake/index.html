@@ -5,151 +5,207 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="theme" content="cornellcsl">
-  <meta name="generator" content="Hugo 0.27" />
+  <meta name="generator" content="Source Themes Academic 3.2.0">
+  <meta name="generator" content="Hugo 0.50" />
   <meta name="author" content="Skand Hurkat">
-  <meta name="description" content="PhD Candidate">
 
+  
   
   
   
     
   
+  <meta name="description" content="CMake is cross-platform build and configuration system for C and C&#43;&#43; code, which also happens to be my favourite build system. In this post, I&rsquo;ll present a quick tutorial on getting started with CMake.
+But before we do, let&rsquo;s start with an example of why other build systems such as Makefiles don&rsquo;t necessarily cut it. Actually, Makefiles work fairly well, but writing Makefiles by hand is generally a pain in the neck.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://skandhurkat.com/post/intro-to-cmake/">
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#2962ff">
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" crossorigin="anonymous">
+        
+      
+    
+
+    
+
+    
+
+  
+
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:400,400italic,700|Roboto+Mono">
+  
+
+  <link rel="stylesheet" href="/styles.css">
+  
+
+  
+  
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-25068733-5', 'auto');
+      
+      ga('require', 'eventTracker');
+      ga('require', 'outboundLinkTracker');
+      ga('require', 'urlChangeTracker');
+      ga('send', 'pageview');
+    </script>
+    <script async src="//www.google-analytics.com/analytics.js"></script>
+    
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/autotrack/2.4.1/autotrack.js" integrity="sha512-HUmooslVKj4m6OBu0OgzjXXr+QuFYy/k7eLI5jdeEy/F4RSgMn6XRWRGkFi5IFaFgy7uFTkegp3Z0XnJf3Jq+g==" crossorigin="anonymous"></script>
+    
+  
+  
+
+  
+  <link rel="alternate" href="https://skandhurkat.com/index.xml" type="application/rss+xml" title="Skand Hurkat">
+  <link rel="feed" href="https://skandhurkat.com/index.xml" type="application/rss+xml" title="Skand Hurkat">
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="https://skandhurkat.com/post/intro-to-cmake/">
+
+  
+  
+  
   
     
     
-    <link rel="stylesheet" href="/css/highlight.min.css">
-    
   
-  <link rel="stylesheet" href="/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/css/font-awesome.min.css">
-  <link rel="stylesheet" href="/css/academicons.min.css">
-  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:400,700%7cMerriweather%7cRoboto&#43;Mono">
-  <link rel="stylesheet" href="/css/cornellcsl.min.css">
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="twitter:site" content="@skandhurkat">
+  <meta property="twitter:creator" content="@skandhurkat">
+  
+  <meta property="og:site_name" content="Skand Hurkat">
+  <meta property="og:url" content="https://skandhurkat.com/post/intro-to-cmake/">
+  <meta property="og:title" content="Introduction to CMake | Skand Hurkat">
+  <meta property="og:description" content="CMake is cross-platform build and configuration system for C and C&#43;&#43; code, which also happens to be my favourite build system. In this post, I&rsquo;ll present a quick tutorial on getting started with CMake.
+But before we do, let&rsquo;s start with an example of why other build systems such as Makefiles don&rsquo;t necessarily cut it. Actually, Makefiles work fairly well, but writing Makefiles by hand is generally a pain in the neck."><meta property="og:image" content="https://skandhurkat.com/img/portrait.jpg">
+  <meta property="og:locale" content="en-us">
+  
+  <meta property="article:published_time" content="2017-11-23T16:28:40-05:00">
+  
+  <meta property="article:modified_time" content="2017-11-23T16:28:40-05:00">
   
 
-  <link rel="alternate" href="http://skandhurkat.github.io/index.xml" type="application/rss+xml" title="Skand Hurkat – Computer Systems Lab, Cornell University">
-
-  <link rel="icon" type="image/png" href="/img/CULogo-red120px.png">
-  <link rel="apple-touch-icon" type="image/png" href="/img/CULogo-red120px.png">
-
-  <link rel="canonical" href="http://skandhurkat.github.io/post/intro-to-cmake/">
+  
 
   
 
-  <title>Introduction to CMake | Skand Hurkat – Computer Systems Lab, Cornell University</title>
+  <title>Introduction to CMake | Skand Hurkat</title>
 
-  <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
-  <script async src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
-  <script defer>
-  window.addEventListener("load", function(){
-  window.cookieconsent.initialise({
-    "palette": {
-      "popup": {
-        "background": "#ffffff",
-        "text": "#000000"
-      },
-      "button": {
-        "background": "#b31b1b",
-        "text": "#ffffff"
-      }
-    },
-    "showLink": false,
-    "content": {
-      "message": "This website uses cookies for analytics and to enable comments.",
-      "dismiss": "Cool! I get it."
-    }
-  })});
-  </script>
 </head>
-<body data-spy="scroll" data-target="#navbar-main" data-offset="71">
+<body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" >
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
 
-    
-    <a class="sr-only" href="#content">Skip to main content</a>
-    <header id="top" class="cu-banner">
-    
-    <div class="container">
-        <form action="//www.google.com/search" id="cu-search"
-        method="get" role="search" class="collapse">
-        
-        
-        
-         
-        <input type="hidden" name="q"
-        value="site:people.ece.cornell.edu/skand">
-        <div class="input-group col-xs-12">
-            
-            <input autocomplete="off" id="search-query" name="q"
-            placeholder="Search this website using Google"
-            required type="search" class="col-xs-12 cu-search-box">
-            <label for="search-query" class="sr-only">
-                 Search this website using Google
-            </label>
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
         </div>
-        </form>
-    </div>
-    
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-10 cu-csl-logo-div">
-	    
-                <a href="//www.csl.cornell.edu" target="_blank">
-            
-		    <img src="/img/org-logo.svg"
-		        class="img-responsive"
-                        alt="Computer Systems Lab, Cornell University"
-		        style="margin: 0;" />
-            
-                </a>
-            
-            </div>
-	    
-            <div class="col-xs-2 col-middle cu-search-toggle-div">
-                <span class="pull-right">
-                    <button class="btn btn-cu-banner" type="button"
-                    data-toggle="collapse" data-target="#cu-search"
-                    id="cu-search-toggle" style="position:relative;">
-                        <span class="sr-only">Toggle search</span>
-                        <span class="cu-search-toggle glyphicon glyphicon-search">
-                        </span>
-                    </button>
-                </span>
-            </div>
-	    
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
         </div>
-    </div>
-    </header>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" role="textbox" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
 
 
-<div class="nav-wrapper">
-<nav class="navbar navbar-default" id="navbar-main">
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
   <div class="container">
 
     
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-              data-target=".navbar-collapse" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
       <a class="navbar-brand" href="/">Skand Hurkat</a>
-    </div>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+      
 
     
-    <div class="collapse navbar-collapse">
+    <div class="collapse navbar-collapse" id="navbar">
 
       
-      <ul class="nav navbar-nav navbar-right">
+      
+      <ul class="navbar-nav ml-auto">
         
 
+        
+
+        
+        
+        
+          
         
 
         <li class="nav-item">
-          <a href="/#about">
+          <a class="nav-link" href="/#about">
             
             <span>Home</span>
+            
           </a>
         </li>
 
@@ -158,10 +214,17 @@
 
         
 
+        
+        
+        
+          
+        
+
         <li class="nav-item">
-          <a href="/#publications">
+          <a class="nav-link" href="/#publications">
             
             <span>Publications</span>
+            
           </a>
         </li>
 
@@ -170,10 +233,17 @@
 
         
 
+        
+        
+        
+          
+        
+
         <li class="nav-item">
-          <a href="/#posts">
+          <a class="nav-link" href="/#posts">
             
             <span>Posts</span>
+            
           </a>
         </li>
 
@@ -182,22 +252,17 @@
 
         
 
+        
+        
+        
+          
+        
+
         <li class="nav-item">
-          <a href="/#projects">
+          <a class="nav-link" href="/#projects">
             
             <span>Projects</span>
-          </a>
-        </li>
-
-        
-        
-
-        
-
-        <li class="nav-item">
-          <a href="/#teaching">
             
-            <span>Teaching</span>
           </a>
         </li>
 
@@ -206,58 +271,109 @@
 
         
 
+        
+        
+        
+          
+        
+
         <li class="nav-item">
-          <a href="/#contact">
+          <a class="nav-link" href="/#contact">
             
             <span>Contact</span>
+            
           </a>
         </li>
 
         
         
+
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-dark-toggle" href="#"><i class="fas fa-moon" aria-hidden="true"></i></a>
+        </li>
+        
+
       </ul>
 
     </div>
   </div>
 </nav>
-</div>
 
 
-<article class="article" itemscope itemtype="http://schema.org/BlogPosting">
+<article class="article" itemscope itemtype="http://schema.org/Article">
 
   
 
-  <div class="article-container">
-    <h1 itemprop="name headline">Introduction to CMake</h1>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1 itemprop="name">Introduction to CMake</h1>
+
+  
+
+  
     
 
 <div class="article-metadata">
 
   
-  by <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name" class="article-authors">Skand Hurkat</span></span>.
   
+  <span itemscope itemprop="author" itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Skand Hurkat">
+  </span>
+  
+
   <span class="article-date">
-    <time datetime="2017-11-23T16:28:40-05:00" itemprop="datePublished">
-      Thu, Nov 23, 2017
+    
+    <meta content="2017-11-23 16:28:40 -0500 -0500" itemprop="datePublished">
+    <time datetime="2017-11-23 16:28:40 -0500 -0500" itemprop="dateModified">
+      Thursday, 23 November, 2017
     </time>
   </span>
+  <span itemscope itemprop="publisher" itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Skand Hurkat">
+  </span>
 
   
-
-  
-  
-  
-  <span class="article-tags">
-    <i class="fa fa-tags"></i>
-    
-    <a href="/tags/cmake">cmake</a
-    >, 
-    
-    <a href="/tags/programming">programming</a
-    >
-    
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    7 min read
   </span>
   
+
+  
+  
+  <span class="middot-divider"></span>
+  <a href="/post/intro-to-cmake/#disqus_thread"></a>
+  
+
   
 
   
@@ -265,37 +381,37 @@
 <div class="share-box" aria-hidden="true">
   <ul class="share">
     <li>
-      <a class="facebook"
-         href="https://www.facebook.com/sharer.php?u=http%3a%2f%2fskandhurkat.github.io%2fpost%2fintro-to-cmake%2f"
-         target="_blank">
-        <i class="fa fa-facebook"></i>
+      <a class="twitter"
+         href="https://twitter.com/intent/tweet?text=Introduction%20to%20CMake&amp;url=https%3a%2f%2fskandhurkat.com%2fpost%2fintro-to-cmake%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
       </a>
     </li>
     <li>
-      <a class="twitter"
-         href="https://twitter.com/intent/tweet?text=Introduction%20to%20CMake&amp;url=http%3a%2f%2fskandhurkat.github.io%2fpost%2fintro-to-cmake%2f"
-         target="_blank">
-        <i class="fa fa-twitter"></i>
+      <a class="facebook"
+         href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fskandhurkat.com%2fpost%2fintro-to-cmake%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-facebook-f"></i>
       </a>
     </li>
     <li>
       <a class="linkedin"
-         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2fskandhurkat.github.io%2fpost%2fintro-to-cmake%2f&amp;title=Introduction%20to%20CMake"
-         target="_blank">
-        <i class="fa fa-linkedin"></i>
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fskandhurkat.com%2fpost%2fintro-to-cmake%2f&amp;title=Introduction%20to%20CMake"
+         target="_blank" rel="noopener">
+        <i class="fab fa-linkedin-in"></i>
       </a>
     </li>
     <li>
       <a class="weibo"
-         href="http://service.weibo.com/share/share.php?url=http%3a%2f%2fskandhurkat.github.io%2fpost%2fintro-to-cmake%2f&amp;title=Introduction%20to%20CMake"
-         target="_blank">
-        <i class="fa fa-weibo"></i>
+         href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fskandhurkat.com%2fpost%2fintro-to-cmake%2f&amp;title=Introduction%20to%20CMake"
+         target="_blank" rel="noopener">
+        <i class="fab fa-weibo"></i>
       </a>
     </li>
     <li>
       <a class="email"
-         href="mailto:?subject=Introduction%20to%20CMake&amp;body=http%3a%2f%2fskandhurkat.github.io%2fpost%2fintro-to-cmake%2f">
-        <i class="fa fa-envelope"></i>
+         href="mailto:?subject=Introduction%20to%20CMake&amp;body=https%3a%2f%2fskandhurkat.com%2fpost%2fintro-to-cmake%2f">
+        <i class="fas fa-envelope"></i>
       </a>
     </li>
   </ul>
@@ -306,6 +422,31 @@
 
 </div>
 
+    
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
     <div class="article-style" itemprop="articleBody">
       <p><a href="//cmake.org" target="_blank">CMake</a> is cross-platform build and configuration system
 for C and C++ code, which also happens to be my favourite build system.
@@ -315,7 +456,7 @@ CMake.</p>
 <p>But before we do, let&rsquo;s start with an example of why other build systems
 such as Makefiles don&rsquo;t necessarily cut it. Actually, Makefiles work
 fairly well, but writing Makefiles by hand is generally a pain in the
-neck. In <a href="http://skandhurkat.github.io/post/makefile-dependencies/" target="_blank">a previous post</a>,
+neck. In <a href="https://skandhurkat.com/post/makefile-dependencies/" target="_blank">a previous post</a>,
 I described how to write Makefiles that take include file dependencies
 into account. If that post did not convince you that writing Makefiles
 is hard, let me show you another example of a terrible Makefile and hope
@@ -324,52 +465,53 @@ Makefile was actually part of a project that was handed over to me, I
 had to go over tonnes of other people&rsquo;s code with comments written in
 non-ascii characters in a language that wasn&rsquo;t English, so I clearly
 don&rsquo;t have fond memories of this particular project.)</p>
-<div class="highlight" style="background: #000000"><pre style="line-height: 125%"><span style="color: #000080">## Compiler + Linker</span>
-<span style="color: #00cdcd">CC</span> <span style="color: #3399cc">=</span> g++
-<span style="color: #00cdcd">LD</span> <span style="color: #3399cc">=</span> g++
 
-<span style="color: #000080">## external .h files to bring in</span>
-<span style="color: #00cdcd">EXTRA_INCLUDES</span> <span style="color: #3399cc">=</span> 
-<span style="color: #00cdcd">CCFLAGS</span> <span style="color: #3399cc">=</span> -g -Wno-deprecated -I/opt/local/include/ -I/opt/local/include/opencv/ -I./GMM/ -I./MaxFlow/ -I./MeanShift/ 
-<span style="color: #00cdcd">LDFLAGS</span> <span style="color: #3399cc">=</span> -L/opt/local/lib
-<span style="color: #000080">#LIBS = -lcv -lcxcore -lhighgui -lcvaux #-lml </span>
-<span style="color: #000080"># for macs</span>
-<span style="color: #00cdcd">LIBS</span> <span style="color: #3399cc">=</span> -lopencv_core -lopencv_highgui <span style="color: #000080">#-lcvaux -lml </span>
+<pre><code class="language-Makefile">## Compiler + Linker
+CC = g++
+LD = g++
 
-<span style="color: #000080">## sources</span>
-<span style="color: #00cdcd">CCFILES_GMM</span> <span style="color: #3399cc">=</span> <span style="color: #000080">#### Some files</span>
-<span style="color: #00cdcd">CCFILES_MAXFLOW</span> <span style="color: #3399cc">=</span> <span style="color: #000080">#### Some more files</span>
-<span style="color: #00cdcd">CCFILES_MEANSHIFT</span> <span style="color: #3399cc">=</span> <span style="color: #000080">#### Holy shit, even more files</span>
-<span style="color: #00cdcd">CCFILES</span> <span style="color: #3399cc">=</span> <span style="color: #cdcd00">$(</span>CCFILES_GMM<span style="color: #cdcd00">)</span> <span style="color: #cdcd00">$(</span>CCFILES_MAXFLOW<span style="color: #cdcd00">)</span> <span style="color: #cdcd00">$(</span>CCFILES_MEANSHIFT<span style="color: #cdcd00">)</span> <span style="color: #000080">#### And even more files</span>
-<span style="color: #00cdcd">PROGFILE</span> <span style="color: #3399cc">=</span> main.cpp <span style="color: #000080">#### Seriously, how many files?</span>
+## external .h files to bring in
+EXTRA_INCLUDES = 
+CCFLAGS = -g -Wno-deprecated -I/opt/local/include/ -I/opt/local/include/opencv/ -I./GMM/ -I./MaxFlow/ -I./MeanShift/ 
+LDFLAGS = -L/opt/local/lib
+#LIBS = -lcv -lcxcore -lhighgui -lcvaux #-lml 
+# for macs
+LIBS = -lopencv_core -lopencv_highgui #-lcvaux -lml 
 
-<span style="color: #000080">## object compilation</span>
-<span style="color: #00cdcd">PROGOBJS</span> <span style="color: #3399cc">=</span> <span style="color: #cdcd00">$(</span>CCFILES:.cpp<span style="color: #3399cc">=</span>.o<span style="color: #cdcd00">)</span> <span style="color: #cdcd00">$(</span>PROGFILE:.cpp<span style="color: #3399cc">=</span>.o<span style="color: #cdcd00">)</span>
+## sources
+CCFILES_GMM = #### Some files
+CCFILES_MAXFLOW = #### Some more files
+CCFILES_MEANSHIFT = #### Holy shit, even more files
+CCFILES = $(CCFILES_GMM) $(CCFILES_MAXFLOW) $(CCFILES_MEANSHIFT) #### And even more files
+PROGFILE = main.cpp #### Seriously, how many files?
 
-<span style="color: #000080">## binary compilation</span>
-<span style="color: #00cdcd">PROG</span> <span style="color: #3399cc">=</span> BOO
+## object compilation
+PROGOBJS = $(CCFILES:.cpp=.o) $(PROGFILE:.cpp=.o)
 
-<span style="color: #cccccc">all</span><span style="color: #3399cc">:</span>
-	@echo <span style="color: #cd0000">&quot;-&gt; Building </span><span style="color: #cdcd00">$(</span>PROG<span style="color: #cdcd00">)</span><span style="color: #cd0000"> executable...&quot;</span>
-<span style="color: #000080">#	@make .cpp.o</span>
-	@make <span style="color: #cdcd00">$(</span>PROG<span style="color: #cdcd00">)</span> 
+## binary compilation
+PROG = BOO
 
-<span style="color: #cccccc">.cpp.o</span><span style="color: #3399cc">:</span>
-	<span style="color: #cdcd00">$(</span>CC<span style="color: #cdcd00">)</span> <span style="color: #cdcd00">$(</span>CCFLAGS<span style="color: #cdcd00">)</span> <span style="color: #cdcd00">$(</span>EXTRA_INCLUDES<span style="color: #cdcd00">)</span> -c -o <span style="color: #00cdcd">$@</span> $^
+all:
+	@echo &quot;-&gt; Building $(PROG) executable...&quot;
+#	@make .cpp.o
+	@make $(PROG) 
 
-<span style="color: #000080">#$(PROGOBJS):</span>
-<span style="color: #000080">#	$(CC) $(CCFLAGS) $(EXTRA_INCLUDES) -c -o $@ $^</span>
+.cpp.o:
+	$(CC) $(CCFLAGS) $(EXTRA_INCLUDES) -c -o $@ $^
 
-<span style="color: #cccccc">$(PROG)</span><span style="color: #3399cc">:</span> <span style="color: #cdcd00">$(</span><span style="color: #00cdcd">PROGOBJS</span><span style="color: #cdcd00">)</span>
-	<span style="color: #cdcd00">$(</span>LD<span style="color: #cdcd00">)</span> <span style="color: #cdcd00">$(</span>LDFLAGS<span style="color: #cdcd00">)</span> <span style="color: #cdcd00">$(</span>LIBS<span style="color: #cdcd00">)</span> <span style="color: #cdcd00">$(</span>PROGOBJS<span style="color: #cdcd00">)</span> -o <span style="color: #cdcd00">$(</span>PROG<span style="color: #cdcd00">)</span> <span style="color: #000080">#$(PROGOBJS) $(LDFLAGS) $(LIBS)</span>
+#$(PROGOBJS):
+#	$(CC) $(CCFLAGS) $(EXTRA_INCLUDES) -c -o $@ $^
 
-<span style="color: #000080">#$(PROG): $(CCFILES)</span>
-<span style="color: #000080">#	$(CC) $(CCFLAGS) $(EXTRA_INCLUDES) $(LDFLAGS) $(LIBS) -o $@ $^</span>
+$(PROG): $(PROGOBJS)
+	$(LD) $(LDFLAGS) $(LIBS) $(PROGOBJS) -o $(PROG) #$(PROGOBJS) $(LDFLAGS) $(LIBS)
 
-<span style="color: #cccccc">clean</span><span style="color: #3399cc">:</span>
-	@echo <span style="color: #cd0000">&quot;-&gt; Cleaning...&quot;</span>
-	rm -f <span style="color: #cdcd00">$(</span>PROG<span style="color: #cdcd00">)</span> <span style="color: #cdcd00">$(</span>PROGOBJS<span style="color: #cdcd00">)</span> 
-</pre></div>
+#$(PROG): $(CCFILES)
+#	$(CC) $(CCFLAGS) $(EXTRA_INCLUDES) $(LDFLAGS) $(LIBS) -o $@ $^
+
+clean:
+	@echo &quot;-&gt; Cleaning...&quot;
+	rm -f $(PROG) $(PROGOBJS) 
+</code></pre>
 
 <p>There&rsquo;s just so much to hate about this Makefile. First, it is almost
 unreadable. Second, it does not account for any header file
@@ -395,26 +537,29 @@ convince you to never write a Makefile again.</p>
 
 <p>As a dive into CMake, let&rsquo;s start with a simple &lsquo;Hello World&rsquo; program.
 The <code>helloworld.cc</code> file contains the following code:</p>
-<div class="highlight" style="background: #000000"><pre style="line-height: 125%"><span style="color: #000080">#include</span> <span style="color: #000080">&lt;iostream&gt;</span>
 
-<span style="color: #00cd00">int</span> <span style="color: #cccccc">main(</span><span style="color: #00cd00">void</span><span style="color: #cccccc">)</span>
-<span style="color: #cccccc">{</span>
-	<span style="color: #cccccc">std</span><span style="color: #3399cc">::</span><span style="color: #cccccc">cout</span> <span style="color: #3399cc">&lt;&lt;</span> <span style="color: #cd0000">&quot;Hello World&quot;</span> <span style="color: #3399cc">&lt;&lt;</span> <span style="color: #cccccc">std</span><span style="color: #3399cc">::</span><span style="color: #cccccc">endl;</span>
-	<span style="color: #cdcd00">return</span> <span style="color: #cd00cd">0</span><span style="color: #cccccc">;</span>
-<span style="color: #cccccc">}</span>
-</pre></div>
+<pre><code class="language-C++">#include &lt;iostream&gt;
+
+int main(void)
+{
+	std::cout &lt;&lt; &quot;Hello World&quot; &lt;&lt; std::endl;
+	return 0;
+}
+</code></pre>
 
 <p>To compile this code, create a file called <code>CMakeLists.txt</code>:</p>
-<div class="highlight" style="background: #000000"><pre style="line-height: 125%"><span style="color: #cd00cd">add_executable</span><span style="color: #cccccc">(</span><span style="color: #cd0000">hello</span> <span style="color: #cd0000">helloworld.cc</span><span style="color: #cccccc">)</span>
-</pre></div>
+
+<pre><code class="language-CMake">add_executable(hello helloworld.cc)
+</code></pre>
 
 <p>Now, assuming that you are running on Linux or Mac OS terminal
 (something with bash), you can execute the following commands:</p>
-<div class="highlight" style="background: #000000"><pre style="line-height: 125%">mkdir build<span style="color: #cccccc">;</span>
-<span style="color: #cd00cd">cd</span> build<span style="color: #cccccc">;</span>
-cmake ..<span style="color: #cccccc">;</span>
-make<span style="color: #cccccc">;</span>
-</pre></div>
+
+<pre><code class="language-bash">mkdir build;
+cd build;
+cmake ..;
+make;
+</code></pre>
 
 <p>This code creates a directory called build inside the project directory.
 (An important point to note is that CMake always builds &lsquo;out of source&rsquo;,
@@ -452,64 +597,69 @@ directories.</p>
 
 <p>We can create a <code>CMakeLists.txt</code> file for each of these folders. The
 CMakeLists will contain code that looks like this:</p>
-<div class="highlight" style="background: #000000"><pre style="line-height: 125%"><span style="color: #cd00cd">add_library</span><span style="color: #cccccc">(</span><span style="color: #000080"># Library name</span>
-<span style="color: #cd0000">STATIC</span> <span style="color: #000080"># Need to create a static library, not a shared one.</span>
-<span style="color: #000080">### List of files</span>
-<span style="color: #cccccc">)</span>
-</pre></div>
+
+<pre><code class="language-CMake">add_library(# Library name
+STATIC # Need to create a static library, not a shared one.
+### List of files
+)
+</code></pre>
 
 <p>Then the top-level CMakeLists.txt can include these directories through
 the simple command:</p>
-<div class="highlight" style="background: #000000"><pre style="line-height: 125%"><span style="color: #000080"># Tell CMake to look into subdirectories for CMakeLists.txt files.</span>
-<span style="color: #cd00cd">subdirs</span><span style="color: #cccccc">(</span><span style="color: #cd0000">GMM</span> <span style="color: #cd0000">MAXFLOW</span> <span style="color: #cd0000">MEANSHIFT</span><span style="color: #cccccc">)</span>
-<span style="color: #000080"># Add these directories to the compiler search path for include files.</span>
-<span style="color: #000080"># ${PROJECT_SOURCE_DIR} is the path to the source code in the project.</span>
-<span style="color: #cd00cd">include_directories</span><span style="color: #cccccc">(</span>
-	<span style="color: #3399cc">${</span><span style="color: #00cdcd">PROJECT_SOURCE_DIR</span><span style="color: #3399cc">}</span><span style="color: #cd0000">/GMM</span>
-	<span style="color: #3399cc">${</span><span style="color: #00cdcd">PROJECT_SOURCE_DIR</span><span style="color: #3399cc">}</span><span style="color: #cd0000">/MAXFLOW</span>
-	<span style="color: #3399cc">${</span><span style="color: #00cdcd">PROJECT_SOURCE_DIR</span><span style="color: #3399cc">}</span><span style="color: #cd0000">/MEANSHIFT</span>
-	<span style="color: #cccccc">)</span>
-</pre></div>
+
+<pre><code class="language-CMake"># Tell CMake to look into subdirectories for CMakeLists.txt files.
+subdirs(GMM MAXFLOW MEANSHIFT)
+# Add these directories to the compiler search path for include files.
+# ${PROJECT_SOURCE_DIR} is the path to the source code in the project.
+include_directories(
+	${PROJECT_SOURCE_DIR}/GMM
+	${PROJECT_SOURCE_DIR}/MAXFLOW
+	${PROJECT_SOURCE_DIR}/MEANSHIFT
+	)
+</code></pre>
 
 <p>Okay, but we also notice that the top-level program <code>PROG</code> needs OpenCV
 in order to compile. CMake provides a very easy method to search for
 dependencies. In the top-level <code>CMakeLists.txt</code>, we add</p>
-<div class="highlight" style="background: #000000"><pre style="line-height: 125%"><span style="color: #cd00cd">find_package</span><span style="color: #cccccc">(</span><span style="color: #cd0000">OpenCV</span> <span style="color: #cd0000">REQUIRED</span><span style="color: #cccccc">)</span>
-</pre></div>
+
+<pre><code class="language-CMake">find_package(OpenCV REQUIRED)
+</code></pre>
 
 <p>When we compile the program <code>PROG</code>, we need to link it against the
 OpenCV libraries, as well as the static libraries in the GMM, MAXFLOW,
 MEANSHIFT folders.</p>
-<div class="highlight" style="background: #000000"><pre style="line-height: 125%"><span style="color: #cd00cd">include_directories</span><span style="color: #cccccc">(</span><span style="color: #3399cc">${</span><span style="color: #00cdcd">OpenCV_INCLUDE_DIRS</span><span style="color: #3399cc">}</span><span style="color: #cccccc">)</span>
-<span style="color: #cd00cd">add_executable</span><span style="color: #cccccc">(</span><span style="color: #cd0000">PROG</span> <span style="color: #cd0000">PROG.cc</span><span style="color: #cccccc">)</span>
-<span style="color: #cd00cd">target_link_libraries</span><span style="color: #cccccc">(</span><span style="color: #cd0000">PROG</span> <span style="color: #3399cc">${</span><span style="color: #00cdcd">OpenCV_LIBS</span><span style="color: #3399cc">}</span> <span style="color: #cd0000">GMM</span> <span style="color: #cd0000">MAXFLOW</span> <span style="color: #cd0000">MEANSHIFT</span><span style="color: #cccccc">)</span>
-</pre></div>
+
+<pre><code class="language-CMake">include_directories(${OpenCV_INCLUDE_DIRS})
+add_executable(PROG PROG.cc)
+target_link_libraries(PROG ${OpenCV_LIBS} GMM MAXFLOW MEANSHIFT)
+</code></pre>
 
 <p>Putting it all together, the top-level <code>CMakeLists.txt</code> contains the
 following code:</p>
-<div class="highlight" style="background: #000000"><pre style="line-height: 125%"><span style="color: #000080"># Set a minimum version of CMake to be used, depending on the syntax of</span>
-<span style="color: #000080"># the CMakeLists files.</span>
-<span style="color: #cd00cd">cmake_minimum_required</span><span style="color: #cccccc">(</span><span style="color: #cd0000">VERSION</span> <span style="color: #cd0000">2</span><span style="color: #cccccc">)</span>
-<span style="color: #000080"># Give this project a cutsie name.</span>
-<span style="color: #cd00cd">project</span><span style="color: #cccccc">(</span><span style="color: #cd0000">PROG</span><span style="color: #cccccc">)</span>
-<span style="color: #000080"># CMake subdirectories to include for these libraries.</span>
-<span style="color: #cd00cd">subdirs</span><span style="color: #cccccc">(</span><span style="color: #cd0000">GMM</span> <span style="color: #cd0000">MAXFLOW</span> <span style="color: #cd0000">MEANSHIFT</span><span style="color: #cccccc">)</span>
-<span style="color: #000080"># Search for OpenCV. If OpenCV is found, the command sets the</span>
-<span style="color: #000080"># ${OpenCV_INCLUDE_DIR} and ${OpenCV_LIBS} variables to appropriate</span>
-<span style="color: #000080"># values. If OpenCV is not found, CMake will fail.</span>
-<span style="color: #cd00cd">find_package</span><span style="color: #cccccc">(</span><span style="color: #cd0000">OpenCV</span> <span style="color: #cd0000">REQUIRED</span><span style="color: #cccccc">)</span>
-<span style="color: #000080"># Tell the compiler to search these directories for include files.</span>
-<span style="color: #cd00cd">include_directories</span><span style="color: #cccccc">(</span>
-	<span style="color: #3399cc">${</span><span style="color: #00cdcd">PROJECT_SOURCE_DIR</span><span style="color: #3399cc">}</span><span style="color: #cd0000">/GMM</span>
-	<span style="color: #3399cc">${</span><span style="color: #00cdcd">PROJECT_SOURCE_DIR</span><span style="color: #3399cc">}</span><span style="color: #cd0000">/MAXFLOW</span>
-	<span style="color: #3399cc">${</span><span style="color: #00cdcd">PROJECT_SOURCE_DIR</span><span style="color: #3399cc">}</span><span style="color: #cd0000">/MEANSHIFT</span>
-	<span style="color: #3399cc">${</span><span style="color: #00cdcd">OpenCV_INCLUDE_DIR</span><span style="color: #3399cc">}</span>
-	<span style="color: #cccccc">)</span>
-<span style="color: #000080"># Finally, create the executable that we want.</span>
-<span style="color: #cd00cd">add_executable</span><span style="color: #cccccc">(</span><span style="color: #cd0000">PROG</span> <span style="color: #cd0000">PROG.cc</span><span style="color: #cccccc">)</span>
-<span style="color: #000080"># And link it against the required libraries.</span>
-<span style="color: #cd00cd">target_link_libraries</span><span style="color: #cccccc">(</span><span style="color: #cd0000">prog</span> <span style="color: #3399cc">${</span><span style="color: #00cdcd">OpenCV_LIBS</span><span style="color: #3399cc">}</span> <span style="color: #cd0000">GMM</span> <span style="color: #cd0000">MAXFLOW</span> <span style="color: #cd0000">MEANSHIFT</span><span style="color: #cccccc">)</span>
-</pre></div>
+
+<pre><code class="language-CMake"># Set a minimum version of CMake to be used, depending on the syntax of
+# the CMakeLists files.
+cmake_minimum_required(VERSION 2)
+# Give this project a cutsie name.
+project(PROG)
+# CMake subdirectories to include for these libraries.
+subdirs(GMM MAXFLOW MEANSHIFT)
+# Search for OpenCV. If OpenCV is found, the command sets the
+# ${OpenCV_INCLUDE_DIR} and ${OpenCV_LIBS} variables to appropriate
+# values. If OpenCV is not found, CMake will fail.
+find_package(OpenCV REQUIRED)
+# Tell the compiler to search these directories for include files.
+include_directories(
+	${PROJECT_SOURCE_DIR}/GMM
+	${PROJECT_SOURCE_DIR}/MAXFLOW
+	${PROJECT_SOURCE_DIR}/MEANSHIFT
+	${OpenCV_INCLUDE_DIR}
+	)
+# Finally, create the executable that we want.
+add_executable(PROG PROG.cc)
+# And link it against the required libraries.
+target_link_libraries(prog ${OpenCV_LIBS} GMM MAXFLOW MEANSHIFT)
+</code></pre>
 
 <p>And we&rsquo;re done! Isn&rsquo;t this CMakeLists.txt file so much more readable
 than the Makefile shown earlier? Not just that, this system will work
@@ -520,18 +670,20 @@ a concept of
 &lsquo;<a href="//cmake.org/cmake/help/v3.0/manual/cmake-generators.7.html" target="_blank">generators</a>&rsquo;,
 which is just a fancy name for a backend. Still assuming that we are on
 MacOS or Linux, we simply execute the following commands.</p>
-<div class="highlight" style="background: #000000"><pre style="line-height: 125%">mkdir build<span style="color: #cccccc">;</span>
-<span style="color: #cd00cd">cd</span> build<span style="color: #cccccc">;</span>
-cmake -G <span style="color: #cd0000">&quot;Xcode&quot;</span> .. <span style="color: #000080"># Or CodeBlocks, or whatever.</span>
-</pre></div>
+
+<pre><code class="language-bash">mkdir build;
+cd build;
+cmake -G &quot;Xcode&quot; .. # Or CodeBlocks, or whatever.
+</code></pre>
 
 <p>On Windows, execute the following commands on the command prompt
 (assuming that CMake is on your path) to create a Visual Studio 2015
 project.</p>
-<div class="highlight" style="background: #000000"><pre style="line-height: 125%"><span style="color: #cccccc">md</span> <span style="color: #cccccc">build</span>
-<span style="color: #cccccc">cd</span> <span style="color: #cccccc">build</span>
-<span style="color: #cccccc">cmake</span> <span style="color: #cccccc">-G</span> <span style="color: #cd0000">&quot;Visual Studio 14&quot;</span> <span style="color: #cccccc">..</span>
-</pre></div>
+
+<pre><code class="language-PowerShell">md build
+cd build
+cmake -G &quot;Visual Studio 14&quot; ..
+</code></pre>
 
 <p>Oh, did I mention that CMake also has a nice GUI that makes this entire
 process super easy? I won&rsquo;t describe it here, I&rsquo;ll just let you try it
@@ -539,7 +691,7 @@ out for yourself.</p>
 
 <p>The utility of CMake, however, doesn&rsquo;t just end here. CMake has a very
 neat testing system called CTest, which is something that I have
-mentioned in <a href="http://skandhurkat.github.io/post/intro-to-ctest/" target="_blank">an earlier post</a>.
+mentioned in <a href="https://skandhurkat.com/post/intro-to-ctest/" target="_blank">an earlier post</a>.
 This testing system interacts perfectly with a dashboard system called
 CDash, that can quickly allow people to view test results. CTest/CDash
 also has support for testing memory leaks and code coverage, so there.
@@ -551,30 +703,186 @@ configuration, including testing compiler versions, creating release and
 debug configurations. Until next time&hellip;</p>
 
     </div>
-  </div>
-
-</article>
-
-<div class="container">
-  <nav>
-  <ul class="pager">
-    
-    <li class="previous"><a href="http://skandhurkat.github.io/post/makefile-dependencies/"><span
-      aria-hidden="true">&larr;</span> Handling dependencies in Makefiles</a></li>
-    
 
     
-  </ul>
-</nav>
 
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/cmake/">cmake</a>
+  
+  <a class="badge badge-light" href="/tags/programming/">programming</a>
+  
 </div>
 
-<div class="article-container">
+
+
+    
+
+
+
+
+
+
+<div class="media author-card" itemscope itemtype="http://schema.org/Person">
   
+  <img class="portrait mr-3" src="/img/portrait.jpg" itemprop="image" alt="Avatar">
+  
+  <div class="media-body">
+    <h5 class="card-title" itemprop="name"><a href="/">Skand Hurkat</a></h5>
+    <h6 class="card-subtitle">Hardware Engineer</h6>
+    
+    <ul class="network-icon" aria-hidden="true">
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="//twitter.com/skandhurkat" >
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="//in.linkedin.com/in/skandhurkat" >
+          <i class="fab fa-linkedin"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="//www.instagram.com/skandhurkat" >
+          <i class="fab fa-instagram"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="https://scholar.google.com/citations?user=HbLdko8AAAAJ" target="_blank" rel="noopener">
+          <i class="ai ai-google-scholar"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="//www.mendeley.com/profiles/skand-hurkat/" >
+          <i class="ai ai-mendeley"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="//github.com/skandhurkat" >
+          <i class="fab fa-github"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="/#contact" >
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+
+
+    
+    
+    <div class="article-widget">
+      <div class="hr-light"></div>
+      <h3>Related</h3>
+      <ul>
+        
+        <li><a href="/post/intro-to-ctest/">An Introduction to CTest</a></li>
+        
+        <li><a href="/post/why-i-like-cpp11/">On writing platform-independent code (or why I like the new C&#43;&#43;)</a></li>
+        
+        <li><a href="/post/autohell-v-cmake/">AutoHell v CMake</a></li>
+        
+        <li><a href="/post/makefile-dependencies/">Handling dependencies in Makefiles</a></li>
+        
+        <li><a href="/post/gcc-constructor-bug/">A bug in how GCC handles constructors</a></li>
+        
+      </ul>
+    </div>
+    
+
+    
+
+    
 <section id="comments">
-  <div id="disqus_thread">
-    <div id="disqus_thread"></div>
-<script>
+  <div id="disqus_thread"></div>
+<script type="application/javascript">
     var disqus_config = function () {
     
     
@@ -593,59 +901,108 @@ debug configurations. Until next time&hellip;</p>
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-  </div>
 </section>
 
 
-</div>
+
+  </div>
+</article>
 
 
 
-    <script defer src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.4/TweenMax.min.js"></script>
-    <script defer src="//cdnjs.cloudflare.com/ajax/libs/gsap/latest/plugins/ScrollToPlugin.min.js"></script>
-    <script defer src="/js/jquery-1.12.3.min.js"></script>
-    <script defer src="/js/jquery.easing.min.js"></script>
-    <script defer src="/js/bootstrap.min.js"></script>
-    <script defer src="/js/isotope.pkgd.min.js"></script>
-    <script defer src="//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.1/imagesloaded.pkgd.min.js"></script>
-    <script defer src="/js/cornellcsl.min.js"></script>
     
 
     
-    <script defer>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-        ga('create', 'UA-25068733-5', 'auto');
-        ga('send', 'pageview');
+    
 
-         
-        var links = document.querySelectorAll('a');
-        Array.prototype.map.call(links, function(item) {
-            if (item.host != document.location.host) {
-                item.addEventListener('click', function() {
-                    var action = item.getAttribute('data-action') || 'follow';
-                    ga('send', 'event', 'outbound', action, item.href);
-                });
-            }
-        });
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha512-+NqPlbbtM1QqiK8ZAo4Yrj2c4lNQoGv8P79DPtKzj++l5jnN39rHA/xsqn8zE9l0uSoxaCdrOgFs6yjyfbBxSg==" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.3/imagesloaded.pkgd.min.js" integrity="sha512-umsR78NN0D23AzgoZ11K7raBD+R6hqKojyBZs1w8WvYlsI+QuKRGBx3LFCwhatzBunCjDuJpDHwxD13sLMbpRA==" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha256-VsEqElsCHSGmnmHXGQzvoWjWwoznFSZc6hs7ARLRacQ=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.4/isotope.pkgd.min.js" integrity="sha512-VDBOIlDbuC4VWxGJNmuFRQ0Li0SKkDpmGyuhAG5LTDLd/dJ/S0WMVxriR2Y+CyPL5gzjpN4f/6iqWVBJlht0tQ==" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+        
+      
+
+      
+      
+    
+
+    
+    
+
+    
+    
+    
+    <script id="dsq-count-scr" src="//skandhurkat-csl.disqus.com/count.js" async></script>
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/index.json";
+      const i18n = {
+        'placeholder': "Search...",
+        'results': "results found",
+        'no_results': "No results found"
+      };
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks"
+        };
     </script>
     
 
     
     
-      
-      <script defer src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
 
-      
-
-      
-
-      <script>hljs.initHighlightingOnLoad();</script>
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
     
 
     
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    <script src="/js/academic.min.d037ee5294b166a79dec317c58aea9cc.js"></script>
+
     
 
   </body>

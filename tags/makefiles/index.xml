@@ -1,107 +1,29 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Makefiles on Skand Hurkat – Computer Systems Lab, Cornell University</title>
-    <link>http://skandhurkat.github.io/tags/makefiles/</link>
-    <description>Recent content in Makefiles on Skand Hurkat – Computer Systems Lab, Cornell University</description>
+    <title>makefiles on Skand Hurkat</title>
+    <link>https://skandhurkat.com/tags/makefiles/</link>
+    <description>Recent content in makefiles on Skand Hurkat</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 02 Aug 2017 17:45:00 -0400</lastBuildDate>
-    <atom:link href="/tags/makefiles/" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://skandhurkat.com/tags/makefiles/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Handling dependencies in Makefiles</title>
-      <link>http://skandhurkat.github.io/post/makefile-dependencies/</link>
+      <link>https://skandhurkat.com/post/makefile-dependencies/</link>
       <pubDate>Wed, 02 Aug 2017 17:45:00 -0400</pubDate>
       
-      <guid>http://skandhurkat.github.io/post/makefile-dependencies/</guid>
+      <guid>https://skandhurkat.com/post/makefile-dependencies/</guid>
       <description>&lt;p&gt;I&amp;rsquo;ve seen way too many projects that supply a makefile that requires the
 user to run &lt;code&gt;make clean&lt;/code&gt; and &lt;code&gt;make&lt;/code&gt; every single time they make a
 change to some file. This is annoying and error prone, and the good news
 is that it can be easily solved with this one simple trick. Use a good
 build-generation system like &lt;a href=&#34;//cmake.org&#34; target=&#34;_blank&#34;&gt;CMake&lt;/a&gt; instead.&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;
-
-&lt;p&gt;Still here? Well, since you asked, I shall tell.&lt;/p&gt;
-
-&lt;p&gt;The trick is to have your compiler spit out a list of dependencies for
-each source file.&lt;/p&gt;
-
-&lt;p&gt;Try it out right now. Start a terminal and go to any project that is
-sufficiently complex to have multiple include chains in a C or C++
-source file (&lt;code&gt;foo.cc&lt;/code&gt;). Then type in this command&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #000000&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;$&amp;gt; g++ -M foo.cc
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;The output is a list of all the files that are included by the source
-file, including standard library headers. If you look closer, the output
-is formatted so that it follows the same syntax as &lt;code&gt;make&lt;/code&gt; for declaring
-dependencies. But we really don&amp;rsquo;t want to be bothered with system header
-files, so instead, we&amp;rsquo;ll use the &lt;code&gt;g++ -MM&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Cool, isn&amp;rsquo;t it? This means that all we now need to do is to find a way
-to include this information in our Makefile, and have it automatically
-update any time the source files are changed. So here&amp;rsquo;s the recipe.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #000000&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000080&#34;&gt;# List of source files here.&lt;/span&gt;
-&lt;span style=&#34;color: #00cdcd&#34;&gt;sources&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;=&lt;/span&gt; foo.cc bar.cc
-
-&lt;span style=&#34;color: #000080&#34;&gt;# Add C++ flags, for example, if the code uses C++11 standards.&lt;/span&gt;
-&lt;span style=&#34;color: #00cdcd&#34;&gt;CPPFLAGS&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;=&lt;/span&gt; -std&lt;span style=&#34;color: #3399cc&#34;&gt;=&lt;/span&gt;c++11
-
-&lt;span style=&#34;color: #000080&#34;&gt;# Recipe for making .d files from .cc files&lt;/span&gt;
-&lt;span style=&#34;color: #cccccc&#34;&gt;%.d&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;:&lt;/span&gt; %.&lt;span style=&#34;color: #cccccc&#34;&gt;cc&lt;/span&gt;
-	&lt;span style=&#34;color: #cdcd00&#34;&gt;$(&lt;/span&gt;CC&lt;span style=&#34;color: #cdcd00&#34;&gt;)&lt;/span&gt; -MM &lt;span style=&#34;color: #cdcd00&#34;&gt;$(&lt;/span&gt;CPPFLAGS&lt;span style=&#34;color: #cdcd00&#34;&gt;)&lt;/span&gt; -o &lt;span style=&#34;color: #00cdcd&#34;&gt;$@&lt;/span&gt; $&amp;lt;
-
-&lt;span style=&#34;color: #000080&#34;&gt;# Include the required .d files in the current Makefile.&lt;/span&gt;
-&lt;span style=&#34;color: #000080&#34;&gt;include $(sources:.cc=.d)&lt;/span&gt;
-
-&lt;span style=&#34;color: #000080&#34;&gt;# Recipe for making .o files. Here, I introduce a dependency on the&lt;/span&gt;
-&lt;span style=&#34;color: #000080&#34;&gt;# primary source c++ file.&lt;/span&gt;
-&lt;span style=&#34;color: #cccccc&#34;&gt;%.o&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;:&lt;/span&gt; %.&lt;span style=&#34;color: #cccccc&#34;&gt;cc&lt;/span&gt;
-	&lt;span style=&#34;color: #cdcd00&#34;&gt;$(&lt;/span&gt;CC&lt;span style=&#34;color: #cdcd00&#34;&gt;)&lt;/span&gt; -c &lt;span style=&#34;color: #cdcd00&#34;&gt;$(&lt;/span&gt;CPPFLAGS&lt;span style=&#34;color: #cdcd00&#34;&gt;)&lt;/span&gt; -o &lt;span style=&#34;color: #00cdcd&#34;&gt;$@&lt;/span&gt; &lt;span style=&#34;color: #cdcd00&#34;&gt;$(&lt;/span&gt;&amp;lt;:.d&lt;span style=&#34;color: #3399cc&#34;&gt;=&lt;/span&gt;.cc&lt;span style=&#34;color: #cdcd00&#34;&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Of course, there&amp;rsquo;s a bug in this recipe as well. Can you spot it? While
-you think about the bug, enjoy this picture of the gorge at Watkins Glen
-state park, which is under thirty miles from Cornell University.&lt;/p&gt;
-
-&lt;blockquote class=&#34;instagram-media&#34; data-instgrm-version=&#34;7&#34; style=&#34; background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:658px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);&#34;&gt;&lt;div style=&#34;padding:8px;&#34;&gt; &lt;div style=&#34; background:#F8F8F8; line-height:0; margin-top:40px; padding:50.0% 0; text-align:center; width:100%;&#34;&gt; &lt;div style=&#34; background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAMAAAApWqozAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAMUExURczMzPf399fX1+bm5mzY9AMAAADiSURBVDjLvZXbEsMgCES5/P8/t9FuRVCRmU73JWlzosgSIIZURCjo/ad+EQJJB4Hv8BFt+IDpQoCx1wjOSBFhh2XssxEIYn3ulI/6MNReE07UIWJEv8UEOWDS88LY97kqyTliJKKtuYBbruAyVh5wOHiXmpi5we58Ek028czwyuQdLKPG1Bkb4NnM+VeAnfHqn1k4+GPT6uGQcvu2h2OVuIf/gWUFyy8OWEpdyZSa3aVCqpVoVvzZZ2VTnn2wU8qzVjDDetO90GSy9mVLqtgYSy231MxrY6I2gGqjrTY0L8fxCxfCBbhWrsYYAAAAAElFTkSuQmCC); display:block; height:44px; margin:0 auto -44px; position:relative; top:-22px; width:44px;&#34;&gt;&lt;/div&gt;&lt;/div&gt;&lt;p style=&#34; color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;&#34;&gt;&lt;a href=&#34;https://www.instagram.com/p/BNf_cb4gP2k/&#34; style=&#34; color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;&#34; target=&#34;_blank&#34;&gt;A post shared by Skand Hurkat (@skandhurkat)&lt;/a&gt; on &lt;time style=&#34; font-family:Arial,sans-serif; font-size:14px; line-height:17px;&#34; datetime=&#34;2016-12-02T03:35:13+00:00&#34;&gt;Dec 1, 2016 at 7:35pm PST&lt;/time&gt;&lt;/p&gt;&lt;/div&gt;&lt;/blockquote&gt;
-&lt;script async defer src=&#34;//platform.instagram.com/en_US/embeds.js&#34;&gt;&lt;/script&gt;
-
-&lt;p&gt;The bug is that the &lt;code&gt;.d&lt;/code&gt; files do not update if something changes in the
-include chain. However, the GNU Make manual has &lt;a href=&#34;https://www.gnu.org/software/make/manual/make.html#Generating-Prerequisites-Automatically&#34; target=&#34;_blank&#34;&gt;an interesting
-fix&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Their solution is to use &lt;code&gt;sed&lt;/code&gt; to introduce the same dependency chain as
-for the &lt;code&gt;.o&lt;/code&gt; file into the &lt;code&gt;.d&lt;/code&gt; file. Here&amp;rsquo;s the updated Makefile with
-their recipe.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #000000&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000080&#34;&gt;# List of source files here.&lt;/span&gt;
-&lt;span style=&#34;color: #00cdcd&#34;&gt;sources&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;=&lt;/span&gt; foo.cc bar.cc
-
-&lt;span style=&#34;color: #000080&#34;&gt;# Add C++ flags, for example, if the code uses C++11 standards.&lt;/span&gt;
-&lt;span style=&#34;color: #00cdcd&#34;&gt;CPPFLAGS&lt;/span&gt; &lt;span style=&#34;color: #3399cc&#34;&gt;=&lt;/span&gt; -std&lt;span style=&#34;color: #3399cc&#34;&gt;=&lt;/span&gt;c++11
-
-&lt;span style=&#34;color: #000080&#34;&gt;# Recipe for making .d files from .cc files. This has been updated from&lt;/span&gt;
-&lt;span style=&#34;color: #000080&#34;&gt;# the GNU Make manual&lt;/span&gt;
-&lt;span style=&#34;color: #cccccc&#34;&gt;%.d&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;:&lt;/span&gt; %.&lt;span style=&#34;color: #cccccc&#34;&gt;cc&lt;/span&gt;
-	&lt;span style=&#34;color: #cdcd00&#34;&gt;$(&lt;/span&gt;CC&lt;span style=&#34;color: #cdcd00&#34;&gt;)&lt;/span&gt; -MM &lt;span style=&#34;color: #cdcd00&#34;&gt;$(&lt;/span&gt;CPPFLAGS&lt;span style=&#34;color: #cdcd00&#34;&gt;)&lt;/span&gt; $&amp;lt; &amp;gt; &lt;span style=&#34;color: #00cdcd&#34;&gt;$@&lt;/span&gt;.&lt;span style=&#34;color: #00cdcd&#34;&gt;$$$$&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;;&lt;/span&gt; &lt;span style=&#34;color: #cd0000&#34;&gt;\&lt;/span&gt;
-	sed &lt;span style=&#34;color: #cd0000&#34;&gt;&amp;#39;s,\($*\)\.o[ :]*,\1.o $@ : ,g&amp;#39;&lt;/span&gt; &amp;lt; &lt;span style=&#34;color: #00cdcd&#34;&gt;$@&lt;/span&gt;.&lt;span style=&#34;color: #00cdcd&#34;&gt;$$$$&lt;/span&gt; &amp;gt; &lt;span style=&#34;color: #00cdcd&#34;&gt;$@&lt;/span&gt;&lt;span style=&#34;color: #cccccc&#34;&gt;;&lt;/span&gt; &lt;span style=&#34;color: #cd0000&#34;&gt;\&lt;/span&gt;
-	rm -f &lt;span style=&#34;color: #00cdcd&#34;&gt;$@&lt;/span&gt;.&lt;span style=&#34;color: #00cdcd&#34;&gt;$$$$&lt;/span&gt;
-
-&lt;span style=&#34;color: #000080&#34;&gt;# Include the required .d files in the current Makefile.&lt;/span&gt;
-&lt;span style=&#34;color: #000080&#34;&gt;include $(sources:.cc=.d)&lt;/span&gt;
-
-&lt;span style=&#34;color: #000080&#34;&gt;# Recipe for making .o files. Here, I introduce a dependency on the&lt;/span&gt;
-&lt;span style=&#34;color: #000080&#34;&gt;# primary source c++ file.&lt;/span&gt;
-&lt;span style=&#34;color: #cccccc&#34;&gt;%.o&lt;/span&gt;&lt;span style=&#34;color: #3399cc&#34;&gt;:&lt;/span&gt; %.&lt;span style=&#34;color: #cccccc&#34;&gt;cc&lt;/span&gt;
-	&lt;span style=&#34;color: #cdcd00&#34;&gt;$(&lt;/span&gt;CC&lt;span style=&#34;color: #cdcd00&#34;&gt;)&lt;/span&gt; -c &lt;span style=&#34;color: #cdcd00&#34;&gt;$(&lt;/span&gt;CPPFLAGS&lt;span style=&#34;color: #cdcd00&#34;&gt;)&lt;/span&gt; -o &lt;span style=&#34;color: #00cdcd&#34;&gt;$@&lt;/span&gt; &lt;span style=&#34;color: #cdcd00&#34;&gt;$(&lt;/span&gt;&amp;lt;:.d&lt;span style=&#34;color: #3399cc&#34;&gt;=&lt;/span&gt;.cc&lt;span style=&#34;color: #cdcd00&#34;&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Okay, I think that should work now. But it does beg the question, why
-are we even writing Makefiles by hand any more? Shouldn&amp;rsquo;t we just use a
-configuration system like CMake or GNU Autotools that can generate
-correct Makefiles?&lt;/p&gt;</description>
+&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
   </channel>
