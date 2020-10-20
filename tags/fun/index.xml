@@ -6,6 +6,7 @@
     <description>Recent content in fun on Skand Hurkat</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <copyright>&amp;copy; {year} Skand Hurkat. All rights reserved.</copyright>
     <lastBuildDate>Sat, 31 Aug 2013 17:46:37 -0400</lastBuildDate>
     
 	<atom:link href="https://skandhurkat.com/tags/fun/index.xml" rel="self" type="application/rss+xml" />
@@ -19,9 +20,7 @@
       <guid>https://skandhurkat.com/post/history-of-computing/</guid>
       <description>&lt;p&gt;Because I can publish shitty drawings, and even shittier text.&lt;/p&gt;
 
-&lt;p&gt;And I have no obligation to be accurate.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;And I have no obligation to be accurate.&lt;/p&gt;</description>
     </item>
     
   </channel>

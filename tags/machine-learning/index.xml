@@ -6,6 +6,7 @@
     <description>Recent content in machine-learning on Skand Hurkat</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <copyright>&amp;copy; {year} Skand Hurkat. All rights reserved.</copyright>
     <lastBuildDate>Fri, 16 Nov 2012 15:52:23 -0400</lastBuildDate>
     
 	<atom:link href="https://skandhurkat.com/tags/machine-learning/index.xml" rel="self" type="application/rss+xml" />
@@ -17,8 +18,7 @@
       <pubDate>Fri, 16 Nov 2012 15:52:23 -0400</pubDate>
       
       <guid>https://skandhurkat.com/project/emodetect/</guid>
-      <description>We developed EmoDetect, an open source system for identifying human emotion from images. This system has an accuracy of around 63% in identifying the correct emotion from amongst seven candidates. Our experiments showed that humans did slightly better, with an accuracy of 74%.
-The project was aimed as a comparative study of different feature extractors and learning algorithm combinations for the task of identifying emotion from static images. Our study revealed that Gabor features with a linear, soft margin SVM performed best.</description>
+      <description>Emotion detection from images</description>
     </item>
     
     <item>
@@ -27,8 +27,7 @@ The project was aimed as a comparative study of different feature extractors and
       <pubDate>Sat, 16 Apr 2011 16:37:36 -0400</pubDate>
       
       <guid>https://skandhurkat.com/project/cardetect/</guid>
-      <description>CarDetect is a system to identify car numberplates (registration plates) and car make and model. This system was supposed to help law enforcement officials identify fake numberplates and stolen cars. I worked on this project for over a year and achieved over 98% accuracy in recognizing numberplate regions, and over 90% accuracy in recognizing car models.
-The project was implemented in OpenCV using C/C++. The code for the project can be found on my GitHub repository.</description>
+      <description>Car make and model detection</description>
     </item>
     
     <item>
@@ -37,8 +36,7 @@ The project was implemented in OpenCV using C/C++. The code for the project can 
       <pubDate>Fri, 16 Apr 2010 17:09:15 -0400</pubDate>
       
       <guid>https://skandhurkat.com/project/text-independent-speaker-verification/</guid>
-      <description>We developed a system to identify users independent of their spoken words. The system used Mel-frequency cepstral coefficients (MFCCs) to obtain a characteristic pattern of the user&amp;rsquo;s voice which was then analysed by a three layer multi-layer perceptron (MLP) neural network. We obtained accuracies of over 90% using this approach.
-The entire project was implemented in MATLAB.</description>
+      <description>Artificial neural networks to identify users from speech</description>
     </item>
     
   </channel>

@@ -5,11 +5,24 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="generator" content="Source Themes Academic 3.2.0">
-  <meta name="generator" content="Hugo 0.50" />
-  <meta name="author" content="Skand Hurkat">
+  <meta name="generator" content="Source Themes Academic 4.2.0">
+  <meta name="generator" content="Hugo 0.55.1" />
 
   
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Skand Hurkat">
+
   
   
   
@@ -60,7 +73,8 @@
       
       
         
-          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" crossorigin="anonymous">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
         
       
     
@@ -78,13 +92,23 @@
 
   <link rel="stylesheet" href="/styles.css">
   
+    
+    
+    
+    
+      
+    
+    
+    
+    <link rel="stylesheet" href="/css/academic.3302edf19991b3523ab9ba729c24e601.css">
+  
 
   
   
     <script>
       window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
       ga('create', 'UA-25068733-5', 'auto');
-      
+      ga('set', 'anonymizeIp', true);
       ga('require', 'eventTracker');
       ga('require', 'outboundLinkTracker');
       ga('require', 'urlChangeTracker');
@@ -123,7 +147,7 @@
   <meta property="og:site_name" content="Skand Hurkat">
   <meta property="og:url" content="https://skandhurkat.com/publication/hpca2019/">
   <meta property="og:title" content="VIP: A Versatile Inference Processor | Skand Hurkat">
-  <meta property="og:description" content="We present Versatile Inference Processor (VIP), a highly programmable architecture for machine learning inference. VIP consists of 128 lightweight processing engines employing a vector processing paradigm, with a simple ISA and carefully chosen microarchitecture features. It is coupled with a modern, lightly customized, 3D-stacked memory system.  Through detailed execution-driven simulations backed by RTL synthesis, we show that we can achieve online, real-time vision throughput (24 fps), at low power consumption, for both full- HD depth-from-stereo using belief propagation, and VGG-16 and VGG-19 deep neural networks (batch size of 1). Our RTL synthesis of a VIP processing engine in TSMC 28 nm technology, using a commercial standard-cell library supplied by ARM, results in 18 mm&lt;sup&gt;2&lt;/sup&gt; of silicon area and 3.5 W to 4.8 W of power consumption for all 128 VIP processing engines combined."><meta property="og:image" content="https://skandhurkat.com/img/portrait.jpg">
+  <meta property="og:description" content="We present Versatile Inference Processor (VIP), a highly programmable architecture for machine learning inference. VIP consists of 128 lightweight processing engines employing a vector processing paradigm, with a simple ISA and carefully chosen microarchitecture features. It is coupled with a modern, lightly customized, 3D-stacked memory system.  Through detailed execution-driven simulations backed by RTL synthesis, we show that we can achieve online, real-time vision throughput (24 fps), at low power consumption, for both full- HD depth-from-stereo using belief propagation, and VGG-16 and VGG-19 deep neural networks (batch size of 1). Our RTL synthesis of a VIP processing engine in TSMC 28 nm technology, using a commercial standard-cell library supplied by ARM, results in 18 mm&lt;sup&gt;2&lt;/sup&gt; of silicon area and 3.5 W to 4.8 W of power consumption for all 128 VIP processing engines combined."><meta property="og:image" content="https://skandhurkat.com/img/icon-192.png">
   <meta property="og:locale" content="en-us">
   
   <meta property="article:published_time" content="2019-02-20T00:00:00&#43;00:00">
@@ -132,6 +156,32 @@
   
 
   
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+<script>
+  window.addEventListener("load", function(){
+    window.cookieconsent.initialise({
+      "palette": {
+        "popup": {
+          "background": "#2962ff",
+          "text": "#fff"
+        },
+        "button": {
+          "background": "#fff",
+          "text": "#2962ff"
+        }
+      },
+      "theme": "classic",
+      "content": {
+        "message": "This website uses cookies to ensure you get the best experience on our website.",
+        "dismiss": "Got it!",
+        "link": "Learn more",
+        "href": "https://cookies.insites.com"
+      }
+    })});
+</script>
+
 
   
 
@@ -188,7 +238,7 @@
 
       
       
-      <ul class="navbar-nav ml-auto">
+      <ul class="navbar-nav mr-auto">
         
 
         
@@ -203,6 +253,25 @@
           <a class="nav-link" href="/#about">
             
             <span>Home</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#experience">
+            
+            <span>Experience</span>
             
           </a>
         </li>
@@ -287,6 +356,9 @@
         
 
       
+      </ul>
+      <ul class="navbar-nav ml-auto">
+      
 
         
 
@@ -310,7 +382,7 @@
   </div>
 </nav>
 
-<div class="pub" itemscope itemtype="http://schema.org/ScholarlyArticle">
+<div class="pub" itemscope itemtype="http://schema.org/CreativeWork">
 
   
 
@@ -338,28 +410,55 @@
   
     
 
+
+
+<meta content="2019-02-20 00:00:00 &#43;0000 &#43;0000" itemprop="datePublished">
+<meta content="2019-02-20 00:00:00 &#43;0000 &#43;0000" itemprop="dateModified">
+
 <div class="article-metadata">
 
   
   
   
+  
   <div>
-    <span itemscope itemprop="author" itemtype="http://schema.org/Person"><span itemprop="name">Skand Hurkat</span></span>, 
-    <span itemscope itemprop="author" itemtype="http://schema.org/Person"><span itemprop="name">José F. Martínez</span></span>
     
-  </div>
+
+
+
+  <span itemscope itemprop="author" itemtype="http://schema.org/Person">
+      <span itemprop="name">
+        
+
+      
+      
+      <a href="">Skand Hurkat</a></span></span>, 
+  <span itemscope itemprop="author" itemtype="http://schema.org/Person">
+      <span itemprop="name">
+        
+
+      
+      
+      <a href="">José F. Martínez</a></span></span>
   
 
+
+
+  </div>
+  
+  
+
+  
   <span class="article-date">
     
-    <meta content="2019-02-20 00:00:00 &#43;0000 &#43;0000" itemprop="datePublished">
-    <time datetime="2019-02-20 00:00:00 &#43;0000 &#43;0000" itemprop="dateModified">
-      Wednesday, 20 February, 2019
-    </time>
+    
+      
+    
+    <time>February 2019</time>
   </span>
-  <span itemscope itemprop="publisher" itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Skand Hurkat">
-  </span>
+  
+
+  
 
   
 
@@ -372,7 +471,7 @@
   
 
   
-  
+    
 <div class="share-box" aria-hidden="true">
   <ul class="share">
     <li>
@@ -442,12 +541,14 @@
 
 
 
+
   
     
   
 
 
-<a class="btn btn-outline-primary my-1 mr-1" href="https://skandhurkat.com/files/hpca2019.pdf" target="_blank" rel="noopener">
+
+<a class="btn btn-outline-primary my-1 mr-1" href="/files/hpca2019.pdf" target="_blank" rel="noopener">
   PDF
 </a>
 
@@ -465,6 +566,10 @@
 
 
 
+<a class="btn btn-outline-primary my-1 mr-1" href="https://doi.org/10.1109/HPCA.2019.00049" target="_blank" rel="noopener">
+  DOI
+</a>
+
 
 
 </div>
@@ -479,7 +584,7 @@
 
     
     <h3>Abstract</h3>
-    <p class="pub-abstract">We present Versatile Inference Processor (VIP), a highly programmable architecture for machine learning inference. VIP consists of 128 lightweight processing engines employing a vector processing paradigm, with a simple ISA and carefully chosen microarchitecture features. It is coupled with a modern, lightly customized, 3D-stacked memory system.  Through detailed execution-driven simulations backed by RTL synthesis, we show that we can achieve online, real-time vision throughput (24 fps), at low power consumption, for both full- HD depth-from-stereo using belief propagation, and VGG-16 and VGG-19 deep neural networks (batch size of 1). Our RTL synthesis of a VIP processing engine in TSMC 28 nm technology, using a commercial standard-cell library supplied by ARM, results in 18 mm<sup>2</sup> of silicon area and 3.5 W to 4.8 W of power consumption for all 128 VIP processing engines combined.</p>
+    <p class="pub-abstract" itemprop="text">We present Versatile Inference Processor (VIP), a highly programmable architecture for machine learning inference. VIP consists of 128 lightweight processing engines employing a vector processing paradigm, with a simple ISA and carefully chosen microarchitecture features. It is coupled with a modern, lightly customized, 3D-stacked memory system.  Through detailed execution-driven simulations backed by RTL synthesis, we show that we can achieve online, real-time vision throughput (24 fps), at low power consumption, for both full- HD depth-from-stereo using belief propagation, and VGG-16 and VGG-19 deep neural networks (batch size of 1). Our RTL synthesis of a VIP processing engine in TSMC 28 nm technology, using a commercial standard-cell library supplied by ARM, results in 18 mm<sup>2</sup> of silicon area and 3.5 W to 4.8 W of power consumption for all 128 VIP processing engines combined.</p>
     
 
     
@@ -489,6 +594,9 @@
         <div class="row">
           <div class="col-12 col-md-3 pub-row-heading">Type</div>
           <div class="col-12 col-md-9">
+            
+
+            
             
             <a href="/publication/#1">
               Conference paper
@@ -516,20 +624,6 @@
     <div class="d-md-none space-below"></div>
     
 
-    <div class="row">
-      <div class="col-md-1"></div>
-      <div class="col-md-10">
-        <div class="row">
-          <div class="col-12 col-md-3 pub-row-heading">Date</div>
-          <div class="col-12 col-md-9" itemprop="datePublished">
-            February, 2019
-          </div>
-        </div>
-      </div>
-      <div class="col-md-1"></div>
-    </div>
-    <div class="d-sm-none space-below"></div>
-
     <div class="space-below"></div>
 
     <div class="article-style"></div>
@@ -540,139 +634,18 @@
 
 
 
+
+
+
   
-
-
-
-
-<div class="media author-card" itemscope itemtype="http://schema.org/Person">
   
-  <img class="portrait mr-3" src="/img/portrait.jpg" itemprop="image" alt="Avatar">
-  
-  <div class="media-body">
-    <h5 class="card-title" itemprop="name"><a href="/">Skand Hurkat</a></h5>
-    <h6 class="card-subtitle">Hardware Engineer</h6>
     
-    <ul class="network-icon" aria-hidden="true">
-      
-      
-      
-      
-        
-      
-      
-      
-      
-      
-        
-      
-      <li>
-        <a itemprop="sameAs" href="//twitter.com/skandhurkat" >
-          <i class="fab fa-twitter"></i>
-        </a>
-      </li>
-      
-      
-      
-      
-        
-      
-      
-      
-      
-      
-        
-      
-      <li>
-        <a itemprop="sameAs" href="//in.linkedin.com/in/skandhurkat" >
-          <i class="fab fa-linkedin"></i>
-        </a>
-      </li>
-      
-      
-      
-      
-        
-      
-      
-      
-      
-      
-        
-      
-      <li>
-        <a itemprop="sameAs" href="//www.instagram.com/skandhurkat" >
-          <i class="fab fa-instagram"></i>
-        </a>
-      </li>
-      
-      
-      
-      
-      
-      
-      
-      
-        
-      
-      <li>
-        <a itemprop="sameAs" href="https://scholar.google.com/citations?user=HbLdko8AAAAJ" target="_blank" rel="noopener">
-          <i class="ai ai-google-scholar"></i>
-        </a>
-      </li>
-      
-      
-      
-      
-      
-      
-      
-      
-        
-      
-      <li>
-        <a itemprop="sameAs" href="//www.mendeley.com/profiles/skand-hurkat/" >
-          <i class="ai ai-mendeley"></i>
-        </a>
-      </li>
-      
-      
-      
-      
-        
-      
-      
-      
-      
-      
-        
-      
-      <li>
-        <a itemprop="sameAs" href="//github.com/skandhurkat" >
-          <i class="fab fa-github"></i>
-        </a>
-      </li>
-      
-      
-      
-      
-        
-      
-      
-      
-      
-      
-        
-      
-      <li>
-        <a itemprop="sameAs" href="/#contact" >
-          <i class="fas fa-envelope"></i>
-        </a>
-      </li>
-      
-    </ul>
-  </div>
-</div>
+  
+  
+
+
+
+
 
 
 
@@ -682,7 +655,42 @@
 
 
 
+<div class="container">
+  <footer class="site-footer">
+  
 
+  <p class="powered-by">
+    &copy; 2020 Skand Hurkat. All rights reserved. &middot; 
+  </p>
+</footer>
+
+</div>
+
+
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
 
     
 
@@ -693,9 +701,9 @@
     
     
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha512-+NqPlbbtM1QqiK8ZAo4Yrj2c4lNQoGv8P79DPtKzj++l5jnN39rHA/xsqn8zE9l0uSoxaCdrOgFs6yjyfbBxSg==" crossorigin="anonymous"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.3/imagesloaded.pkgd.min.js" integrity="sha512-umsR78NN0D23AzgoZ11K7raBD+R6hqKojyBZs1w8WvYlsI+QuKRGBx3LFCwhatzBunCjDuJpDHwxD13sLMbpRA==" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha256-VsEqElsCHSGmnmHXGQzvoWjWwoznFSZc6hs7ARLRacQ=" crossorigin="anonymous"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.4/isotope.pkgd.min.js" integrity="sha512-VDBOIlDbuC4VWxGJNmuFRQ0Li0SKkDpmGyuhAG5LTDLd/dJ/S0WMVxriR2Y+CyPL5gzjpN4f/6iqWVBJlht0tQ==" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
 
       
@@ -774,10 +782,12 @@
     
     
     
+      
     
-    <script src="/js/academic.min.d037ee5294b166a79dec317c58aea9cc.js"></script>
-
     
+    
+    
+    <script src="/js/academic.min.9c79bd36ad5b530cf8825d78d951c339.js"></script>
 
   </body>
 </html>

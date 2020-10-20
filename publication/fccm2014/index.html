@@ -5,11 +5,24 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="generator" content="Source Themes Academic 3.2.0">
-  <meta name="generator" content="Hugo 0.50" />
-  <meta name="author" content="Skand Hurkat">
+  <meta name="generator" content="Source Themes Academic 4.2.0">
+  <meta name="generator" content="Hugo 0.55.1" />
 
   
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Skand Hurkat">
+
   
   
   
@@ -60,7 +73,8 @@
       
       
         
-          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" crossorigin="anonymous">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
         
       
     
@@ -78,13 +92,23 @@
 
   <link rel="stylesheet" href="/styles.css">
   
+    
+    
+    
+    
+      
+    
+    
+    
+    <link rel="stylesheet" href="/css/academic.3302edf19991b3523ab9ba729c24e601.css">
+  
 
   
   
     <script>
       window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
       ga('create', 'UA-25068733-5', 'auto');
-      
+      ga('set', 'anonymizeIp', true);
       ga('require', 'eventTracker');
       ga('require', 'outboundLinkTracker');
       ga('require', 'urlChangeTracker');
@@ -123,7 +147,7 @@
   <meta property="og:site_name" content="Skand Hurkat">
   <meta property="og:url" content="https://skandhurkat.com/publication/fccm2014/">
   <meta property="og:title" content="GraphGen: An FPGA framework for vertex-centric graph computation | Skand Hurkat">
-  <meta property="og:description" content="Vertex-centric graph computations are widely used in many machine learning and data mining applications that operate on graph data structures. This paper presents GraphGen, a vertex-centric framework that targets FPGA for hardware acceleration of graph computations. GraphGen accepts a vertex-centric graph specification and automatically compiles it onto an application-specific synthesized graph processor and memory system for the target FPGA platform. We report design case studies using GraphGen to implement stereo matching and handwriting recognition graph applications on Terasic DE4 and Xilinx ML605 FPGA boards. Results show up to 14.6 and 2.9 speedups over software on Intel Core i7 CPU for the two applications, respectively."><meta property="og:image" content="https://skandhurkat.com/img/portrait.jpg">
+  <meta property="og:description" content="Vertex-centric graph computations are widely used in many machine learning and data mining applications that operate on graph data structures. This paper presents GraphGen, a vertex-centric framework that targets FPGA for hardware acceleration of graph computations. GraphGen accepts a vertex-centric graph specification and automatically compiles it onto an application-specific synthesized graph processor and memory system for the target FPGA platform. We report design case studies using GraphGen to implement stereo matching and handwriting recognition graph applications on Terasic DE4 and Xilinx ML605 FPGA boards. Results show up to 14.6 and 2.9 speedups over software on Intel Core i7 CPU for the two applications, respectively."><meta property="og:image" content="https://skandhurkat.com/img/icon-192.png">
   <meta property="og:locale" content="en-us">
   
   <meta property="article:published_time" content="2014-05-11T13:56:42-04:00">
@@ -132,6 +156,32 @@
   
 
   
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+<script>
+  window.addEventListener("load", function(){
+    window.cookieconsent.initialise({
+      "palette": {
+        "popup": {
+          "background": "#2962ff",
+          "text": "#fff"
+        },
+        "button": {
+          "background": "#fff",
+          "text": "#2962ff"
+        }
+      },
+      "theme": "classic",
+      "content": {
+        "message": "This website uses cookies to ensure you get the best experience on our website.",
+        "dismiss": "Got it!",
+        "link": "Learn more",
+        "href": "https://cookies.insites.com"
+      }
+    })});
+</script>
+
 
   
 
@@ -188,7 +238,7 @@
 
       
       
-      <ul class="navbar-nav ml-auto">
+      <ul class="navbar-nav mr-auto">
         
 
         
@@ -203,6 +253,25 @@
           <a class="nav-link" href="/#about">
             
             <span>Home</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#experience">
+            
+            <span>Experience</span>
             
           </a>
         </li>
@@ -287,6 +356,9 @@
         
 
       
+      </ul>
+      <ul class="navbar-nav ml-auto">
+      
 
         
 
@@ -310,7 +382,7 @@
   </div>
 </nav>
 
-<div class="pub" itemscope itemtype="http://schema.org/ScholarlyArticle">
+<div class="pub" itemscope itemtype="http://schema.org/CreativeWork">
 
   
 
@@ -338,34 +410,97 @@
   
     
 
+
+
+<meta content="2014-05-11 13:56:42 -0400 -0400" itemprop="datePublished">
+<meta content="2014-05-11 13:56:42 -0400 -0400" itemprop="dateModified">
+
 <div class="article-metadata">
 
   
   
   
+  
   <div>
-    <span itemscope itemprop="author" itemtype="http://schema.org/Person"><span itemprop="name">Eriko Nurvitadhi</span></span>, 
-    <span itemscope itemprop="author" itemtype="http://schema.org/Person"><span itemprop="name">Gabriel Weisz</span></span>, 
-    <span itemscope itemprop="author" itemtype="http://schema.org/Person"><span itemprop="name">Yu Wang</span></span>, 
-    <span itemscope itemprop="author" itemtype="http://schema.org/Person"><span itemprop="name">Skand Hurkat</span></span>, 
-    <span itemscope itemprop="author" itemtype="http://schema.org/Person"><span itemprop="name">Marie Nguyen</span></span>, 
-    <span itemscope itemprop="author" itemtype="http://schema.org/Person"><span itemprop="name">James C. Hoe</span></span>, 
-    <span itemscope itemprop="author" itemtype="http://schema.org/Person"><span itemprop="name">José F. Martínez</span></span>, 
-    <span itemscope itemprop="author" itemtype="http://schema.org/Person"><span itemprop="name">Carlos Guestrin</span></span>
     
-  </div>
+
+
+
+  <span itemscope itemprop="author" itemtype="http://schema.org/Person">
+      <span itemprop="name">
+        
+
+      
+      
+      <a href="">Eriko Nurvitadhi</a></span></span>, 
+  <span itemscope itemprop="author" itemtype="http://schema.org/Person">
+      <span itemprop="name">
+        
+
+      
+      
+      <a href="">Gabriel Weisz</a></span></span>, 
+  <span itemscope itemprop="author" itemtype="http://schema.org/Person">
+      <span itemprop="name">
+        
+
+      
+      
+      <a href="">Yu Wang</a></span></span>, 
+  <span itemscope itemprop="author" itemtype="http://schema.org/Person">
+      <span itemprop="name">
+        
+
+      
+      
+      <a href="">Skand Hurkat</a></span></span>, 
+  <span itemscope itemprop="author" itemtype="http://schema.org/Person">
+      <span itemprop="name">
+        
+
+      
+      
+      <a href="">Marie Nguyen</a></span></span>, 
+  <span itemscope itemprop="author" itemtype="http://schema.org/Person">
+      <span itemprop="name">
+        
+
+      
+      
+      <a href="">James C. Hoe</a></span></span>, 
+  <span itemscope itemprop="author" itemtype="http://schema.org/Person">
+      <span itemprop="name">
+        
+
+      
+      
+      <a href="">José F. Martínez</a></span></span>, 
+  <span itemscope itemprop="author" itemtype="http://schema.org/Person">
+      <span itemprop="name">
+        
+
+      
+      
+      <a href="">Carlos Guestrin</a></span></span>
   
 
+
+
+  </div>
+  
+  
+
+  
   <span class="article-date">
     
-    <meta content="2014-05-11 13:56:42 -0400 -0400" itemprop="datePublished">
-    <time datetime="2014-05-11 13:56:42 -0400 -0400" itemprop="dateModified">
-      Sunday, 11 May, 2014
-    </time>
+    
+      
+    
+    <time>May 2014</time>
   </span>
-  <span itemscope itemprop="publisher" itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Skand Hurkat">
-  </span>
+  
+
+  
 
   
 
@@ -378,7 +513,7 @@
   
 
   
-  
+    
 <div class="share-box" aria-hidden="true">
   <ul class="share">
     <li>
@@ -448,12 +583,14 @@
 
 
 
+
   
     
   
 
 
-<a class="btn btn-outline-primary my-1 mr-1" href="https://skandhurkat.com/files/fccm2014.pdf" target="_blank" rel="noopener">
+
+<a class="btn btn-outline-primary my-1 mr-1" href="/files/fccm2014.pdf" target="_blank" rel="noopener">
   PDF
 </a>
 
@@ -471,7 +608,7 @@
 
 
 
-<a class="btn btn-outline-primary my-1 mr-1" href="https://doi.org/10.1109/FCCM.2014.15" target="_blank" rel="noopener" itemprop="sameAs">
+<a class="btn btn-outline-primary my-1 mr-1" href="https://doi.org/10.1109/FCCM.2014.15" target="_blank" rel="noopener">
   DOI
 </a>
 
@@ -489,7 +626,7 @@
 
     
     <h3>Abstract</h3>
-    <p class="pub-abstract">Vertex-centric graph computations are widely used in many machine learning and data mining applications that operate on graph data structures. This paper presents GraphGen, a vertex-centric framework that targets FPGA for hardware acceleration of graph computations. GraphGen accepts a vertex-centric graph specification and automatically compiles it onto an application-specific synthesized graph processor and memory system for the target FPGA platform. We report design case studies using GraphGen to implement stereo matching and handwriting recognition graph applications on Terasic DE4 and Xilinx ML605 FPGA boards. Results show up to 14.6 and 2.9 speedups over software on Intel Core i7 CPU for the two applications, respectively.</p>
+    <p class="pub-abstract" itemprop="text">Vertex-centric graph computations are widely used in many machine learning and data mining applications that operate on graph data structures. This paper presents GraphGen, a vertex-centric framework that targets FPGA for hardware acceleration of graph computations. GraphGen accepts a vertex-centric graph specification and automatically compiles it onto an application-specific synthesized graph processor and memory system for the target FPGA platform. We report design case studies using GraphGen to implement stereo matching and handwriting recognition graph applications on Terasic DE4 and Xilinx ML605 FPGA boards. Results show up to 14.6 and 2.9 speedups over software on Intel Core i7 CPU for the two applications, respectively.</p>
     
 
     
@@ -499,6 +636,9 @@
         <div class="row">
           <div class="col-12 col-md-3 pub-row-heading">Type</div>
           <div class="col-12 col-md-9">
+            
+
+            
             
             <a href="/publication/#1">
               Conference paper
@@ -526,20 +666,6 @@
     <div class="d-md-none space-below"></div>
     
 
-    <div class="row">
-      <div class="col-md-1"></div>
-      <div class="col-md-10">
-        <div class="row">
-          <div class="col-12 col-md-3 pub-row-heading">Date</div>
-          <div class="col-12 col-md-9" itemprop="datePublished">
-            May, 2014
-          </div>
-        </div>
-      </div>
-      <div class="col-md-1"></div>
-    </div>
-    <div class="d-sm-none space-below"></div>
-
     <div class="space-below"></div>
 
     <div class="article-style"></div>
@@ -550,7 +676,15 @@
 
 
 
+
+
+
   
+  
+    
+  
+  
+
 
 
 
@@ -563,7 +697,42 @@
 
 
 
+<div class="container">
+  <footer class="site-footer">
+  
 
+  <p class="powered-by">
+    &copy; 2020 Skand Hurkat. All rights reserved. &middot; 
+  </p>
+</footer>
+
+</div>
+
+
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
 
     
 
@@ -574,9 +743,9 @@
     
     
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha512-+NqPlbbtM1QqiK8ZAo4Yrj2c4lNQoGv8P79DPtKzj++l5jnN39rHA/xsqn8zE9l0uSoxaCdrOgFs6yjyfbBxSg==" crossorigin="anonymous"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.3/imagesloaded.pkgd.min.js" integrity="sha512-umsR78NN0D23AzgoZ11K7raBD+R6hqKojyBZs1w8WvYlsI+QuKRGBx3LFCwhatzBunCjDuJpDHwxD13sLMbpRA==" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha256-VsEqElsCHSGmnmHXGQzvoWjWwoznFSZc6hs7ARLRacQ=" crossorigin="anonymous"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.4/isotope.pkgd.min.js" integrity="sha512-VDBOIlDbuC4VWxGJNmuFRQ0Li0SKkDpmGyuhAG5LTDLd/dJ/S0WMVxriR2Y+CyPL5gzjpN4f/6iqWVBJlht0tQ==" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
 
       
@@ -655,10 +824,12 @@
     
     
     
+      
     
-    <script src="/js/academic.min.d037ee5294b166a79dec317c58aea9cc.js"></script>
-
     
+    
+    
+    <script src="/js/academic.min.9c79bd36ad5b530cf8825d78d951c339.js"></script>
 
   </body>
 </html>

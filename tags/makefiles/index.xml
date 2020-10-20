@@ -6,6 +6,7 @@
     <description>Recent content in makefiles on Skand Hurkat</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <copyright>&amp;copy; {year} Skand Hurkat. All rights reserved.</copyright>
     <lastBuildDate>Wed, 02 Aug 2017 17:45:00 -0400</lastBuildDate>
     
 	<atom:link href="https://skandhurkat.com/tags/makefiles/index.xml" rel="self" type="application/rss+xml" />
@@ -21,9 +22,7 @@
 user to run &lt;code&gt;make clean&lt;/code&gt; and &lt;code&gt;make&lt;/code&gt; every single time they make a
 change to some file. This is annoying and error prone, and the good news
 is that it can be easily solved with this one simple trick. Use a good
-build-generation system like &lt;a href=&#34;//cmake.org&#34; target=&#34;_blank&#34;&gt;CMake&lt;/a&gt; instead.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+build-generation system like &lt;a href=&#34;//cmake.org&#34; target=&#34;_blank&#34;&gt;CMake&lt;/a&gt; instead.&lt;/p&gt;</description>
     </item>
     
   </channel>

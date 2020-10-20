@@ -6,28 +6,11 @@
     <description>Recent content in Tags on Skand Hurkat</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 01 Jan 2017 00:00:00 +0000</lastBuildDate>
+    <copyright>&amp;copy; {year} Skand Hurkat. All rights reserved.</copyright>
+    <lastBuildDate>Thu, 23 Nov 2017 16:28:40 -0500</lastBuildDate>
     
 	<atom:link href="https://skandhurkat.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Content tagged as &#39;Academic&#39;</title>
-      <link>https://skandhurkat.com/tags/academic/</link>
-      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://skandhurkat.com/tags/academic/</guid>
-      <description>Here is a list of all the content that has been tagged as academic.</description>
-    </item>
-    
-    <item>
-      <title>c&#43;&#43;</title>
-      <link>https://skandhurkat.com/tags/c&#43;&#43;/</link>
-      <pubDate>Thu, 22 Jun 2017 11:05:43 -0400</pubDate>
-      
-      <guid>https://skandhurkat.com/tags/c&#43;&#43;/</guid>
-      <description></description>
-    </item>
     
     <item>
       <title>cmake</title>
@@ -39,74 +22,11 @@
     </item>
     
     <item>
-      <title>computer-vision</title>
-      <link>https://skandhurkat.com/tags/computer-vision/</link>
-      <pubDate>Fri, 17 May 2013 22:42:13 -0400</pubDate>
+      <title>programming</title>
+      <link>https://skandhurkat.com/tags/programming/</link>
+      <pubDate>Thu, 23 Nov 2017 16:28:40 -0500</pubDate>
       
-      <guid>https://skandhurkat.com/tags/computer-vision/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>docker</title>
-      <link>https://skandhurkat.com/tags/docker/</link>
-      <pubDate>Tue, 25 Apr 2017 16:21:47 -0400</pubDate>
-      
-      <guid>https://skandhurkat.com/tags/docker/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>fun</title>
-      <link>https://skandhurkat.com/tags/fun/</link>
-      <pubDate>Sat, 31 Aug 2013 17:46:37 -0400</pubDate>
-      
-      <guid>https://skandhurkat.com/tags/fun/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>hardware</title>
-      <link>https://skandhurkat.com/tags/hardware/</link>
-      <pubDate>Fri, 17 May 2013 22:42:13 -0400</pubDate>
-      
-      <guid>https://skandhurkat.com/tags/hardware/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>human-computer-interaction</title>
-      <link>https://skandhurkat.com/tags/human-computer-interaction/</link>
-      <pubDate>Sat, 16 Jul 2011 16:45:14 -0400</pubDate>
-      
-      <guid>https://skandhurkat.com/tags/human-computer-interaction/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>isca</title>
-      <link>https://skandhurkat.com/tags/isca/</link>
-      <pubDate>Thu, 29 Jun 2017 17:28:43 -0400</pubDate>
-      
-      <guid>https://skandhurkat.com/tags/isca/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>linux</title>
-      <link>https://skandhurkat.com/tags/linux/</link>
-      <pubDate>Tue, 25 Apr 2017 16:21:47 -0400</pubDate>
-      
-      <guid>https://skandhurkat.com/tags/linux/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>machine-learning</title>
-      <link>https://skandhurkat.com/tags/machine-learning/</link>
-      <pubDate>Fri, 16 Nov 2012 15:52:23 -0400</pubDate>
-      
-      <guid>https://skandhurkat.com/tags/machine-learning/</guid>
+      <guid>https://skandhurkat.com/tags/programming/</guid>
       <description></description>
     </item>
     
@@ -129,20 +49,56 @@
     </item>
     
     <item>
+      <title>isca</title>
+      <link>https://skandhurkat.com/tags/isca/</link>
+      <pubDate>Thu, 29 Jun 2017 17:28:43 -0400</pubDate>
+      
+      <guid>https://skandhurkat.com/tags/isca/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>c&#43;&#43;</title>
+      <link>https://skandhurkat.com/tags/c&#43;&#43;/</link>
+      <pubDate>Thu, 22 Jun 2017 11:05:43 -0400</pubDate>
+      
+      <guid>https://skandhurkat.com/tags/c&#43;&#43;/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>vim</title>
+      <link>https://skandhurkat.com/tags/vim/</link>
+      <pubDate>Sun, 04 Jun 2017 15:33:09 -0400</pubDate>
+      
+      <guid>https://skandhurkat.com/tags/vim/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>docker</title>
+      <link>https://skandhurkat.com/tags/docker/</link>
+      <pubDate>Tue, 25 Apr 2017 16:21:47 -0400</pubDate>
+      
+      <guid>https://skandhurkat.com/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>linux</title>
+      <link>https://skandhurkat.com/tags/linux/</link>
+      <pubDate>Tue, 25 Apr 2017 16:21:47 -0400</pubDate>
+      
+      <guid>https://skandhurkat.com/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>photographs</title>
       <link>https://skandhurkat.com/tags/photographs/</link>
       <pubDate>Tue, 14 Mar 2017 18:01:49 -0400</pubDate>
       
       <guid>https://skandhurkat.com/tags/photographs/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>programming</title>
-      <link>https://skandhurkat.com/tags/programming/</link>
-      <pubDate>Thu, 23 Nov 2017 16:28:40 -0500</pubDate>
-      
-      <guid>https://skandhurkat.com/tags/programming/</guid>
       <description></description>
     </item>
     
@@ -156,11 +112,47 @@
     </item>
     
     <item>
-      <title>vim</title>
-      <link>https://skandhurkat.com/tags/vim/</link>
-      <pubDate>Sun, 04 Jun 2017 15:33:09 -0400</pubDate>
+      <title>fun</title>
+      <link>https://skandhurkat.com/tags/fun/</link>
+      <pubDate>Sat, 31 Aug 2013 17:46:37 -0400</pubDate>
       
-      <guid>https://skandhurkat.com/tags/vim/</guid>
+      <guid>https://skandhurkat.com/tags/fun/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>computer-vision</title>
+      <link>https://skandhurkat.com/tags/computer-vision/</link>
+      <pubDate>Fri, 17 May 2013 22:42:13 -0400</pubDate>
+      
+      <guid>https://skandhurkat.com/tags/computer-vision/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hardware</title>
+      <link>https://skandhurkat.com/tags/hardware/</link>
+      <pubDate>Fri, 17 May 2013 22:42:13 -0400</pubDate>
+      
+      <guid>https://skandhurkat.com/tags/hardware/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>machine-learning</title>
+      <link>https://skandhurkat.com/tags/machine-learning/</link>
+      <pubDate>Fri, 16 Nov 2012 15:52:23 -0400</pubDate>
+      
+      <guid>https://skandhurkat.com/tags/machine-learning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>human-computer-interaction</title>
+      <link>https://skandhurkat.com/tags/human-computer-interaction/</link>
+      <pubDate>Sat, 16 Jul 2011 16:45:14 -0400</pubDate>
+      
+      <guid>https://skandhurkat.com/tags/human-computer-interaction/</guid>
       <description></description>
     </item>
     

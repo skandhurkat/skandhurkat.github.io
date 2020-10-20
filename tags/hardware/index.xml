@@ -6,6 +6,7 @@
     <description>Recent content in hardware on Skand Hurkat</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <copyright>&amp;copy; {year} Skand Hurkat. All rights reserved.</copyright>
     <lastBuildDate>Fri, 17 May 2013 22:42:13 -0400</lastBuildDate>
     
 	<atom:link href="https://skandhurkat.com/tags/hardware/index.xml" rel="self" type="application/rss+xml" />
@@ -17,7 +18,7 @@
       <pubDate>Fri, 17 May 2013 22:42:13 -0400</pubDate>
       
       <guid>https://skandhurkat.com/project/hls-bp/</guid>
-      <description>Belief propagation on probabilistic graphical models such as Markov random fields is the basis for a variety of applications, especially applications in computer vision. In this project, we used Vivado-HLS, a C-to-gates framework to rapidly prototype and test a number of accelerators for belief propagation on an FPGA. We used a Xilinx Zynq platform and our experiments show that using a dedicated FPGA accelerator provides a 2x speedup compared to a processor-only approach.</description>
+      <description>Using Vivado-HLS to rapidly prototype and test accelerators</description>
     </item>
     
     <item>
@@ -26,8 +27,7 @@
       <pubDate>Tue, 03 May 2011 16:47:24 -0400</pubDate>
       
       <guid>https://skandhurkat.com/project/edl/</guid>
-      <description>This was a semester long team course project as part of the Electronics Design Lab (the dreaded &amp;ldquo;EDL&amp;rdquo;) course at IITB. The aim of this project was to build an affordable pair of noise cancelling headphones.
-We developed an analogue feedback based controller as a disturbance rejection control system; which had the added benefit of improving the sound quality of our relatively cheap $10 headphones. The main challenges in this project were to characterise the headphone-ear system (the &amp;ldquo;plant&amp;rdquo;) to get the frequency magnitude and phase response; as the system changes characteristics based on a number of factors, including the shape of the ear cavity, the way the headphones are worn, and the placement of the microphones inside the headphone cavity.</description>
+      <description>Low-cost analogue active noise cancelling headphones</description>
     </item>
     
   </channel>

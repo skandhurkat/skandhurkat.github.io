@@ -6,6 +6,7 @@
     <description>Recent content in c&#43;&#43; on Skand Hurkat</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <copyright>&amp;copy; {year} Skand Hurkat. All rights reserved.</copyright>
     <lastBuildDate>Thu, 22 Jun 2017 11:05:43 -0400</lastBuildDate>
     
 	<atom:link href="https://skandhurkat.com/tags/c++/index.xml" rel="self" type="application/rss+xml" />
@@ -22,9 +23,7 @@ Lemire&lt;/a&gt;) praise newer languages like &lt;em&gt;Go&lt;/em&gt;, which mak
 sad as a C++ programmer. Well, that&amp;rsquo;s until I realise that most of the
 features touted could be easily incorporated in C++ with just a bit of
 elbow grease. In this post, I&amp;rsquo;ll show how to add an automated testing
-system using CTest.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+system using CTest.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -46,9 +45,7 @@ C++ assumes that if a constructor fails, then no memory is allocated for the obj
       <guid>https://skandhurkat.com/post/psa-dont-use-rand/</guid>
       <description>&lt;p&gt;With the &lt;code&gt;&amp;lt;random&amp;gt;&lt;/code&gt; header in C++11 onwards, there really is no reason
 to use &lt;code&gt;std::rand()&lt;/code&gt; to generate random numbers. In fact, using
-&lt;code&gt;std::rand()&lt;/code&gt; could be really harmful.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;code&gt;std::rand()&lt;/code&gt; could be really harmful.&lt;/p&gt;</description>
     </item>
     
     <item>

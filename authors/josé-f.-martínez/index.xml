@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>José F. Martínez on Skand Hurkat</title>
+    <link>https://skandhurkat.com/authors/jos%C3%A9-f.-mart%C3%ADnez/</link>
+    <description>Recent content in José F. Martínez on Skand Hurkat</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; {year} Skand Hurkat. All rights reserved.</copyright>
+    <lastBuildDate>Wed, 20 Feb 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://skandhurkat.com/authors/jos%C3%A9-f.-mart%C3%ADnez/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>VIP: A Versatile Inference Processor</title>
+      <link>https://skandhurkat.com/publication/hpca2019/</link>
+      <pubDate>Wed, 20 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://skandhurkat.com/publication/hpca2019/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Fast hierarchical implementation of sequential tree-reweighted belief propagation for probabilistic inference</title>
+      <link>https://skandhurkat.com/publication/fpl2015/</link>
+      <pubDate>Wed, 02 Sep 2015 13:45:39 -0400</pubDate>
+      
+      <guid>https://skandhurkat.com/publication/fpl2015/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>GraphGen: An FPGA framework for vertex-centric graph computation</title>
+      <link>https://skandhurkat.com/publication/fccm2014/</link>
+      <pubDate>Sun, 11 May 2014 13:56:42 -0400</pubDate>
+      
+      <guid>https://skandhurkat.com/publication/fccm2014/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

@@ -6,6 +6,7 @@
     <description>Recent content in personal-opinions on Skand Hurkat</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <copyright>&amp;copy; {year} Skand Hurkat. All rights reserved.</copyright>
     <lastBuildDate>Wed, 12 Jul 2017 09:04:44 -0400</lastBuildDate>
     
 	<atom:link href="https://skandhurkat.com/tags/personal-opinions/index.xml" rel="self" type="application/rss+xml" />
@@ -18,9 +19,7 @@
       
       <guid>https://skandhurkat.com/post/net-neutrality/</guid>
       <description>&lt;p&gt;Today, my website displays a banner to join the fight for an open
-internet. My message to the FCC follows.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+internet. My message to the FCC follows.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -42,9 +41,7 @@ For those of you who are not aware of how graduate school works at Cornell, you 
       <guid>https://skandhurkat.com/post/history-of-computing/</guid>
       <description>&lt;p&gt;Because I can publish shitty drawings, and even shittier text.&lt;/p&gt;
 
-&lt;p&gt;And I have no obligation to be accurate.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;And I have no obligation to be accurate.&lt;/p&gt;</description>
     </item>
     
   </channel>

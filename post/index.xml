@@ -6,10 +6,21 @@
     <description>Recent content in Posts on Skand Hurkat</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 01 Jan 2017 00:00:00 +0000</lastBuildDate>
+    <copyright>&amp;copy; {year} Skand Hurkat. All rights reserved.</copyright>
+    <lastBuildDate>Fri, 12 Apr 2019 21:10:31 -0700</lastBuildDate>
     
 	<atom:link href="https://skandhurkat.com/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Star Trek 2019</title>
+      <link>https://skandhurkat.com/post/star-trek-2019/</link>
+      <pubDate>Fri, 12 Apr 2019 21:10:31 -0700</pubDate>
+      
+      <guid>https://skandhurkat.com/post/star-trek-2019/</guid>
+      <description>2019 marks a few anniversaries. It is the 50th anniversary of the moon landings. It also marks fifty years since the end of Gene Roddenberry&amp;rsquo;s Star Trek (the original series).
+As a bit of a Trek nerd myself, I figured that this is a great time to review the technology shown in all the Star Trek series, and see how close we are to the universe imagined by Roddenberry.</description>
+    </item>
     
     <item>
       <title>Introduction to CMake</title>
@@ -31,9 +42,7 @@ But before we do, let&amp;rsquo;s start with an example of why other build syste
 user to run &lt;code&gt;make clean&lt;/code&gt; and &lt;code&gt;make&lt;/code&gt; every single time they make a
 change to some file. This is annoying and error prone, and the good news
 is that it can be easily solved with this one simple trick. Use a good
-build-generation system like &lt;a href=&#34;//cmake.org&#34; target=&#34;_blank&#34;&gt;CMake&lt;/a&gt; instead.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+build-generation system like &lt;a href=&#34;//cmake.org&#34; target=&#34;_blank&#34;&gt;CMake&lt;/a&gt; instead.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -43,9 +52,7 @@ build-generation system like &lt;a href=&#34;//cmake.org&#34; target=&#34;_blank
       
       <guid>https://skandhurkat.com/post/net-neutrality/</guid>
       <description>&lt;p&gt;Today, my website displays a banner to join the fight for an open
-internet. My message to the FCC follows.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+internet. My message to the FCC follows.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -55,9 +62,7 @@ internet. My message to the FCC follows.&lt;/p&gt;
       
       <guid>https://skandhurkat.com/post/happy-fourth-july-2017/</guid>
       <description>&lt;p&gt;Four pictures of the third of July fireworks in Ithaca to celebrate the
-fourth of July.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+fourth of July.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -82,9 +87,7 @@ Lemire&lt;/a&gt;) praise newer languages like &lt;em&gt;Go&lt;/em&gt;, which mak
 sad as a C++ programmer. Well, that&amp;rsquo;s until I realise that most of the
 features touted could be easily incorporated in C++ with just a bit of
 elbow grease. In this post, I&amp;rsquo;ll show how to add an automated testing
-system using CTest.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+system using CTest.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -116,9 +119,7 @@ C++ assumes that if a constructor fails, then no memory is allocated for the obj
       <guid>https://skandhurkat.com/post/x-forwarding-on-docker/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;//markbuckler.com&#34; target=&#34;_blank&#34;&gt;Mark Buckler&lt;/a&gt; and I use Docker a lot.
 Sometimes, we need X11 forwarding to work over SSH. Here&amp;rsquo;s a summary of
-the steps involved in case you&amp;rsquo;re curious.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+the steps involved in case you&amp;rsquo;re curious.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -129,9 +130,7 @@ the steps involved in case you&amp;rsquo;re curious.&lt;/p&gt;
       <guid>https://skandhurkat.com/post/psa-dont-use-rand/</guid>
       <description>&lt;p&gt;With the &lt;code&gt;&amp;lt;random&amp;gt;&lt;/code&gt; header in C++11 onwards, there really is no reason
 to use &lt;code&gt;std::rand()&lt;/code&gt; to generate random numbers. In fact, using
-&lt;code&gt;std::rand()&lt;/code&gt; could be really harmful.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;code&gt;std::rand()&lt;/code&gt; could be really harmful.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -153,9 +152,7 @@ For those of you who are not aware of how graduate school works at Cornell, you 
       <guid>https://skandhurkat.com/post/seven-pictures-storm-stella/</guid>
       <description>&lt;p&gt;Winter is a seriously underrated season at Cornell. These seven pictures
 will show you just how beautiful the campus gets during a thick snow
-shower.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+shower.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -166,9 +163,7 @@ shower.&lt;/p&gt;
       <guid>https://skandhurkat.com/post/history-of-computing/</guid>
       <description>&lt;p&gt;Because I can publish shitty drawings, and even shittier text.&lt;/p&gt;
 
-&lt;p&gt;And I have no obligation to be accurate.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;And I have no obligation to be accurate.&lt;/p&gt;</description>
     </item>
     
     <item>

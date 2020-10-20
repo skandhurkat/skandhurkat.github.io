@@ -6,6 +6,7 @@
     <description>Recent content in docker on Skand Hurkat</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <copyright>&amp;copy; {year} Skand Hurkat. All rights reserved.</copyright>
     <lastBuildDate>Tue, 25 Apr 2017 16:21:47 -0400</lastBuildDate>
     
 	<atom:link href="https://skandhurkat.com/tags/docker/index.xml" rel="self" type="application/rss+xml" />
@@ -19,9 +20,7 @@
       <guid>https://skandhurkat.com/post/x-forwarding-on-docker/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;//markbuckler.com&#34; target=&#34;_blank&#34;&gt;Mark Buckler&lt;/a&gt; and I use Docker a lot.
 Sometimes, we need X11 forwarding to work over SSH. Here&amp;rsquo;s a summary of
-the steps involved in case you&amp;rsquo;re curious.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+the steps involved in case you&amp;rsquo;re curious.&lt;/p&gt;</description>
     </item>
     
   </channel>

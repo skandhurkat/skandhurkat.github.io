@@ -6,6 +6,7 @@
     <description>Recent content in programming on Skand Hurkat</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <copyright>&amp;copy; {year} Skand Hurkat. All rights reserved.</copyright>
     <lastBuildDate>Thu, 23 Nov 2017 16:28:40 -0500</lastBuildDate>
     
 	<atom:link href="https://skandhurkat.com/tags/programming/index.xml" rel="self" type="application/rss+xml" />
@@ -31,9 +32,7 @@ But before we do, let&amp;rsquo;s start with an example of why other build syste
 user to run &lt;code&gt;make clean&lt;/code&gt; and &lt;code&gt;make&lt;/code&gt; every single time they make a
 change to some file. This is annoying and error prone, and the good news
 is that it can be easily solved with this one simple trick. Use a good
-build-generation system like &lt;a href=&#34;//cmake.org&#34; target=&#34;_blank&#34;&gt;CMake&lt;/a&gt; instead.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+build-generation system like &lt;a href=&#34;//cmake.org&#34; target=&#34;_blank&#34;&gt;CMake&lt;/a&gt; instead.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -47,9 +46,7 @@ Lemire&lt;/a&gt;) praise newer languages like &lt;em&gt;Go&lt;/em&gt;, which mak
 sad as a C++ programmer. Well, that&amp;rsquo;s until I realise that most of the
 features touted could be easily incorporated in C++ with just a bit of
 elbow grease. In this post, I&amp;rsquo;ll show how to add an automated testing
-system using CTest.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+system using CTest.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -71,9 +68,7 @@ C++ assumes that if a constructor fails, then no memory is allocated for the obj
       <guid>https://skandhurkat.com/post/psa-dont-use-rand/</guid>
       <description>&lt;p&gt;With the &lt;code&gt;&amp;lt;random&amp;gt;&lt;/code&gt; header in C++11 onwards, there really is no reason
 to use &lt;code&gt;std::rand()&lt;/code&gt; to generate random numbers. In fact, using
-&lt;code&gt;std::rand()&lt;/code&gt; could be really harmful.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;code&gt;std::rand()&lt;/code&gt; could be really harmful.&lt;/p&gt;</description>
     </item>
     
     <item>

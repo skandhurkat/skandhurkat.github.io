@@ -6,6 +6,7 @@
     <description>Recent content in cmake on Skand Hurkat</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <copyright>&amp;copy; {year} Skand Hurkat. All rights reserved.</copyright>
     <lastBuildDate>Thu, 23 Nov 2017 16:28:40 -0500</lastBuildDate>
     
 	<atom:link href="https://skandhurkat.com/tags/cmake/index.xml" rel="self" type="application/rss+xml" />
@@ -32,9 +33,7 @@ Lemire&lt;/a&gt;) praise newer languages like &lt;em&gt;Go&lt;/em&gt;, which mak
 sad as a C++ programmer. Well, that&amp;rsquo;s until I realise that most of the
 features touted could be easily incorporated in C++ with just a bit of
 elbow grease. In this post, I&amp;rsquo;ll show how to add an automated testing
-system using CTest.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+system using CTest.&lt;/p&gt;</description>
     </item>
     
     <item>
