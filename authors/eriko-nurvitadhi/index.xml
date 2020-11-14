@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Eriko Nurvitadhi on Skand Hurkat</title>
@@ -7,11 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; {year} Skand Hurkat. All rights reserved.</copyright>
-    <lastBuildDate>Wed, 02 Sep 2015 13:45:39 -0400</lastBuildDate>
-    
-	<atom:link href="https://skandhurkat.com/authors/eriko-nurvitadhi/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 02 Sep 2015 13:45:39 -0400</lastBuildDate><atom:link href="https://skandhurkat.com/authors/eriko-nurvitadhi/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Fast hierarchical implementation of sequential tree-reweighted belief propagation for probabilistic inference</title>
       <link>https://skandhurkat.com/publication/fpl2015/</link>

@@ -22,6 +22,10 @@
  *  Core
  **************************************************/
 
+html, body {
+  height: 100%;
+}
+
 html {
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
@@ -288,7 +292,7 @@ small,
   transform: scale(1);
   -webkit-transform: scale(1);
   visibility: visible;
-  z-index: 11; /* Second highest index, after navbar. */
+  z-index: 1031; /* Highest index, higher than navbar. */
 }
 
 .searching #search-box #search-query {
@@ -499,6 +503,8 @@ a[data-fancybox] img {
   padding: 110px 0 110px 0;
   animation: intro 0.3s both;
   animation-delay: 0.15s;
+  height: auto !important;
+  min-height: 100%;
 }
 
 /* Override dark colors that may be inherited from body.dark */

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>linux on Skand Hurkat</title>
@@ -7,18 +7,14 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; {year} Skand Hurkat. All rights reserved.</copyright>
-    <lastBuildDate>Tue, 25 Apr 2017 16:21:47 -0400</lastBuildDate>
-    
-	<atom:link href="https://skandhurkat.com/tags/linux/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 25 Apr 2017 16:21:47 -0400</lastBuildDate><atom:link href="https://skandhurkat.com/tags/linux/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>X forwarding on Docker</title>
       <link>https://skandhurkat.com/post/x-forwarding-on-docker/</link>
       <pubDate>Tue, 25 Apr 2017 16:21:47 -0400</pubDate>
       
       <guid>https://skandhurkat.com/post/x-forwarding-on-docker/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;//markbuckler.com&#34; target=&#34;_blank&#34;&gt;Mark Buckler&lt;/a&gt; and I use Docker a lot.
+      <description>&lt;p&gt;&lt;a href=&#34;//markbuckler.com&#34;&gt;Mark Buckler&lt;/a&gt; and I use Docker a lot.
 Sometimes, we need X11 forwarding to work over SSH. Here&amp;rsquo;s a summary of
 the steps involved in case you&amp;rsquo;re curious.&lt;/p&gt;</description>
     </item>

@@ -5,8 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="generator" content="Source Themes Academic 4.2.0">
-  <meta name="generator" content="Hugo 0.55.1" />
+  <meta name="generator" content="Source Themes Academic 4.2.5">
 
   
 
@@ -104,7 +103,7 @@ build-generation system like CMake instead.">
     
     
     
-    <link rel="stylesheet" href="/css/academic.3302edf19991b3523ab9ba729c24e601.css">
+    <link rel="stylesheet" href="/css/academic.51da33ec68a1f05336705858a797eac3.css">
   
 
   
@@ -125,9 +124,6 @@ build-generation system like CMake instead.">
   
   
 
-  
-  <link rel="alternate" href="https://skandhurkat.com/index.xml" type="application/rss+xml" title="Skand Hurkat">
-  <link rel="feed" href="https://skandhurkat.com/index.xml" type="application/rss+xml" title="Skand Hurkat">
   
 
   <link rel="manifest" href="/site.webmanifest">
@@ -458,51 +454,13 @@ build-generation system like CMake instead."><meta property="og:image" content="
 
   
     
-<div class="share-box" aria-hidden="true">
-  <ul class="share">
-    <li>
-      <a class="twitter"
-         href="https://twitter.com/intent/tweet?text=Handling%20dependencies%20in%20Makefiles&amp;url=https%3a%2f%2fskandhurkat.com%2fpost%2fmakefile-dependencies%2f"
-         target="_blank" rel="noopener">
-        <i class="fab fa-twitter"></i>
-      </a>
-    </li>
-    <li>
-      <a class="facebook"
-         href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fskandhurkat.com%2fpost%2fmakefile-dependencies%2f"
-         target="_blank" rel="noopener">
-        <i class="fab fa-facebook-f"></i>
-      </a>
-    </li>
-    <li>
-      <a class="linkedin"
-         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fskandhurkat.com%2fpost%2fmakefile-dependencies%2f&amp;title=Handling%20dependencies%20in%20Makefiles"
-         target="_blank" rel="noopener">
-        <i class="fab fa-linkedin-in"></i>
-      </a>
-    </li>
-    <li>
-      <a class="weibo"
-         href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fskandhurkat.com%2fpost%2fmakefile-dependencies%2f&amp;title=Handling%20dependencies%20in%20Makefiles"
-         target="_blank" rel="noopener">
-        <i class="fab fa-weibo"></i>
-      </a>
-    </li>
-    <li>
-      <a class="email"
-         href="mailto:?subject=Handling%20dependencies%20in%20Makefiles&amp;body=https%3a%2f%2fskandhurkat.com%2fpost%2fmakefile-dependencies%2f">
-        <i class="fas fa-envelope"></i>
-      </a>
-    </li>
-  </ul>
-</div>
-
 
   
 
 </div>
 
     
+
 
 
 
@@ -530,89 +488,67 @@ build-generation system like CMake instead."><meta property="og:image" content="
 user to run <code>make clean</code> and <code>make</code> every single time they make a
 change to some file. This is annoying and error prone, and the good news
 is that it can be easily solved with this one simple trick. Use a good
-build-generation system like <a href="//cmake.org" target="_blank">CMake</a> instead.</p>
-
+build-generation system like <a href="//cmake.org">CMake</a> instead.</p>
 <p>Still here? Well, since you asked, I shall tell.</p>
-
 <p>The trick is to have your compiler spit out a list of dependencies for
 each source file.</p>
-
 <p>Try it out right now. Start a terminal and go to any project that is
 sufficiently complex to have multiple include chains in a C or C++
 source file (<code>foo.cc</code>). Then type in this command</p>
-
-<pre><code class="language-bash">$&gt; g++ -M foo.cc
-</code></pre>
-
-<p>The output is a list of all the files that are included by the source
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$&gt; g++ -M foo.cc
+</code></pre></div><p>The output is a list of all the files that are included by the source
 file, including standard library headers. If you look closer, the output
 is formatted so that it follows the same syntax as <code>make</code> for declaring
 dependencies. But we really don&rsquo;t want to be bothered with system header
 files, so instead, we&rsquo;ll use the <code>g++ -MM</code>.</p>
-
 <p>Cool, isn&rsquo;t it? This means that all we now need to do is to find a way
 to include this information in our Makefile, and have it automatically
 update any time the source files are changed. So here&rsquo;s the recipe.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-makefile" data-lang="makefile"><span style="color:#75715e"># List of source files here.
+</span><span style="color:#75715e"></span>sources <span style="color:#f92672">=</span> foo.cc bar.cc
 
-<pre><code class="language-makefile"># List of source files here.
-sources = foo.cc bar.cc
+<span style="color:#75715e"># Add C++ flags, for example, if the code uses C++11 standards.
+</span><span style="color:#75715e"></span>CPPFLAGS <span style="color:#f92672">=</span> -std<span style="color:#f92672">=</span>c++11
 
-# Add C++ flags, for example, if the code uses C++11 standards.
-CPPFLAGS = -std=c++11
+<span style="color:#75715e"># Recipe for making .d files from .cc files
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">%.d</span><span style="color:#f92672">:</span> %.cc
+	<span style="color:#66d9ef">$(</span>CC<span style="color:#66d9ef">)</span> -MM <span style="color:#66d9ef">$(</span>CPPFLAGS<span style="color:#66d9ef">)</span> -o $@ $&lt;
 
-# Recipe for making .d files from .cc files
-%.d: %.cc
-    $(CC) -MM $(CPPFLAGS) -o $@ $&lt;
+<span style="color:#75715e"># Include the required .d files in the current Makefile.
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">include $(sources</span><span style="color:#f92672">:</span>.cc=.d)
 
-# Include the required .d files in the current Makefile.
-include $(sources:.cc=.d)
-
-# Recipe for making .o files. Here, I introduce a dependency on the
-# primary source c++ file.
-%.o: %.cc
-    $(CC) -c $(CPPFLAGS) -o $@ $(&lt;:.d=.cc)
-</code></pre>
-
-<p>Of course, there&rsquo;s a bug in this recipe as well. Can you spot it? While
-you think about the bug, enjoy this picture of the gorge at Watkins Glen
-state park, which is under thirty miles from Cornell University.</p>
-
-
-
-<blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/BNf_cb4gP2k/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="12" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:658px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"><div style="padding:16px;"> <a href="https://www.instagram.com/p/BNf_cb4gP2k/?utm_source=ig_embed&amp;utm_campaign=loading" style=" background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank"> <div style=" display: flex; flex-direction: row; align-items: center;"> <div style="background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 40px; margin-right: 14px; width: 40px;"></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 100px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 60px;"></div></div></div><div style="padding: 19% 0;"></div> <div style="display:block; height:50px; margin:0 auto 12px; width:50px;"><svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g transform="translate(-511.000000, -20.000000)" fill="#000000"><g><path d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.057,25.479 533.004,25.448 541,25.448 C548.997,25.448 549.943,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101 M570.82,37.631 C570.674,34.438 570.167,32.258 569.425,30.349 C568.659,28.377 567.633,26.702 565.965,25.035 C564.297,23.368 562.623,22.342 560.652,21.575 C558.743,20.834 556.562,20.326 553.369,20.18 C550.169,20.033 549.148,20 541,20 C532.853,20 531.831,20.033 528.631,20.18 C525.438,20.326 523.257,20.834 521.349,21.575 C519.376,22.342 517.703,23.368 516.035,25.035 C514.368,26.702 513.342,28.377 512.574,30.349 C511.834,32.258 511.326,34.438 511.181,37.631 C511.035,40.831 511,41.851 511,50 C511,58.147 511.035,59.17 511.181,62.369 C511.326,65.562 511.834,67.743 512.574,69.651 C513.342,71.625 514.368,73.296 516.035,74.965 C517.703,76.634 519.376,77.658 521.349,78.425 C523.257,79.167 525.438,79.673 528.631,79.82 C531.831,79.965 532.853,80.001 541,80.001 C549.148,80.001 550.169,79.965 553.369,79.82 C556.562,79.673 558.743,79.167 560.652,78.425 C562.623,77.658 564.297,76.634 565.965,74.965 C567.633,73.296 568.659,71.625 569.425,69.651 C570.167,67.743 570.674,65.562 570.82,62.369 C570.966,59.17 571,58.147 571,50 C571,41.851 570.966,40.831 570.82,37.631"></path></g></g></g></svg></div><div style="padding-top: 8px;"> <div style=" color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;"> View this post on Instagram</div></div><div style="padding: 12.5% 0;"></div> <div style="display: flex; flex-direction: row; margin-bottom: 14px; align-items: center;"><div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(0px) translateY(7px);"></div> <div style="background-color: #F4F4F4; height: 12.5px; transform: rotate(-45deg) translateX(3px) translateY(1px); width: 12.5px; flex-grow: 0; margin-right: 14px; margin-left: 2px;"></div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(9px) translateY(-18px);"></div></div><div style="margin-left: 8px;"> <div style=" background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 20px; width: 20px;"></div> <div style=" width: 0; height: 0; border-top: 2px solid transparent; border-left: 6px solid #f4f4f4; border-bottom: 2px solid transparent; transform: translateX(16px) translateY(-4px) rotate(30deg)"></div></div><div style="margin-left: auto;"> <div style=" width: 0px; border-top: 8px solid #F4F4F4; border-right: 8px solid transparent; transform: translateY(16px);"></div> <div style=" background-color: #F4F4F4; flex-grow: 0; height: 12px; width: 16px; transform: translateY(-4px);"></div> <div style=" width: 0; height: 0; border-top: 8px solid #F4F4F4; border-left: 8px solid transparent; transform: translateY(-4px) translateX(8px);"></div></div></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center; margin-bottom: 24px;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 224px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 144px;"></div></div></a><p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;"><a href="https://www.instagram.com/p/BNf_cb4gP2k/?utm_source=ig_embed&amp;utm_campaign=loading" style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;" target="_blank">A post shared by Skand Hurkat (@skandhurkat)</a> on <time style=" font-family:Arial,sans-serif; font-size:14px; line-height:17px;" datetime="2016-12-02T03:35:13+00:00">Dec 1, 2016 at 7:35pm PST</time></p></div></blockquote>
-<script async src="//www.instagram.com/embed.js"></script>
-
+<span style="color:#75715e"># Recipe for making .o files. Here, I introduce a dependency on the
+</span><span style="color:#75715e"># primary source c++ file.
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">%.o</span><span style="color:#f92672">:</span> %.cc
+	<span style="color:#66d9ef">$(</span>CC<span style="color:#66d9ef">)</span> -c <span style="color:#66d9ef">$(</span>CPPFLAGS<span style="color:#66d9ef">)</span> -o $@ <span style="color:#66d9ef">$(</span>&lt;:.d<span style="color:#f92672">=</span>.cc<span style="color:#66d9ef">)</span>
+</code></pre></div><p>Of course, there&rsquo;s a bug in this recipe as well. Can you spot it?</p>
 <p>The bug is that the <code>.d</code> files do not update if something changes in the
-include chain. However, the GNU Make manual has <a href="https://www.gnu.org/software/make/manual/make.html#Generating-Prerequisites-Automatically" target="_blank">an interesting
+include chain. However, the GNU Make manual has <a href="https://www.gnu.org/software/make/manual/make.html#Generating-Prerequisites-Automatically">an interesting
 fix</a>.</p>
-
 <p>Their solution is to use <code>sed</code> to introduce the same dependency chain as
 for the <code>.o</code> file into the <code>.d</code> file. Here&rsquo;s the updated Makefile with
 their recipe.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-makefile" data-lang="makefile"><span style="color:#75715e"># List of source files here.
+</span><span style="color:#75715e"></span>sources <span style="color:#f92672">=</span> foo.cc bar.cc
 
-<pre><code class="language-makefile"># List of source files here.
-sources = foo.cc bar.cc
+<span style="color:#75715e"># Add C++ flags, for example, if the code uses C++11 standards.
+</span><span style="color:#75715e"></span>CPPFLAGS <span style="color:#f92672">=</span> -std<span style="color:#f92672">=</span>c++11
 
-# Add C++ flags, for example, if the code uses C++11 standards.
-CPPFLAGS = -std=c++11
+<span style="color:#75715e"># Recipe for making .d files from .cc files. This has been updated from
+</span><span style="color:#75715e"># the GNU Make manual
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">%.d</span><span style="color:#f92672">:</span> %.cc
+	<span style="color:#66d9ef">$(</span>CC<span style="color:#66d9ef">)</span> -MM <span style="color:#66d9ef">$(</span>CPPFLAGS<span style="color:#66d9ef">)</span> $&lt; &gt; $@.$$$$; <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>	sed <span style="color:#e6db74">&#39;s,\($*\)\.o[ :]*,\1.o $@ : ,g&#39;</span> &lt; $@.$$$$ &gt; $@; <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>	rm -f $@.$$$$
 
-# Recipe for making .d files from .cc files. This has been updated from
-# the GNU Make manual
-%.d: %.cc
-    $(CC) -MM $(CPPFLAGS) $&lt; &gt; $@.$$$$; \
-    sed 's,\($*\)\.o[ :]*,\1.o $@ : ,g' &lt; $@.$$$$ &gt; $@; \
-    rm -f $@.$$$$
+<span style="color:#75715e"># Include the required .d files in the current Makefile.
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">include $(sources</span><span style="color:#f92672">:</span>.cc=.d)
 
-# Include the required .d files in the current Makefile.
-include $(sources:.cc=.d)
-
-# Recipe for making .o files. Here, I introduce a dependency on the
-# primary source c++ file.
-%.o: %.cc
-    $(CC) -c $(CPPFLAGS) -o $@ $(&lt;:.d=.cc)
-</code></pre>
-
-<p>Okay, I think that should work now. But it does beg the question, why
+<span style="color:#75715e"># Recipe for making .o files. Here, I introduce a dependency on the
+</span><span style="color:#75715e"># primary source c++ file.
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">%.o</span><span style="color:#f92672">:</span> %.cc
+	<span style="color:#66d9ef">$(</span>CC<span style="color:#66d9ef">)</span> -c <span style="color:#66d9ef">$(</span>CPPFLAGS<span style="color:#66d9ef">)</span> -o $@ <span style="color:#66d9ef">$(</span>&lt;:.d<span style="color:#f92672">=</span>.cc<span style="color:#66d9ef">)</span>
+</code></pre></div><p>Okay, I think that should work now. But it does beg the question, why
 are we even writing Makefiles by hand any more? Shouldn&rsquo;t we just use a
 configuration system like CMake or GNU Autotools that can generate
 correct Makefiles?</p>
@@ -701,42 +637,7 @@ correct Makefiles?</p>
   </div>
 </article>
 
-<div class="container">
-  <footer class="site-footer">
-  
 
-  <p class="powered-by">
-    &copy; 2020 Skand Hurkat. All rights reserved. &middot; 
-  </p>
-</footer>
-
-</div>
-
-
-<div id="modal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Cite</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <pre><code class="tex hljs"></code></pre>
-      </div>
-      <div class="modal-footer">
-        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
-          <i class="fas fa-copy"></i> Copy
-        </a>
-        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
-          <i class="fas fa-download"></i> Download
-        </a>
-        <div id="modal-error"></div>
-      </div>
-    </div>
-  </div>
-</div>
 
     
 
@@ -833,7 +734,7 @@ correct Makefiles?</p>
     
     
     
-    <script src="/js/academic.min.9c79bd36ad5b530cf8825d78d951c339.js"></script>
+    <script src="/js/academic.min.f579f291d0f0c7da58aa872f9aba5215.js"></script>
 
   </body>
 </html>

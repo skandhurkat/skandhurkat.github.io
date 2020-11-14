@@ -5,8 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="generator" content="Source Themes Academic 4.2.0">
-  <meta name="generator" content="Hugo 0.55.1" />
+  <meta name="generator" content="Source Themes Academic 4.2.5">
 
   
 
@@ -29,7 +28,7 @@
     
   
   <meta name="description" content="People familiar with the GNU/Unix system would know that the standard way to install about any GNU software from code is to run the following commands
-configure make sudo make install  These commands are from the GNU autotools environment. Knowing the GNU environment, these tools are what I used to compile most of the (relatively small) pieces of code I wrote.
+configure make sudo make install These commands are from the GNU autotools environment. Knowing the GNU environment, these tools are what I used to compile most of the (relatively small) pieces of code I wrote.
 Until I discovered CMake.
 CMake, or Cross-platform Make is a tool that serves the same functionality as the GNU autotools (hereafter referred to as autohell).">
 
@@ -103,7 +102,7 @@ CMake, or Cross-platform Make is a tool that serves the same functionality as th
     
     
     
-    <link rel="stylesheet" href="/css/academic.3302edf19991b3523ab9ba729c24e601.css">
+    <link rel="stylesheet" href="/css/academic.51da33ec68a1f05336705858a797eac3.css">
   
 
   
@@ -124,9 +123,6 @@ CMake, or Cross-platform Make is a tool that serves the same functionality as th
   
   
 
-  
-  <link rel="alternate" href="https://skandhurkat.com/index.xml" type="application/rss+xml" title="Skand Hurkat">
-  <link rel="feed" href="https://skandhurkat.com/index.xml" type="application/rss+xml" title="Skand Hurkat">
   
 
   <link rel="manifest" href="/site.webmanifest">
@@ -151,7 +147,7 @@ CMake, or Cross-platform Make is a tool that serves the same functionality as th
   <meta property="og:url" content="https://skandhurkat.com/post/autohell-v-cmake/">
   <meta property="og:title" content="AutoHell v CMake | Skand Hurkat">
   <meta property="og:description" content="People familiar with the GNU/Unix system would know that the standard way to install about any GNU software from code is to run the following commands
-configure make sudo make install  These commands are from the GNU autotools environment. Knowing the GNU environment, these tools are what I used to compile most of the (relatively small) pieces of code I wrote.
+configure make sudo make install These commands are from the GNU autotools environment. Knowing the GNU environment, these tools are what I used to compile most of the (relatively small) pieces of code I wrote.
 Until I discovered CMake.
 CMake, or Cross-platform Make is a tool that serves the same functionality as the GNU autotools (hereafter referred to as autohell)."><meta property="og:image" content="https://skandhurkat.com/img/icon-192.png">
   <meta property="og:locale" content="en-us">
@@ -456,51 +452,13 @@ CMake, or Cross-platform Make is a tool that serves the same functionality as th
 
   
     
-<div class="share-box" aria-hidden="true">
-  <ul class="share">
-    <li>
-      <a class="twitter"
-         href="https://twitter.com/intent/tweet?text=AutoHell%20v%20CMake&amp;url=https%3a%2f%2fskandhurkat.com%2fpost%2fautohell-v-cmake%2f"
-         target="_blank" rel="noopener">
-        <i class="fab fa-twitter"></i>
-      </a>
-    </li>
-    <li>
-      <a class="facebook"
-         href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fskandhurkat.com%2fpost%2fautohell-v-cmake%2f"
-         target="_blank" rel="noopener">
-        <i class="fab fa-facebook-f"></i>
-      </a>
-    </li>
-    <li>
-      <a class="linkedin"
-         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fskandhurkat.com%2fpost%2fautohell-v-cmake%2f&amp;title=AutoHell%20v%20CMake"
-         target="_blank" rel="noopener">
-        <i class="fab fa-linkedin-in"></i>
-      </a>
-    </li>
-    <li>
-      <a class="weibo"
-         href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fskandhurkat.com%2fpost%2fautohell-v-cmake%2f&amp;title=AutoHell%20v%20CMake"
-         target="_blank" rel="noopener">
-        <i class="fab fa-weibo"></i>
-      </a>
-    </li>
-    <li>
-      <a class="email"
-         href="mailto:?subject=AutoHell%20v%20CMake&amp;body=https%3a%2f%2fskandhurkat.com%2fpost%2fautohell-v-cmake%2f">
-        <i class="fas fa-envelope"></i>
-      </a>
-    </li>
-  </ul>
-</div>
-
 
   
 
 </div>
 
     
+
 
 
 
@@ -527,35 +485,27 @@ CMake, or Cross-platform Make is a tool that serves the same functionality as th
       <p>People familiar with the GNU/Unix system would know that the standard
 way to install about any GNU software from code is to run the following
 commands</p>
-
-<pre><code class="language-bash">configure
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">configure
 make
 sudo make install
-</code></pre>
-
-<p>These commands are from the GNU autotools environment. Knowing the GNU
+</code></pre></div><p>These commands are from the GNU autotools environment. Knowing the GNU
 environment, these tools are what I used to compile most of the
 (relatively small) pieces of code I wrote.</p>
-
 <p>Until I discovered CMake.</p>
-
 <p>CMake, or Cross-platform Make is a tool that serves the same
 functionality as the GNU autotools (hereafter referred to as autohell).
 As the name suggests, CMake can be used to compile software across
 multiple platforms.</p>
-
 <p>Why am I encouraging CMake over autohell? Well, firstly, it’s not
 autohell! The GNU autotools are extremely useful when compiling on
 Linux. That’s what they are designed for. Cross compilation is extremely
 easy with the <code>--host=</code> flag. Unfortunately, when it comes to using them
 on Windows, the system just becomes a pain in the neck.</p>
-
 <p>People who have tried to compile a GNU package on Windows would know
 what I’m speaking about. You type in configure, wait for about half an
 hour while the script does its job in the MSYS terminal, then enter
 <code>make -j4</code> (to speed up the process), wait for an hour while libtool
 compiles the bloody code, then <code>make install</code> (finally!).</p>
-
 <p>The reason why the process is so painfully slow is that autotools, at
 their heart are just shell scripts. This means that while compiling for
 Windows, in an MSYS terminal, the shell script is parsed by sh.exe,
@@ -567,8 +517,7 @@ process. Contrast that with CMake. Now, CMake exists on all platforms.
 It’s simple and elegant, and allows a choice of compilers, right from
 MSYS Makefiles, to CodeBlocks MinGW projects, to Visual Studio project
 files.</p>
-
-<p>To prove my point, I’d just recommend that you checkout <a href="http://github.com/skandhurkat/Just-For-Fun/tree/master/Library" target="_blank">a simple
+<p>To prove my point, I’d just recommend that you checkout <a href="http://github.com/skandhurkat/Just-For-Fun/tree/master/Library">a simple
 project</a>
 (Library management system, my 12th grade project) in my GitHub
 repository, which can be compiled using autohell as well as CMake. The
@@ -645,42 +594,7 @@ autohell to CMake immediately.</p>
   </div>
 </article>
 
-<div class="container">
-  <footer class="site-footer">
-  
 
-  <p class="powered-by">
-    &copy; 2020 Skand Hurkat. All rights reserved. &middot; 
-  </p>
-</footer>
-
-</div>
-
-
-<div id="modal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Cite</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <pre><code class="tex hljs"></code></pre>
-      </div>
-      <div class="modal-footer">
-        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
-          <i class="fas fa-copy"></i> Copy
-        </a>
-        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
-          <i class="fas fa-download"></i> Download
-        </a>
-        <div id="modal-error"></div>
-      </div>
-    </div>
-  </div>
-</div>
 
     
 
@@ -777,7 +691,7 @@ autohell to CMake immediately.</p>
     
     
     
-    <script src="/js/academic.min.9c79bd36ad5b530cf8825d78d951c339.js"></script>
+    <script src="/js/academic.min.f579f291d0f0c7da58aa872f9aba5215.js"></script>
 
   </body>
 </html>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>programming on Skand Hurkat</title>
@@ -7,11 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; {year} Skand Hurkat. All rights reserved.</copyright>
-    <lastBuildDate>Thu, 23 Nov 2017 16:28:40 -0500</lastBuildDate>
-    
-	<atom:link href="https://skandhurkat.com/tags/programming/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 23 Nov 2017 16:28:40 -0500</lastBuildDate><atom:link href="https://skandhurkat.com/tags/programming/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Introduction to CMake</title>
       <link>https://skandhurkat.com/post/intro-to-cmake/</link>
@@ -32,7 +28,7 @@ But before we do, let&amp;rsquo;s start with an example of why other build syste
 user to run &lt;code&gt;make clean&lt;/code&gt; and &lt;code&gt;make&lt;/code&gt; every single time they make a
 change to some file. This is annoying and error prone, and the good news
 is that it can be easily solved with this one simple trick. Use a good
-build-generation system like &lt;a href=&#34;//cmake.org&#34; target=&#34;_blank&#34;&gt;CMake&lt;/a&gt; instead.&lt;/p&gt;</description>
+build-generation system like &lt;a href=&#34;//cmake.org&#34;&gt;CMake&lt;/a&gt; instead.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -41,7 +37,7 @@ build-generation system like &lt;a href=&#34;//cmake.org&#34; target=&#34;_blank
       <pubDate>Thu, 22 Jun 2017 11:05:43 -0400</pubDate>
       
       <guid>https://skandhurkat.com/post/intro-to-ctest/</guid>
-      <description>&lt;p&gt;I&amp;rsquo;ve seen a lot of people (I&amp;rsquo;m looking at you &lt;a href=&#34;//lemire.me&#34; target=&#34;_blank&#34;&gt;Daniel
+      <description>&lt;p&gt;I&amp;rsquo;ve seen a lot of people (I&amp;rsquo;m looking at you &lt;a href=&#34;//lemire.me&#34;&gt;Daniel
 Lemire&lt;/a&gt;) praise newer languages like &lt;em&gt;Go&lt;/em&gt;, which makes me
 sad as a C++ programmer. Well, that&amp;rsquo;s until I realise that most of the
 features touted could be easily incorporated in C++ with just a bit of
@@ -88,7 +84,7 @@ Traditionally, C required multiple versions of code, protected by #ifdefs.</desc
       
       <guid>https://skandhurkat.com/post/autohell-v-cmake/</guid>
       <description>People familiar with the GNU/Unix system would know that the standard way to install about any GNU software from code is to run the following commands
-configure make sudo make install  These commands are from the GNU autotools environment. Knowing the GNU environment, these tools are what I used to compile most of the (relatively small) pieces of code I wrote.
+configure make sudo make install These commands are from the GNU autotools environment. Knowing the GNU environment, these tools are what I used to compile most of the (relatively small) pieces of code I wrote.
 Until I discovered CMake.
 CMake, or Cross-platform Make is a tool that serves the same functionality as the GNU autotools (hereafter referred to as autohell).</description>
     </item>

@@ -1,498 +1,366 @@
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/post/</loc>
-      <lastmod>2019-04-12T21:10:31-07:00</lastmod>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/</loc>
-      <lastmod>2019-04-12T21:10:31-07:00</lastmod>
-      <priority>0</priority>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/post/star-trek-2019/</loc>
-      <lastmod>2019-04-12T21:10:31-07:00</lastmod>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/publication_types/1/</loc>
-      <lastmod>2019-02-20T00:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/authors/</loc>
-      <lastmod>2019-02-20T00:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/authors/jos%C3%A9-f.-mart%C3%ADnez/</loc>
-      <lastmod>2019-02-20T00:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/publication_types/</loc>
-      <lastmod>2019-02-20T00:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/publication/</loc>
-      <lastmod>2019-02-20T00:00:00+00:00</lastmod>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/authors/skand-hurkat/</loc>
-      <lastmod>2019-02-20T00:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/publication/hpca2019/</loc>
-      <lastmod>2019-02-20T00:00:00+00:00</lastmod>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/post/intro-to-cmake/</loc>
-      <lastmod>2017-11-23T16:28:40-05:00</lastmod>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/tags/</loc>
-      <lastmod>2017-11-23T16:28:40-05:00</lastmod>
-      <priority>0</priority>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/tags/cmake/</loc>
-      <lastmod>2017-11-23T16:28:40-05:00</lastmod>
-      <priority>0</priority>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/tags/programming/</loc>
-      <lastmod>2017-11-23T16:28:40-05:00</lastmod>
-      <priority>0</priority>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/post/makefile-dependencies/</loc>
-      <lastmod>2017-08-02T17:45:00-04:00</lastmod>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/tags/makefiles/</loc>
-      <lastmod>2017-08-02T17:45:00-04:00</lastmod>
-      <priority>0</priority>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/post/net-neutrality/</loc>
-      <lastmod>2017-07-12T09:04:44-04:00</lastmod>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/tags/personal-opinions/</loc>
-      <lastmod>2017-07-12T09:04:44-04:00</lastmod>
-      <priority>0</priority>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/post/happy-fourth-july-2017/</loc>
-      <lastmod>2017-07-04T10:22:16-04:00</lastmod>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/post/thoughts-isca-2017/</loc>
-      <lastmod>2017-06-29T17:28:43-04:00</lastmod>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/tags/isca/</loc>
-      <lastmod>2017-06-29T17:28:43-04:00</lastmod>
-      <priority>0</priority>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/post/intro-to-ctest/</loc>
-      <lastmod>2017-06-22T11:05:43-04:00</lastmod>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/tags/c&#43;&#43;/</loc>
-      <lastmod>2017-06-22T11:05:43-04:00</lastmod>
-      <priority>0</priority>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/post/intro-to-vim-macros/</loc>
-      <lastmod>2017-06-04T15:33:09-04:00</lastmod>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/tags/vim/</loc>
-      <lastmod>2017-06-04T15:33:09-04:00</lastmod>
-      <priority>0</priority>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/post/gcc-constructor-bug/</loc>
-      <lastmod>2017-05-23T10:51:42-04:00</lastmod>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/post/x-forwarding-on-docker/</loc>
-      <lastmod>2017-04-25T16:21:47-04:00</lastmod>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/tags/docker/</loc>
-      <lastmod>2017-04-25T16:21:47-04:00</lastmod>
-      <priority>0</priority>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/tags/linux/</loc>
-      <lastmod>2017-04-25T16:21:47-04:00</lastmod>
-      <priority>0</priority>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/post/psa-dont-use-rand/</loc>
-      <lastmod>2017-04-16T19:50:51-04:00</lastmod>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/post/cgsu-at-what-cost/</loc>
-      <lastmod>2017-03-25T17:56:19-04:00</lastmod>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/post/seven-pictures-storm-stella/</loc>
-      <lastmod>2017-03-14T18:01:49-04:00</lastmod>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/tags/photographs/</loc>
-      <lastmod>2017-03-14T18:01:49-04:00</lastmod>
-      <priority>0</priority>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/authors/eriko-nurvitadhi/</loc>
-      <lastmod>2015-09-02T13:45:39-04:00</lastmod>
-      <priority>0</priority>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/publication/fpl2015/</loc>
-      <lastmod>2015-09-02T13:45:39-04:00</lastmod>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/authors/jungwook-choi/</loc>
-      <lastmod>2015-09-02T13:45:39-04:00</lastmod>
-      <priority>0</priority>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/authors/rob-a.-rutenbar/</loc>
-      <lastmod>2015-09-02T13:45:39-04:00</lastmod>
-      <priority>0</priority>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/authors/carlos-guestrin/</loc>
-      <lastmod>2014-05-11T13:56:42-04:00</lastmod>
-      <priority>0</priority>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/authors/gabriel-weisz/</loc>
-      <lastmod>2014-05-11T13:56:42-04:00</lastmod>
-      <priority>0</priority>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/publication/fccm2014/</loc>
-      <lastmod>2014-05-11T13:56:42-04:00</lastmod>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/authors/james-c.-hoe/</loc>
-      <lastmod>2014-05-11T13:56:42-04:00</lastmod>
-      <priority>0</priority>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/authors/marie-nguyen/</loc>
-      <lastmod>2014-05-11T13:56:42-04:00</lastmod>
-      <priority>0</priority>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/authors/yu-wang/</loc>
-      <lastmod>2014-05-11T13:56:42-04:00</lastmod>
-      <priority>0</priority>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/project/ldpc-decoder-residual-bp/</loc>
-      <lastmod>2013-12-13T22:53:25-04:00</lastmod>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/project/</loc>
-      <lastmod>2013-12-13T22:53:25-04:00</lastmod>
-      <priority>0</priority>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/tags/signal-processing/</loc>
-      <lastmod>2013-12-13T22:53:25-04:00</lastmod>
-      <priority>0</priority>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/post/history-of-computing/</loc>
-      <lastmod>2013-08-31T17:46:37-04:00</lastmod>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/tags/fun/</loc>
-      <lastmod>2013-08-31T17:46:37-04:00</lastmod>
-      <priority>0</priority>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/project/hls-bp/</loc>
-      <lastmod>2013-05-17T22:42:13-04:00</lastmod>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/authors/xiaodong-wang/</loc>
-      <lastmod>2013-05-17T22:42:13-04:00</lastmod>
-      <priority>0</priority>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/tags/computer-vision/</loc>
-      <lastmod>2013-05-17T22:42:13-04:00</lastmod>
-      <priority>0</priority>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/tags/hardware/</loc>
-      <lastmod>2013-05-17T22:42:13-04:00</lastmod>
-      <priority>0</priority>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/post/why-i-like-cpp11/</loc>
-      <lastmod>2013-03-16T17:26:35-04:00</lastmod>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/authors/aayush-saxena/</loc>
-      <lastmod>2012-11-16T15:52:23-04:00</lastmod>
-      <priority>0</priority>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/authors/abhinandan-majumdar/</loc>
-      <lastmod>2012-11-16T15:52:23-04:00</lastmod>
-      <priority>0</priority>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/project/emodetect/</loc>
-      <lastmod>2012-11-16T15:52:23-04:00</lastmod>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/authors/rishabh-animesh/</loc>
-      <lastmod>2012-11-16T15:52:23-04:00</lastmod>
-      <priority>0</priority>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/tags/machine-learning/</loc>
-      <lastmod>2012-11-16T15:52:23-04:00</lastmod>
-      <priority>0</priority>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/post/autohell-v-cmake/</loc>
-      <lastmod>2012-08-16T17:24:18-04:00</lastmod>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/project/btp/</loc>
-      <lastmod>2012-04-30T16:40:50-04:00</lastmod>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/project/hci/</loc>
-      <lastmod>2011-07-16T16:45:14-04:00</lastmod>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/tags/human-computer-interaction/</loc>
-      <lastmod>2011-07-16T16:45:14-04:00</lastmod>
-      <priority>0</priority>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/project/edl/</loc>
-      <lastmod>2011-05-03T16:47:24-04:00</lastmod>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/authors/indrasen-bhattacharya/</loc>
-      <lastmod>2011-05-03T16:47:24-04:00</lastmod>
-      <priority>0</priority>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/authors/srujan-meesala/</loc>
-      <lastmod>2011-05-03T16:47:24-04:00</lastmod>
-      <priority>0</priority>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/project/cardetect/</loc>
-      <lastmod>2011-04-16T16:37:36-04:00</lastmod>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/project/text-independent-speaker-verification/</loc>
-      <lastmod>2010-04-16T17:09:15-04:00</lastmod>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/authors/yogesh-kumbhejkar/</loc>
-      <lastmod>2010-04-16T17:09:15-04:00</lastmod>
-      <priority>0</priority>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/authors/aditya-mehta/</loc>
-      <lastmod>2009-07-16T17:15:11-04:00</lastmod>
-      <priority>0</priority>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/authors/pritish-kamath/</loc>
-      <lastmod>2009-07-16T17:15:11-04:00</lastmod>
-      <priority>0</priority>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/project/text-dependent-speaker-verification/</loc>
-      <lastmod>2009-07-16T17:15:11-04:00</lastmod>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/author/admin/</loc>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/author/</loc>
-      <priority>0</priority>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/categories/</loc>
-      <priority>0</priority>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/talk/</loc>
-    </url>
-  
-    <url>
-    
-      <loc>https://skandhurkat.com/authors/admin/</loc>
-      <priority>0</priority>
-    </url>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://skandhurkat.com/</loc>
+    <lastmod>2019-04-12T21:10:31-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/post/star-trek-2019/</loc>
+    <lastmod>2019-04-12T21:10:31-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/publication_types/1/</loc>
+    <lastmod>2019-02-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/authors/</loc>
+    <lastmod>2019-02-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/authors/jos%C3%A9-f.-mart%C3%ADnez/</loc>
+    <lastmod>2019-02-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/publication_types/</loc>
+    <lastmod>2019-02-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/authors/skand-hurkat/</loc>
+    <lastmod>2019-02-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/publication/hpca2019/</loc>
+    <lastmod>2019-02-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/tags/cmake/</loc>
+    <lastmod>2017-11-23T16:28:40-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/post/intro-to-cmake/</loc>
+    <lastmod>2017-11-23T16:28:40-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/tags/programming/</loc>
+    <lastmod>2017-11-23T16:28:40-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/tags/</loc>
+    <lastmod>2017-11-23T16:28:40-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/post/makefile-dependencies/</loc>
+    <lastmod>2017-08-02T17:45:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/tags/makefiles/</loc>
+    <lastmod>2017-08-02T17:45:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/post/net-neutrality/</loc>
+    <lastmod>2017-07-12T09:04:44-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/tags/personal-opinions/</loc>
+    <lastmod>2017-07-12T09:04:44-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/tags/isca/</loc>
+    <lastmod>2017-06-29T17:28:43-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/post/thoughts-isca-2017/</loc>
+    <lastmod>2017-06-29T17:28:43-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/post/intro-to-ctest/</loc>
+    <lastmod>2017-06-22T11:05:43-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/tags/c&#43;&#43;/</loc>
+    <lastmod>2017-06-22T11:05:43-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/post/intro-to-vim-macros/</loc>
+    <lastmod>2017-06-04T15:33:09-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/tags/vim/</loc>
+    <lastmod>2017-06-04T15:33:09-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/post/gcc-constructor-bug/</loc>
+    <lastmod>2017-05-23T10:51:42-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/tags/docker/</loc>
+    <lastmod>2017-04-25T16:21:47-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/tags/linux/</loc>
+    <lastmod>2017-04-25T16:21:47-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/post/x-forwarding-on-docker/</loc>
+    <lastmod>2017-04-25T16:21:47-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/post/psa-dont-use-rand/</loc>
+    <lastmod>2017-04-16T19:50:51-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/post/cgsu-at-what-cost/</loc>
+    <lastmod>2017-03-25T17:56:19-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/post/</loc>
+    <lastmod>2017-01-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/publication/</loc>
+    <lastmod>2017-01-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/talk/</loc>
+    <lastmod>2017-01-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/authors/eriko-nurvitadhi/</loc>
+    <lastmod>2015-09-02T13:45:39-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/publication/fpl2015/</loc>
+    <lastmod>2015-09-02T13:45:39-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/authors/jungwook-choi/</loc>
+    <lastmod>2015-09-02T13:45:39-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/authors/rob-a.-rutenbar/</loc>
+    <lastmod>2015-09-02T13:45:39-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/authors/carlos-guestrin/</loc>
+    <lastmod>2014-05-11T13:56:42-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/authors/gabriel-weisz/</loc>
+    <lastmod>2014-05-11T13:56:42-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/publication/fccm2014/</loc>
+    <lastmod>2014-05-11T13:56:42-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/authors/james-c.-hoe/</loc>
+    <lastmod>2014-05-11T13:56:42-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/authors/marie-nguyen/</loc>
+    <lastmod>2014-05-11T13:56:42-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/authors/yu-wang/</loc>
+    <lastmod>2014-05-11T13:56:42-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/project/ldpc-decoder-residual-bp/</loc>
+    <lastmod>2013-12-13T22:53:25-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/project/</loc>
+    <lastmod>2013-12-13T22:53:25-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/tags/signal-processing/</loc>
+    <lastmod>2013-12-13T22:53:25-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/post/history-of-computing/</loc>
+    <lastmod>2013-08-31T17:46:37-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/tags/fun/</loc>
+    <lastmod>2013-08-31T17:46:37-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/tags/computer-vision/</loc>
+    <lastmod>2013-05-17T22:42:13-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/tags/hardware/</loc>
+    <lastmod>2013-05-17T22:42:13-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/project/hls-bp/</loc>
+    <lastmod>2013-05-17T22:42:13-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/authors/xiaodong-wang/</loc>
+    <lastmod>2013-05-17T22:42:13-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/post/why-i-like-cpp11/</loc>
+    <lastmod>2013-03-16T17:26:35-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/authors/aayush-saxena/</loc>
+    <lastmod>2012-11-16T15:52:23-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/authors/abhinandan-majumdar/</loc>
+    <lastmod>2012-11-16T15:52:23-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/project/emodetect/</loc>
+    <lastmod>2012-11-16T15:52:23-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/tags/machine-learning/</loc>
+    <lastmod>2012-11-16T15:52:23-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/authors/rishabh-animesh/</loc>
+    <lastmod>2012-11-16T15:52:23-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/post/autohell-v-cmake/</loc>
+    <lastmod>2012-08-16T17:24:18-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/project/btp/</loc>
+    <lastmod>2012-04-30T16:40:50-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/tags/human-computer-interaction/</loc>
+    <lastmod>2011-07-16T16:45:14-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/project/hci/</loc>
+    <lastmod>2011-07-16T16:45:14-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/project/edl/</loc>
+    <lastmod>2011-05-03T16:47:24-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/authors/indrasen-bhattacharya/</loc>
+    <lastmod>2011-05-03T16:47:24-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/authors/srujan-meesala/</loc>
+    <lastmod>2011-05-03T16:47:24-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/project/cardetect/</loc>
+    <lastmod>2011-04-16T16:37:36-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/project/text-independent-speaker-verification/</loc>
+    <lastmod>2010-04-16T17:09:15-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/authors/yogesh-kumbhejkar/</loc>
+    <lastmod>2010-04-16T17:09:15-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/authors/aditya-mehta/</loc>
+    <lastmod>2009-07-16T17:15:11-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/authors/pritish-kamath/</loc>
+    <lastmod>2009-07-16T17:15:11-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/project/text-dependent-speaker-verification/</loc>
+    <lastmod>2009-07-16T17:15:11-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/author/admin/</loc>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/authors/admin/</loc>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/author/</loc>
+  </url>
+  
+  <url>
+    <loc>https://skandhurkat.com/categories/</loc>
+  </url>
   
 </urlset>

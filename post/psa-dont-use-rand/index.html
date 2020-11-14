@@ -5,8 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="generator" content="Source Themes Academic 4.2.0">
-  <meta name="generator" content="Hugo 0.55.1" />
+  <meta name="generator" content="Source Themes Academic 4.2.5">
 
   
 
@@ -102,7 +101,7 @@ std::rand() could be really harmful.">
     
     
     
-    <link rel="stylesheet" href="/css/academic.3302edf19991b3523ab9ba729c24e601.css">
+    <link rel="stylesheet" href="/css/academic.51da33ec68a1f05336705858a797eac3.css">
   
 
   
@@ -123,9 +122,6 @@ std::rand() could be really harmful.">
   
   
 
-  
-  <link rel="alternate" href="https://skandhurkat.com/index.xml" type="application/rss+xml" title="Skand Hurkat">
-  <link rel="feed" href="https://skandhurkat.com/index.xml" type="application/rss+xml" title="Skand Hurkat">
   
 
   <link rel="manifest" href="/site.webmanifest">
@@ -454,51 +450,13 @@ std::rand() could be really harmful."><meta property="og:image" content="https:/
 
   
     
-<div class="share-box" aria-hidden="true">
-  <ul class="share">
-    <li>
-      <a class="twitter"
-         href="https://twitter.com/intent/tweet?text=PSA%3a%20Don%27t%20use%20std%3a%3arand%28%29&amp;url=https%3a%2f%2fskandhurkat.com%2fpost%2fpsa-dont-use-rand%2f"
-         target="_blank" rel="noopener">
-        <i class="fab fa-twitter"></i>
-      </a>
-    </li>
-    <li>
-      <a class="facebook"
-         href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fskandhurkat.com%2fpost%2fpsa-dont-use-rand%2f"
-         target="_blank" rel="noopener">
-        <i class="fab fa-facebook-f"></i>
-      </a>
-    </li>
-    <li>
-      <a class="linkedin"
-         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fskandhurkat.com%2fpost%2fpsa-dont-use-rand%2f&amp;title=PSA%3a%20Don%27t%20use%20std%3a%3arand%28%29"
-         target="_blank" rel="noopener">
-        <i class="fab fa-linkedin-in"></i>
-      </a>
-    </li>
-    <li>
-      <a class="weibo"
-         href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fskandhurkat.com%2fpost%2fpsa-dont-use-rand%2f&amp;title=PSA%3a%20Don%27t%20use%20std%3a%3arand%28%29"
-         target="_blank" rel="noopener">
-        <i class="fab fa-weibo"></i>
-      </a>
-    </li>
-    <li>
-      <a class="email"
-         href="mailto:?subject=PSA%3a%20Don%27t%20use%20std%3a%3arand%28%29&amp;body=https%3a%2f%2fskandhurkat.com%2fpost%2fpsa-dont-use-rand%2f">
-        <i class="fas fa-envelope"></i>
-      </a>
-    </li>
-  </ul>
-</div>
-
 
   
 
 </div>
 
     
+
 
 
 
@@ -525,27 +483,21 @@ std::rand() could be really harmful."><meta property="og:image" content="https:/
       <p>With the <code>&lt;random&gt;</code> header in C++11 onwards, there really is no reason
 to use <code>std::rand()</code> to generate random numbers. In fact, using
 <code>std::rand()</code> could be really harmful.</p>
-
 <p><code>std::rand()</code> generates random numbers using a linear congruential
 engine. This is a simple formula &ndash; $x_{n+1} = (a x_n + b) \mod c$. The
 trouble with such a simple engine is that the numbers generated have
 very low entropy.</p>
-
 <p>But I really don&rsquo;t care about entropy, it&rsquo;s not like I&rsquo;m writing a
 cryptography application, you say? Well, let me tell you a cautionary
 tale about how using <code>std::rand()</code> sent me on a wild goose chase for
 over a week trying to hunt down a bug miles from where it really was.</p>
-
 <p>Here&rsquo;s the story. I was writing a piece of code that was supposed to
 return events at a random time, somewhere between <code>x</code> and <code>y</code> cycles in
 the future. I did not really care that the random numbers generated were
 <em>good</em>, I just wanted something quick and dirty. So, I ended up using
 code that looked like this:</p>
-
-<pre><code class="language-c++">time_type new_event_time = get_current_time() + (std::rand() % (y - x)) + x;
-</code></pre>
-
-<p>Looks good, and behaved reasonably well for almost all the test cases I
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++">time_type new_event_time <span style="color:#f92672">=</span> get_current_time() <span style="color:#f92672">+</span> (std<span style="color:#f92672">::</span>rand() <span style="color:#f92672">%</span> (y <span style="color:#f92672">-</span> x)) <span style="color:#f92672">+</span> x;
+</code></pre></div><p>Looks good, and behaved reasonably well for almost all the test cases I
 threw at the problem. However, one specific test case was really
 sensitive to the order in which events returned, but only if the number
 of pending events was larger than a certain number <code>z</code>. This test
@@ -553,34 +505,23 @@ started to fail, as is to be expected. However, the failures happened a
 great deal into the future, which suggested some weird errors in
 bookkeeping that would manifest after a certain number of insertions and
 deletions. This forced me to go on a bug-hunting spree that revealed
-absolutely nothing. Then, I discovered a <a href="//channel9.msdn.com/Events/GoingNative/2013/rand-Considered-Harmful" target="_blank">talk by
+absolutely nothing. Then, I discovered a <a href="//channel9.msdn.com/Events/GoingNative/2013/rand-Considered-Harmful">talk by
 STL</a>,
 which is the inspiration for this post as well. In this talk, STL shows
 how bad the linear congruential engine in the <code>std::rand()</code> function
 really is.</p>
-
 <p>So, I simply replaced the random number generation code. The
 <code>std::srand()</code> equivalent code is</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++">std<span style="color:#f92672">::</span>random_device rd;
+std<span style="color:#f92672">::</span>mt19937 mt(rd());
 
-<pre><code class="language-c++">std::random_device rd;
-std::mt19937 mt(rd());
-
-std::uniform_int_distribution dist(x, y);
-</code></pre>
-
-<p>and the equivalent code for</p>
-
-<pre><code class="language-c++">time_type new_event_time = get_current_time() + (std::rand() % (y - x)) + x;
-</code></pre>
-
-<p>simplifies to</p>
-
-<pre><code class="language-c++">time_type new_event_time = get_current_time() + dist(mt);
-</code></pre>
-
-<p>Simple, isn&rsquo;t it? With this new piece of code, my test began to fail
+std<span style="color:#f92672">::</span>uniform_int_distribution dist(x, y);
+</code></pre></div><p>and the equivalent code for</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++">time_type new_event_time <span style="color:#f92672">=</span> get_current_time() <span style="color:#f92672">+</span> (std<span style="color:#f92672">::</span>rand() <span style="color:#f92672">%</span> (y <span style="color:#f92672">-</span> x)) <span style="color:#f92672">+</span> x;
+</code></pre></div><p>simplifies to</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++">time_type new_event_time <span style="color:#f92672">=</span> get_current_time() <span style="color:#f92672">+</span> dist(mt);
+</code></pre></div><p>Simple, isn&rsquo;t it? With this new piece of code, my test began to fail
 much earlier, which prompted me to discover the real source of the bug.</p>
-
 <p>I was intimidated by the new C++11 random number generation library
 because it requires the creation of a random device, a pseudo-random
 engine and a distribution, which is three more than a call to
@@ -667,42 +608,7 @@ it.</p>
   </div>
 </article>
 
-<div class="container">
-  <footer class="site-footer">
-  
 
-  <p class="powered-by">
-    &copy; 2020 Skand Hurkat. All rights reserved. &middot; 
-  </p>
-</footer>
-
-</div>
-
-
-<div id="modal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Cite</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <pre><code class="tex hljs"></code></pre>
-      </div>
-      <div class="modal-footer">
-        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
-          <i class="fas fa-copy"></i> Copy
-        </a>
-        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
-          <i class="fas fa-download"></i> Download
-        </a>
-        <div id="modal-error"></div>
-      </div>
-    </div>
-  </div>
-</div>
 
     
 
@@ -804,7 +710,7 @@ it.</p>
     
     
     
-    <script src="/js/academic.min.9c79bd36ad5b530cf8825d78d951c339.js"></script>
+    <script src="/js/academic.min.f579f291d0f0c7da58aa872f9aba5215.js"></script>
 
   </body>
 </html>

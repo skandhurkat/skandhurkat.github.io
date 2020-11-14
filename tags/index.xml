@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Skand Hurkat</title>
@@ -7,11 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; {year} Skand Hurkat. All rights reserved.</copyright>
-    <lastBuildDate>Thu, 23 Nov 2017 16:28:40 -0500</lastBuildDate>
-    
-	<atom:link href="https://skandhurkat.com/tags/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 23 Nov 2017 16:28:40 -0500</lastBuildDate><atom:link href="https://skandhurkat.com/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>cmake</title>
       <link>https://skandhurkat.com/tags/cmake/</link>
@@ -90,15 +86,6 @@
       <pubDate>Tue, 25 Apr 2017 16:21:47 -0400</pubDate>
       
       <guid>https://skandhurkat.com/tags/linux/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>photographs</title>
-      <link>https://skandhurkat.com/tags/photographs/</link>
-      <pubDate>Tue, 14 Mar 2017 18:01:49 -0400</pubDate>
-      
-      <guid>https://skandhurkat.com/tags/photographs/</guid>
       <description></description>
     </item>
     

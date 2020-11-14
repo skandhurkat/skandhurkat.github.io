@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>photographs on Skand Hurkat</title>
@@ -7,11 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; {year} Skand Hurkat. All rights reserved.</copyright>
-    <lastBuildDate>Tue, 14 Mar 2017 18:01:49 -0400</lastBuildDate>
-    
-	<atom:link href="https://skandhurkat.com/tags/photographs/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 14 Mar 2017 18:01:49 -0400</lastBuildDate><atom:link href="https://skandhurkat.com/tags/photographs/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Seven pictures from the storm Stella that show the beauty of the Ithaca winter</title>
       <link>https://skandhurkat.com/post/seven-pictures-storm-stella/</link>

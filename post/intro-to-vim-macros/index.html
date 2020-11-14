@@ -5,8 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="generator" content="Source Themes Academic 4.2.0">
-  <meta name="generator" content="Hugo 0.55.1" />
+  <meta name="generator" content="Source Themes Academic 4.2.5">
 
   
 
@@ -101,7 +100,7 @@ Here&rsquo;s the key idea to keep in mind when discussing about Vim. Vim is not 
     
     
     
-    <link rel="stylesheet" href="/css/academic.3302edf19991b3523ab9ba729c24e601.css">
+    <link rel="stylesheet" href="/css/academic.51da33ec68a1f05336705858a797eac3.css">
   
 
   
@@ -122,9 +121,6 @@ Here&rsquo;s the key idea to keep in mind when discussing about Vim. Vim is not 
   
   
 
-  
-  <link rel="alternate" href="https://skandhurkat.com/index.xml" type="application/rss+xml" title="Skand Hurkat">
-  <link rel="feed" href="https://skandhurkat.com/index.xml" type="application/rss+xml" title="Skand Hurkat">
   
 
   <link rel="manifest" href="/site.webmanifest">
@@ -452,51 +448,13 @@ Here&rsquo;s the key idea to keep in mind when discussing about Vim. Vim is not 
 
   
     
-<div class="share-box" aria-hidden="true">
-  <ul class="share">
-    <li>
-      <a class="twitter"
-         href="https://twitter.com/intent/tweet?text=An%20Introduction%20to%20Vim%20Macros&amp;url=https%3a%2f%2fskandhurkat.com%2fpost%2fintro-to-vim-macros%2f"
-         target="_blank" rel="noopener">
-        <i class="fab fa-twitter"></i>
-      </a>
-    </li>
-    <li>
-      <a class="facebook"
-         href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fskandhurkat.com%2fpost%2fintro-to-vim-macros%2f"
-         target="_blank" rel="noopener">
-        <i class="fab fa-facebook-f"></i>
-      </a>
-    </li>
-    <li>
-      <a class="linkedin"
-         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fskandhurkat.com%2fpost%2fintro-to-vim-macros%2f&amp;title=An%20Introduction%20to%20Vim%20Macros"
-         target="_blank" rel="noopener">
-        <i class="fab fa-linkedin-in"></i>
-      </a>
-    </li>
-    <li>
-      <a class="weibo"
-         href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fskandhurkat.com%2fpost%2fintro-to-vim-macros%2f&amp;title=An%20Introduction%20to%20Vim%20Macros"
-         target="_blank" rel="noopener">
-        <i class="fab fa-weibo"></i>
-      </a>
-    </li>
-    <li>
-      <a class="email"
-         href="mailto:?subject=An%20Introduction%20to%20Vim%20Macros&amp;body=https%3a%2f%2fskandhurkat.com%2fpost%2fintro-to-vim-macros%2f">
-        <i class="fas fa-envelope"></i>
-      </a>
-    </li>
-  </ul>
-</div>
-
 
   
 
 </div>
 
     
+
 
 
 
@@ -525,79 +483,66 @@ being insanely configurable. While I may describe my ideal Vim setup
 sometime in the future, I do want to share some tips and tricks that
 make Vim so damn efficient for certain tasks. Today, I shall focus on
 macros.</p>
-
 <p>Here&rsquo;s the key idea to keep in mind when discussing about Vim. Vim is
 not just an editor, it is a text manipulation program. Inserting text is
 just one of the many tasks that Vim can accomplish. A macro is a small
 Vim program that the user can record in order to make text editing more
 efficient.</p>
-
 <p>Consider a simple use case. Let&rsquo;s say that I have a CSV file that looks
 like this</p>
-
 <pre><code>New York,NY,USA
 Seattle,WA,USA
 Mumbai,MH,India
-</code></pre>
-
-<p>Let&rsquo;s say that I want to add another column at the beginning of each
+</code></pre><p>Let&rsquo;s say that I want to add another column at the beginning of each
 line that is sequentially numbered, like so</p>
-
 <pre><code>1,New York,NY,USA
 2,Seattle,WA,USA
 3,Mumbai,MH,India
-</code></pre>
-
-<p>I could go down each line and manually add each column, but there&rsquo;s a
+</code></pre><p>I could go down each line and manually add each column, but there&rsquo;s a
 better way. The solution is to program a Vim macro that does the
 following tasks in order.</p>
-
 <ol>
-<li><p>Assuming that the first column of a certain line is the required
+<li>
+<p>Assuming that the first column of a certain line is the required
 number for this line (row), we copy the first column to the next
-line.</p></li>
-
-<li><p>Increment the line number by one so that it is one more than the
-previous line (row).</p></li>
+line.</p>
+</li>
+<li>
+<p>Increment the line number by one so that it is one more than the
+previous line (row).</p>
+</li>
 </ol>
-
 <p>So, I edit the first line, in order to manually add the new column to
 the first line.</p>
-
 <pre><code>1,New York,NY,USA
 Seattle,WA,USA
 Mumbai,MH,India
-</code></pre>
-
-<p>Next, I ensure that I&rsquo;m not executing any Vim command. I can verify this
-by pressing <kbd>ESC</kbd> a couple of times. Then I press <kbd>q</kbd>
-followed by a letter to identify this macro, e.g.: <kbd>a</kbd>. The
+</code></pre><p>Next, I ensure that I&rsquo;m not executing any Vim command. I can verify this
+by pressing <!-- raw HTML omitted -->ESC<!-- raw HTML omitted --> a couple of times. Then I press <!-- raw HTML omitted -->q<!-- raw HTML omitted -->
+followed by a letter to identify this macro, e.g.: <!-- raw HTML omitted -->a<!-- raw HTML omitted -->. The
 macro then consists of the following keystrokes</p>
-
 <ol>
-<li><kbd>0</kbd>: Move to the beginning of the line.</li>
-<li><kbd>v</kbd>: Visual mode.</li>
-<li><kbd>/</kbd><kbd>,</kbd>: Find the first <code>,</code> to match.</li>
-<li><kbd>y</kbd>: Yank (copy) the highlighted text.</li>
-<li><kbd>j</kbd><kbd>0</kbd>: Go to the beginning of the next line.</li>
-<li><kbd>P</kbd>: Paste the copied text. At this point, the cursor should
+<li><!-- raw HTML omitted -->0<!-- raw HTML omitted -->: Move to the beginning of the line.</li>
+<li><!-- raw HTML omitted -->v<!-- raw HTML omitted -->: Visual mode.</li>
+<li><!-- raw HTML omitted -->/<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted -->: Find the first <code>,</code> to match.</li>
+<li><!-- raw HTML omitted -->y<!-- raw HTML omitted -->: Yank (copy) the highlighted text.</li>
+<li><!-- raw HTML omitted -->j<!-- raw HTML omitted --><!-- raw HTML omitted -->0<!-- raw HTML omitted -->: Go to the beginning of the next line.</li>
+<li><!-- raw HTML omitted -->P<!-- raw HTML omitted -->: Paste the copied text. At this point, the cursor should
 be on the <code>,</code>.</li>
-<li><kbd>h</kbd>: Move the cursor one position to the left so that it is
+<li><!-- raw HTML omitted -->h<!-- raw HTML omitted -->: Move the cursor one position to the left so that it is
 on the last digit of the number.</li>
-<li><kbd>Ctrl</kbd><kbd>a</kbd>: Increment the number.</li>
-<li><kbd>q</kbd>: Stop recording the macro.</li>
+<li><!-- raw HTML omitted -->Ctrl<!-- raw HTML omitted --><!-- raw HTML omitted -->a<!-- raw HTML omitted -->: Increment the number.</li>
+<li><!-- raw HTML omitted -->q<!-- raw HTML omitted -->: Stop recording the macro.</li>
 </ol>
-
-<p>Now, pressing <kbd>@</kbd><kbd>a</kbd> would perform the nine steps
+<p>Now, pressing <!-- raw HTML omitted -->@<!-- raw HTML omitted --><!-- raw HTML omitted -->a<!-- raw HTML omitted --> would perform the nine steps
 outlined with just two key-presses. Let&rsquo;s say the file had 50 more lines
 to be edited. In this case, I could use another powerful trick that Vim
 offers &ndash; the ability to repeat a command multiple times. So, ensure
 that I&rsquo;m out of executing any command, I could type in a number followed
 by a command that would execute the specified command a certain number
-of times. So, pressing <kbd>5</kbd><kbd>0</kbd><kbd>@</kbd><kbd>a</kbd>
+of times. So, pressing <!-- raw HTML omitted -->5<!-- raw HTML omitted --><!-- raw HTML omitted -->0<!-- raw HTML omitted --><!-- raw HTML omitted -->@<!-- raw HTML omitted --><!-- raw HTML omitted -->a<!-- raw HTML omitted -->
 would execute the macro <code>a</code> fifty times, which is an insanely powerful
 technique for modifying multiple lines with a single command.</p>
-
 <p>That&rsquo;s all for Vim macros for today. I hope you found this post useful.
 Macros were one of the things I learnt relatively late as a Vim user,
 but now that I do know about this trick, I use it all the time, and it
@@ -670,42 +615,7 @@ about cool Vim tricks and tips.</p>
   </div>
 </article>
 
-<div class="container">
-  <footer class="site-footer">
-  
 
-  <p class="powered-by">
-    &copy; 2020 Skand Hurkat. All rights reserved. &middot; 
-  </p>
-</footer>
-
-</div>
-
-
-<div id="modal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Cite</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <pre><code class="tex hljs"></code></pre>
-      </div>
-      <div class="modal-footer">
-        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
-          <i class="fas fa-copy"></i> Copy
-        </a>
-        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
-          <i class="fas fa-download"></i> Download
-        </a>
-        <div id="modal-error"></div>
-      </div>
-    </div>
-  </div>
-</div>
 
     
 
@@ -802,7 +712,7 @@ about cool Vim tricks and tips.</p>
     
     
     
-    <script src="/js/academic.min.9c79bd36ad5b530cf8825d78d951c339.js"></script>
+    <script src="/js/academic.min.f579f291d0f0c7da58aa872f9aba5215.js"></script>
 
   </body>
 </html>

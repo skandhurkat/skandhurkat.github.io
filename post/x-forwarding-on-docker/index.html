@@ -5,8 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="generator" content="Source Themes Academic 4.2.0">
-  <meta name="generator" content="Hugo 0.55.1" />
+  <meta name="generator" content="Source Themes Academic 4.2.5">
 
   
 
@@ -102,7 +101,7 @@ the steps involved in case you&rsquo;re curious.">
     
     
     
-    <link rel="stylesheet" href="/css/academic.3302edf19991b3523ab9ba729c24e601.css">
+    <link rel="stylesheet" href="/css/academic.51da33ec68a1f05336705858a797eac3.css">
   
 
   
@@ -123,9 +122,6 @@ the steps involved in case you&rsquo;re curious.">
   
   
 
-  
-  <link rel="alternate" href="https://skandhurkat.com/index.xml" type="application/rss+xml" title="Skand Hurkat">
-  <link rel="feed" href="https://skandhurkat.com/index.xml" type="application/rss+xml" title="Skand Hurkat">
   
 
   <link rel="manifest" href="/site.webmanifest">
@@ -454,51 +450,13 @@ the steps involved in case you&rsquo;re curious."><meta property="og:image" cont
 
   
     
-<div class="share-box" aria-hidden="true">
-  <ul class="share">
-    <li>
-      <a class="twitter"
-         href="https://twitter.com/intent/tweet?text=X%20forwarding%20on%20Docker&amp;url=https%3a%2f%2fskandhurkat.com%2fpost%2fx-forwarding-on-docker%2f"
-         target="_blank" rel="noopener">
-        <i class="fab fa-twitter"></i>
-      </a>
-    </li>
-    <li>
-      <a class="facebook"
-         href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fskandhurkat.com%2fpost%2fx-forwarding-on-docker%2f"
-         target="_blank" rel="noopener">
-        <i class="fab fa-facebook-f"></i>
-      </a>
-    </li>
-    <li>
-      <a class="linkedin"
-         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fskandhurkat.com%2fpost%2fx-forwarding-on-docker%2f&amp;title=X%20forwarding%20on%20Docker"
-         target="_blank" rel="noopener">
-        <i class="fab fa-linkedin-in"></i>
-      </a>
-    </li>
-    <li>
-      <a class="weibo"
-         href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fskandhurkat.com%2fpost%2fx-forwarding-on-docker%2f&amp;title=X%20forwarding%20on%20Docker"
-         target="_blank" rel="noopener">
-        <i class="fab fa-weibo"></i>
-      </a>
-    </li>
-    <li>
-      <a class="email"
-         href="mailto:?subject=X%20forwarding%20on%20Docker&amp;body=https%3a%2f%2fskandhurkat.com%2fpost%2fx-forwarding-on-docker%2f">
-        <i class="fas fa-envelope"></i>
-      </a>
-    </li>
-  </ul>
-</div>
-
 
   
 
 </div>
 
     
+
 
 
 
@@ -522,47 +480,33 @@ the steps involved in case you&rsquo;re curious."><meta property="og:image" cont
   <div class="article-container">
 
     <div class="article-style" itemprop="articleBody">
-      <p><a href="//markbuckler.com" target="_blank">Mark Buckler</a> and I use Docker a lot.
+      <p><a href="//markbuckler.com">Mark Buckler</a> and I use Docker a lot.
 Sometimes, we need X11 forwarding to work over SSH. Here&rsquo;s a summary of
 the steps involved in case you&rsquo;re curious.</p>
-
 <h3 id="edit-the-docker-file">Edit the Docker file</h3>
-
 <p>Add these lines:</p>
-
-<pre><code class="language-bash">RUN apt-get update
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">RUN apt-get update
 RUN apt-get install -qqy x11-apps
-</code></pre>
-
-<p>This installs the necessary X packages on the Docker image.</p>
-
+</code></pre></div><p>This installs the necessary X packages on the Docker image.</p>
 <h3 id="run-this-once-per-ssh-session">Run this once per SSH session</h3>
-
-<pre><code class="language-bash">XAUTH=$HOME/.Xauthority
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">XAUTH<span style="color:#f92672">=</span>$HOME/.Xauthority
 touch $XAUTH
-</code></pre>
-
-<p>This code sets the path to the <code>.Xauthority</code> file. When using SSH with
+</code></pre></div><p>This code sets the path to the <code>.Xauthority</code> file. When using SSH with
 X11 forwarding, the <code>.Xauthority</code> file is automatically created in the
 user&rsquo;s <code>$HOME</code> folder. If not using X11 forwarding (for instance, when
 operating locally on the machine), <code>touch</code> will create the <code>.Xauthority</code>
 file.</p>
-
 <h3 id="start-the-docker-image">Start the Docker image</h3>
-
-<pre><code class="language-bash">docker run --tty --interactive --network=host --env DISPLAY=$DISPLAY --volume $XAUTH:/root/.Xauthority &lt;dockerimagename&gt;
-</code></pre>
-
-<p>This starts a Docker image with a TTY, in interactive mode, using the
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker run --tty --interactive --network<span style="color:#f92672">=</span>host --env DISPLAY<span style="color:#f92672">=</span>$DISPLAY --volume $XAUTH:/root/.Xauthority &lt;dockerimagename&gt;
+</code></pre></div><p>This starts a Docker image with a TTY, in interactive mode, using the
 host&rsquo;s networking stack (i.e. the container and the host are identical
 in their network usage, so port XX in the container is port XX on the
 host. It also exports the <code>$DISPLAY</code> environment variable to Docker, and
 binds the <code>.Xauthority</code> file (on the host) to the root user within the
 container.</p>
-
 <p>That&rsquo;s all folks! I suspect that these instructions will also be
 cross-posted on Mark&rsquo;s website. You should absolutely follow his
-<a href="//markbuckler.com/post" target="_blank">blog</a>.</p>
+<a href="//markbuckler.com/post">blog</a>.</p>
     </div>
 
     
@@ -630,42 +574,7 @@ cross-posted on Mark&rsquo;s website. You should absolutely follow his
   </div>
 </article>
 
-<div class="container">
-  <footer class="site-footer">
-  
 
-  <p class="powered-by">
-    &copy; 2020 Skand Hurkat. All rights reserved. &middot; 
-  </p>
-</footer>
-
-</div>
-
-
-<div id="modal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Cite</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <pre><code class="tex hljs"></code></pre>
-      </div>
-      <div class="modal-footer">
-        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
-          <i class="fas fa-copy"></i> Copy
-        </a>
-        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
-          <i class="fas fa-download"></i> Download
-        </a>
-        <div id="modal-error"></div>
-      </div>
-    </div>
-  </div>
-</div>
 
     
 
@@ -762,7 +671,7 @@ cross-posted on Mark&rsquo;s website. You should absolutely follow his
     
     
     
-    <script src="/js/academic.min.9c79bd36ad5b530cf8825d78d951c339.js"></script>
+    <script src="/js/academic.min.f579f291d0f0c7da58aa872f9aba5215.js"></script>
 
   </body>
 </html>

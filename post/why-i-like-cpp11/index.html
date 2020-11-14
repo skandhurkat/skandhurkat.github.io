@@ -5,8 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="generator" content="Source Themes Academic 4.2.0">
-  <meta name="generator" content="Hugo 0.55.1" />
+  <meta name="generator" content="Source Themes Academic 4.2.5">
 
   
 
@@ -101,7 +100,7 @@ Traditionally, C required multiple versions of code, protected by #ifdefs.">
     
     
     
-    <link rel="stylesheet" href="/css/academic.3302edf19991b3523ab9ba729c24e601.css">
+    <link rel="stylesheet" href="/css/academic.51da33ec68a1f05336705858a797eac3.css">
   
 
   
@@ -122,9 +121,6 @@ Traditionally, C required multiple versions of code, protected by #ifdefs.">
   
   
 
-  
-  <link rel="alternate" href="https://skandhurkat.com/index.xml" type="application/rss+xml" title="Skand Hurkat">
-  <link rel="feed" href="https://skandhurkat.com/index.xml" type="application/rss+xml" title="Skand Hurkat">
   
 
   <link rel="manifest" href="/site.webmanifest">
@@ -452,51 +448,13 @@ Traditionally, C required multiple versions of code, protected by #ifdefs."><met
 
   
     
-<div class="share-box" aria-hidden="true">
-  <ul class="share">
-    <li>
-      <a class="twitter"
-         href="https://twitter.com/intent/tweet?text=On%20writing%20platform-independent%20code%20%28or%20why%20I%20like%20the%20new%20C%2b%2b%29&amp;url=https%3a%2f%2fskandhurkat.com%2fpost%2fwhy-i-like-cpp11%2f"
-         target="_blank" rel="noopener">
-        <i class="fab fa-twitter"></i>
-      </a>
-    </li>
-    <li>
-      <a class="facebook"
-         href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fskandhurkat.com%2fpost%2fwhy-i-like-cpp11%2f"
-         target="_blank" rel="noopener">
-        <i class="fab fa-facebook-f"></i>
-      </a>
-    </li>
-    <li>
-      <a class="linkedin"
-         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fskandhurkat.com%2fpost%2fwhy-i-like-cpp11%2f&amp;title=On%20writing%20platform-independent%20code%20%28or%20why%20I%20like%20the%20new%20C%2b%2b%29"
-         target="_blank" rel="noopener">
-        <i class="fab fa-linkedin-in"></i>
-      </a>
-    </li>
-    <li>
-      <a class="weibo"
-         href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fskandhurkat.com%2fpost%2fwhy-i-like-cpp11%2f&amp;title=On%20writing%20platform-independent%20code%20%28or%20why%20I%20like%20the%20new%20C%2b%2b%29"
-         target="_blank" rel="noopener">
-        <i class="fab fa-weibo"></i>
-      </a>
-    </li>
-    <li>
-      <a class="email"
-         href="mailto:?subject=On%20writing%20platform-independent%20code%20%28or%20why%20I%20like%20the%20new%20C%2b%2b%29&amp;body=https%3a%2f%2fskandhurkat.com%2fpost%2fwhy-i-like-cpp11%2f">
-        <i class="fas fa-envelope"></i>
-      </a>
-    </li>
-  </ul>
-</div>
-
 
   
 
 </div>
 
     
+
 
 
 
@@ -525,26 +483,21 @@ Traditionally, C required multiple versions of code, protected by #ifdefs."><met
 to goof around with my computer. So, while most of my work is done on
 Linux, it&rsquo;s imperative that my code work on all platforms; just because
 I could use any of the three.</p>
-
 <p>Traditionally, C required multiple versions of code, protected by
 <code>#ifdef</code>s. This often required multiple versions of code to be written,
 depending on the target system, target OS, and compiler being used.
 Clumsy and messy system.</p>
-
 <p>C++ too had similar shortcomings. When it came to writing multi-threaded
 code, I had to choose either Win32 or Posix, and once I made that
 choice, I was bound by it. Since those were the days when Ubuntu was
 driving me crazy, I chose Win32. Bad decision.</p>
-
 <p>Every single action that I attempted was compounded by the fact that
 Win32 is the worst API ever. How do I lock a mutex? Well, first I
 declare a handle, then declare a mutex, then define the handle to point
 to the mutex, then attempt to lock the mutex, specifying a timeout
 interval, then check to see if the error on the acquisition is
 <code>ERROR_SUCCESS</code>. A crazy system which leads to crazy code.</p>
-
 <p>And that&rsquo;s not compatible with Posix, which is a much cleaner API.</p>
-
 <p>So, when C++11 was announced, I jumped with joy at the fact that
 multi-threading support was built into the language, and that the
 proposed interface was so much similar to the cleaner Posix API. C++11
@@ -555,11 +508,9 @@ me to atomically load, store and swap values. The only way this would be
 possible prior to C++11 was to declare a mutex for every atomic
 operation. Not a good idea, as it would lead to a tonne of mutexes, with
 large, irrelevant scope.</p>
-
 <p>The other, messier option would be to dive down into the assembly level
 of the target platform, and write in some assembly to atomically load or
 store some values.</p>
-
 <p>Combine the improved multi-threading and memory models in C++11 with
 CMake, and I get a nice cross platform code, which works on multiple
 platforms; well, almost. To be really sure, I need to test the code on
@@ -571,15 +522,13 @@ which are written syntactically incorrect, but I would not be aware of
 this until I actually tried to build on a system that leads to those
 conditions. Still, CMake does not, or should not make a bulk of the
 code.</p>
-
 <p>The usefulness of writing platform independent code was apparent when I
-worked on <a href="https://skandhurkat.com/project/emodetect/" target="_blank">EmoDetect</a>. I used Linux
+worked on <a href="https://skandhurkat.com/project/emodetect/">EmoDetect</a>. I used Linux
 (Ubuntu 12.04), Abhinandan used Mac and Ubuntu (12.10), and both Rishabh
 and Aayush used Windows (different versions here). Yet, we could
 collaborate perfectly (again, almost; the three of them had an
 inexplicable aversion to git, so we ended up passing files (not just
 patches (OMG!))).</p>
-
 <p>I&rsquo;d say that it&rsquo;s so important to write platform independent code. I&rsquo;ve
 been trying (unsuccessfully) to port Darktable to Windows; and while I&rsquo;m
 sure that it would not be too much effort to port the actual DT code,
@@ -587,7 +536,6 @@ I&rsquo;m stuck with compiling libraries, all of which were written for GNU,
 and Windows support was added later as a hack. Some of them don&rsquo;t
 compile, many need to be fixed, and that&rsquo;s holding up the process
 indefinitely.</p>
-
 <p>That and the fact that I now almost always use Ubuntu, which means that
 I don&rsquo;t really bother about Windows software any longer.</p>
 
@@ -670,42 +618,7 @@ I don&rsquo;t really bother about Windows software any longer.</p>
   </div>
 </article>
 
-<div class="container">
-  <footer class="site-footer">
-  
 
-  <p class="powered-by">
-    &copy; 2020 Skand Hurkat. All rights reserved. &middot; 
-  </p>
-</footer>
-
-</div>
-
-
-<div id="modal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Cite</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <pre><code class="tex hljs"></code></pre>
-      </div>
-      <div class="modal-footer">
-        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
-          <i class="fas fa-copy"></i> Copy
-        </a>
-        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
-          <i class="fas fa-download"></i> Download
-        </a>
-        <div id="modal-error"></div>
-      </div>
-    </div>
-  </div>
-</div>
 
     
 
@@ -802,7 +715,7 @@ I don&rsquo;t really bother about Windows software any longer.</p>
     
     
     
-    <script src="/js/academic.min.9c79bd36ad5b530cf8825d78d951c339.js"></script>
+    <script src="/js/academic.min.f579f291d0f0c7da58aa872f9aba5215.js"></script>
 
   </body>
 </html>

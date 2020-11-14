@@ -5,8 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="generator" content="Source Themes Academic 4.2.0">
-  <meta name="generator" content="Hugo 0.55.1" />
+  <meta name="generator" content="Source Themes Academic 4.2.5">
 
   
 
@@ -102,7 +101,7 @@ C&#43;&#43; assumes that if a constructor fails, then no memory is allocated for
     
     
     
-    <link rel="stylesheet" href="/css/academic.3302edf19991b3523ab9ba729c24e601.css">
+    <link rel="stylesheet" href="/css/academic.51da33ec68a1f05336705858a797eac3.css">
   
 
   
@@ -123,9 +122,6 @@ C&#43;&#43; assumes that if a constructor fails, then no memory is allocated for
   
   
 
-  
-  <link rel="alternate" href="https://skandhurkat.com/index.xml" type="application/rss+xml" title="Skand Hurkat">
-  <link rel="feed" href="https://skandhurkat.com/index.xml" type="application/rss+xml" title="Skand Hurkat">
   
 
   <link rel="manifest" href="/site.webmanifest">
@@ -454,51 +450,13 @@ C&#43;&#43; assumes that if a constructor fails, then no memory is allocated for
 
   
     
-<div class="share-box" aria-hidden="true">
-  <ul class="share">
-    <li>
-      <a class="twitter"
-         href="https://twitter.com/intent/tweet?text=A%20bug%20in%20how%20GCC%20handles%20constructors&amp;url=https%3a%2f%2fskandhurkat.com%2fpost%2fgcc-constructor-bug%2f"
-         target="_blank" rel="noopener">
-        <i class="fab fa-twitter"></i>
-      </a>
-    </li>
-    <li>
-      <a class="facebook"
-         href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fskandhurkat.com%2fpost%2fgcc-constructor-bug%2f"
-         target="_blank" rel="noopener">
-        <i class="fab fa-facebook-f"></i>
-      </a>
-    </li>
-    <li>
-      <a class="linkedin"
-         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fskandhurkat.com%2fpost%2fgcc-constructor-bug%2f&amp;title=A%20bug%20in%20how%20GCC%20handles%20constructors"
-         target="_blank" rel="noopener">
-        <i class="fab fa-linkedin-in"></i>
-      </a>
-    </li>
-    <li>
-      <a class="weibo"
-         href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fskandhurkat.com%2fpost%2fgcc-constructor-bug%2f&amp;title=A%20bug%20in%20how%20GCC%20handles%20constructors"
-         target="_blank" rel="noopener">
-        <i class="fab fa-weibo"></i>
-      </a>
-    </li>
-    <li>
-      <a class="email"
-         href="mailto:?subject=A%20bug%20in%20how%20GCC%20handles%20constructors&amp;body=https%3a%2f%2fskandhurkat.com%2fpost%2fgcc-constructor-bug%2f">
-        <i class="fas fa-envelope"></i>
-      </a>
-    </li>
-  </ul>
-</div>
-
 
   
 
 </div>
 
     
+
 
 
 
@@ -522,157 +480,137 @@ C&#43;&#43; assumes that if a constructor fails, then no memory is allocated for
   <div class="article-container">
 
     <div class="article-style" itemprop="articleBody">
-      <p>Some days ago, I became aware of <a href="https://akrzemi1.wordpress.com/2017/04/27/a-serious-bug-in-gcc/" target="_blank">a bug in
+      <p>Some days ago, I became aware of <a href="https://akrzemi1.wordpress.com/2017/04/27/a-serious-bug-in-gcc/">a bug in
 GCC</a>
 that has apparently existed since 2015. As this is a bug that deals with
 memory leaks, it is fairly serious.</p>
-
 <p>In this case, I really don&rsquo;t want to re-post the entire content of the
 source, so I will only list my experiments with reproducing the bug once
 I became aware of it.</p>
-
 <p>C++ assumes that if a constructor fails, then no memory is allocated for
 the object at all. This means that if a nested object was constructed,
 C++ will implicitly call the destructor for that object so that the
 programmer does not have to worry about partially constructed states.
 This bug in GCC exists because under certain circumstances, GCC fails
 this assumption.</p>
-
 <p>Let&rsquo;s start off with a simple example trying to reproduce this bug.</p>
-
-<pre><code class="language-c++">#include &lt;iostream&gt;
-#include &lt;exception&gt;
-
-class inner {
-private:
-    char* array;
-public:
-    inner() : array(new char[128])
-    {
-        std::cout &lt;&lt; &quot;inner constructed&quot; &lt;&lt; std::endl;
-    }
-    inner(const inner&amp; other) : array(other.array)
-    {
-        std::cout &lt;&lt; &quot;inner copy constructed&quot; &lt;&lt; std::endl;
-    }
-    ~inner()
-    {
-        delete[] array;
-        std::cout &lt;&lt; &quot;inner destructed&quot; &lt;&lt; std::endl;
-    }
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;exception&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">inner</span> {
+<span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+	<span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> array;
+<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+	inner() <span style="color:#f92672">:</span> array(<span style="color:#66d9ef">new</span> <span style="color:#66d9ef">char</span>[<span style="color:#ae81ff">128</span>])
+	{
+		std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;inner constructed&#34;</span> <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+	}
+	inner(<span style="color:#66d9ef">const</span> inner<span style="color:#f92672">&amp;</span> other) <span style="color:#f92672">:</span> array(other.array)
+	{
+		std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;inner copy constructed&#34;</span> <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+	}
+	<span style="color:#f92672">~</span>inner()
+	{
+		<span style="color:#66d9ef">delete</span>[] array;
+		std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;inner destructed&#34;</span> <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+	}
 };
 
-inner make_inner_1() {return inner();}
-inner make_inner_2() {throw std::runtime_error(&quot;exception&quot;);}
+inner <span style="color:#a6e22e">make_inner_1</span>() {<span style="color:#66d9ef">return</span> inner();}
+inner <span style="color:#a6e22e">make_inner_2</span>() {<span style="color:#66d9ef">throw</span> std<span style="color:#f92672">::</span>runtime_error(<span style="color:#e6db74">&#34;exception&#34;</span>);}
 
-struct outer {
-    inner i1;
-    inner i2;
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">outer</span> {
+	inner i1;
+	inner i2;
 };
 
-int main(void)
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
 {
-    try {
-        outer o{make_inner_1(), make_inner_2()};
-    }
-    catch (const std::exception&amp; e) {
-        std::cout &lt;&lt; &quot;Abort after exception &quot; &lt;&lt; e.what() &lt;&lt; std::endl;
-    }
-    return 0;
+	<span style="color:#66d9ef">try</span> {
+		outer o{make_inner_1(), make_inner_2()};
+	}
+	<span style="color:#66d9ef">catch</span> (<span style="color:#66d9ef">const</span> std<span style="color:#f92672">::</span>exception<span style="color:#f92672">&amp;</span> e) {
+		std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Abort after exception &#34;</span> <span style="color:#f92672">&lt;&lt;</span> e.what() <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+	}
+	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
-</code></pre>
-
-<p>Upon compiling and running this code, the output is</p>
-
+</code></pre></div><p>Upon compiling and running this code, the output is</p>
 <pre><code>inner constructed
 inner destructed
 Abort after exception exception
-</code></pre>
-
-<p>This behaviour is as is expected given C++ standards. The constructor
+</code></pre><p>This behaviour is as is expected given C++ standards. The constructor
 for object <code>outer</code> tries to construct <code>i1</code>, succeeds, then tries to
 construct <code>i2</code>, fails, and destructs <code>i1</code>.</p>
-
 <p>Well, what if we try to create a nameless temporary object?</p>
-
-<pre><code class="language-c++">#include &lt;iostream&gt;
-#include &lt;exception&gt;
-
-class inner {
-private:
-    char* array;
-public:
-    inner() : array(new char[128])
-    {
-        std::cout &lt;&lt; &quot;inner constructed&quot; &lt;&lt; std::endl;
-    }
-    inner(const inner&amp; other) : array(other.array)
-    {
-        std::cout &lt;&lt; &quot;inner copy constructed&quot; &lt;&lt; std::endl;
-    }
-    ~inner()
-    {
-        delete[] array;
-        std::cout &lt;&lt; &quot;inner destructed&quot; &lt;&lt; std::endl;
-    }
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;exception&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">inner</span> {
+<span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+	<span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> array;
+<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+	inner() <span style="color:#f92672">:</span> array(<span style="color:#66d9ef">new</span> <span style="color:#66d9ef">char</span>[<span style="color:#ae81ff">128</span>])
+	{
+		std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;inner constructed&#34;</span> <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+	}
+	inner(<span style="color:#66d9ef">const</span> inner<span style="color:#f92672">&amp;</span> other) <span style="color:#f92672">:</span> array(other.array)
+	{
+		std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;inner copy constructed&#34;</span> <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+	}
+	<span style="color:#f92672">~</span>inner()
+	{
+		<span style="color:#66d9ef">delete</span>[] array;
+		std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;inner destructed&#34;</span> <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+	}
 };
 
-inner make_inner_1() {return inner();}
-inner make_inner_2() {throw std::runtime_error(&quot;exception&quot;);}
+inner <span style="color:#a6e22e">make_inner_1</span>() {<span style="color:#66d9ef">return</span> inner();}
+inner <span style="color:#a6e22e">make_inner_2</span>() {<span style="color:#66d9ef">throw</span> std<span style="color:#f92672">::</span>runtime_error(<span style="color:#e6db74">&#34;exception&#34;</span>);}
 
-struct outer {
-    inner i1;
-    inner i2;
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">outer</span> {
+	inner i1;
+	inner i2;
 };
 
-struct foo {
-    outer o;
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">foo</span> {
+	outer o;
 };
 
-int main(void)
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
 {
-    try {
-        foo{outer({make_inner_1(), make_inner_2()})};
-    }
-    catch (const std::exception&amp; e) {
-        std::cout &lt;&lt; &quot;Abort after exception &quot; &lt;&lt; e.what() &lt;&lt; std::endl;
-    }
-    return 0;
+	<span style="color:#66d9ef">try</span> {
+		foo{outer({make_inner_1(), make_inner_2()})};
+	}
+	<span style="color:#66d9ef">catch</span> (<span style="color:#66d9ef">const</span> std<span style="color:#f92672">::</span>exception<span style="color:#f92672">&amp;</span> e) {
+		std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Abort after exception &#34;</span> <span style="color:#f92672">&lt;&lt;</span> e.what() <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+	}
+	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
-</code></pre>
-
-<p>In this case, the output is</p>
-
+</code></pre></div><p>In this case, the output is</p>
 <pre><code>inner constructed
 Abort after exception exception
-</code></pre>
-
-<p>This introduces a memory leak, because while <code>i1</code> is constructed, it is
+</code></pre><p>This introduces a memory leak, because while <code>i1</code> is constructed, it is
 never destroyed. If I compile using clang (version 3.8.0-2ubuntu4), the
 expected output is still correct.</p>
-
 <pre><code>inner constructed
 inner destructed
 Abort after exception exception
-</code></pre>
-
-<p>The fact that this bug has remained unresolved for over two years is
+</code></pre><p>The fact that this bug has remained unresolved for over two years is
 surprising. At this point, I&rsquo;m tempted to point out a paper by Ken
-Thompson, <em><a href="https://doi.org/10.1145/358198.358210" target="_blank">Reflections on trusting
+Thompson, <em><a href="https://doi.org/10.1145/358198.358210">Reflections on trusting
 trust</a></em>, which points out that an
 untrustworthy compiler could introduce a bug in all or a few select
 programs that it compiles. Moreover, the compiler could be engineered to
 introduce a bug in its own binary, so compiling the compiler from source
 wouldn&rsquo;t help either.</p>
-
 <p>This is a subtle bug that took me some time to reproduce. However, I can
 easily imagine how frustrating it could be if this bug were to manifest
 in a larger program that would show up through the use of <code>memcheck</code> or
 a similar tool. In the meanwhile, we cannot do much except wait for a
 patch. This bug hasn&rsquo;t shown up yet in code I&rsquo;ve written, but I can
-always switch my build system to clang/Makefiles (the joys of <a href="https://skandhurkat.com/post/why-i-like-cpp11/" target="_blank">writing
+always switch my build system to clang/Makefiles (the joys of <a href="https://skandhurkat.com/post/why-i-like-cpp11/">writing
 platform-independent code</a>
-with <a href="https://skandhurkat.com/post/autohell-v-cmake/" target="_blank">CMake as a build system</a>).</p>
+with <a href="https://skandhurkat.com/post/autohell-v-cmake/">CMake as a build system</a>).</p>
 
     </div>
 
@@ -755,42 +693,7 @@ with <a href="https://skandhurkat.com/post/autohell-v-cmake/" target="_blank">CM
   </div>
 </article>
 
-<div class="container">
-  <footer class="site-footer">
-  
 
-  <p class="powered-by">
-    &copy; 2020 Skand Hurkat. All rights reserved. &middot; 
-  </p>
-</footer>
-
-</div>
-
-
-<div id="modal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Cite</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <pre><code class="tex hljs"></code></pre>
-      </div>
-      <div class="modal-footer">
-        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
-          <i class="fas fa-copy"></i> Copy
-        </a>
-        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
-          <i class="fas fa-download"></i> Download
-        </a>
-        <div id="modal-error"></div>
-      </div>
-    </div>
-  </div>
-</div>
 
     
 
@@ -887,7 +790,7 @@ with <a href="https://skandhurkat.com/post/autohell-v-cmake/" target="_blank">CM
     
     
     
-    <script src="/js/academic.min.9c79bd36ad5b530cf8825d78d951c339.js"></script>
+    <script src="/js/academic.min.f579f291d0f0c7da58aa872f9aba5215.js"></script>
 
   </body>
 </html>

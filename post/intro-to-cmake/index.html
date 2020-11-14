@@ -5,8 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="generator" content="Source Themes Academic 4.2.0">
-  <meta name="generator" content="Hugo 0.55.1" />
+  <meta name="generator" content="Source Themes Academic 4.2.5">
 
   
 
@@ -101,7 +100,7 @@ But before we do, let&rsquo;s start with an example of why other build systems s
     
     
     
-    <link rel="stylesheet" href="/css/academic.3302edf19991b3523ab9ba729c24e601.css">
+    <link rel="stylesheet" href="/css/academic.51da33ec68a1f05336705858a797eac3.css">
   
 
   
@@ -122,9 +121,6 @@ But before we do, let&rsquo;s start with an example of why other build systems s
   
   
 
-  
-  <link rel="alternate" href="https://skandhurkat.com/index.xml" type="application/rss+xml" title="Skand Hurkat">
-  <link rel="feed" href="https://skandhurkat.com/index.xml" type="application/rss+xml" title="Skand Hurkat">
   
 
   <link rel="manifest" href="/site.webmanifest">
@@ -452,51 +448,13 @@ But before we do, let&rsquo;s start with an example of why other build systems s
 
   
     
-<div class="share-box" aria-hidden="true">
-  <ul class="share">
-    <li>
-      <a class="twitter"
-         href="https://twitter.com/intent/tweet?text=Introduction%20to%20CMake&amp;url=https%3a%2f%2fskandhurkat.com%2fpost%2fintro-to-cmake%2f"
-         target="_blank" rel="noopener">
-        <i class="fab fa-twitter"></i>
-      </a>
-    </li>
-    <li>
-      <a class="facebook"
-         href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fskandhurkat.com%2fpost%2fintro-to-cmake%2f"
-         target="_blank" rel="noopener">
-        <i class="fab fa-facebook-f"></i>
-      </a>
-    </li>
-    <li>
-      <a class="linkedin"
-         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fskandhurkat.com%2fpost%2fintro-to-cmake%2f&amp;title=Introduction%20to%20CMake"
-         target="_blank" rel="noopener">
-        <i class="fab fa-linkedin-in"></i>
-      </a>
-    </li>
-    <li>
-      <a class="weibo"
-         href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fskandhurkat.com%2fpost%2fintro-to-cmake%2f&amp;title=Introduction%20to%20CMake"
-         target="_blank" rel="noopener">
-        <i class="fab fa-weibo"></i>
-      </a>
-    </li>
-    <li>
-      <a class="email"
-         href="mailto:?subject=Introduction%20to%20CMake&amp;body=https%3a%2f%2fskandhurkat.com%2fpost%2fintro-to-cmake%2f">
-        <i class="fas fa-envelope"></i>
-      </a>
-    </li>
-  </ul>
-</div>
-
 
   
 
 </div>
 
     
+
 
 
 
@@ -522,15 +480,14 @@ But before we do, let&rsquo;s start with an example of why other build systems s
   <div class="article-container">
 
     <div class="article-style" itemprop="articleBody">
-      <p><a href="//cmake.org" target="_blank">CMake</a> is cross-platform build and configuration system
+      <p><a href="//cmake.org">CMake</a> is cross-platform build and configuration system
 for C and C++ code, which also happens to be my favourite build system.
 In this post, I&rsquo;ll present a quick tutorial on getting started with
 CMake.</p>
-
 <p>But before we do, let&rsquo;s start with an example of why other build systems
 such as Makefiles don&rsquo;t necessarily cut it. Actually, Makefiles work
 fairly well, but writing Makefiles by hand is generally a pain in the
-neck. In <a href="https://skandhurkat.com/post/makefile-dependencies/" target="_blank">a previous post</a>,
+neck. In <a href="https://skandhurkat.com/post/makefile-dependencies/">a previous post</a>,
 I described how to write Makefiles that take include file dependencies
 into account. If that post did not convince you that writing Makefiles
 is hard, let me show you another example of a terrible Makefile and hope
@@ -539,59 +496,55 @@ Makefile was actually part of a project that was handed over to me, I
 had to go over tonnes of other people&rsquo;s code with comments written in
 non-ascii characters in a language that wasn&rsquo;t English, so I clearly
 don&rsquo;t have fond memories of this particular project.)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Makefile" data-lang="Makefile"><span style="color:#75715e">## Compiler + Linker
+</span><span style="color:#75715e"></span>CC <span style="color:#f92672">=</span> g++
+LD <span style="color:#f92672">=</span> g++
 
-<pre><code class="language-Makefile">## Compiler + Linker
-CC = g++
-LD = g++
+<span style="color:#75715e">## external .h files to bring in
+</span><span style="color:#75715e"></span>EXTRA_INCLUDES <span style="color:#f92672">=</span> 
+CCFLAGS <span style="color:#f92672">=</span> -g -Wno-deprecated -I/opt/local/include/ -I/opt/local/include/opencv/ -I./GMM/ -I./MaxFlow/ -I./MeanShift/ 
+LDFLAGS <span style="color:#f92672">=</span> -L/opt/local/lib
+<span style="color:#75715e">#LIBS = -lcv -lcxcore -lhighgui -lcvaux #-lml 
+</span><span style="color:#75715e"># for macs
+</span><span style="color:#75715e"></span>LIBS <span style="color:#f92672">=</span> -lopencv_core -lopencv_highgui <span style="color:#75715e">#-lcvaux -lml </span>
 
-## external .h files to bring in
-EXTRA_INCLUDES = 
-CCFLAGS = -g -Wno-deprecated -I/opt/local/include/ -I/opt/local/include/opencv/ -I./GMM/ -I./MaxFlow/ -I./MeanShift/ 
-LDFLAGS = -L/opt/local/lib
-#LIBS = -lcv -lcxcore -lhighgui -lcvaux #-lml 
-# for macs
-LIBS = -lopencv_core -lopencv_highgui #-lcvaux -lml 
+<span style="color:#75715e">## sources
+</span><span style="color:#75715e"></span>CCFILES_GMM <span style="color:#f92672">=</span> <span style="color:#75715e">#### Some files</span>
+CCFILES_MAXFLOW <span style="color:#f92672">=</span> <span style="color:#75715e">#### Some more files</span>
+CCFILES_MEANSHIFT <span style="color:#f92672">=</span> <span style="color:#75715e">#### Holy shit, even more files</span>
+CCFILES <span style="color:#f92672">=</span> <span style="color:#66d9ef">$(</span>CCFILES_GMM<span style="color:#66d9ef">)</span> <span style="color:#66d9ef">$(</span>CCFILES_MAXFLOW<span style="color:#66d9ef">)</span> <span style="color:#66d9ef">$(</span>CCFILES_MEANSHIFT<span style="color:#66d9ef">)</span> <span style="color:#75715e">#### And even more files</span>
+PROGFILE <span style="color:#f92672">=</span> main.cpp <span style="color:#75715e">#### Seriously, how many files?</span>
 
-## sources
-CCFILES_GMM = #### Some files
-CCFILES_MAXFLOW = #### Some more files
-CCFILES_MEANSHIFT = #### Holy shit, even more files
-CCFILES = $(CCFILES_GMM) $(CCFILES_MAXFLOW) $(CCFILES_MEANSHIFT) #### And even more files
-PROGFILE = main.cpp #### Seriously, how many files?
+<span style="color:#75715e">## object compilation
+</span><span style="color:#75715e"></span>PROGOBJS <span style="color:#f92672">=</span> <span style="color:#66d9ef">$(</span>CCFILES:.cpp<span style="color:#f92672">=</span>.o<span style="color:#66d9ef">)</span> <span style="color:#66d9ef">$(</span>PROGFILE:.cpp<span style="color:#f92672">=</span>.o<span style="color:#66d9ef">)</span>
 
-## object compilation
-PROGOBJS = $(CCFILES:.cpp=.o) $(PROGFILE:.cpp=.o)
+<span style="color:#75715e">## binary compilation
+</span><span style="color:#75715e"></span>PROG <span style="color:#f92672">=</span> BOO
 
-## binary compilation
-PROG = BOO
+<span style="color:#a6e22e">all</span><span style="color:#f92672">:</span>
+	@echo <span style="color:#e6db74">&#34;-&gt; Building </span><span style="color:#66d9ef">$(</span>PROG<span style="color:#66d9ef">)</span><span style="color:#e6db74"> executable...&#34;</span>
+<span style="color:#75715e">#	@make .cpp.o
+</span><span style="color:#75715e"></span>	@make <span style="color:#66d9ef">$(</span>PROG<span style="color:#66d9ef">)</span> 
 
-all:
-    @echo &quot;-&gt; Building $(PROG) executable...&quot;
-#   @make .cpp.o
-    @make $(PROG) 
+<span style="color:#a6e22e">.cpp.o</span><span style="color:#f92672">:</span>
+	<span style="color:#66d9ef">$(</span>CC<span style="color:#66d9ef">)</span> <span style="color:#66d9ef">$(</span>CCFLAGS<span style="color:#66d9ef">)</span> <span style="color:#66d9ef">$(</span>EXTRA_INCLUDES<span style="color:#66d9ef">)</span> -c -o $@ $^
 
-.cpp.o:
-    $(CC) $(CCFLAGS) $(EXTRA_INCLUDES) -c -o $@ $^
+<span style="color:#75715e">#$(PROGOBJS):
+</span><span style="color:#75715e">#	$(CC) $(CCFLAGS) $(EXTRA_INCLUDES) -c -o $@ $^
+</span><span style="color:#75715e"></span>
+<span style="color:#a6e22e">$(PROG)</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">$(</span>PROGOBJS<span style="color:#66d9ef">)</span>
+	<span style="color:#66d9ef">$(</span>LD<span style="color:#66d9ef">)</span> <span style="color:#66d9ef">$(</span>LDFLAGS<span style="color:#66d9ef">)</span> <span style="color:#66d9ef">$(</span>LIBS<span style="color:#66d9ef">)</span> <span style="color:#66d9ef">$(</span>PROGOBJS<span style="color:#66d9ef">)</span> -o <span style="color:#66d9ef">$(</span>PROG<span style="color:#66d9ef">)</span> <span style="color:#75715e">#$(PROGOBJS) $(LDFLAGS) $(LIBS)</span>
 
-#$(PROGOBJS):
-#   $(CC) $(CCFLAGS) $(EXTRA_INCLUDES) -c -o $@ $^
-
-$(PROG): $(PROGOBJS)
-    $(LD) $(LDFLAGS) $(LIBS) $(PROGOBJS) -o $(PROG) #$(PROGOBJS) $(LDFLAGS) $(LIBS)
-
-#$(PROG): $(CCFILES)
-#   $(CC) $(CCFLAGS) $(EXTRA_INCLUDES) $(LDFLAGS) $(LIBS) -o $@ $^
-
-clean:
-    @echo &quot;-&gt; Cleaning...&quot;
-    rm -f $(PROG) $(PROGOBJS) 
-</code></pre>
-
-<p>There&rsquo;s just so much to hate about this Makefile. First, it is almost
+<span style="color:#75715e">#$(PROG): $(CCFILES)
+</span><span style="color:#75715e">#	$(CC) $(CCFLAGS) $(EXTRA_INCLUDES) $(LDFLAGS) $(LIBS) -o $@ $^
+</span><span style="color:#75715e"></span>
+<span style="color:#a6e22e">clean</span><span style="color:#f92672">:</span>
+	@echo <span style="color:#e6db74">&#34;-&gt; Cleaning...&#34;</span>
+	rm -f <span style="color:#66d9ef">$(</span>PROG<span style="color:#66d9ef">)</span> <span style="color:#66d9ef">$(</span>PROGOBJS<span style="color:#66d9ef">)</span> 
+</code></pre></div><p>There&rsquo;s just so much to hate about this Makefile. First, it is almost
 unreadable. Second, it does not account for any header file
 dependencies. In fact, if any of the header files change, there&rsquo;s no way
-for the system to detect this at all, forcing the user to type in <code>make
-clean</code>, then <code>make</code> to make everything all over again. Third, given the
+for the system to detect this at all, forcing the user to type in <code>make clean</code>, then <code>make</code> to make everything all over again. Third, given the
 sheer number of files, make will take minutes to run, which kills
 productivity. Fourth, if you look closely at the path, you will observe
 that the person writing this Makefile used a Mac with MacPorts and
@@ -601,41 +554,30 @@ won&rsquo;t work for another Mac user who used HomeBrew or compiled OpenCV
 from source. Sixth, some rules are just commented out, which indicates
 sloppy behaviour. Writing Makefiles like this just sucks. It sucks
 productivity and makes me think of slow and painful death.</p>
-
 <p>The first thing I did when I was handed this project was to fix the
 build system, and CMake came to the rescue here. I&rsquo;ll now show how I
 replaced this terrible Makefile with a clean, modular CMake build system
 that replicated the effects of the Makefile (without the bugs, of course
 😄). Hopefully, the ease of setting up this CMake system will
 convince you to never write a Makefile again.</p>
-
 <p>As a dive into CMake, let&rsquo;s start with a simple &lsquo;Hello World&rsquo; program.
 The <code>helloworld.cc</code> file contains the following code:</p>
-
-<pre><code class="language-C++">#include &lt;iostream&gt;
-
-int main(void)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
 {
-    std::cout &lt;&lt; &quot;Hello World&quot; &lt;&lt; std::endl;
-    return 0;
+	std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Hello World&#34;</span> <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
-</code></pre>
-
-<p>To compile this code, create a file called <code>CMakeLists.txt</code>:</p>
-
-<pre><code class="language-CMake">add_executable(hello helloworld.cc)
-</code></pre>
-
-<p>Now, assuming that you are running on Linux or Mac OS terminal
+</code></pre></div><p>To compile this code, create a file called <code>CMakeLists.txt</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-CMake" data-lang="CMake">add_executable(<span style="color:#e6db74">hello</span> <span style="color:#e6db74">helloworld.cc</span>)<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p>Now, assuming that you are running on Linux or Mac OS terminal
 (something with bash), you can execute the following commands:</p>
-
-<pre><code class="language-bash">mkdir build;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkdir build;
 cd build;
 cmake ..;
 make;
-</code></pre>
-
-<p>This code creates a directory called build inside the project directory.
+</code></pre></div><p>This code creates a directory called build inside the project directory.
 (An important point to note is that CMake always builds &lsquo;out of source&rsquo;,
 i.e. the build directory must be a distinct directory from the source
 directory.) It then switches to the build directory, executes CMake,
@@ -645,14 +587,11 @@ files are generated by a tool and not written by a person, you never
 have to read them, so Makefile readability is not a concern.  Second,
 the Makefiles encode all the dependencies correctly, so there&rsquo;s no
 reason to go through the hoops creating complex dependency files.</p>
-
 <p>&lsquo;But what if I&rsquo;m on Windows, or if I just am the kind of person who is
 always wrong and uses CodeBlocks, Xcode, or another IDE?&rsquo; you ask. Well,
 hold on till the end, I&rsquo;ll show you how CMake has you covered.</p>
-
 <p>Anyway, back to our hypothetical, but totally real project. The project
 has multiple source files in different directories.</p>
-
 <dl>
 <dt>GMM</dt>
 <dd>contains files that implement a Gaussian mixture models code.</dd>
@@ -661,117 +600,91 @@ has multiple source files in different directories.</p>
 <dt>MEANSHIFT</dt>
 <dd>contains files for mean shift (cluster analysis).</dd>
 </dl>
-
 <p>All these codes are independent, so could be made into libraries. Of
 course, actually packaging this code as independent libraries is a
 terrible idea because the code isn&rsquo;t well written in the first place.
 However, I don&rsquo;t see too much harm in creating a static library that
 will probably never be distributed for code in each of these
 directories.</p>
-
 <p>We can create a <code>CMakeLists.txt</code> file for each of these folders. The
 CMakeLists will contain code that looks like this:</p>
-
-<pre><code class="language-CMake">add_library(# Library name
-STATIC # Need to create a static library, not a shared one.
-### List of files
-)
-</code></pre>
-
-<p>Then the top-level CMakeLists.txt can include these directories through
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-CMake" data-lang="CMake">add_library(<span style="color:#75715e"># Library name
+</span><span style="color:#75715e"></span><span style="color:#e6db74">STATIC</span> <span style="color:#75715e"># Need to create a static library, not a shared one.
+</span><span style="color:#75715e">### List of files
+</span><span style="color:#75715e"></span>)<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p>Then the top-level CMakeLists.txt can include these directories through
 the simple command:</p>
-
-<pre><code class="language-CMake"># Tell CMake to look into subdirectories for CMakeLists.txt files.
-subdirs(GMM MAXFLOW MEANSHIFT)
-# Add these directories to the compiler search path for include files.
-# ${PROJECT_SOURCE_DIR} is the path to the source code in the project.
-include_directories(
-    ${PROJECT_SOURCE_DIR}/GMM
-    ${PROJECT_SOURCE_DIR}/MAXFLOW
-    ${PROJECT_SOURCE_DIR}/MEANSHIFT
-    )
-</code></pre>
-
-<p>Okay, but we also notice that the top-level program <code>PROG</code> needs OpenCV
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-CMake" data-lang="CMake"><span style="color:#75715e"># Tell CMake to look into subdirectories for CMakeLists.txt files.
+</span><span style="color:#75715e"></span>subdirs(<span style="color:#e6db74">GMM</span> <span style="color:#e6db74">MAXFLOW</span> <span style="color:#e6db74">MEANSHIFT</span>)<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># Add these directories to the compiler search path for include files.
+</span><span style="color:#75715e"># ${PROJECT_SOURCE_DIR} is the path to the source code in the project.
+</span><span style="color:#75715e"></span>include_directories(
+	<span style="color:#f92672">${</span>PROJECT_SOURCE_DIR<span style="color:#f92672">}</span><span style="color:#e6db74">/GMM</span>
+	<span style="color:#f92672">${</span>PROJECT_SOURCE_DIR<span style="color:#f92672">}</span><span style="color:#e6db74">/MAXFLOW</span>
+	<span style="color:#f92672">${</span>PROJECT_SOURCE_DIR<span style="color:#f92672">}</span><span style="color:#e6db74">/MEANSHIFT</span>
+	)<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p>Okay, but we also notice that the top-level program <code>PROG</code> needs OpenCV
 in order to compile. CMake provides a very easy method to search for
 dependencies. In the top-level <code>CMakeLists.txt</code>, we add</p>
-
-<pre><code class="language-CMake">find_package(OpenCV REQUIRED)
-</code></pre>
-
-<p>When we compile the program <code>PROG</code>, we need to link it against the
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-CMake" data-lang="CMake">find_package(<span style="color:#e6db74">OpenCV</span> <span style="color:#e6db74">REQUIRED</span>)<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p>When we compile the program <code>PROG</code>, we need to link it against the
 OpenCV libraries, as well as the static libraries in the GMM, MAXFLOW,
 MEANSHIFT folders.</p>
-
-<pre><code class="language-CMake">include_directories(${OpenCV_INCLUDE_DIRS})
-add_executable(PROG PROG.cc)
-target_link_libraries(PROG ${OpenCV_LIBS} GMM MAXFLOW MEANSHIFT)
-</code></pre>
-
-<p>Putting it all together, the top-level <code>CMakeLists.txt</code> contains the
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-CMake" data-lang="CMake">include_directories(<span style="color:#f92672">${</span>OpenCV_INCLUDE_DIRS<span style="color:#f92672">}</span>)<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>add_executable(<span style="color:#e6db74">PROG</span> <span style="color:#e6db74">PROG.cc</span>)<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>target_link_libraries(<span style="color:#e6db74">PROG</span> <span style="color:#f92672">${</span>OpenCV_LIBS<span style="color:#f92672">}</span> <span style="color:#e6db74">GMM</span> <span style="color:#e6db74">MAXFLOW</span> <span style="color:#e6db74">MEANSHIFT</span>)<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p>Putting it all together, the top-level <code>CMakeLists.txt</code> contains the
 following code:</p>
-
-<pre><code class="language-CMake"># Set a minimum version of CMake to be used, depending on the syntax of
-# the CMakeLists files.
-cmake_minimum_required(VERSION 2)
-# Give this project a cutsie name.
-project(PROG)
-# CMake subdirectories to include for these libraries.
-subdirs(GMM MAXFLOW MEANSHIFT)
-# Search for OpenCV. If OpenCV is found, the command sets the
-# ${OpenCV_INCLUDE_DIR} and ${OpenCV_LIBS} variables to appropriate
-# values. If OpenCV is not found, CMake will fail.
-find_package(OpenCV REQUIRED)
-# Tell the compiler to search these directories for include files.
-include_directories(
-    ${PROJECT_SOURCE_DIR}/GMM
-    ${PROJECT_SOURCE_DIR}/MAXFLOW
-    ${PROJECT_SOURCE_DIR}/MEANSHIFT
-    ${OpenCV_INCLUDE_DIR}
-    )
-# Finally, create the executable that we want.
-add_executable(PROG PROG.cc)
-# And link it against the required libraries.
-target_link_libraries(prog ${OpenCV_LIBS} GMM MAXFLOW MEANSHIFT)
-</code></pre>
-
-<p>And we&rsquo;re done! Isn&rsquo;t this CMakeLists.txt file so much more readable
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-CMake" data-lang="CMake"><span style="color:#75715e"># Set a minimum version of CMake to be used, depending on the syntax of
+</span><span style="color:#75715e"># the CMakeLists files.
+</span><span style="color:#75715e"></span>cmake_minimum_required(<span style="color:#e6db74">VERSION</span> <span style="color:#e6db74">2</span>)<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># Give this project a cutsie name.
+</span><span style="color:#75715e"></span>project(<span style="color:#e6db74">PROG</span>)<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># CMake subdirectories to include for these libraries.
+</span><span style="color:#75715e"></span>subdirs(<span style="color:#e6db74">GMM</span> <span style="color:#e6db74">MAXFLOW</span> <span style="color:#e6db74">MEANSHIFT</span>)<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># Search for OpenCV. If OpenCV is found, the command sets the
+</span><span style="color:#75715e"># ${OpenCV_INCLUDE_DIR} and ${OpenCV_LIBS} variables to appropriate
+</span><span style="color:#75715e"># values. If OpenCV is not found, CMake will fail.
+</span><span style="color:#75715e"></span>find_package(<span style="color:#e6db74">OpenCV</span> <span style="color:#e6db74">REQUIRED</span>)<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># Tell the compiler to search these directories for include files.
+</span><span style="color:#75715e"></span>include_directories(
+	<span style="color:#f92672">${</span>PROJECT_SOURCE_DIR<span style="color:#f92672">}</span><span style="color:#e6db74">/GMM</span>
+	<span style="color:#f92672">${</span>PROJECT_SOURCE_DIR<span style="color:#f92672">}</span><span style="color:#e6db74">/MAXFLOW</span>
+	<span style="color:#f92672">${</span>PROJECT_SOURCE_DIR<span style="color:#f92672">}</span><span style="color:#e6db74">/MEANSHIFT</span>
+	<span style="color:#f92672">${</span>OpenCV_INCLUDE_DIR<span style="color:#f92672">}</span>
+	)<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># Finally, create the executable that we want.
+</span><span style="color:#75715e"></span>add_executable(<span style="color:#e6db74">PROG</span> <span style="color:#e6db74">PROG.cc</span>)<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># And link it against the required libraries.
+</span><span style="color:#75715e"></span>target_link_libraries(<span style="color:#e6db74">prog</span> <span style="color:#f92672">${</span>OpenCV_LIBS<span style="color:#f92672">}</span> <span style="color:#e6db74">GMM</span> <span style="color:#e6db74">MAXFLOW</span> <span style="color:#e6db74">MEANSHIFT</span>)<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p>And we&rsquo;re done! Isn&rsquo;t this CMakeLists.txt file so much more readable
 than the Makefile shown earlier? Not just that, this system will work
 with any OS, any compiler, any platform. Isn&rsquo;t this great?</p>
-
 <p>Okay, okay, you&rsquo;re the kind that likes to do things in an IDE. CMake has
 a concept of
-&lsquo;<a href="//cmake.org/cmake/help/v3.0/manual/cmake-generators.7.html" target="_blank">generators</a>&rsquo;,
+&lsquo;<a href="//cmake.org/cmake/help/v3.0/manual/cmake-generators.7.html">generators</a>&rsquo;,
 which is just a fancy name for a backend. Still assuming that we are on
 MacOS or Linux, we simply execute the following commands.</p>
-
-<pre><code class="language-bash">mkdir build;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkdir build;
 cd build;
-cmake -G &quot;Xcode&quot; .. # Or CodeBlocks, or whatever.
-</code></pre>
-
-<p>On Windows, execute the following commands on the command prompt
+cmake -G <span style="color:#e6db74">&#34;Xcode&#34;</span> .. <span style="color:#75715e"># Or CodeBlocks, or whatever.</span>
+</code></pre></div><p>On Windows, execute the following commands on the command prompt
 (assuming that CMake is on your path) to create a Visual Studio 2015
 project.</p>
-
-<pre><code class="language-PowerShell">md build
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-PowerShell" data-lang="PowerShell">md build
 cd build
-cmake -G &quot;Visual Studio 14&quot; ..
-</code></pre>
-
-<p>Oh, did I mention that CMake also has a nice GUI that makes this entire
+cmake -G <span style="color:#e6db74">&#34;Visual Studio 14&#34;</span> ..
+</code></pre></div><p>Oh, did I mention that CMake also has a nice GUI that makes this entire
 process super easy? I won&rsquo;t describe it here, I&rsquo;ll just let you try it
 out for yourself.</p>
-
 <p>The utility of CMake, however, doesn&rsquo;t just end here. CMake has a very
 neat testing system called CTest, which is something that I have
-mentioned in <a href="https://skandhurkat.com/post/intro-to-ctest/" target="_blank">an earlier post</a>.
+mentioned in <a href="https://skandhurkat.com/post/intro-to-ctest/">an earlier post</a>.
 This testing system interacts perfectly with a dashboard system called
 CDash, that can quickly allow people to view test results. CTest/CDash
 also has support for testing memory leaks and code coverage, so there.
 Finally, the last piece of the puzzle is CPack, which is a way of
 packaging software into installers.</p>
-
 <p>The next post in the series will probably deal with advanced CMake
 configuration, including testing compiler versions, creating release and
 debug configurations. Until next time&hellip;</p>
@@ -861,42 +774,7 @@ debug configurations. Until next time&hellip;</p>
   </div>
 </article>
 
-<div class="container">
-  <footer class="site-footer">
-  
 
-  <p class="powered-by">
-    &copy; 2020 Skand Hurkat. All rights reserved. &middot; 
-  </p>
-</footer>
-
-</div>
-
-
-<div id="modal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Cite</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <pre><code class="tex hljs"></code></pre>
-      </div>
-      <div class="modal-footer">
-        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
-          <i class="fas fa-copy"></i> Copy
-        </a>
-        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
-          <i class="fas fa-download"></i> Download
-        </a>
-        <div id="modal-error"></div>
-      </div>
-    </div>
-  </div>
-</div>
 
     
 
@@ -993,7 +871,7 @@ debug configurations. Until next time&hellip;</p>
     
     
     
-    <script src="/js/academic.min.9c79bd36ad5b530cf8825d78d951c339.js"></script>
+    <script src="/js/academic.min.f579f291d0f0c7da58aa872f9aba5215.js"></script>
 
   </body>
 </html>

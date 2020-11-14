@@ -5,8 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="generator" content="Source Themes Academic 4.2.0">
-  <meta name="generator" content="Hugo 0.55.1" />
+  <meta name="generator" content="Source Themes Academic 4.2.5">
 
   
 
@@ -105,7 +104,7 @@ system using CTest.">
     
     
     
-    <link rel="stylesheet" href="/css/academic.3302edf19991b3523ab9ba729c24e601.css">
+    <link rel="stylesheet" href="/css/academic.51da33ec68a1f05336705858a797eac3.css">
   
 
   
@@ -126,9 +125,6 @@ system using CTest.">
   
   
 
-  
-  <link rel="alternate" href="https://skandhurkat.com/index.xml" type="application/rss+xml" title="Skand Hurkat">
-  <link rel="feed" href="https://skandhurkat.com/index.xml" type="application/rss+xml" title="Skand Hurkat">
   
 
   <link rel="manifest" href="/site.webmanifest">
@@ -460,51 +456,13 @@ system using CTest."><meta property="og:image" content="https://skandhurkat.com/
 
   
     
-<div class="share-box" aria-hidden="true">
-  <ul class="share">
-    <li>
-      <a class="twitter"
-         href="https://twitter.com/intent/tweet?text=An%20Introduction%20to%20CTest&amp;url=https%3a%2f%2fskandhurkat.com%2fpost%2fintro-to-ctest%2f"
-         target="_blank" rel="noopener">
-        <i class="fab fa-twitter"></i>
-      </a>
-    </li>
-    <li>
-      <a class="facebook"
-         href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fskandhurkat.com%2fpost%2fintro-to-ctest%2f"
-         target="_blank" rel="noopener">
-        <i class="fab fa-facebook-f"></i>
-      </a>
-    </li>
-    <li>
-      <a class="linkedin"
-         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fskandhurkat.com%2fpost%2fintro-to-ctest%2f&amp;title=An%20Introduction%20to%20CTest"
-         target="_blank" rel="noopener">
-        <i class="fab fa-linkedin-in"></i>
-      </a>
-    </li>
-    <li>
-      <a class="weibo"
-         href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fskandhurkat.com%2fpost%2fintro-to-ctest%2f&amp;title=An%20Introduction%20to%20CTest"
-         target="_blank" rel="noopener">
-        <i class="fab fa-weibo"></i>
-      </a>
-    </li>
-    <li>
-      <a class="email"
-         href="mailto:?subject=An%20Introduction%20to%20CTest&amp;body=https%3a%2f%2fskandhurkat.com%2fpost%2fintro-to-ctest%2f">
-        <i class="fas fa-envelope"></i>
-      </a>
-    </li>
-  </ul>
-</div>
-
 
   
 
 </div>
 
     
+
 
 
 
@@ -528,14 +486,13 @@ system using CTest."><meta property="og:image" content="https://skandhurkat.com/
   <div class="article-container">
 
     <div class="article-style" itemprop="articleBody">
-      <p>I&rsquo;ve seen a lot of people (I&rsquo;m looking at you <a href="//lemire.me" target="_blank">Daniel
+      <p>I&rsquo;ve seen a lot of people (I&rsquo;m looking at you <a href="//lemire.me">Daniel
 Lemire</a>) praise newer languages like <em>Go</em>, which makes me
 sad as a C++ programmer. Well, that&rsquo;s until I realise that most of the
 features touted could be easily incorporated in C++ with just a bit of
 elbow grease. In this post, I&rsquo;ll show how to add an automated testing
 system using CTest.</p>
-
-<p>I love <a href="//cmake.org/" target="_blank">CMake</a>, it allows me to <a href="https://skandhurkat.com/post/autohell-v-cmake/" target="_blank">write cross-platform</a> code and be <a href="https://skandhurkat.com/post/why-i-like-cpp11/" target="_blank">confident that the
+<p>I love <a href="//cmake.org/">CMake</a>, it allows me to <a href="https://skandhurkat.com/post/autohell-v-cmake/">write cross-platform</a> code and be <a href="https://skandhurkat.com/post/why-i-like-cpp11/">confident that the
 build system would work across a choice of compilers, IDEs, and
 operating systems</a>. When
 writing large projects, however, it is imperative to have a series of
@@ -545,44 +502,38 @@ Java, writing tests is not all that hard in C++ either. For example, I
 could simply write a function that mimics a unit test and prints out
 either &ldquo;Test passed&rdquo; or &ldquo;Test failed&rdquo; depending on the result of the
 test. All I now need is a way to automatically run these tests.</p>
-
 <p>This is where CTest comes into the picture. I&rsquo;m assuming here that you
 are using CMake as your build system. If you are not, then you are
 clearly wrong, a terrible person, and the type who would probably not
 write tests anyway. So stop reading this post. 😄</p>
-
 <p>Okay, back from that little digression.</p>
-
 <p>My setup for testing is thus: I am building a library that defines all
 the required functions. Each class/function/API must be tested, so I
 write tests for each of these. The tests are written so that they would
 indicate success using the keyword &ldquo;Test passed&rdquo; or failure using the
 keyword &ldquo;Test failed&rdquo;. I put all the tests in a separate <code>tests</code> folder.
 Within the tests folder, I write my <code>CMakeLists.txt</code> thus.</p>
-
-<pre><code class="language-cmake">set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/tests)
-set(CTEST_BINARY_DIRECTORY ${PROJECT_BINARY_DIR}/tests)
-
-file(GLOB files &quot;test_*.cc&quot;)
-
-foreach(file ${files})
-    string(REGEX REPLACE &quot;(^.*/|\\.[^.]*$)&quot; &quot;&quot; file_without_ext ${file})
-    add_executable(${file_without_ext} ${file})
-    target_link_libraries(${file_without_ext} ${PROJECT_LIBS})
-    add_test(${file_without_ext} ${file_without_ext})
-    set_tests_properties(${file_without_ext}
-        PROPERTIES
-        PASS_REGULAR_EXPRESSION &quot;Test passed&quot;)
-    set_tests_properties(${file_without_ext}
-        PROPERTIES
-        FAIL_REGULAR_EXPRESSION &quot;(Exception|Test failed)&quot;)
-    set_tests_properties(${file_without_ext}
-        PROPERTIES
-        TIMEOUT 120)
-endforeach()
-</code></pre>
-
-<p>This is a really simple script. It loops over all files in the tests
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmake" data-lang="cmake">set(<span style="color:#e6db74">EXECUTABLE_OUTPUT_PATH</span> <span style="color:#f92672">${</span>PROJECT_BINARY_DIR<span style="color:#f92672">}</span><span style="color:#e6db74">/tests</span>)<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>set(<span style="color:#e6db74">CTEST_BINARY_DIRECTORY</span> <span style="color:#f92672">${</span>PROJECT_BINARY_DIR<span style="color:#f92672">}</span><span style="color:#e6db74">/tests</span>)<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>file(<span style="color:#e6db74">GLOB</span> <span style="color:#e6db74">files</span> <span style="color:#e6db74">&#34;test_*.cc&#34;</span>)<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>foreach(<span style="color:#e6db74">file</span> <span style="color:#f92672">${</span>files<span style="color:#f92672">}</span>)<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>	string(<span style="color:#e6db74">REGEX</span> <span style="color:#e6db74">REPLACE</span> <span style="color:#e6db74">&#34;(^.*/|\\.[^.]*$)&#34;</span> <span style="color:#e6db74">&#34;&#34;</span> <span style="color:#e6db74">file_without_ext</span> <span style="color:#f92672">${</span>file<span style="color:#f92672">}</span>)<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>	add_executable(<span style="color:#f92672">${</span>file_without_ext<span style="color:#f92672">}</span> <span style="color:#f92672">${</span>file<span style="color:#f92672">}</span>)<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>	target_link_libraries(<span style="color:#f92672">${</span>file_without_ext<span style="color:#f92672">}</span> <span style="color:#f92672">${</span>PROJECT_LIBS<span style="color:#f92672">}</span>)<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>	add_test(<span style="color:#f92672">${</span>file_without_ext<span style="color:#f92672">}</span> <span style="color:#f92672">${</span>file_without_ext<span style="color:#f92672">}</span>)<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>	set_tests_properties(<span style="color:#f92672">${</span>file_without_ext<span style="color:#f92672">}</span>
+		<span style="color:#e6db74">PROPERTIES</span>
+		<span style="color:#e6db74">PASS_REGULAR_EXPRESSION</span> <span style="color:#e6db74">&#34;Test passed&#34;</span>)<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>	set_tests_properties(<span style="color:#f92672">${</span>file_without_ext<span style="color:#f92672">}</span>
+		<span style="color:#e6db74">PROPERTIES</span>
+		<span style="color:#e6db74">FAIL_REGULAR_EXPRESSION</span> <span style="color:#e6db74">&#34;(Exception|Test failed)&#34;</span>)<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>	set_tests_properties(<span style="color:#f92672">${</span>file_without_ext<span style="color:#f92672">}</span>
+		<span style="color:#e6db74">PROPERTIES</span>
+		<span style="color:#e6db74">TIMEOUT</span> <span style="color:#e6db74">120</span>)<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>endforeach()<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p>This is a really simple script. It loops over all files in the tests
 folder that match the pattern <code>test_*.cc</code>, i.e.\ C++ files that start
 with the <code>test_</code> prefix. It generates the executable name by stripping
 out all the leading directories until the path, while also stripping out
@@ -597,19 +548,14 @@ just seconds, while the longest test could run for just under a minute.
 However, the purpose of the timeout here is not to detect performance
 bugs, rather to prevent the machine running the tests from fritzing out
 because of a bug that results in the tests doing something really crazy.</p>
-
 <p>Oh, and in order to enable testing, I simply change the <code>CMakeLists.txt</code>
 on the very top level of the project (the one that defines project name,
 version, etc.) to include this one extra line.</p>
-
-<pre><code class="language-cmake">include(CTest)
-</code></pre>
-
-<p>Simple, isn&rsquo;t it? Now why would you go running to <em>Go</em> (see what I did
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmake" data-lang="cmake">include(<span style="color:#e6db74">CTest</span>)<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p>Simple, isn&rsquo;t it? Now why would you go running to <em>Go</em> (see what I did
 there? 😄), when C++ with CMake offers cross platform builds,
 testing infrastructure, and parallel execution with memory consistency
 models?</p>
-
 <p>In the next posts on the series, I might just describe how to test for
 memory leaks using Valgrind/MemCheck or how to test test-coverage
 (alliteration FTW) using gcov. Stay tuned.</p>
@@ -698,42 +644,7 @@ memory leaks using Valgrind/MemCheck or how to test test-coverage
   </div>
 </article>
 
-<div class="container">
-  <footer class="site-footer">
-  
 
-  <p class="powered-by">
-    &copy; 2020 Skand Hurkat. All rights reserved. &middot; 
-  </p>
-</footer>
-
-</div>
-
-
-<div id="modal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Cite</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <pre><code class="tex hljs"></code></pre>
-      </div>
-      <div class="modal-footer">
-        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
-          <i class="fas fa-copy"></i> Copy
-        </a>
-        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
-          <i class="fas fa-download"></i> Download
-        </a>
-        <div id="modal-error"></div>
-      </div>
-    </div>
-  </div>
-</div>
 
     
 
@@ -830,7 +741,7 @@ memory leaks using Valgrind/MemCheck or how to test test-coverage
     
     
     
-    <script src="/js/academic.min.9c79bd36ad5b530cf8825d78d951c339.js"></script>
+    <script src="/js/academic.min.f579f291d0f0c7da58aa872f9aba5215.js"></script>
 
   </body>
 </html>

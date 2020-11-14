@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Skand Hurkat</title>
@@ -7,19 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; {year} Skand Hurkat. All rights reserved.</copyright>
-    <lastBuildDate>Fri, 12 Apr 2019 21:10:31 -0700</lastBuildDate>
-    
-	<atom:link href="https://skandhurkat.com/post/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 01 Jan 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://skandhurkat.com/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Star Trek 2019</title>
       <link>https://skandhurkat.com/post/star-trek-2019/</link>
       <pubDate>Fri, 12 Apr 2019 21:10:31 -0700</pubDate>
       
       <guid>https://skandhurkat.com/post/star-trek-2019/</guid>
-      <description>2019 marks a few anniversaries. It is the 50th anniversary of the moon landings. It also marks fifty years since the end of Gene Roddenberry&amp;rsquo;s Star Trek (the original series).
-As a bit of a Trek nerd myself, I figured that this is a great time to review the technology shown in all the Star Trek series, and see how close we are to the universe imagined by Roddenberry.</description>
+      <description>2019 marks a few anniversaries. It is the 50thanniversary of the moon landings. It also marks fifty years since the end of Gene Roddenberry&amp;rsquo;s Star Trek (the original series).
+As a bit of a Trek nerd myself, I figured that this is a great time to review the technology shown in all the Star Trek series, and see how close we are to the universe imagined by Roddenberry.
+Interstellar Travel Interstellar travel is the central premise in Star Trek, and serves as the platform upon which stories are told.</description>
     </item>
     
     <item>
@@ -42,7 +39,7 @@ But before we do, let&amp;rsquo;s start with an example of why other build syste
 user to run &lt;code&gt;make clean&lt;/code&gt; and &lt;code&gt;make&lt;/code&gt; every single time they make a
 change to some file. This is annoying and error prone, and the good news
 is that it can be easily solved with this one simple trick. Use a good
-build-generation system like &lt;a href=&#34;//cmake.org&#34; target=&#34;_blank&#34;&gt;CMake&lt;/a&gt; instead.&lt;/p&gt;</description>
+build-generation system like &lt;a href=&#34;//cmake.org&#34;&gt;CMake&lt;/a&gt; instead.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -56,22 +53,12 @@ internet. My message to the FCC follows.&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>Happy Fourth of July</title>
-      <link>https://skandhurkat.com/post/happy-fourth-july-2017/</link>
-      <pubDate>Tue, 04 Jul 2017 10:22:16 -0400</pubDate>
-      
-      <guid>https://skandhurkat.com/post/happy-fourth-july-2017/</guid>
-      <description>&lt;p&gt;Four pictures of the third of July fireworks in Ithaca to celebrate the
-fourth of July.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
       <title>My thoughts on ISCA 2017</title>
       <link>https://skandhurkat.com/post/thoughts-isca-2017/</link>
       <pubDate>Thu, 29 Jun 2017 17:28:43 -0400</pubDate>
       
       <guid>https://skandhurkat.com/post/thoughts-isca-2017/</guid>
-      <description>I&amp;rsquo;m back from the 44th International Symposium on Computer Architecture, and this is a perfect time for me to summarise my thoughts on the conference.
+      <description>I&amp;rsquo;m back from the 44thInternational Symposium on Computer Architecture, and this is a perfect time for me to summarise my thoughts on the conference.
 The conference was in Toronto, which was a refreshing change for me to see correct spelling and sensible units for a change. Beyond that, the conference had a lot of interesting developments, and some that were not quite as interesting.
 First, let me address the 15-month elephant in the room.</description>
     </item>
@@ -82,7 +69,7 @@ First, let me address the 15-month elephant in the room.</description>
       <pubDate>Thu, 22 Jun 2017 11:05:43 -0400</pubDate>
       
       <guid>https://skandhurkat.com/post/intro-to-ctest/</guid>
-      <description>&lt;p&gt;I&amp;rsquo;ve seen a lot of people (I&amp;rsquo;m looking at you &lt;a href=&#34;//lemire.me&#34; target=&#34;_blank&#34;&gt;Daniel
+      <description>&lt;p&gt;I&amp;rsquo;ve seen a lot of people (I&amp;rsquo;m looking at you &lt;a href=&#34;//lemire.me&#34;&gt;Daniel
 Lemire&lt;/a&gt;) praise newer languages like &lt;em&gt;Go&lt;/em&gt;, which makes me
 sad as a C++ programmer. Well, that&amp;rsquo;s until I realise that most of the
 features touted could be easily incorporated in C++ with just a bit of
@@ -117,7 +104,7 @@ C++ assumes that if a constructor fails, then no memory is allocated for the obj
       <pubDate>Tue, 25 Apr 2017 16:21:47 -0400</pubDate>
       
       <guid>https://skandhurkat.com/post/x-forwarding-on-docker/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;//markbuckler.com&#34; target=&#34;_blank&#34;&gt;Mark Buckler&lt;/a&gt; and I use Docker a lot.
+      <description>&lt;p&gt;&lt;a href=&#34;//markbuckler.com&#34;&gt;Mark Buckler&lt;/a&gt; and I use Docker a lot.
 Sometimes, we need X11 forwarding to work over SSH. Here&amp;rsquo;s a summary of
 the steps involved in case you&amp;rsquo;re curious.&lt;/p&gt;</description>
     </item>
@@ -145,24 +132,12 @@ For those of you who are not aware of how graduate school works at Cornell, you 
     </item>
     
     <item>
-      <title>Seven pictures from the storm Stella that show the beauty of the Ithaca winter</title>
-      <link>https://skandhurkat.com/post/seven-pictures-storm-stella/</link>
-      <pubDate>Tue, 14 Mar 2017 18:01:49 -0400</pubDate>
-      
-      <guid>https://skandhurkat.com/post/seven-pictures-storm-stella/</guid>
-      <description>&lt;p&gt;Winter is a seriously underrated season at Cornell. These seven pictures
-will show you just how beautiful the campus gets during a thick snow
-shower.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
       <title>A history of computing -- my perspective</title>
       <link>https://skandhurkat.com/post/history-of-computing/</link>
       <pubDate>Sat, 31 Aug 2013 17:46:37 -0400</pubDate>
       
       <guid>https://skandhurkat.com/post/history-of-computing/</guid>
       <description>&lt;p&gt;Because I can publish shitty drawings, and even shittier text.&lt;/p&gt;
-
 &lt;p&gt;And I have no obligation to be accurate.&lt;/p&gt;</description>
     </item>
     
@@ -183,7 +158,7 @@ Traditionally, C required multiple versions of code, protected by #ifdefs.</desc
       
       <guid>https://skandhurkat.com/post/autohell-v-cmake/</guid>
       <description>People familiar with the GNU/Unix system would know that the standard way to install about any GNU software from code is to run the following commands
-configure make sudo make install  These commands are from the GNU autotools environment. Knowing the GNU environment, these tools are what I used to compile most of the (relatively small) pieces of code I wrote.
+configure make sudo make install These commands are from the GNU autotools environment. Knowing the GNU environment, these tools are what I used to compile most of the (relatively small) pieces of code I wrote.
 Until I discovered CMake.
 CMake, or Cross-platform Make is a tool that serves the same functionality as the GNU autotools (hereafter referred to as autohell).</description>
     </item>
