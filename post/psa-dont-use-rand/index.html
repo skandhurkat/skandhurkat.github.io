@@ -496,8 +496,8 @@ return events at a random time, somewhere between <code>x</code> and <code>y</co
 the future. I did not really care that the random numbers generated were
 <em>good</em>, I just wanted something quick and dirty. So, I ended up using
 code that looked like this:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++">time_type new_event_time <span style="color:#f92672">=</span> get_current_time() <span style="color:#f92672">+</span> (std<span style="color:#f92672">::</span>rand() <span style="color:#f92672">%</span> (y <span style="color:#f92672">-</span> x)) <span style="color:#f92672">+</span> x;
-</code></pre></div><p>Looks good, and behaved reasonably well for almost all the test cases I
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>time_type new_event_time <span style="color:#f92672">=</span> get_current_time() <span style="color:#f92672">+</span> (std<span style="color:#f92672">::</span>rand() <span style="color:#f92672">%</span> (y <span style="color:#f92672">-</span> x)) <span style="color:#f92672">+</span> x;
+</span></span></code></pre></div><p>Looks good, and behaved reasonably well for almost all the test cases I
 threw at the problem. However, one specific test case was really
 sensitive to the order in which events returned, but only if the number
 of pending events was larger than a certain number <code>z</code>. This test
@@ -512,15 +512,15 @@ how bad the linear congruential engine in the <code>std::rand()</code> function
 really is.</p>
 <p>So, I simply replaced the random number generation code. The
 <code>std::srand()</code> equivalent code is</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++">std<span style="color:#f92672">::</span>random_device rd;
-std<span style="color:#f92672">::</span>mt19937 mt(rd());
-
-std<span style="color:#f92672">::</span>uniform_int_distribution dist(x, y);
-</code></pre></div><p>and the equivalent code for</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++">time_type new_event_time <span style="color:#f92672">=</span> get_current_time() <span style="color:#f92672">+</span> (std<span style="color:#f92672">::</span>rand() <span style="color:#f92672">%</span> (y <span style="color:#f92672">-</span> x)) <span style="color:#f92672">+</span> x;
-</code></pre></div><p>simplifies to</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++">time_type new_event_time <span style="color:#f92672">=</span> get_current_time() <span style="color:#f92672">+</span> dist(mt);
-</code></pre></div><p>Simple, isn&rsquo;t it? With this new piece of code, my test began to fail
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>std<span style="color:#f92672">::</span>random_device rd;
+</span></span><span style="display:flex;"><span>std<span style="color:#f92672">::</span>mt19937 mt(rd());
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>std<span style="color:#f92672">::</span>uniform_int_distribution dist(x, y);
+</span></span></code></pre></div><p>and the equivalent code for</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>time_type new_event_time <span style="color:#f92672">=</span> get_current_time() <span style="color:#f92672">+</span> (std<span style="color:#f92672">::</span>rand() <span style="color:#f92672">%</span> (y <span style="color:#f92672">-</span> x)) <span style="color:#f92672">+</span> x;
+</span></span></code></pre></div><p>simplifies to</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>time_type new_event_time <span style="color:#f92672">=</span> get_current_time() <span style="color:#f92672">+</span> dist(mt);
+</span></span></code></pre></div><p>Simple, isn&rsquo;t it? With this new piece of code, my test began to fail
 much earlier, which prompted me to discover the real source of the bug.</p>
 <p>I was intimidated by the new C++11 random number generation library
 because it requires the creation of a random device, a pseudo-random
@@ -583,7 +583,7 @@ it.</p>
 <section id="comments">
   <div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     
@@ -710,7 +710,7 @@ it.</p>
     
     
     
-    <script src="/js/academic.min.f579f291d0f0c7da58aa872f9aba5215.js"></script>
+    <script src="/js/academic.min.42c4a5b12edc1e28e3c1ed0cb89c7ed9.js"></script>
 
   </body>
 </html>

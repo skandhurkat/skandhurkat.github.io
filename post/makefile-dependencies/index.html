@@ -495,8 +495,8 @@ each source file.</p>
 <p>Try it out right now. Start a terminal and go to any project that is
 sufficiently complex to have multiple include chains in a C or C++
 source file (<code>foo.cc</code>). Then type in this command</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$&gt; g++ -M foo.cc
-</code></pre></div><p>The output is a list of all the files that are included by the source
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$&gt; g++ -M foo.cc
+</span></span></code></pre></div><p>The output is a list of all the files that are included by the source
 file, including standard library headers. If you look closer, the output
 is formatted so that it follows the same syntax as <code>make</code> for declaring
 dependencies. But we really don&rsquo;t want to be bothered with system header
@@ -504,51 +504,51 @@ files, so instead, we&rsquo;ll use the <code>g++ -MM</code>.</p>
 <p>Cool, isn&rsquo;t it? This means that all we now need to do is to find a way
 to include this information in our Makefile, and have it automatically
 update any time the source files are changed. So here&rsquo;s the recipe.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-makefile" data-lang="makefile"><span style="color:#75715e"># List of source files here.
-</span><span style="color:#75715e"></span>sources <span style="color:#f92672">=</span> foo.cc bar.cc
-
-<span style="color:#75715e"># Add C++ flags, for example, if the code uses C++11 standards.
-</span><span style="color:#75715e"></span>CPPFLAGS <span style="color:#f92672">=</span> -std<span style="color:#f92672">=</span>c++11
-
-<span style="color:#75715e"># Recipe for making .d files from .cc files
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">%.d</span><span style="color:#f92672">:</span> %.cc
-	<span style="color:#66d9ef">$(</span>CC<span style="color:#66d9ef">)</span> -MM <span style="color:#66d9ef">$(</span>CPPFLAGS<span style="color:#66d9ef">)</span> -o $@ $&lt;
-
-<span style="color:#75715e"># Include the required .d files in the current Makefile.
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">include $(sources</span><span style="color:#f92672">:</span>.cc=.d)
-
-<span style="color:#75715e"># Recipe for making .o files. Here, I introduce a dependency on the
-</span><span style="color:#75715e"># primary source c++ file.
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">%.o</span><span style="color:#f92672">:</span> %.cc
-	<span style="color:#66d9ef">$(</span>CC<span style="color:#66d9ef">)</span> -c <span style="color:#66d9ef">$(</span>CPPFLAGS<span style="color:#66d9ef">)</span> -o $@ <span style="color:#66d9ef">$(</span>&lt;:.d<span style="color:#f92672">=</span>.cc<span style="color:#66d9ef">)</span>
-</code></pre></div><p>Of course, there&rsquo;s a bug in this recipe as well. Can you spot it?</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-makefile" data-lang="makefile"><span style="display:flex;"><span><span style="color:#75715e"># List of source files here.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>sources <span style="color:#f92672">=</span> foo.cc bar.cc
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Add C++ flags, for example, if the code uses C++11 standards.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>CPPFLAGS <span style="color:#f92672">=</span> -std<span style="color:#f92672">=</span>c++11
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Recipe for making .d files from .cc files
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">%.d</span><span style="color:#f92672">:</span> %.cc
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">$(</span>CC<span style="color:#66d9ef">)</span> -MM <span style="color:#66d9ef">$(</span>CPPFLAGS<span style="color:#66d9ef">)</span> -o $@ $&lt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Include the required .d files in the current Makefile.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">include $(sources</span><span style="color:#f92672">:</span>.cc=.d)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Recipe for making .o files. Here, I introduce a dependency on the
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># primary source c++ file.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">%.o</span><span style="color:#f92672">:</span> %.cc
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">$(</span>CC<span style="color:#66d9ef">)</span> -c <span style="color:#66d9ef">$(</span>CPPFLAGS<span style="color:#66d9ef">)</span> -o $@ <span style="color:#66d9ef">$(</span>&lt;:.d<span style="color:#f92672">=</span>.cc<span style="color:#66d9ef">)</span>
+</span></span></code></pre></div><p>Of course, there&rsquo;s a bug in this recipe as well. Can you spot it?</p>
 <p>The bug is that the <code>.d</code> files do not update if something changes in the
 include chain. However, the GNU Make manual has <a href="https://www.gnu.org/software/make/manual/make.html#Generating-Prerequisites-Automatically">an interesting
 fix</a>.</p>
 <p>Their solution is to use <code>sed</code> to introduce the same dependency chain as
 for the <code>.o</code> file into the <code>.d</code> file. Here&rsquo;s the updated Makefile with
 their recipe.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-makefile" data-lang="makefile"><span style="color:#75715e"># List of source files here.
-</span><span style="color:#75715e"></span>sources <span style="color:#f92672">=</span> foo.cc bar.cc
-
-<span style="color:#75715e"># Add C++ flags, for example, if the code uses C++11 standards.
-</span><span style="color:#75715e"></span>CPPFLAGS <span style="color:#f92672">=</span> -std<span style="color:#f92672">=</span>c++11
-
-<span style="color:#75715e"># Recipe for making .d files from .cc files. This has been updated from
-</span><span style="color:#75715e"># the GNU Make manual
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">%.d</span><span style="color:#f92672">:</span> %.cc
-	<span style="color:#66d9ef">$(</span>CC<span style="color:#66d9ef">)</span> -MM <span style="color:#66d9ef">$(</span>CPPFLAGS<span style="color:#66d9ef">)</span> $&lt; &gt; $@.$$$$; <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>	sed <span style="color:#e6db74">&#39;s,\($*\)\.o[ :]*,\1.o $@ : ,g&#39;</span> &lt; $@.$$$$ &gt; $@; <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>	rm -f $@.$$$$
-
-<span style="color:#75715e"># Include the required .d files in the current Makefile.
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">include $(sources</span><span style="color:#f92672">:</span>.cc=.d)
-
-<span style="color:#75715e"># Recipe for making .o files. Here, I introduce a dependency on the
-</span><span style="color:#75715e"># primary source c++ file.
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">%.o</span><span style="color:#f92672">:</span> %.cc
-	<span style="color:#66d9ef">$(</span>CC<span style="color:#66d9ef">)</span> -c <span style="color:#66d9ef">$(</span>CPPFLAGS<span style="color:#66d9ef">)</span> -o $@ <span style="color:#66d9ef">$(</span>&lt;:.d<span style="color:#f92672">=</span>.cc<span style="color:#66d9ef">)</span>
-</code></pre></div><p>Okay, I think that should work now. But it does beg the question, why
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-makefile" data-lang="makefile"><span style="display:flex;"><span><span style="color:#75715e"># List of source files here.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>sources <span style="color:#f92672">=</span> foo.cc bar.cc
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Add C++ flags, for example, if the code uses C++11 standards.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>CPPFLAGS <span style="color:#f92672">=</span> -std<span style="color:#f92672">=</span>c++11
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Recipe for making .d files from .cc files. This has been updated from
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># the GNU Make manual
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">%.d</span><span style="color:#f92672">:</span> %.cc
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">$(</span>CC<span style="color:#66d9ef">)</span> -MM <span style="color:#66d9ef">$(</span>CPPFLAGS<span style="color:#66d9ef">)</span> $&lt; &gt; $@.$$$$; <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>	sed <span style="color:#e6db74">&#39;s,\($*\)\.o[ :]*,\1.o $@ : ,g&#39;</span> &lt; $@.$$$$ &gt; $@; <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>	rm -f $@.$$$$
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Include the required .d files in the current Makefile.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">include $(sources</span><span style="color:#f92672">:</span>.cc=.d)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Recipe for making .o files. Here, I introduce a dependency on the
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># primary source c++ file.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">%.o</span><span style="color:#f92672">:</span> %.cc
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">$(</span>CC<span style="color:#66d9ef">)</span> -c <span style="color:#66d9ef">$(</span>CPPFLAGS<span style="color:#66d9ef">)</span> -o $@ <span style="color:#66d9ef">$(</span>&lt;:.d<span style="color:#f92672">=</span>.cc<span style="color:#66d9ef">)</span>
+</span></span></code></pre></div><p>Okay, I think that should work now. But it does beg the question, why
 are we even writing Makefiles by hand any more? Shouldn&rsquo;t we just use a
 configuration system like CMake or GNU Autotools that can generate
 correct Makefiles?</p>
@@ -612,7 +612,7 @@ correct Makefiles?</p>
 <section id="comments">
   <div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     
@@ -734,7 +734,7 @@ correct Makefiles?</p>
     
     
     
-    <script src="/js/academic.min.f579f291d0f0c7da58aa872f9aba5215.js"></script>
+    <script src="/js/academic.min.42c4a5b12edc1e28e3c1ed0cb89c7ed9.js"></script>
 
   </body>
 </html>
