@@ -1,22 +1,50 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>docker on Skand Hurkat</title>
+    <title>Docker on Skand Hurkat</title>
     <link>https://skandhurkat.com/tags/docker/</link>
-    <description>Recent content in docker on Skand Hurkat</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Docker on Skand Hurkat</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <copyright>&amp;copy; {year} Skand Hurkat. All rights reserved.</copyright>
-    <lastBuildDate>Tue, 25 Apr 2017 16:21:47 -0400</lastBuildDate><atom:link href="https://skandhurkat.com/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 25 Apr 2017 16:21:47 -0400</lastBuildDate>
+    
+	    <atom:link href="https://skandhurkat.com/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>X forwarding on Docker</title>
       <link>https://skandhurkat.com/post/x-forwarding-on-docker/</link>
       <pubDate>Tue, 25 Apr 2017 16:21:47 -0400</pubDate>
       
       <guid>https://skandhurkat.com/post/x-forwarding-on-docker/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;//markbuckler.com&#34;&gt;Mark Buckler&lt;/a&gt; and I use Docker a lot.
+      <description>&lt;p&gt;&lt;a href=&#34;https://skandhurkat.com/&#34;&gt;Mark Buckler&lt;/a&gt; and I use Docker a lot.
 Sometimes, we need X11 forwarding to work over SSH. Here&amp;rsquo;s a summary of
-the steps involved in case you&amp;rsquo;re curious.&lt;/p&gt;</description>
+the steps involved in case you&amp;rsquo;re curious.&lt;/p&gt;
+&lt;h3 id=&#34;edit-the-docker-file&#34;&gt;Edit the Docker file&lt;/h3&gt;
+&lt;p&gt;Add these lines:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;RUN apt-get update
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;RUN apt-get install -qqy x11-apps
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This installs the necessary X packages on the Docker image.&lt;/p&gt;
+&lt;h3 id=&#34;run-this-once-per-ssh-session&#34;&gt;Run this once per SSH session&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;XAUTH&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;$HOME/.Xauthority
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;touch $XAUTH
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This code sets the path to the &lt;code&gt;.Xauthority&lt;/code&gt; file. When using SSH with
+X11 forwarding, the &lt;code&gt;.Xauthority&lt;/code&gt; file is automatically created in the
+user&amp;rsquo;s &lt;code&gt;$HOME&lt;/code&gt; folder. If not using X11 forwarding (for instance, when
+operating locally on the machine), &lt;code&gt;touch&lt;/code&gt; will create the &lt;code&gt;.Xauthority&lt;/code&gt;
+file.&lt;/p&gt;
+&lt;h3 id=&#34;start-the-docker-image&#34;&gt;Start the Docker image&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;docker run --tty --interactive --network&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;host --env DISPLAY&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;$DISPLAY --volume $XAUTH:/root/.Xauthority &amp;lt;dockerimagename&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This starts a Docker image with a TTY, in interactive mode, using the
+host&amp;rsquo;s networking stack (i.e. the container and the host are identical
+in their network usage, so port XX in the container is port XX on the
+host. It also exports the &lt;code&gt;$DISPLAY&lt;/code&gt; environment variable to Docker, and
+binds the &lt;code&gt;.Xauthority&lt;/code&gt; file (on the host) to the root user within the
+container.&lt;/p&gt;
+&lt;p&gt;That&amp;rsquo;s all folks! I suspect that these instructions will also be
+cross-posted on Mark&amp;rsquo;s website. You should absolutely follow his
+&lt;a href=&#34;https://skandhurkat.com/post/&#34;&gt;blog&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
     
   </channel>

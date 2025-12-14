@@ -1,20 +1,44 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Srujan Meesala on Skand Hurkat</title>
     <link>https://skandhurkat.com/authors/srujan-meesala/</link>
     <description>Recent content in Srujan Meesala on Skand Hurkat</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <copyright>&amp;copy; {year} Skand Hurkat. All rights reserved.</copyright>
-    <lastBuildDate>Tue, 03 May 2011 16:47:24 -0400</lastBuildDate><atom:link href="https://skandhurkat.com/authors/srujan-meesala/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 03 May 2011 16:47:24 -0400</lastBuildDate>
+    
+	    <atom:link href="https://skandhurkat.com/authors/srujan-meesala/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>Active noise-cancelling headphones</title>
       <link>https://skandhurkat.com/project/edl/</link>
       <pubDate>Tue, 03 May 2011 16:47:24 -0400</pubDate>
       
       <guid>https://skandhurkat.com/project/edl/</guid>
-      <description>Low-cost analogue active noise cancelling headphones</description>
+      <description>&lt;p&gt;This was a semester long team course project as part of the Electronics
+Design Lab (the dreaded &amp;ldquo;EDL&amp;rdquo;) course at IITB. The aim of this project
+was to build an affordable pair of noise cancelling headphones.&lt;/p&gt;
+&lt;p&gt;We developed an analogue feedback based controller as a disturbance
+rejection control system; which had the added benefit of improving the
+sound quality of our relatively cheap $10 headphones. The main
+challenges in this project were to characterise the headphone-ear system
+(the &amp;ldquo;plant&amp;rdquo;) to get the frequency magnitude and phase response; as the
+system changes characteristics based on a number of factors, including
+the shape of the ear cavity, the way the headphones are worn, and the
+placement of the microphones inside the headphone cavity.&lt;/p&gt;
+&lt;p&gt;Our control system resulted in a successful attenuation of noise, with a
+peak cancellation of 17 db at 100 Hz. We aimed for maximum cancellation
+at 100 Hz, as that&amp;rsquo;s the frequency of noise from appliances in an office
+setting, like fans and airconditioning; when the AC mains supplies power
+at 50 Hz.&lt;/p&gt;
+&lt;p&gt;Our system was designed to work at 3 V, that is two dry cells. However,
+we did not optimise the power consumption to maximise battery life,
+given the limited time on the project; and because that would mean
+micro-optimisation before macro-optimisation.&lt;/p&gt;
+</description>
     </item>
     
   </channel>

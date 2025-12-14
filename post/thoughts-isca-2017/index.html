@@ -27,9 +27,29 @@
   
     
   
-  <meta name="description" content="I&rsquo;m back from the 44th International Symposium on Computer Architecture, and this is a perfect time for me to summarise my thoughts on the conference.
-The conference was in Toronto, which was a refreshing change for me to see correct spelling and sensible units for a change. Beyond that, the conference had a lot of interesting developments, and some that were not quite as interesting.
-First, let me address the 15-month elephant in the room.">
+  <meta name="description" content="I&rsquo;m back from the 44th International Symposium on Computer
+Architecture, and this is a perfect time for me to summarise my thoughts
+on the conference.
+The conference was in Toronto, which was a refreshing change for me to
+see correct spelling and sensible units for a change. Beyond that, the
+conference had a lot of interesting developments, and some that were not
+quite as interesting.
+First, let me address the 15-month elephant in the room. That&rsquo;s Google&rsquo;s
+Tensor processing unit (TPU) paper. I wasn&rsquo;t impressed with the paper
+(although I am impressed by the engineering), although a lot of people
+seemed to be impressed by that paper. Indeed, only one other person I
+spoke with at the conference seemed to share my views on the matter. My
+criticism of the TPU paper is that it really gives little information.
+An application-specific integrated circuit (ASIC) will obviously have
+much less power/energy and much higher performance over a general
+purpose processor. The really interesting parts of the TPU would have
+been the Tensorflow-to-control-instructions compiler and driver.
+Unfortunately, these details still remain elusive. In fact, the whole
+paper describes (or fails to describe) technology that is over four
+years old and has already been replaced. In my opinion, I find more
+information in Google&rsquo;s Project
+Zero blog than I did in the
+TPU paper and the associated talk.">
 
   
   <link rel="alternate" hreflang="en-us" href="https://skandhurkat.com/post/thoughts-isca-2017/">
@@ -60,10 +80,10 @@ First, let me address the 15-month elephant in the room.">
   
   
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.8/css/bootstrap.min.css" integrity="sha512-2bBQCjcnw658Lho4nlXJcc6WkV/UxpE/sAokbXPxQNGqmNdQrWqtw26Ns9kFF/yG792pKR1Sx8/Y1Lf1XN4GKA==" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.6/css/academicons.min.css" integrity="sha512-TNfdJEUUJmfj2DRlAKXBg7HroqoXYLon5XPEEWYa2+H/XSD2HAr0BwkRrAoNLAEz79x7XURTFRWDn9yhMNbbNQ==" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v7.0.1/css/all.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous">
 
     
     
@@ -74,8 +94,8 @@ First, let me address the 15-month elephant in the room.">
       
       
         
-          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" crossorigin="anonymous" title="hl-light">
-          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
         
       
     
@@ -107,17 +127,20 @@ First, let me address the 15-month elephant in the room.">
   
   
   
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-10EYG9FSV9"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-10EYG9FSV9', { 'anonymize_ip': false });
-}
-</script>
-
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-10EYG9FSV9"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-10EYG9FSV9');
+        }
+      </script>
   
   
 
@@ -138,15 +161,32 @@ if (!doNotTrack) {
   
   <meta property="twitter:card" content="summary">
   
-  <meta property="twitter:site" content="@skandhurkat">
-  <meta property="twitter:creator" content="@skandhurkat">
-  
   <meta property="og:site_name" content="Skand Hurkat">
   <meta property="og:url" content="https://skandhurkat.com/post/thoughts-isca-2017/">
   <meta property="og:title" content="My thoughts on ISCA 2017 | Skand Hurkat">
-  <meta property="og:description" content="I&rsquo;m back from the 44th International Symposium on Computer Architecture, and this is a perfect time for me to summarise my thoughts on the conference.
-The conference was in Toronto, which was a refreshing change for me to see correct spelling and sensible units for a change. Beyond that, the conference had a lot of interesting developments, and some that were not quite as interesting.
-First, let me address the 15-month elephant in the room."><meta property="og:image" content="https://skandhurkat.com/img/icon-192.png">
+  <meta property="og:description" content="I&rsquo;m back from the 44th International Symposium on Computer
+Architecture, and this is a perfect time for me to summarise my thoughts
+on the conference.
+The conference was in Toronto, which was a refreshing change for me to
+see correct spelling and sensible units for a change. Beyond that, the
+conference had a lot of interesting developments, and some that were not
+quite as interesting.
+First, let me address the 15-month elephant in the room. That&rsquo;s Google&rsquo;s
+Tensor processing unit (TPU) paper. I wasn&rsquo;t impressed with the paper
+(although I am impressed by the engineering), although a lot of people
+seemed to be impressed by that paper. Indeed, only one other person I
+spoke with at the conference seemed to share my views on the matter. My
+criticism of the TPU paper is that it really gives little information.
+An application-specific integrated circuit (ASIC) will obviously have
+much less power/energy and much higher performance over a general
+purpose processor. The really interesting parts of the TPU would have
+been the Tensorflow-to-control-instructions compiler and driver.
+Unfortunately, these details still remain elusive. In fact, the whole
+paper describes (or fails to describe) technology that is over four
+years old and has already been replaced. In my opinion, I find more
+information in Google&rsquo;s Project
+Zero blog than I did in the
+TPU paper and the associated talk."><meta property="og:image" content="https://skandhurkat.com/img/icon-192.png">
   <meta property="og:locale" content="en-us">
   
   <meta property="article:published_time" content="2017-06-29T17:28:43-04:00">
@@ -441,9 +481,6 @@ First, let me address the 15-month elephant in the room."><meta property="og:ima
 
   
   
-  <span class="middot-divider"></span>
-  <a href="/post/thoughts-isca-2017/#disqus_thread"></a>
-  
 
   
 
@@ -479,7 +516,7 @@ First, let me address the 15-month elephant in the room."><meta property="og:ima
   <div class="article-container">
 
     <div class="article-style" itemprop="articleBody">
-      <p>I&rsquo;m back from the 44<!-- raw HTML omitted -->th<!-- raw HTML omitted --> International Symposium on Computer
+      <p>I&rsquo;m back from the 44<sup>th</sup> International Symposium on Computer
 Architecture, and this is a perfect time for me to summarise my thoughts
 on the conference.</p>
 <p>The conference was in Toronto, which was a refreshing change for me to
@@ -548,7 +585,7 @@ always turned off except for a few running a custom app. My opinion is
 that the best way to deploy these accelerators in the present moment is
 in datacentres, to provide them to users as a service. Google is already
 making great headway by allowing people to <em>rent</em> cloud machines with
-TPUs (I still dislike the TPU paper 😄) and to use TensorFlow to
+TPUs (I still dislike the TPU paper &#x1f604;) and to use TensorFlow to
 accelerate their workloads. I could envision cloud providers allowing
 people to time-multiplex multiple accelerators in some sort of
 mutual-fund or <a href="https://www.massdrop.com/">Massdrop</a> like cloud service.</p>
@@ -556,7 +593,7 @@ mutual-fund or <a href="https://www.massdrop.com/">Massdrop</a> like cloud servi
 with Von Neumann machines with variants of the five-stage pipeline and
 redraw our computers from scratch. I think it&rsquo;s an exciting time to be
 an architect, and also scary. As a PhD candidate, I have to try really
-hard to look at the exciting bits and not the scary ones. 😄</p>
+hard to look at the exciting bits and not the scary ones. &#x1f604;</p>
 
     </div>
 
@@ -588,6 +625,139 @@ hard to look at the exciting bits and not the scary ones. 😄</p>
 
 
 
+<div class="media author-card" itemscope itemtype="http://schema.org/Person">
+  
+  
+  <img class="portrait mr-3" src="/author/admin/avatar_hu_b5338ae654a0ace2.jpg" itemprop="image" alt="Avatar">
+  
+
+  <div class="media-body">
+    <h5 class="card-title" itemprop="name"><a href="/authors/admin">Skand Hurkat</a></h5>
+    <h6 class="card-subtitle">Computer Architect</h6>
+    <p class="card-text" itemprop="description">My research interests include computer architecture and machine learning</p>
+    <ul class="network-icon" aria-hidden="true">
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="/#contact" >
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="//in.linkedin.com/in/skandhurkat" >
+          <i class="fab fa-linkedin"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="//github.com/skandhurkat" >
+          <i class="fab fa-github"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="//scholar.google.com/citations?user=HbLdko8AAAAJ" >
+          <i class="ai ai-google-scholar"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="//www.mendeley.com/skand-hurkat" >
+          <i class="ai ai-mendeley"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="//instagram.com/skandhurkat" >
+          <i class="fab fa-instagram"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="//bsky.app/profile/skandhurkat.bsky.social" >
+          <i class="fab fa-bluesky"></i>
+        </a>
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+
       
       
     
@@ -597,7 +767,7 @@ hard to look at the exciting bits and not the scary ones. 😄</p>
     
 <section id="comments">
   <div id="disqus_thread"></div>
-<script type="application/javascript">
+<script>
     window.disqus_config = function () {
     
     
@@ -633,15 +803,15 @@ hard to look at the exciting bits and not the scary ones. 😄</p>
     
     
     
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha512-+NqPlbbtM1QqiK8ZAo4Yrj2c4lNQoGv8P79DPtKzj++l5jnN39rHA/xsqn8zE9l0uSoxaCdrOgFs6yjyfbBxSg==" crossorigin="anonymous"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha256-VsEqElsCHSGmnmHXGQzvoWjWwoznFSZc6hs7ARLRacQ=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/5.0.0/imagesloaded.pkgd.min.js" integrity="sha512-kfs3Dt9u9YcOiIt4rNcPUzdyNNO9sVGQPiZsub7ywg6lRW5KuK1m145ImrFHe3LMWXHndoKo2YRXWy8rnOcSKg==" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.8/js/bootstrap.min.js" integrity="sha512-nKXmKvJyiGQy343jatQlzDprflyB5c+tKCzGP3Uq67v+lmzfnZUi/ZT+fc6ITZfSC5HhaBKUIvr/nTLCV+7F+Q==" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous"></script>
 
       
         
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js" integrity="sha512-EBLzUL8XLl+va/zAsmXwS7Z2B1F9HUHkZwyS/VKwh3S7T/U0nF4BaU29EP/ZSf6zgiIxYAnKLu6bJ8dqpmX5uw==" crossorigin="anonymous"></script>
         
       
 
@@ -701,7 +871,7 @@ hard to look at the exciting bits and not the scary ones. 😄</p>
 
     
     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/7.1.0/fuse.min.js" integrity="sha512-H1bWCnc4dDJwdioqpOCkU76ZxEdvBvOy9R9Dd9EqftlzQg92owjX5IVdiOw00llAyQFUZJNPrzDnWZ/lZtf25A==" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
     
 

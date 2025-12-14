@@ -1,15 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Skand Hurkat</title>
     <link>https://skandhurkat.com/tags/</link>
     <description>Recent content in Tags on Skand Hurkat</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <copyright>&amp;copy; {year} Skand Hurkat. All rights reserved.</copyright>
-    <lastBuildDate>Thu, 23 Nov 2017 16:28:40 -0500</lastBuildDate><atom:link href="https://skandhurkat.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 23 Nov 2017 16:28:40 -0500</lastBuildDate>
+    
+	    <atom:link href="https://skandhurkat.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
-      <title>cmake</title>
+      <title>Cmake</title>
       <link>https://skandhurkat.com/tags/cmake/</link>
       <pubDate>Thu, 23 Nov 2017 16:28:40 -0500</pubDate>
       
@@ -18,7 +22,7 @@
     </item>
     
     <item>
-      <title>programming</title>
+      <title>Programming</title>
       <link>https://skandhurkat.com/tags/programming/</link>
       <pubDate>Thu, 23 Nov 2017 16:28:40 -0500</pubDate>
       
@@ -27,7 +31,7 @@
     </item>
     
     <item>
-      <title>makefiles</title>
+      <title>Makefiles</title>
       <link>https://skandhurkat.com/tags/makefiles/</link>
       <pubDate>Wed, 02 Aug 2017 17:45:00 -0400</pubDate>
       
@@ -36,7 +40,7 @@
     </item>
     
     <item>
-      <title>personal-opinions</title>
+      <title>Personal-Opinions</title>
       <link>https://skandhurkat.com/tags/personal-opinions/</link>
       <pubDate>Wed, 12 Jul 2017 09:04:44 -0400</pubDate>
       
@@ -45,7 +49,7 @@
     </item>
     
     <item>
-      <title>isca</title>
+      <title>Isca</title>
       <link>https://skandhurkat.com/tags/isca/</link>
       <pubDate>Thu, 29 Jun 2017 17:28:43 -0400</pubDate>
       
@@ -54,7 +58,7 @@
     </item>
     
     <item>
-      <title>c&#43;&#43;</title>
+      <title>C&#43;&#43;</title>
       <link>https://skandhurkat.com/tags/c&#43;&#43;/</link>
       <pubDate>Thu, 22 Jun 2017 11:05:43 -0400</pubDate>
       
@@ -63,7 +67,7 @@
     </item>
     
     <item>
-      <title>vim</title>
+      <title>Vim</title>
       <link>https://skandhurkat.com/tags/vim/</link>
       <pubDate>Sun, 04 Jun 2017 15:33:09 -0400</pubDate>
       
@@ -72,7 +76,7 @@
     </item>
     
     <item>
-      <title>docker</title>
+      <title>Docker</title>
       <link>https://skandhurkat.com/tags/docker/</link>
       <pubDate>Tue, 25 Apr 2017 16:21:47 -0400</pubDate>
       
@@ -81,7 +85,7 @@
     </item>
     
     <item>
-      <title>linux</title>
+      <title>Linux</title>
       <link>https://skandhurkat.com/tags/linux/</link>
       <pubDate>Tue, 25 Apr 2017 16:21:47 -0400</pubDate>
       
@@ -90,7 +94,7 @@
     </item>
     
     <item>
-      <title>signal-processing</title>
+      <title>Signal-Processing</title>
       <link>https://skandhurkat.com/tags/signal-processing/</link>
       <pubDate>Fri, 13 Dec 2013 22:53:25 -0400</pubDate>
       
@@ -99,7 +103,7 @@
     </item>
     
     <item>
-      <title>fun</title>
+      <title>Fun</title>
       <link>https://skandhurkat.com/tags/fun/</link>
       <pubDate>Sat, 31 Aug 2013 17:46:37 -0400</pubDate>
       
@@ -108,7 +112,7 @@
     </item>
     
     <item>
-      <title>computer-vision</title>
+      <title>Computer-Vision</title>
       <link>https://skandhurkat.com/tags/computer-vision/</link>
       <pubDate>Fri, 17 May 2013 22:42:13 -0400</pubDate>
       
@@ -117,7 +121,7 @@
     </item>
     
     <item>
-      <title>hardware</title>
+      <title>Hardware</title>
       <link>https://skandhurkat.com/tags/hardware/</link>
       <pubDate>Fri, 17 May 2013 22:42:13 -0400</pubDate>
       
@@ -126,7 +130,7 @@
     </item>
     
     <item>
-      <title>machine-learning</title>
+      <title>Machine-Learning</title>
       <link>https://skandhurkat.com/tags/machine-learning/</link>
       <pubDate>Fri, 16 Nov 2012 15:52:23 -0400</pubDate>
       
@@ -135,7 +139,7 @@
     </item>
     
     <item>
-      <title>human-computer-interaction</title>
+      <title>Human-Computer-Interaction</title>
       <link>https://skandhurkat.com/tags/human-computer-interaction/</link>
       <pubDate>Sat, 16 Jul 2011 16:45:14 -0400</pubDate>
       

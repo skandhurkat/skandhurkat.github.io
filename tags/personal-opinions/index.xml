@@ -1,13 +1,17 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>personal-opinions on Skand Hurkat</title>
+    <title>Personal-Opinions on Skand Hurkat</title>
     <link>https://skandhurkat.com/tags/personal-opinions/</link>
-    <description>Recent content in personal-opinions on Skand Hurkat</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Personal-Opinions on Skand Hurkat</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <copyright>&amp;copy; {year} Skand Hurkat. All rights reserved.</copyright>
-    <lastBuildDate>Wed, 12 Jul 2017 09:04:44 -0400</lastBuildDate><atom:link href="https://skandhurkat.com/tags/personal-opinions/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 12 Jul 2017 09:04:44 -0400</lastBuildDate>
+    
+	    <atom:link href="https://skandhurkat.com/tags/personal-opinions/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>Net Neutrality</title>
       <link>https://skandhurkat.com/post/net-neutrality/</link>
@@ -15,7 +19,62 @@
       
       <guid>https://skandhurkat.com/post/net-neutrality/</guid>
       <description>&lt;p&gt;Today, my website displays a banner to join the fight for an open
-internet. My message to the FCC follows.&lt;/p&gt;</description>
+internet. My message to the FCC follows.&lt;/p&gt;
+&lt;p&gt;The FCC&amp;rsquo;s Open Internet Rules (net neutrality rules) are extremely
+important to me. I urge you to protect them.&lt;/p&gt;
+&lt;p&gt;As a person who is not an American citizen, I was led to believe
+(perhaps wrongly) that America as a capitalist society would value the
+very principles that allow a free market to function, namely a free flow
+of information and healthy competition. It seems that I was mistaken.&lt;/p&gt;
+&lt;p&gt;The proposed changes to the FCC rules negatively impact both these
+principles. The internet is the epitome of a free flow of information,
+however misunderstood it may be amongst those who make laws. A free and
+open internet is one where all data is treated equal, and ISPs and cable
+companies cannot distinguish between any kind of traffic. They should
+not be allowed to create fast lanes or zero-rate some form of traffic.&lt;/p&gt;
+&lt;p&gt;The creation of fast lanes or zero-rating some traffic while charging
+for other forms of traffic goes against the spirit of free competition
+in the market. It means that no one could create the next Google or
+NetFlix unless they can get ISPs on board with their plan and provide
+their traffic with the same high speed or low cost. It means that ISPs
+will have ultimate control, not just of their own market (which, as I
+shall discuss next is a monopoly), but also of other markets far removed
+from the internet.&lt;/p&gt;
+&lt;p&gt;Today, almost everything runs on networked computers. Any system that
+must work across the width of a continent, or across multiple cities
+uses the internet in some way or the other to communicate information
+across. Even our phone lines are now increasingly routed over the
+internet, using VoIP technology. Our light bulbs and toaster ovens will
+soon use the internet as IoT becomes ubiquitous. So, support for net
+neutrality is not just a fight for the internet; absence of net
+neutrality and putting ISPs in position as gatekeeper would harm not
+just internet services, but could extend to the physical world as well,
+as the gap between physical and virtual worlds gets shorter and shorter.
+We must ask: what gives ISPs the right to decide what works and what
+doesn&amp;rsquo;t?&lt;/p&gt;
+&lt;p&gt;The sooner lawmakers realise this fundamental truth, the better. &lt;strong&gt;ISPs
+do not own the internet. They have not created the infrastructure for
+the internet. They have done nothing other than create a monopoly that
+taxes people to access a technology that was the product of taxpayer
+dollars and DARPA research.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Indeed, ISPs are a monopoly in the USA. Right now, if I want internet
+access, I have only one option, Time Warner, now called Spectrum. If I
+lived in Pittsburgh, I would have only one option, Comcast. Monopolies
+are antithetical to the free market. But I don&amp;rsquo;t need to tell you that.
+A capitalist society should balk at the very idea of a monopoly. Yet,
+lawmakers seem to accept and deny the very existence of these monopolies
+in almost all facets of American life, rather than fulfil their role as
+regulators and regulate the industries with monopolies to serve the very
+people who elect them into office and not the industry lobbyists who pay
+them money.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;If my country &amp;ndash; India &amp;ndash; could enact strong net neutrality
+protections at a point in its history when ubiquitous internet access
+was (and is) still not widespread throughout the country, I&amp;rsquo;m surprised
+that the country that gave the world the free internet is now so eager
+to destroy it to serve the interests of a small group of cable companies
+that had nothing to do with the creation of the internet, and through
+sheer coincidence ended up controlling everyone&amp;rsquo;s access to taxpayer
+funded technology.&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -24,9 +83,126 @@ internet. My message to the FCC follows.&lt;/p&gt;</description>
       <pubDate>Sat, 25 Mar 2017 17:56:19 -0400</pubDate>
       
       <guid>https://skandhurkat.com/post/cgsu-at-what-cost/</guid>
-      <description>On Monday and Tuesday, we graduate students at Cornell will be voting on whether or not we want to unionise. Actually, scratch that, only graduate students who hold a TA, RA, or GRA appointment can unionise.
-This is a shitty arrangement, and I will be voting against it.
-For those of you who are not aware of how graduate school works at Cornell, you could be on one of many appointments.</description>
+      <description>&lt;p&gt;On Monday and Tuesday, we graduate students at Cornell will be voting on
+whether or not we want to unionise. Actually, scratch that, only
+graduate students who hold a TA, RA, or GRA appointment can unionise.&lt;/p&gt;
+&lt;p&gt;This is a shitty arrangement, and I will be voting against it.&lt;/p&gt;
+&lt;p&gt;For those of you who are not aware of how graduate school works at
+Cornell, you could be on one of many appointments.&lt;/p&gt;
+&lt;dl&gt;
+&lt;dt&gt;Fellowship&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;A graduate student on a fellowship gets a stipend and tuition paid
+without associated teaching or research opportunities. Graduate students
+on a fellowship typically work towards their own theses, but will be
+excluded from the union&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt&gt;Graduate research assistantships&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;A GRA gives a graduate student stipend and tuition without teaching
+responsibilities. However, this money comes out of a specific project
+grant, and the students typically work on their own theses. Students on
+GRAs magically qualify to join the union, whereas there is virtually no
+difference between a GRA and a fellowship for the most part.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt&gt;Research assistantships&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;An RA appointment provides stipend and tuition without teaching
+responsibilities, but with research responsibilities. Students on an RA
+appointment must work on projects that may not be their own theses. RAs
+qualify to form a union&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt&gt;Teaching assistantships&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;A TA appointment provides stipend and tuition with teaching
+responsibilities. TA appointments qualify to form a union.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;p&gt;This breakdown shows that the union organisation is already on tenuous
+ground, as students could move in and out of these various appointments
+on a semester-by-semester basis. Receiving and losing union protection
+every four months is like not receiving any protection at all. If the
+union truly believes that students are exploited by professors (which I
+must categorically state, I am not. I love my job, I love my lab, and I
+love my advisor), then they are leaving a gaping loophole wherein a
+professor could simply move a student out of one of the protected
+appointments to an unprotected appointment, then crap all over them.&lt;/p&gt;
+&lt;p&gt;But that&amp;rsquo;s not the primary reason I am opposed to the union. &lt;strong&gt;At every
+stage in campaigning for our votes, the union has been shifty and
+deceitful&lt;/strong&gt;, sometimes resorting to outright lies that could be easily
+disproved. For instance, the union always brought up a case of a student
+in the department of chemical engineering who lost his appointment at a
+lab following an accident that allegedly left him unable to control his
+right hand for a couple of years. The union&amp;rsquo;s position was, well, if
+only there were a union to fight for workers&amp;rsquo; compensation, that student
+would still be at Cornell. Here&amp;rsquo;s the lie &amp;ndash; &lt;strong&gt;students on a GRA, RA, or
+TA are already protected by workers&amp;rsquo; compensation&lt;/strong&gt;. That particular
+student was on a fellowship, and this underscores my point about the
+shittiness of students receiving different protections for the same work
+based on an arbitrary status. In this student&amp;rsquo;s case, the union would
+have simply walked away with a &amp;lsquo;Not my problem&amp;rsquo; statement.&lt;/p&gt;
+&lt;p&gt;Now, I am a fan of collective bargaining. I believe that we students may
+still get a lot done through collective bargaining, but the union in its
+current form is not the way to do so. For starters, the union will not
+cover all graduate students, and I abhor the idea of leaving some fellow
+students in virtually the same position as myself without the
+protections of collective bargaining simply based on a technicality. But
+this is ignoring the fact that Cornell has an organisation that could
+achieve collective bargaining for graduate students, the Graduate and
+Professional Students Assembly (GPSA), which has successfully managed to
+achieve many things in Cornell, such as negotiating our wages to be
+raised at 2% a year, above the current inflation rate of 1%. The last
+president, Elizabeth Garrett also increased graduate student salaries
+across the board, making RA and GRA salaries the same as TA salaries.
+Now, asking us to put $500&amp;ndash;1000 towards union dues is stupid,
+considering that we make $30,000 a year before state and federal income
+taxes. What&amp;rsquo;s also crazy is that the union apparently will have a
+two-tiered structure, wherein we may be expected to pay more in order to
+have a vote (a voice) in the union. This is taxation without
+representation, and I will always vote against such an arrangement on a
+matter of principle.&lt;/p&gt;
+&lt;p&gt;Additionally, the union seems like a power grab by a bunch of sloppy
+students. The entire process was undemocratic to say the least, and
+seemed just like a page out of Catch-22. Sign the union authorisation
+card. Well, what am I signing up for? Come to our meetings and find out.
+Cool, how do I do that? You must sign the card to come to our meetings.
+The process was secret, with no voice from graduate students who may
+have been on the fence, and with further amendments to artificially
+inflate the voices of some students. Take, for instance, &lt;a href=&#34;https://cornellgsu.org/s/CGSUNegotiatingCommitteeConstitutionalAmendment.pdf&#34;&gt;this
+amendment&lt;/a&gt;,
+which grants equal voice on the negotiating committee to students from
+the six jurisdictions, whereas the number of students in these
+jurisdictions are by no means the same.&lt;/p&gt;
+&lt;p&gt;Further, some of the provisions on the Cornell GSU constitution defy
+logic, and show that they were probably written by monkeys on
+typewriters. See, for instance, &lt;a href=&#34;https://cornellgsu.org/our-constitution/#IV.A.A2&#34;&gt;Section
+IV.A.A2&lt;/a&gt;, which states
+that any grievance against any member of the union will be shared across
+all members of the union. I do not see this as helpful. While
+transparency is good, it should be balanced with privacy. Publishing a
+list of grievances without verification of the claims is irresponsible,
+and promotes a lynch-mob mentality which will make the environment at
+Cornell a lot more hostile and toxic. I realise that I am not providing
+evidence to support this claim &amp;ndash; the fact is that I am basing this off
+an existing incident which I do not wish to publicise, firstly, because
+I heard this account second-hand, and in order to protect the privacy of
+the persons that may have been involved.&lt;/p&gt;
+&lt;p&gt;Lastly, the process of getting rid of a dysfunctional union will be
+much, much harder than the process of voting one in. So, to my friends
+who say that they want to &amp;rsquo;try it out&amp;rsquo;, let me remind them that this is
+the equivalent of &amp;rsquo;trying out&amp;rsquo; arson. You will probably get burned, and
+you&amp;rsquo;ll be leaving a whole future generation of graduate students with a
+mess that they&amp;rsquo;ll have to deal with for the entirety of their graduate
+student life.&lt;/p&gt;
+&lt;p&gt;To conclude, the union in its current form is a juvenile power grab
+without a stated objective, a mission, or a plan to achieve its
+objectives. Voting for the union is the equivalent of voting for Donald
+Trump, and I hope that my friends can now see how that&amp;rsquo;s working out for
+the USA. Do not, do not vote for the union. Vote against it, let them
+come up with something better instead of an empty promise for something
+better. We can always vote for a better union next year. But we cannot
+vote out a shitty union once it&amp;rsquo;s formed.&lt;/p&gt;
+</description>
     </item>
     
     <item>
@@ -36,7 +212,21 @@ For those of you who are not aware of how graduate school works at Cornell, you 
       
       <guid>https://skandhurkat.com/post/history-of-computing/</guid>
       <description>&lt;p&gt;Because I can publish shitty drawings, and even shittier text.&lt;/p&gt;
-&lt;p&gt;And I have no obligation to be accurate.&lt;/p&gt;</description>
+&lt;p&gt;And I have no obligation to be accurate.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://skandhurkat.com/post/history-of-computing/01.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://skandhurkat.com/post/history-of-computing/02.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://skandhurkat.com/post/history-of-computing/03.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://skandhurkat.com/post/history-of-computing/04.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://skandhurkat.com/post/history-of-computing/05.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://skandhurkat.com/post/history-of-computing/06.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://skandhurkat.com/post/history-of-computing/07.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://skandhurkat.com/post/history-of-computing/08.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://skandhurkat.com/post/history-of-computing/09.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://skandhurkat.com/post/history-of-computing/10.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://skandhurkat.com/post/history-of-computing/11.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://skandhurkat.com/post/history-of-computing/12.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://skandhurkat.com/post/history-of-computing/13.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://skandhurkat.com/post/history-of-computing/14.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;</description>
     </item>
     
   </channel>

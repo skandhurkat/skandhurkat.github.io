@@ -1,13 +1,17 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>fun on Skand Hurkat</title>
+    <title>Fun on Skand Hurkat</title>
     <link>https://skandhurkat.com/tags/fun/</link>
-    <description>Recent content in fun on Skand Hurkat</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Fun on Skand Hurkat</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <copyright>&amp;copy; {year} Skand Hurkat. All rights reserved.</copyright>
-    <lastBuildDate>Sat, 31 Aug 2013 17:46:37 -0400</lastBuildDate><atom:link href="https://skandhurkat.com/tags/fun/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 31 Aug 2013 17:46:37 -0400</lastBuildDate>
+    
+	    <atom:link href="https://skandhurkat.com/tags/fun/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>A history of computing -- my perspective</title>
       <link>https://skandhurkat.com/post/history-of-computing/</link>
@@ -15,7 +19,21 @@
       
       <guid>https://skandhurkat.com/post/history-of-computing/</guid>
       <description>&lt;p&gt;Because I can publish shitty drawings, and even shittier text.&lt;/p&gt;
-&lt;p&gt;And I have no obligation to be accurate.&lt;/p&gt;</description>
+&lt;p&gt;And I have no obligation to be accurate.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://skandhurkat.com/post/history-of-computing/01.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://skandhurkat.com/post/history-of-computing/02.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://skandhurkat.com/post/history-of-computing/03.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://skandhurkat.com/post/history-of-computing/04.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://skandhurkat.com/post/history-of-computing/05.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://skandhurkat.com/post/history-of-computing/06.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://skandhurkat.com/post/history-of-computing/07.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://skandhurkat.com/post/history-of-computing/08.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://skandhurkat.com/post/history-of-computing/09.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://skandhurkat.com/post/history-of-computing/10.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://skandhurkat.com/post/history-of-computing/11.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://skandhurkat.com/post/history-of-computing/12.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://skandhurkat.com/post/history-of-computing/13.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://skandhurkat.com/post/history-of-computing/14.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;</description>
     </item>
     
   </channel>

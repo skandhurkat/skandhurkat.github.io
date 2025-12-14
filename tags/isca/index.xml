@@ -1,22 +1,102 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>isca on Skand Hurkat</title>
+    <title>Isca on Skand Hurkat</title>
     <link>https://skandhurkat.com/tags/isca/</link>
-    <description>Recent content in isca on Skand Hurkat</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Isca on Skand Hurkat</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <copyright>&amp;copy; {year} Skand Hurkat. All rights reserved.</copyright>
-    <lastBuildDate>Thu, 29 Jun 2017 17:28:43 -0400</lastBuildDate><atom:link href="https://skandhurkat.com/tags/isca/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 29 Jun 2017 17:28:43 -0400</lastBuildDate>
+    
+	    <atom:link href="https://skandhurkat.com/tags/isca/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>My thoughts on ISCA 2017</title>
       <link>https://skandhurkat.com/post/thoughts-isca-2017/</link>
       <pubDate>Thu, 29 Jun 2017 17:28:43 -0400</pubDate>
       
       <guid>https://skandhurkat.com/post/thoughts-isca-2017/</guid>
-      <description>I&amp;rsquo;m back from the 44th International Symposium on Computer Architecture, and this is a perfect time for me to summarise my thoughts on the conference.
-The conference was in Toronto, which was a refreshing change for me to see correct spelling and sensible units for a change. Beyond that, the conference had a lot of interesting developments, and some that were not quite as interesting.
-First, let me address the 15-month elephant in the room.</description>
+      <description>&lt;p&gt;I&amp;rsquo;m back from the 44&lt;sup&gt;th&lt;/sup&gt; International Symposium on Computer
+Architecture, and this is a perfect time for me to summarise my thoughts
+on the conference.&lt;/p&gt;
+&lt;p&gt;The conference was in Toronto, which was a refreshing change for me to
+see correct spelling and sensible units for a change. Beyond that, the
+conference had a lot of interesting developments, and some that were not
+quite as interesting.&lt;/p&gt;
+&lt;p&gt;First, let me address the 15-month elephant in the room. That&amp;rsquo;s Google&amp;rsquo;s
+Tensor processing unit (TPU) paper. I wasn&amp;rsquo;t impressed with the paper
+(although I am impressed by the engineering), although a lot of people
+seemed to be impressed by that paper. Indeed, only one other person I
+spoke with at the conference seemed to share my views on the matter. My
+criticism of the TPU paper is that it really gives little information.
+An application-specific integrated circuit (ASIC) will obviously have
+much less power/energy and much higher performance over a general
+purpose processor. The really interesting parts of the TPU would have
+been the Tensorflow-to-control-instructions compiler and driver.
+Unfortunately, these details still remain elusive. In fact, the whole
+paper describes (or fails to describe) technology that is over four
+years old and has already been replaced. In my opinion, I find more
+information in Google&amp;rsquo;s &lt;a href=&#34;https://googleprojectzero.blogspot.com/&#34;&gt;Project
+Zero&lt;/a&gt; blog than I did in the
+TPU paper and the associated talk.&lt;/p&gt;
+&lt;p&gt;Which brings me to the next bit. ISCA had a &amp;lsquo;Trends in Machine Learning&amp;rsquo;
+workshop, which I found as, if not more interesting than the main
+conference. There were some really cool demos, such as real-time neural
+networks running on embedded devices such as an iPhone and a Raspberry
+Pi, &amp;lsquo;&lt;a href=&#34;https://clinc.com/&#34;&gt;Clinc&lt;/a&gt;&amp;rsquo;,
+which can process natural speech and respond to queries on your
+finances, DeepSpeech by Baidu, amongst others. The trend towards machine
+learning was apparent even through the main program, with multiple
+papers on accelerating neural networks.&lt;/p&gt;
+&lt;p&gt;Just like any other conference, there were also some presentations that
+had me completely zoned out. There were some that felt just like a
+rehash of old ideas, and some which left me scratching my head.&lt;/p&gt;
+&lt;p&gt;The overarching theme of the keynotes and the panel discussion, however,
+were on the inevitable end of Moore&amp;rsquo;s law, with Mark Bohr from Intel
+claiming that the law was merely tired and shagged out after a long
+squawk, with plots showing that the number of transistors are indeed
+doubling as expected from Moore&amp;rsquo;s law. Partha Ranganathan from Google,
+on the other hand pointed out that the law had joined the choir
+invisible. Partha argued that this was indeed a fun time to be an
+architect, to talk to those annoying people working with software to
+co-design hardware and software with the point of unlocking more
+potential.&lt;/p&gt;
+&lt;p&gt;In fact, if there is one message that I would take away from the
+conference, it is that we computer architects have to fundamentally
+change the way we look at our job. For years, computer architects were
+perfectly happy using the extra transistors that the devices folks gave
+us to make faster computers, and the evil people working in software
+would take away this performance through even more bloated software.
+Now, the pipeline has dried up, the devices people are not able to give
+us faster and smaller transistors, and they definitely cannot give us
+more power-efficient transistors because Dennard scaling is almost
+certainly dead. As a result, we architects have to find ways to use
+these transistors more efficiently. This means talking to the software
+gremlins, understanding their evil algorithms and implementing them in
+beautiful silicon. The future is almost certainly in going green by
+reducing our power requirements and in grudgingly enabling the software
+people to unlock greater functionality, not by relying on faster
+computers, but by relying on custom, bespoke hardware that can run their
+algorithms in an efficient manner.&lt;/p&gt;
+&lt;p&gt;How such bespoke hardware should be deployed remains a challenge. We can
+almost certainly not sell chips for mobile phones with the area of a
+football field with billions of custom accelerators that are almost
+always turned off except for a few running a custom app. My opinion is
+that the best way to deploy these accelerators in the present moment is
+in datacentres, to provide them to users as a service. Google is already
+making great headway by allowing people to &lt;em&gt;rent&lt;/em&gt; cloud machines with
+TPUs (I still dislike the TPU paper &amp;#x1f604;) and to use TensorFlow to
+accelerate their workloads. I could envision cloud providers allowing
+people to time-multiplex multiple accelerators in some sort of
+mutual-fund or &lt;a href=&#34;https://www.massdrop.com/&#34;&gt;Massdrop&lt;/a&gt; like cloud service.&lt;/p&gt;
+&lt;p&gt;Or maybe the future is in taking a step back and rethink our obsession
+with Von Neumann machines with variants of the five-stage pipeline and
+redraw our computers from scratch. I think it&amp;rsquo;s an exciting time to be
+an architect, and also scary. As a PhD candidate, I have to try really
+hard to look at the exciting bits and not the scary ones. &amp;#x1f604;&lt;/p&gt;
+</description>
     </item>
     
   </channel>

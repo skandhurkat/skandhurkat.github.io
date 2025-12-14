@@ -1,20 +1,31 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Pritish Kamath on Skand Hurkat</title>
     <link>https://skandhurkat.com/authors/pritish-kamath/</link>
     <description>Recent content in Pritish Kamath on Skand Hurkat</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <copyright>&amp;copy; {year} Skand Hurkat. All rights reserved.</copyright>
-    <lastBuildDate>Thu, 16 Jul 2009 17:15:11 -0400</lastBuildDate><atom:link href="https://skandhurkat.com/authors/pritish-kamath/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 16 Jul 2009 17:15:11 -0400</lastBuildDate>
+    
+	    <atom:link href="https://skandhurkat.com/authors/pritish-kamath/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>Text-dependent speaker verification</title>
       <link>https://skandhurkat.com/project/text-dependent-speaker-verification/</link>
       <pubDate>Thu, 16 Jul 2009 17:15:11 -0400</pubDate>
       
       <guid>https://skandhurkat.com/project/text-dependent-speaker-verification/</guid>
-      <description>Matching spoken text to identify users on an Atmel AVR microcontroller</description>
+      <description>&lt;p&gt;This was a summer project in my first year. This system used an
+ATmega128 microcontroller coupled with a 62256 SRAM module. It could
+store and verify a 2 second speech signal by any one speaker. Support
+for additional speakers may be added by adding an interface to an SD
+card, and tweaking the code slightly.&lt;/p&gt;
+&lt;p&gt;The system was designed to be compatible with a computer microphone for
+accepting the input signal.&lt;/p&gt;
+</description>
     </item>
     
   </channel>

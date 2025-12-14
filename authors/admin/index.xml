@@ -1,20 +1,41 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>admin on Skand Hurkat</title>
+    <title>Admin on Skand Hurkat</title>
     <link>https://skandhurkat.com/authors/admin/</link>
-    <description>Recent content in admin on Skand Hurkat</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Admin on Skand Hurkat</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
-    <copyright>&amp;copy; {year} Skand Hurkat. All rights reserved.</copyright><atom:link href="https://skandhurkat.com/authors/admin/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>&amp;copy; {year} Skand Hurkat. All rights reserved.</copyright>
+    
+	    <atom:link href="https://skandhurkat.com/authors/admin/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title></title>
       <link>https://skandhurkat.com/author/admin/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://skandhurkat.com/author/admin/</guid>
-      <description>I am a software engineer in Microsoft&amp;rsquo;s AI Frameworks organization working on the next generation of neural network accelerators. I received my PhD from Cornell University, where I developed accelerators for machine learning inference tasks and was advised by Dr. José F. Martínez. I&amp;rsquo;m interested in smart ways of implementing algorithms in hardware, and re-thinking the hardware-software interface.
-I completed my Bachelor of Technology in Electrical Engineering (with a minor in Physics) at the Indian Institute of Technology, Bombay.</description>
+      <description>&lt;p&gt;I am a computer architect at Nvidia working on emerging application domains
+including data analytics, telecommunications and HPC. I previously worked at
+Microsoft as both a software and a hardware engineer on the Maia and Cobalt
+programs developing the next generation of neural network accelerators and CPU
+architectures. I received my PhD from
+Cornell University, where I developed accelerators for machine learning
+inference tasks and was advised by &lt;a href=&#34;http://martinez.csl.cornell.edu&#34;&gt;Dr. José F.
+Martínez&lt;/a&gt;. I&amp;rsquo;m interested in smart
+ways of implementing algorithms in hardware, and re-thinking the
+hardware-software interface.&lt;/p&gt;
+&lt;p&gt;I completed my Bachelor of Technology in Electrical Engineering (with a
+minor in Physics) at the &lt;a href=&#34;http://www.ee.iitb.ac.in&#34;&gt;Indian Institute of Technology,
+Bombay&lt;/a&gt;. My thesis work then related to
+scheduling users in OFDMA networks.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;m a private pilot and enjoy flying above the Pacific Northwest. I also
+enjoy rock climbing, hiking, photography, really any excuse to enjoy the
+spectacular outdoors. I also enjoy classical music, classic rock, or
+just curling up on my couch with a good book and a cup of coffee or chai.&lt;/p&gt;
+</description>
     </item>
     
   </channel>

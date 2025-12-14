@@ -1,20 +1,33 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Xiaodong Wang on Skand Hurkat</title>
     <link>https://skandhurkat.com/authors/xiaodong-wang/</link>
     <description>Recent content in Xiaodong Wang on Skand Hurkat</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <copyright>&amp;copy; {year} Skand Hurkat. All rights reserved.</copyright>
-    <lastBuildDate>Fri, 17 May 2013 22:42:13 -0400</lastBuildDate><atom:link href="https://skandhurkat.com/authors/xiaodong-wang/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 17 May 2013 22:42:13 -0400</lastBuildDate>
+    
+	    <atom:link href="https://skandhurkat.com/authors/xiaodong-wang/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>High-level synthesis of a belief propagation accelerator</title>
       <link>https://skandhurkat.com/project/hls-bp/</link>
       <pubDate>Fri, 17 May 2013 22:42:13 -0400</pubDate>
       
       <guid>https://skandhurkat.com/project/hls-bp/</guid>
-      <description>Using Vivado-HLS to rapidly prototype and test accelerators</description>
+      <description>&lt;p&gt;Belief propagation on probabilistic graphical models such as Markov
+random fields is the basis for a variety of applications, especially
+applications in computer vision. In this project, we used Vivado-HLS, a
+C-to-gates framework to rapidly prototype and test a number of
+accelerators for belief propagation on an FPGA. We used a Xilinx Zynq
+platform and our experiments show that using a dedicated FPGA
+accelerator provides a 2x speedup compared to a processor-only approach.
+Further, we note that the speedup is limited by communication bandwidth,
+and that higher speedups could be achieved using a higher-bandwidth bus.&lt;/p&gt;
+</description>
     </item>
     
   </channel>
