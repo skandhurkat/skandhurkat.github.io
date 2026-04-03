@@ -1,0 +1,194 @@
+<!doctype html><html lang=en-US dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Introduction to CMake | Skand Hurkat</title><link rel=canonical href=https://skandhurkat.com/posts/intro-to-cmake/><meta name=description content="CMake is cross-platform build and configuration system for C and C++ code, which also happens to be my favourite build system. In this post, I&rsquo;ll present …"><meta property="og:title" content="Introduction to CMake"><meta property="og:url" content="https://skandhurkat.com/posts/intro-to-cmake/"><meta property="og:site_name" content="Skand Hurkat"><meta property="og:type" content="article"><meta property="og:description" content="CMake is cross-platform build and configuration system for C and C++ code, which also happens to be my favourite build system. In this post, I&rsquo;ll present …"><link rel=icon href=/favicon.ico><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.6/css/academicons.min.css integrity="sha512-TNfdJEUUJmfj2DRlAKXBg7HroqoXYLon5XPEEWYa2+H/XSD2HAr0BwkRrAoNLAEz79x7XURTFRWDn9yhMNbbNQ==" crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css integrity=sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB crossorigin=anonymous><link rel=stylesheet href=/css/main.946fb1793306b3e549450f6a642b5eaed6ab0fc61f3558e0ed1c05db47f32564.css integrity="sha256-lG+xeTMGs+VJRQ9qZCtertarD8YfNVjg7RwF20fzJWQ=" crossorigin=anonymous><style>:root{--pub-color-conference:#378ADD;--pub-color-journal:#1D9E75;--pub-color-preprint:#EF9F27;--pub-color-thesis:#7F77DD;--pub-color-book:#D85A30;--pub-color-bookchapter:#D85A30;--pub-color-other:#888780}</style><script>(function(){var e,t=localStorage.getItem("theme"),n='"auto"';t==="dark"||t==="light"?e=t:n==="dark"||n==="light"?e=n:e=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light",document.documentElement.setAttribute("data-bs-theme",e)})()</script><script async src="https://www.googletagmanager.com/gtag/js?id=G-10EYG9FSV9"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("consent","default",{ad_storage:"denied",ad_user_data:"denied",ad_personalization:"denied",analytics_storage:"denied"}),gtag("js",new Date),gtag("config","G-10EYG9FSV9")</script></head><body data-bs-spy=scroll data-bs-target=#main-navbar data-bs-smooth-scroll=true tabindex=0><header><nav id=main-navbar class="navbar navbar-expand-lg bg-body-tertiary fixed-top" aria-label="Main navigation"><div class=container-md><a class="navbar-brand fw-semibold" href=/>Skand Hurkat</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbar-links aria-controls=navbar-links aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span></button><div class="collapse navbar-collapse" id=navbar-links><ul class="navbar-nav me-auto mb-2 mb-lg-0"><li class=nav-item><a class=nav-link href=/experience/>Experience</a></li><li class=nav-item><a class=nav-link href=/publications/>Publications</a></li><li class=nav-item><a class=nav-link href=/patents/>Patents</a></li><li class=nav-item><a class=nav-link href=/projects/>Projects</a></li><li class=nav-item><a class="nav-link active" aria-current=page href=/posts/>Posts</a></li><li class=nav-item><a class=nav-link href=/#contact>Contact</a></li></ul><form class="d-flex me-2" role=search action=/search/ method=get><input class="form-control form-control-sm me-1" type=search name=q placeholder=Search… aria-label="Search this site" style=width:10rem>
+<button class="btn btn-outline-secondary btn-sm" type=submit>
+Search</button></form><button id=theme-toggle class="btn btn-sm btn-outline-secondary ms-1" type=button aria-label="Toggle dark mode" onclick='var html=document.documentElement,next=html.getAttribute("data-bs-theme")==="dark"?"light":"dark";html.setAttribute("data-bs-theme",next),localStorage.setItem("theme",next),document.getElementById("theme-toggle-icon").textContent=next==="dark"?"☀":"☾"'>
+<span id=theme-toggle-icon aria-hidden=true style=font-size:.9rem>☾</span></button></div></div></nav><script>(function(){var e,n,o=document.documentElement.getAttribute("data-bs-theme"),t=document.getElementById("theme-toggle-icon");t&&(t.textContent=o==="dark"?"☀":"☾"),e=document.getElementById("main-navbar"),n=80;function s(){window.scrollY>n?(e.classList.add("navbar-scrolled"),document.body.classList.add("navbar-scrolled")):(e.classList.remove("navbar-scrolled"),document.body.classList.remove("navbar-scrolled"))}s(),window.addEventListener("scroll",s,{passive:!0})})()</script></header><main><div class="container py-4"><div class=row><div class=col-lg-8><header class=mb-4><div class="d-flex flex-wrap gap-1 mb-2"><a href=/tags/cmake/ class="badge text-bg-light text-decoration-none" style=font-size:.7rem;font-weight:500>cmake</a>
+<a href=/tags/programming/ class="badge text-bg-light text-decoration-none" style=font-size:.7rem;font-weight:500>programming</a></div><h1 class=mb-2>Introduction to CMake</h1><div class="d-flex flex-wrap align-items-center gap-2 text-muted" style=font-size:.875rem><span>Skand Hurkat</span>
+<span>·</span>
+<time datetime=2017-11-23>November 23, 2017
+</time><span>·</span>
+<span>7 min read</span></div></header><article id=post-body><p><a href=//cmake.org>CMake</a> is cross-platform build and configuration system
+for C and C++ code, which also happens to be my favourite build system.
+In this post, I&rsquo;ll present a quick tutorial on getting started with
+CMake.</p><p>But before we do, let&rsquo;s start with an example of why other build systems
+such as Makefiles don&rsquo;t necessarily cut it. Actually, Makefiles work
+fairly well, but writing Makefiles by hand is generally a pain in the
+neck. In <a href=https://skandhurkat.com/posts/makefile-dependencies/>a previous post</a>,
+I described how to write Makefiles that take include file dependencies
+into account. If that post did not convince you that writing Makefiles
+is hard, let me show you another example of a terrible Makefile and hope
+that it scares you into never looking at a Makefile again. (This
+Makefile was actually part of a project that was handed over to me, I
+had to go over tonnes of other people&rsquo;s code with comments written in
+non-ascii characters in a language that wasn&rsquo;t English, so I clearly
+don&rsquo;t have fond memories of this particular project.)</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-Makefile data-lang=Makefile><span style=display:flex><span><span style=color:#75715e>## Compiler + Linker
+</span></span></span><span style=display:flex><span>CC <span style=color:#f92672>=</span> g++
+</span></span><span style=display:flex><span>LD <span style=color:#f92672>=</span> g++
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## external .h files to bring in
+</span></span></span><span style=display:flex><span>EXTRA_INCLUDES <span style=color:#f92672>=</span> 
+</span></span><span style=display:flex><span>CCFLAGS <span style=color:#f92672>=</span> -g -Wno-deprecated -I/opt/local/include/ -I/opt/local/include/opencv/ -I./GMM/ -I./MaxFlow/ -I./MeanShift/ 
+</span></span><span style=display:flex><span>LDFLAGS <span style=color:#f92672>=</span> -L/opt/local/lib
+</span></span><span style=display:flex><span><span style=color:#75715e>#LIBS = -lcv -lcxcore -lhighgui -lcvaux #-lml 
+</span></span></span><span style=display:flex><span><span style=color:#75715e># for macs
+</span></span></span><span style=display:flex><span>LIBS <span style=color:#f92672>=</span> -lopencv_core -lopencv_highgui <span style=color:#75715e>#-lcvaux -lml </span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## sources
+</span></span></span><span style=display:flex><span>CCFILES_GMM <span style=color:#f92672>=</span> <span style=color:#75715e>#### Some files</span>
+</span></span><span style=display:flex><span>CCFILES_MAXFLOW <span style=color:#f92672>=</span> <span style=color:#75715e>#### Some more files</span>
+</span></span><span style=display:flex><span>CCFILES_MEANSHIFT <span style=color:#f92672>=</span> <span style=color:#75715e>#### Holy shit, even more files</span>
+</span></span><span style=display:flex><span>CCFILES <span style=color:#f92672>=</span> <span style=color:#66d9ef>$(</span>CCFILES_GMM<span style=color:#66d9ef>)</span> <span style=color:#66d9ef>$(</span>CCFILES_MAXFLOW<span style=color:#66d9ef>)</span> <span style=color:#66d9ef>$(</span>CCFILES_MEANSHIFT<span style=color:#66d9ef>)</span> <span style=color:#75715e>#### And even more files</span>
+</span></span><span style=display:flex><span>PROGFILE <span style=color:#f92672>=</span> main.cpp <span style=color:#75715e>#### Seriously, how many files?</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## object compilation
+</span></span></span><span style=display:flex><span>PROGOBJS <span style=color:#f92672>=</span> <span style=color:#66d9ef>$(</span>CCFILES:.cpp<span style=color:#f92672>=</span>.o<span style=color:#66d9ef>)</span> <span style=color:#66d9ef>$(</span>PROGFILE:.cpp<span style=color:#f92672>=</span>.o<span style=color:#66d9ef>)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## binary compilation
+</span></span></span><span style=display:flex><span>PROG <span style=color:#f92672>=</span> BOO
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>all</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>	@echo <span style=color:#e6db74>&#34;-&gt; Building </span><span style=color:#66d9ef>$(</span>PROG<span style=color:#66d9ef>)</span><span style=color:#e6db74> executable...&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#	@make .cpp.o
+</span></span></span><span style=display:flex><span>	@make <span style=color:#66d9ef>$(</span>PROG<span style=color:#66d9ef>)</span> 
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>.cpp.o</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>$(</span>CC<span style=color:#66d9ef>)</span> <span style=color:#66d9ef>$(</span>CCFLAGS<span style=color:#66d9ef>)</span> <span style=color:#66d9ef>$(</span>EXTRA_INCLUDES<span style=color:#66d9ef>)</span> -c -o $@ $^
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#$(PROGOBJS):
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#	$(CC) $(CCFLAGS) $(EXTRA_INCLUDES) -c -o $@ $^
+</span></span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>$(PROG)</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>$(</span>PROGOBJS<span style=color:#66d9ef>)</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>$(</span>LD<span style=color:#66d9ef>)</span> <span style=color:#66d9ef>$(</span>LDFLAGS<span style=color:#66d9ef>)</span> <span style=color:#66d9ef>$(</span>LIBS<span style=color:#66d9ef>)</span> <span style=color:#66d9ef>$(</span>PROGOBJS<span style=color:#66d9ef>)</span> -o <span style=color:#66d9ef>$(</span>PROG<span style=color:#66d9ef>)</span> <span style=color:#75715e>#$(PROGOBJS) $(LDFLAGS) $(LIBS)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#$(PROG): $(CCFILES)
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#	$(CC) $(CCFLAGS) $(EXTRA_INCLUDES) $(LDFLAGS) $(LIBS) -o $@ $^
+</span></span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>clean</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>	@echo <span style=color:#e6db74>&#34;-&gt; Cleaning...&#34;</span>
+</span></span><span style=display:flex><span>	rm -f <span style=color:#66d9ef>$(</span>PROG<span style=color:#66d9ef>)</span> <span style=color:#66d9ef>$(</span>PROGOBJS<span style=color:#66d9ef>)</span> 
+</span></span></code></pre></div><p>There&rsquo;s just so much to hate about this Makefile. First, it is almost
+unreadable. Second, it does not account for any header file
+dependencies. In fact, if any of the header files change, there&rsquo;s no way
+for the system to detect this at all, forcing the user to type in <code>make clean</code>, then <code>make</code> to make everything all over again. Third, given the
+sheer number of files, make will take minutes to run, which kills
+productivity. Fourth, if you look closely at the path, you will observe
+that the person writing this Makefile used a Mac with MacPorts and
+therefore is the kind of person who is just wrong. Fifth, this Makefile
+obviously won&rsquo;t work for someone on Linux or Windows, even worse, it
+won&rsquo;t work for another Mac user who used HomeBrew or compiled OpenCV
+from source. Sixth, some rules are just commented out, which indicates
+sloppy behaviour. Writing Makefiles like this just sucks. It sucks
+productivity and makes me think of slow and painful death.</p><p>The first thing I did when I was handed this project was to fix the
+build system, and CMake came to the rescue here. I&rsquo;ll now show how I
+replaced this terrible Makefile with a clean, modular CMake build system
+that replicated the effects of the Makefile (without the bugs, of course
+:smile:). Hopefully, the ease of setting up this CMake system will
+convince you to never write a Makefile again.</p><p>As a dive into CMake, let&rsquo;s start with a simple &lsquo;Hello World&rsquo; program.
+The <code>helloworld.cc</code> file contains the following code:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-C++ data-lang=C++><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;iostream&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(<span style=color:#66d9ef>void</span>)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	std<span style=color:#f92672>::</span>cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;Hello World&#34;</span> <span style=color:#f92672>&lt;&lt;</span> std<span style=color:#f92672>::</span>endl;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>To compile this code, create a file called <code>CMakeLists.txt</code>:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-CMake data-lang=CMake><span style=display:flex><span>add_executable(<span style=color:#e6db74>hello</span> <span style=color:#e6db74>helloworld.cc</span>)<span style=color:#960050;background-color:#1e0010>
+</span></span></span></code></pre></div><p>Now, assuming that you are running on Linux or Mac OS terminal
+(something with bash), you can execute the following commands:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>mkdir build;
+</span></span><span style=display:flex><span>cd build;
+</span></span><span style=display:flex><span>cmake ..;
+</span></span><span style=display:flex><span>make;
+</span></span></code></pre></div><p>This code creates a directory called build inside the project directory.
+(An important point to note is that CMake always builds &lsquo;out of source&rsquo;,
+i.e. the build directory must be a distinct directory from the source
+directory.) It then switches to the build directory, executes CMake,
+which creates Makefiles (turns out that there is no escaping Makefiles
+after all&mldr; :grin:) that have all the necessary information. As these
+files are generated by a tool and not written by a person, you never
+have to read them, so Makefile readability is not a concern. Second,
+the Makefiles encode all the dependencies correctly, so there&rsquo;s no
+reason to go through the hoops creating complex dependency files.</p><p>&lsquo;But what if I&rsquo;m on Windows, or if I just am the kind of person who is
+always wrong and uses CodeBlocks, Xcode, or another IDE?&rsquo; you ask. Well,
+hold on till the end, I&rsquo;ll show you how CMake has you covered.</p><p>Anyway, back to our hypothetical, but totally real project. The project
+has multiple source files in different directories.</p><dl><dt>GMM</dt><dd>contains files that implement a Gaussian mixture models code.</dd><dt>MAXFLOW</dt><dd>contains files for max-flow graph cuts.</dd><dt>MEANSHIFT</dt><dd>contains files for mean shift (cluster analysis).</dd></dl><p>All these codes are independent, so could be made into libraries. Of
+course, actually packaging this code as independent libraries is a
+terrible idea because the code isn&rsquo;t well written in the first place.
+However, I don&rsquo;t see too much harm in creating a static library that
+will probably never be distributed for code in each of these
+directories.</p><p>We can create a <code>CMakeLists.txt</code> file for each of these folders. The
+CMakeLists will contain code that looks like this:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-CMake data-lang=CMake><span style=display:flex><span>add_library(<span style=color:#75715e># Library name
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>STATIC</span> <span style=color:#75715e># Need to create a static library, not a shared one.
+</span></span></span><span style=display:flex><span><span style=color:#75715e>### List of files
+</span></span></span><span style=display:flex><span>)<span style=color:#960050;background-color:#1e0010>
+</span></span></span></code></pre></div><p>Then the top-level CMakeLists.txt can include these directories through
+the simple command:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-CMake data-lang=CMake><span style=display:flex><span><span style=color:#75715e># Tell CMake to look into subdirectories for CMakeLists.txt files.
+</span></span></span><span style=display:flex><span>subdirs(<span style=color:#e6db74>GMM</span> <span style=color:#e6db74>MAXFLOW</span> <span style=color:#e6db74>MEANSHIFT</span>)<span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#75715e># Add these directories to the compiler search path for include files.
+</span></span></span><span style=display:flex><span><span style=color:#75715e># ${PROJECT_SOURCE_DIR} is the path to the source code in the project.
+</span></span></span><span style=display:flex><span>include_directories(
+</span></span><span style=display:flex><span>	<span style=color:#f92672>${</span>PROJECT_SOURCE_DIR<span style=color:#f92672>}</span><span style=color:#e6db74>/GMM</span>
+</span></span><span style=display:flex><span>	<span style=color:#f92672>${</span>PROJECT_SOURCE_DIR<span style=color:#f92672>}</span><span style=color:#e6db74>/MAXFLOW</span>
+</span></span><span style=display:flex><span>	<span style=color:#f92672>${</span>PROJECT_SOURCE_DIR<span style=color:#f92672>}</span><span style=color:#e6db74>/MEANSHIFT</span>
+</span></span><span style=display:flex><span>	)<span style=color:#960050;background-color:#1e0010>
+</span></span></span></code></pre></div><p>Okay, but we also notice that the top-level program <code>PROG</code> needs OpenCV
+in order to compile. CMake provides a very easy method to search for
+dependencies. In the top-level <code>CMakeLists.txt</code>, we add</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-CMake data-lang=CMake><span style=display:flex><span>find_package(<span style=color:#e6db74>OpenCV</span> <span style=color:#e6db74>REQUIRED</span>)<span style=color:#960050;background-color:#1e0010>
+</span></span></span></code></pre></div><p>When we compile the program <code>PROG</code>, we need to link it against the
+OpenCV libraries, as well as the static libraries in the GMM, MAXFLOW,
+MEANSHIFT folders.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-CMake data-lang=CMake><span style=display:flex><span>include_directories(<span style=color:#f92672>${</span>OpenCV_INCLUDE_DIRS<span style=color:#f92672>}</span>)<span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span>add_executable(<span style=color:#e6db74>PROG</span> <span style=color:#e6db74>PROG.cc</span>)<span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span>target_link_libraries(<span style=color:#e6db74>PROG</span> <span style=color:#f92672>${</span>OpenCV_LIBS<span style=color:#f92672>}</span> <span style=color:#e6db74>GMM</span> <span style=color:#e6db74>MAXFLOW</span> <span style=color:#e6db74>MEANSHIFT</span>)<span style=color:#960050;background-color:#1e0010>
+</span></span></span></code></pre></div><p>Putting it all together, the top-level <code>CMakeLists.txt</code> contains the
+following code:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-CMake data-lang=CMake><span style=display:flex><span><span style=color:#75715e># Set a minimum version of CMake to be used, depending on the syntax of
+</span></span></span><span style=display:flex><span><span style=color:#75715e># the CMakeLists files.
+</span></span></span><span style=display:flex><span>cmake_minimum_required(<span style=color:#e6db74>VERSION</span> <span style=color:#e6db74>2</span>)<span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#75715e># Give this project a cutsie name.
+</span></span></span><span style=display:flex><span>project(<span style=color:#e6db74>PROG</span>)<span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#75715e># CMake subdirectories to include for these libraries.
+</span></span></span><span style=display:flex><span>subdirs(<span style=color:#e6db74>GMM</span> <span style=color:#e6db74>MAXFLOW</span> <span style=color:#e6db74>MEANSHIFT</span>)<span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#75715e># Search for OpenCV. If OpenCV is found, the command sets the
+</span></span></span><span style=display:flex><span><span style=color:#75715e># ${OpenCV_INCLUDE_DIR} and ${OpenCV_LIBS} variables to appropriate
+</span></span></span><span style=display:flex><span><span style=color:#75715e># values. If OpenCV is not found, CMake will fail.
+</span></span></span><span style=display:flex><span>find_package(<span style=color:#e6db74>OpenCV</span> <span style=color:#e6db74>REQUIRED</span>)<span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#75715e># Tell the compiler to search these directories for include files.
+</span></span></span><span style=display:flex><span>include_directories(
+</span></span><span style=display:flex><span>	<span style=color:#f92672>${</span>PROJECT_SOURCE_DIR<span style=color:#f92672>}</span><span style=color:#e6db74>/GMM</span>
+</span></span><span style=display:flex><span>	<span style=color:#f92672>${</span>PROJECT_SOURCE_DIR<span style=color:#f92672>}</span><span style=color:#e6db74>/MAXFLOW</span>
+</span></span><span style=display:flex><span>	<span style=color:#f92672>${</span>PROJECT_SOURCE_DIR<span style=color:#f92672>}</span><span style=color:#e6db74>/MEANSHIFT</span>
+</span></span><span style=display:flex><span>	<span style=color:#f92672>${</span>OpenCV_INCLUDE_DIR<span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>	)<span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#75715e># Finally, create the executable that we want.
+</span></span></span><span style=display:flex><span>add_executable(<span style=color:#e6db74>PROG</span> <span style=color:#e6db74>PROG.cc</span>)<span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#75715e># And link it against the required libraries.
+</span></span></span><span style=display:flex><span>target_link_libraries(<span style=color:#e6db74>prog</span> <span style=color:#f92672>${</span>OpenCV_LIBS<span style=color:#f92672>}</span> <span style=color:#e6db74>GMM</span> <span style=color:#e6db74>MAXFLOW</span> <span style=color:#e6db74>MEANSHIFT</span>)<span style=color:#960050;background-color:#1e0010>
+</span></span></span></code></pre></div><p>And we&rsquo;re done! Isn&rsquo;t this CMakeLists.txt file so much more readable
+than the Makefile shown earlier? Not just that, this system will work
+with any OS, any compiler, any platform. Isn&rsquo;t this great?</p><p>Okay, okay, you&rsquo;re the kind that likes to do things in an IDE. CMake has
+a concept of
+&lsquo;<a href=//cmake.org/cmake/help/v3.0/manual/cmake-generators.7.html>generators</a>&rsquo;,
+which is just a fancy name for a backend. Still assuming that we are on
+MacOS or Linux, we simply execute the following commands.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>mkdir build;
+</span></span><span style=display:flex><span>cd build;
+</span></span><span style=display:flex><span>cmake -G <span style=color:#e6db74>&#34;Xcode&#34;</span> .. <span style=color:#75715e># Or CodeBlocks, or whatever.</span>
+</span></span></code></pre></div><p>On Windows, execute the following commands on the command prompt
+(assuming that CMake is on your path) to create a Visual Studio 2015
+project.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-PowerShell data-lang=PowerShell><span style=display:flex><span>md build
+</span></span><span style=display:flex><span>cd build
+</span></span><span style=display:flex><span>cmake -G <span style=color:#e6db74>&#34;Visual Studio 14&#34;</span> ..
+</span></span></code></pre></div><p>Oh, did I mention that CMake also has a nice GUI that makes this entire
+process super easy? I won&rsquo;t describe it here, I&rsquo;ll just let you try it
+out for yourself.</p><p>The utility of CMake, however, doesn&rsquo;t just end here. CMake has a very
+neat testing system called CTest, which is something that I have
+mentioned in <a href=https://skandhurkat.com/posts/intro-to-ctest/>an earlier post</a>.
+This testing system interacts perfectly with a dashboard system called
+CDash, that can quickly allow people to view test results. CTest/CDash
+also has support for testing memory leaks and code coverage, so there.
+Finally, the last piece of the puzzle is CPack, which is a way of
+packaging software into installers.</p><p>The next post in the series will probably deal with advanced CMake
+configuration, including testing compiler versions, creating release and
+debug configurations. Until next time&mldr;</p></article><hr class=my-4><div id=disqus_thread data-page-url=https://skandhurkat.com/posts/intro-to-cmake/ data-page-id=/posts/intro-to-cmake/></div></div></div></div></main><footer><div class=container-md><div class=row><div class=col><p>Copyright 2012–2026, Skand Hurkat. All rights reserved.</p></div></div></div></footer><script src=https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js integrity=sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI crossorigin=anonymous></script><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.css integrity="sha512-LQ97camar/lOliT/MqjcQs5kWgy6Qz/cCRzzRzUCfv0fotsCTC9ZHXaPQmJV8Xu/PVALfJZ7BDezl5lW3/qBxg==" crossorigin=anonymous referrerpolicy=no-referrer><script src=https://cdnjs.cloudflare.com/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.js integrity="sha512-yXXqOFjdjHNH1GND+1EO0jbvvebABpzGKD66djnUfiKlYME5HGMUJHoCaeE4D5PTG2YsSJf6dwqyUUvQvS0vaA==" crossorigin=anonymous referrerpolicy=no-referrer></script><script>window.addEventListener("load",function(){var e=document.documentElement.getAttribute("data-bs-theme")==="dark";window.cookieconsent.initialise({palette:{popup:{background:e?"#1e1e2e":"#ffffff",text:e?"rgba(255,255,255,0.8)":"rgba(0,0,0,0.8)",border:"1px solid "+(e?"rgba(255,255,255,0.15)":"rgba(0,0,0,0.15)")},button:{background:"#2962ff",text:"#ffffff"}},theme:"classic",revokable:!0,law:{regionalLaw:!1},location:!1,content:{message:'"This website uses cookies for analytics (Google Analytics) and comments (Disqus)."',dismiss:"Got it!",link:"Learn more",href:"#"},onInitialise:function(){t(),this.hasConsented()&&n()},onPopupOpen:function(){t()},onStatusChange:function(){this.hasConsented()&&n()}});function t(){var e=document.querySelector(".cc-link");e&&(e.setAttribute("data-bs-toggle","modal"),e.setAttribute("data-bs-target","#cookie-policy-modal"),e.href="#",e.onclick=function(e){e.preventDefault()})}function n(){s(),o()}function s(){if(window._gaLoaded)return;window._gaLoaded=!0,gtag("consent","update",{analytics_storage:"granted"})}function o(){if(window._disqusLoaded)return;window._disqusLoaded=!0;var e,t=document.getElementById("disqus_thread");if(!t)return;window.disqus_config=function(){this.page.url=t.dataset.pageUrl,this.page.identifier=t.dataset.pageId},e=document.createElement("script"),e.src="https://skandhurkat-csl.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),document.body.appendChild(e)}})</script><div class="modal fade" id=cookie-policy-modal tabindex=-1 aria-labelledby=cookie-policy-label aria-hidden=true><div class=modal-dialog><div class=modal-content><div class=modal-header><h5 class=modal-title id=cookie-policy-label>Cookie Policy</h5><button type=button class=btn-close data-bs-dismiss=modal aria-label=Close></button></div><div class=modal-body style=font-size:.9rem;line-height:1.6><p>This site uses cookies strictly for the following purposes.
+No cookies are set until you click <em>Got it!</em>.</p><ul><li><strong>Google Analytics</strong> — anonymous usage statistics.
+No personally identifiable information is collected.
+Opt out: <a href=https://tools.google.com/dlpage/gaoptout target=_blank rel=noopener>tools.google.com/dlpage/gaoptout</a>.</li><li><strong>Disqus</strong> — comment threads. Disqus sets its own
+cookies when you interact with comments. See
+<a href=https://help.disqus.com/en/articles/1717155-use-of-cookies target=_blank rel=noopener>Disqus's cookie policy</a>.</li></ul></div><div class=modal-footer><button type=button class="btn btn-secondary btn-sm" data-bs-dismiss=modal>Close</button></div></div></div></div><script type=application/ld+json>[{"@context":"https://schema.org","@type":"BlogPosting","author":[{"@type":"Person","name":"Skand Hurkat"}],"datePublished":"2017-11-23","headline":"Introduction to CMake","url":"https://skandhurkat.com/posts/intro-to-cmake/"}]</script></body></html>

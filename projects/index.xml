@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Projects on Skand Hurkat</title><link>https://skandhurkat.com/projects/</link><description>Recent content in Projects on Skand Hurkat</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Fri, 13 Dec 2013 00:00:00 +0000</lastBuildDate><atom:link href="https://skandhurkat.com/projects/index.xml" rel="self" type="application/rss+xml"/><item><title>LDPC decoding using residual BP</title><link>https://skandhurkat.com/projects/ldpc-decoder-residual-bp/</link><pubDate>Fri, 13 Dec 2013 00:00:00 +0000</pubDate><guid>https://skandhurkat.com/projects/ldpc-decoder-residual-bp/</guid><description>&lt;p&gt;This was a course project for CS6782 &amp;ndash; Probabilistic graphical models.
+In this project, I study the application of two techniques to the
+belief-propagation based decoding of LDPC codes, and compare these
+techniques against a traditional sum-product LDPC decoder. The first
+technique, min-sum decoding was implemented in the 1980s by Tanner as a
+method to reduce computational complexity of sum-product decoding. The
+other technique, residual belief propagation optimises the order in
+which message updates are scheduled in an informed manner, leading to
+faster and better convergence. The two methods are combined and
+experimentally evaluated.&lt;/p&gt;</description></item><item><title>High-level synthesis of a belief propagation accelerator</title><link>https://skandhurkat.com/projects/hls-bp/</link><pubDate>Fri, 17 May 2013 00:00:00 +0000</pubDate><guid>https://skandhurkat.com/projects/hls-bp/</guid><description>&lt;p&gt;Belief propagation on probabilistic graphical models such as Markov
+random fields is the basis for a variety of applications, especially
+applications in computer vision. In this project, we used Vivado-HLS, a
+C-to-gates framework to rapidly prototype and test a number of
+accelerators for belief propagation on an FPGA. We used a Xilinx Zynq
+platform and our experiments show that using a dedicated FPGA
+accelerator provides a 2x speedup compared to a processor-only approach.
+Further, we note that the speedup is limited by communication bandwidth,
+and that higher speedups could be achieved using a higher-bandwidth bus.&lt;/p&gt;</description></item><item><title>EmoDetect</title><link>https://skandhurkat.com/projects/emodetect/</link><pubDate>Fri, 16 Nov 2012 00:00:00 +0000</pubDate><guid>https://skandhurkat.com/projects/emodetect/</guid><description>&lt;p&gt;We developed EmoDetect, an open source system for identifying human
+emotion from images. This system has an accuracy of around 63% in
+identifying the correct emotion from amongst seven candidates. Our
+experiments showed that humans did slightly better, with an accuracy of
+74%.&lt;/p&gt;
+&lt;p&gt;The project was aimed as a comparative study of different feature
+extractors and learning algorithm combinations for the task of
+identifying emotion from static images. Our study revealed that Gabor
+features with a linear, soft margin SVM performed best.&lt;/p&gt;</description></item><item><title>Delay-aware proportional-fair scheduling in OFDMA networks</title><link>https://skandhurkat.com/projects/btp/</link><pubDate>Sat, 30 Jul 2011 00:00:00 +0000</pubDate><guid>https://skandhurkat.com/projects/btp/</guid><description>&lt;p&gt;This project considers the problem of delay-constrained scheduling over
+wireless fading channels in OFDMA networks like LTE-Advanced
+networks. Existing scheduling algorithms are considered and extended
+to OFDMA networks, and performance is evaluated. Specifically, the
+problem of scheduling users on the downlink in TD-LTE networks has been
+addressed, and suitably modified proportional-fair and opportunistic
+schedulers are proposed. Their performance is evaluated in the context
+of downlink in TD-LTE systems, and compared. Further, a simulation
+environment has been created which can be used for further analysis of
+scheduling algorithms in TD-LTE networks, and which can be suitably
+extended for simulating relay-assisted networks.&lt;/p&gt;</description></item><item><title>Multi-touch interface for visualising network information</title><link>https://skandhurkat.com/projects/hci/</link><pubDate>Wed, 11 May 2011 00:00:00 +0000</pubDate><guid>https://skandhurkat.com/projects/hci/</guid><description>&lt;p&gt;I worked on this project as a summer intern at École de technologie
+supérieure, Montréal, Canada, under the guidance of &lt;a href="//profs.etsmtl.ca/mmcguffin"&gt;Dr. Michael
+McGuffin&lt;/a&gt;. My work involved developing new
+and innovative gestures for network layout manipulation. Over the course
+of almost 10 weeks, I converted an existing interface from a
+mouse-keyboard interaction technique to a touch based technique, with
+special gestures like radial menus, toolglass widgets and popup menus to
+enable easy and intuitive interaction with networks.&lt;/p&gt;</description></item><item><title>Active noise-cancelling headphones</title><link>https://skandhurkat.com/projects/edl/</link><pubDate>Mon, 03 Jan 2011 00:00:00 +0000</pubDate><guid>https://skandhurkat.com/projects/edl/</guid><description>&lt;p&gt;This was a semester long team course project as part of the Electronics
+Design Lab (the dreaded &amp;ldquo;EDL&amp;rdquo;) course at IITB. The aim of this project
+was to build an affordable pair of noise cancelling headphones.&lt;/p&gt;
+&lt;p&gt;We developed an analogue feedback based controller as a disturbance
+rejection control system; which had the added benefit of improving the
+sound quality of our relatively cheap $10 headphones. The main
+challenges in this project were to characterise the headphone-ear system
+(the &amp;ldquo;plant&amp;rdquo;) to get the frequency magnitude and phase response; as the
+system changes characteristics based on a number of factors, including
+the shape of the ear cavity, the way the headphones are worn, and the
+placement of the microphones inside the headphone cavity.&lt;/p&gt;</description></item><item><title>Text-independent speaker verification</title><link>https://skandhurkat.com/projects/text-independent-speaker-verification/</link><pubDate>Fri, 16 Apr 2010 00:00:00 +0000</pubDate><guid>https://skandhurkat.com/projects/text-independent-speaker-verification/</guid><description>&lt;p&gt;We developed a system to identify users independent of their spoken
+words. The system used Mel-frequency cepstral coefficients (MFCCs) to
+obtain a characteristic pattern of the user&amp;rsquo;s voice which was then
+analysed by a three layer multi-layer perceptron (MLP) neural network.
+We obtained accuracies of over 90% using this approach.&lt;/p&gt;
+&lt;p&gt;The entire project was implemented in MATLAB.&lt;/p&gt;</description></item><item><title>CarDetect</title><link>https://skandhurkat.com/projects/cardetect/</link><pubDate>Mon, 01 Jun 2009 00:00:00 +0000</pubDate><guid>https://skandhurkat.com/projects/cardetect/</guid><description>&lt;p&gt;CarDetect is a system to identify car numberplates (registration plates)
+and car make and model. This system was supposed to help law enforcement
+officials identify fake numberplates and stolen cars. I worked on this
+project for over a year and achieved over 98% accuracy in recognizing
+numberplate regions, and over 90% accuracy in recognizing car models.&lt;/p&gt;
+&lt;p&gt;The project was implemented in OpenCV using C/C++. The code for the
+project can be found on my GitHub repository.&lt;/p&gt;</description></item><item><title>Text-dependent speaker verification</title><link>https://skandhurkat.com/projects/text-dependent-speaker-verification/</link><pubDate>Sat, 16 May 2009 00:00:00 +0000</pubDate><guid>https://skandhurkat.com/projects/text-dependent-speaker-verification/</guid><description>&lt;p&gt;This was a summer project in my first year. This system used an
+ATmega128 microcontroller coupled with a 62256 SRAM module. It could
+store and verify a 2 second speech signal by any one speaker. Support
+for additional speakers may be added by adding an interface to an SD
+card, and tweaking the code slightly.&lt;/p&gt;
+&lt;p&gt;The system was designed to be compatible with a computer microphone for
+accepting the input signal.&lt;/p&gt;</description></item></channel></rss>

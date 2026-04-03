@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Human-Computer-Interaction on Skand Hurkat</title><link>https://skandhurkat.com/categories/human-computer-interaction/</link><description>Recent content in Human-Computer-Interaction on Skand Hurkat</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Wed, 11 May 2011 00:00:00 +0000</lastBuildDate><atom:link href="https://skandhurkat.com/categories/human-computer-interaction/index.xml" rel="self" type="application/rss+xml"/><item><title>Multi-touch interface for visualising network information</title><link>https://skandhurkat.com/projects/hci/</link><pubDate>Wed, 11 May 2011 00:00:00 +0000</pubDate><guid>https://skandhurkat.com/projects/hci/</guid><description>&lt;p&gt;I worked on this project as a summer intern at École de technologie
+supérieure, Montréal, Canada, under the guidance of &lt;a href="//profs.etsmtl.ca/mmcguffin"&gt;Dr. Michael
+McGuffin&lt;/a&gt;. My work involved developing new
+and innovative gestures for network layout manipulation. Over the course
+of almost 10 weeks, I converted an existing interface from a
+mouse-keyboard interaction technique to a touch based technique, with
+special gestures like radial menus, toolglass widgets and popup menus to
+enable easy and intuitive interaction with networks.&lt;/p&gt;</description></item></channel></rss>
