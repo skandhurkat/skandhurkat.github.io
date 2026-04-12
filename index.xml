@@ -1,4 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Skand Hurkat</title><link>https://skandhurkat.com/</link><description>Recent content on Skand Hurkat</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Mon, 27 Jan 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://skandhurkat.com/index.xml" rel="self" type="application/rss+xml"/><item><title>Computer Architect</title><link>https://skandhurkat.com/experience/computer-architect-nvidia/</link><pubDate>Mon, 27 Jan 2025 00:00:00 +0000</pubDate><guid>https://skandhurkat.com/experience/computer-architect-nvidia/</guid><description>&lt;!-- Optional: bullet points or extended description in Markdown.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Skand Hurkat</title><link>https://skandhurkat.com/</link><description>Recent content on Skand Hurkat</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Wed, 01 Apr 2026 10:13:50 -0700</lastBuildDate><atom:link href="https://skandhurkat.com/index.xml" rel="self" type="application/rss+xml"/><item><title>Hugo Theme: Academic CV</title><link>https://skandhurkat.com/projects/hugo-theme-academic-cv/</link><pubDate>Wed, 01 Apr 2026 10:13:50 -0700</pubDate><guid>https://skandhurkat.com/projects/hugo-theme-academic-cv/</guid><description>&lt;p&gt;This is a simple &lt;a href="//gohugo.io"&gt;Hugo&lt;/a&gt; theme with minimal third-party
+dependencies for a simple academic CV style website. Initially, I used
+the academic theme by gcushen, which has since changed to the new
+HugoBlox platform with a bazillion dependencies and requires not just
+Hugo, but also node.js to build. The replacement theme is intentionally
+simple. It showcases publications, patents, projects, blog posts,
+provides links to social media and academic websites like Google Scholar
+and ORCID. I really never want to share slides using reveal.js with a
+presenter view, or showcase a gallery of images on my website.&lt;/p&gt;</description></item><item><title>Computer Architect</title><link>https://skandhurkat.com/experience/computer-architect-nvidia/</link><pubDate>Mon, 27 Jan 2025 00:00:00 +0000</pubDate><guid>https://skandhurkat.com/experience/computer-architect-nvidia/</guid><description>&lt;!-- Optional: bullet points or extended description in Markdown.
  Rendered below the description on the card if present. --&gt;
 &lt;p&gt;Computer architect at Nvidia working on accelerated and resilient computing
 systems. I work on improving CPU and GPU architecture for emerging domains such
