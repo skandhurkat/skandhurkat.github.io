@@ -3,8 +3,8 @@ Lemire&lt;/a&gt;) praise newer languages like &lt;em&gt;Go&lt;/em&gt;, which mak
 sad as a C++ programmer. Well, that&amp;rsquo;s until I realise that most of the
 features touted could be easily incorporated in C++ with just a bit of
 elbow grease. In this post, I&amp;rsquo;ll show how to add an automated testing
-system using CTest.&lt;/p&gt;</description></item><item><title>A bug in how GCC handles constructors</title><link>https://skandhurkat.com/posts/gcc-constructor-bug/</link><pubDate>Tue, 23 May 2017 10:51:42 -0400</pubDate><guid>https://skandhurkat.com/posts/gcc-constructor-bug/</guid><description>&lt;p&gt;Some days ago, I became aware of &lt;a href="https://akrzemi1.wordpress.com/2017/04/27/a-serious-bug-in-gcc/"&gt;a bug in
-GCC&lt;/a&gt;
+system using CTest.&lt;/p&gt;</description></item><item><title>A bug in how GCC handles constructors</title><link>https://skandhurkat.com/posts/gcc-constructor-bug/</link><pubDate>Tue, 23 May 2017 10:51:42 -0400</pubDate><guid>https://skandhurkat.com/posts/gcc-constructor-bug/</guid><description>&lt;p&gt;Some days ago, I became aware of
+&lt;a href="https://akrzemi1.wordpress.com/2017/04/27/a-serious-bug-in-gcc/"&gt;a bug in GCC&lt;/a&gt;
 that has apparently existed since 2015. As this is a bug that deals with
 memory leaks, it is fairly serious.&lt;/p&gt;
 &lt;p&gt;In this case, I really don&amp;rsquo;t want to re-post the entire content of the
