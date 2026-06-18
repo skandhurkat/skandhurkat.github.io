@@ -1,4 +1,13 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Skand Hurkat</title><link>https://skandhurkat.com/posts/</link><description>Recent content in Posts on Skand Hurkat</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Fri, 12 Apr 2019 21:10:31 -0700</lastBuildDate><atom:link href="https://skandhurkat.com/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Star Trek 2019</title><link>https://skandhurkat.com/posts/star-trek-2019/</link><pubDate>Fri, 12 Apr 2019 21:10:31 -0700</pubDate><guid>https://skandhurkat.com/posts/star-trek-2019/</guid><description>&lt;p&gt;2019 marks a few anniversaries. It is the 50&lt;sup&gt;th&lt;/sup&gt; anniversary
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Skand Hurkat</title><link>https://skandhurkat.com/posts/</link><description>Recent content in Posts on Skand Hurkat</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Thu, 18 Jun 2026 06:04:37 +0000</lastBuildDate><atom:link href="https://skandhurkat.com/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>A Brief History of LLMs</title><link>https://skandhurkat.com/posts/a-brief-history-of-llms/</link><pubDate>Thu, 18 Jun 2026 06:04:37 +0000</pubDate><guid>https://skandhurkat.com/posts/a-brief-history-of-llms/</guid><description>&lt;p&gt;Large language models (LLMs) are all the rage these days. It&amp;rsquo;s not
+uncommon to hear someone say, &amp;lsquo;I asked ChatGPT&amp;rsquo;, or indeed, to have a
+sitting US Senator publish an &amp;lsquo;&lt;a href="https://youtu.be/h3AtWdeu_G0"&gt;interview&lt;/a&gt;&amp;rsquo;
+they had with a large language model to their YouTube channel. In this
+post, like Toto, I pull back the curtain on LLMs, and I trace their
+origins going all the way back to the very first computer that learnt
+from data. I highlight the discoveries that &amp;ndash; in my opinion &amp;ndash; were key
+in leading up to this moment. I will also show how to build our very own
+chatbot around a language model, how to give it access to system tools,
+and demystify the &amp;lsquo;Agentic AI&amp;rsquo; buzzword.&lt;/p&gt;</description></item><item><title>Star Trek 2019</title><link>https://skandhurkat.com/posts/star-trek-2019/</link><pubDate>Fri, 12 Apr 2019 21:10:31 -0700</pubDate><guid>https://skandhurkat.com/posts/star-trek-2019/</guid><description>&lt;p&gt;2019 marks a few anniversaries. It is the 50&lt;sup&gt;th&lt;/sup&gt; anniversary
 of the moon landings. It also marks fifty years since the end of Gene
 Roddenberry&amp;rsquo;s Star Trek (the original series).&lt;/p&gt;
 &lt;p&gt;As a bit of a Trek nerd myself, I figured that this is a great time
